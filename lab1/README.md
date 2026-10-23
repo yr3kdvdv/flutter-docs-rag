@@ -31,6 +31,7 @@ cp ../.env.example ../.env   # затем заполнить локально, �
 | Команда | Что делает |
 |---|---|
 | `uv sync` | Воспроизводимо ставит зависимости из `uv.lock` |
+| `uv export --no-header --no-hashes --no-dev --no-emit-project -o requirements.txt` | Обновить requirements.txt из lock (CI сверяет) |
 | `uv run pytest` | Проверки среды и каркаса (не проверяют RAG) |
 | `uv run ruff check .` | Линтер |
 | `uv run flutter-rag env-check` | Версии и наличие ключей: `set`/`MISSING`, без значений |

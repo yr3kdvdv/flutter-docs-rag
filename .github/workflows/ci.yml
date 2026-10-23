@@ -27,5 +27,5 @@ jobs:
         run: uv run pytest
       - name: requirements.txt matches uv.lock
         run: |
-          uv export --no-hashes --no-dev --no-emit-project -q -o /tmp/req.txt
-          diff -u requirements.txt /tmp/req.txt
+          uv export --no-header --no-hashes --no-dev --no-emit-project -q -o "$RUNNER_TEMP/req.txt"
+          diff -u requirements.txt "$RUNNER_TEMP/req.txt"
