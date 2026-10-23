@@ -1,0 +1,16 @@
+{
+  "trace_id": "e646547efc489a60cc41745bf292f274",
+  "observations": [
+    {
+      "name": "retrieve",
+      "type": "RETRIEVER",
+      "parent": "13f80e56146d9e7f"
+    },
+    {
+      "name": "rag.ask",
+      "type": "SPAN",
+      "parent": null
+    }
+  ],
+  "url": "https://cloud.langfuse.com/project/cmvl28r6600z6ad0kmhvny3nt/traces/e646547efc489a60cc41745bf292f274"
+}

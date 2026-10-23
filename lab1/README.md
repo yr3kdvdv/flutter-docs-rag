@@ -59,22 +59,24 @@ cp ../.env.example ../.env   # затем заполнить локально, �
 | Reranker (Voyage), вторая embedding-модель, другие стратегии chunking | 05 |
 | Полный корпус (`configs/base.yaml`, 638 страниц) — код готов, но не запускался | 04–05 |
 
-## Пример (реальный запуск 2026-10-23, prompt answer/v1.2)
+## Пример (реальный запуск на commit 7cac4ca, prompt answer/v1.2)
 
 ```text
 $ uv run flutter-rag ask "Почему виджет с width: 100 может оказаться не шириной 100 пикселей?"
 status: answered
 
-Виджет с width: 100 может оказаться не шириной 100 пикселей, потому что его размер
-ограничивается родителем. Например, если экран заставляет корневой Container быть точно
-такого же размера, как экран, то Container заполнит весь экран и проигнорирует заданную ширину [5].
+Виджет с width: 100 может не быть шириной 100 пикселей, потому что родительский виджет или экран может навязывать ему другие ограничения (например, экран заставляет контейнер занять весь экран целиком) [1][5].
 
 Источники:
+  [1] Understanding constraints
+      https://docs.flutter.dev/ui/layout/constraints  (score 0.6954)
   [5] Understanding constraints — Examples > Example 2
       https://docs.flutter.dev/ui/layout/constraints#example-2  (score 0.6955)
+
+trace: e2c97be2c40fe72b5fe6a5034d945e16
 ```
 
-Сохранённые ответы, отчёты ingest и trace — в `docs/evidence/stage03/`.
+Сохранённые ответы, отчёты ingest и trace — в `docs/evidence/stage03/` (см. README там).
 
 ## Структура
 
