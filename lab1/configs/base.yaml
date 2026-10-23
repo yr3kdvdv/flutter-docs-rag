@@ -1,24 +1,30 @@
-# Planned baseline (stage 01 draft). Values are starting points, not tuned results.
+# Planned baseline (revision 2, after the stage 02 audit). Starting points, not tuned results.
 # Model IDs are candidates and must be confirmed with a small real API call (stage 03).
 config_id: baseline-draft
 corpus:
   repo: flutter/website
   ref: main            # pinned to a commit SHA in each snapshot manifest
   include: ["sites/docs/src/content/**/*.md"]
-  exclude: ["sites/docs/src/content/release/release-notes/**"]
+  exclude:
+    - "sites/docs/src/content/**/_*.md"   # partials: no own page, URL is 404 (audit B3)
+    - "sites/docs/src/content/release/release-notes/**"
+  skip_front_matter: {noindex: true, sitemap: false}   # internal contributor pages
 chunking:
   strategy: section    # fixed | fixed_overlap | paragraph | section
   max_tokens: 512
   overlap: 0.0
+  code_soft_cap_tokens: 1024   # longer code blocks are split by lines (audit H4)
 embedding:
   provider: gemini
   model: gemini-embedding-001
   dimensions: 768
+  batch_size: 50       # texts per request (audit B1)
+  max_rpm: null        # set after checking the real quota in AI Studio
 retrieval:
   top_k: 20
 filtering:
-  min_score: null      # chosen on the dev set per embedding model
-  dedupe: true
+  min_score: null      # null = refusal only by the LLM; calibrated on dev per embedding model (audit H3)
+  dedupe: content_hash  # never drop other ordinals of the same section (audit H2)
   min_chars: 80
 reranking:
   enabled: false
@@ -28,5 +34,5 @@ reranking:
 generation:
   provider: gemini
   model: null          # chosen after a real availability check
-  prompt_version: v1
+  prompt_version: v1   # lab1/prompts/answer/v1.md in Git (audit M2)
   max_context_tokens: 6000
