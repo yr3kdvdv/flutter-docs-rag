@@ -1,6 +1,6 @@
 # Состояние проекта
 
-Дата: 23 октября 2026. Этап: **01 завершён**, следующий — 02 (аудит архитектуры Gemini).
+Дата: 23 октября 2026. Этап: **01 и 02 завершены** (аудит Gemini получен и разобран), следующий — 03.
 Подробно: [docs/handoffs/latest.md](handoffs/latest.md).
 
 ## Сделано
@@ -12,10 +12,12 @@
   видимость в Claude Code подтверждена (docs/evidence/).
 - GitHub: https://github.com/yr3kdvdv/flutter-docs-rag (public), Issues #1–#12, labels,
   шаблоны PR/Issue, CI — зелёный на `f1f00ab`.
+- Аудит архитектуры Gemini сохранён (docs/reviews/architecture.md, SHA 45cc5a6) и разобран
+  (docs/reviews/architecture-response.md): B1–B3, H1–H4, M2–M4, L1–L3 приняты; H5 частично; M1 отклонён как дефект.
+  Архитектура → ревизия 2, base.yaml обновлён.
 
 ## Не выполнено
 - Код RAG, API smoke, Langfuse traces, корпус, dataset, эксперименты.
-- Аудит архитектуры (этап 02).
 - Проверка skills в Codex/Antigravity; реальный запуск субагентов.
 
 ## Наблюдения о среде (проверено 2026-10-23 в этой сессии)
@@ -27,6 +29,6 @@
 - Ключи Gemini/Langfuse/Voyage: MISSING (`.env` не создан).
 
 ## Следующее действие
-1. Аудит: Antigravity по prompts/02-gemini-architecture.md (START_HERE.md §3).
-2. Пользователь: заполнить `.env` по docs/SETUP_ACCOUNTS.md, сообщить вывод `env-check`.
-3. Затем этап 03 в Claude Code с отчётом аудита.
+1. Пользователь: заполнить `.env` по docs/SETUP_ACCOUNTS.md, посмотреть лимиты Gemini в AI Studio
+   (https://aistudio.google.com/rate-limit), сообщить вывод `env-check`.
+2. Затем этап 03 в Claude Code (prompts/03-claude-vertical-slice.md).
