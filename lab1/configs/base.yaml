@@ -1,0 +1,32 @@
+# Planned baseline (stage 01 draft). Values are starting points, not tuned results.
+# Model IDs are candidates and must be confirmed with a small real API call (stage 03).
+config_id: baseline-draft
+corpus:
+  repo: flutter/website
+  ref: main            # pinned to a commit SHA in each snapshot manifest
+  include: ["sites/docs/src/content/**/*.md"]
+  exclude: ["sites/docs/src/content/release/release-notes/**"]
+chunking:
+  strategy: section    # fixed | fixed_overlap | paragraph | section
+  max_tokens: 512
+  overlap: 0.0
+embedding:
+  provider: gemini
+  model: gemini-embedding-001
+  dimensions: 768
+retrieval:
+  top_k: 20
+filtering:
+  min_score: null      # chosen on the dev set per embedding model
+  dedupe: true
+  min_chars: 80
+reranking:
+  enabled: false
+  provider: voyage
+  model: rerank-2.5
+  top_n: 5
+generation:
+  provider: gemini
+  model: null          # chosen after a real availability check
+  prompt_version: v1
+  max_context_tokens: 6000

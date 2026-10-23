@@ -1,0 +1,10 @@
+# claude -p --tools Agent --max-turns 1 (Claude Code 2.1.309, 2026-10-23T09:24:49Z), run in repo root
+claude
+code-reviewer
+corpus-engineer
+evaluation-engineer
+Explore
+general-purpose
+Plan
+retrieval-engineer
+fork

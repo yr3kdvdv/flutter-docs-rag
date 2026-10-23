@@ -1,0 +1,23 @@
+# claude -p --tools Skill --max-turns 1 (Claude Code 2.1.309, 2026-10-23T09:24:49Z), run in repo root
+The Skill tool's description doesn't list any skills itself. They're listed in a separate section of my context. These are the ones in that list without a plugin prefix:
+
+context-handoff
+defense-coach
+flutter-corpus-ingestion
+independent-review
+langfuse-instrumentation
+rag-experiment
+requirements-to-issues
+dataviz
+update-config
+keybindings-help
+code-review
+simplify
+fewer-permission-prompts
+loop
+schedule
+claude-api
+run
+plugin-authoring
+init
+security-review
