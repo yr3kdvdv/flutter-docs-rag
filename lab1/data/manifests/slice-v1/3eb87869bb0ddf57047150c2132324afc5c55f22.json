@@ -1,0 +1,86 @@
+{
+  "repo": "flutter/website",
+  "commit_sha": "3eb87869bb0ddf57047150c2132324afc5c55f22",
+  "created_at": "2026-10-23T15:53:04+00:00",
+  "config_id": "slice-v1",
+  "documents": {
+    "add-to-app/android/add-flutter-screen": {
+      "document_id": "add-to-app/android/add-flutter-screen",
+      "path": "sites/docs/src/content/add-to-app/android/add-flutter-screen.md",
+      "url": "https://docs.flutter.dev/add-to-app/android/add-flutter-screen",
+      "blob_sha": "d6e0a61f8f4133e2b11a9538f9eacc1a719088f0",
+      "status": "ok",
+      "reason": null,
+      "includes": {
+        "sites/docs/src/_includes/docs/add-to-app/android-initial-route-cached-engine.md": "18ddb766a444cb68d35f9379532d2f5a1f2de668"
+      }
+    },
+    "cookbook/networking/fetch-data": {
+      "document_id": "cookbook/networking/fetch-data",
+      "path": "sites/docs/src/content/cookbook/networking/fetch-data.md",
+      "url": "https://docs.flutter.dev/cookbook/networking/fetch-data",
+      "blob_sha": "e5a64f5a646ea2c554bed5c486e8ad9793bed85b",
+      "status": "ok",
+      "reason": null,
+      "includes": {
+        "sites/docs/src/_includes/docs/cookbook/networking/internet-permission.md": "a71937ed26b03d0b8482d8160303c1a05235f1da"
+      }
+    },
+    "data-and-backend/state-mgmt/simple": {
+      "document_id": "data-and-backend/state-mgmt/simple",
+      "path": "sites/docs/src/content/data-and-backend/state-mgmt/simple.md",
+      "url": "https://docs.flutter.dev/data-and-backend/state-mgmt/simple",
+      "blob_sha": "423ad176606952b73fb56b71f66222ffdfc1bfc9",
+      "status": "ok",
+      "reason": null,
+      "includes": {}
+    },
+    "perf/best-practices": {
+      "document_id": "perf/best-practices",
+      "path": "sites/docs/src/content/perf/best-practices.md",
+      "url": "https://docs.flutter.dev/perf/best-practices",
+      "blob_sha": "fd60fc533dc712674179ac6e774a9f422c081313",
+      "status": "ok",
+      "reason": null,
+      "includes": {
+        "sites/docs/src/_includes/docs/performance.md": "24699dc379e9ec009c88d723fc220dc0350d2c40"
+      }
+    },
+    "testing/overview": {
+      "document_id": "testing/overview",
+      "path": "sites/docs/src/content/testing/overview.md",
+      "url": "https://docs.flutter.dev/testing/overview",
+      "blob_sha": "da9d2506b34673bacc49663864d85bd2a83df3e0",
+      "status": "ok",
+      "reason": null,
+      "includes": {}
+    },
+    "tools/hot-reload": {
+      "document_id": "tools/hot-reload",
+      "path": "sites/docs/src/content/tools/hot-reload.md",
+      "url": "https://docs.flutter.dev/tools/hot-reload",
+      "blob_sha": "ffffb83334e2b20f8ca270fc2eb024505a9a7b93",
+      "status": "ok",
+      "reason": null,
+      "includes": {}
+    },
+    "ui/layout/constraints": {
+      "document_id": "ui/layout/constraints",
+      "path": "sites/docs/src/content/ui/layout/constraints.md",
+      "url": "https://docs.flutter.dev/ui/layout/constraints",
+      "blob_sha": "17e5c2ca1ab8b3ea627694b64234411afecd3724",
+      "status": "ok",
+      "reason": null,
+      "includes": {}
+    },
+    "ui/navigation/index": {
+      "document_id": "ui/navigation/index",
+      "path": "sites/docs/src/content/ui/navigation/index.md",
+      "url": "https://docs.flutter.dev/ui/navigation",
+      "blob_sha": "c402a312984964fb42b6c05ba349767227833b1b",
+      "status": "ok",
+      "reason": null,
+      "includes": {}
+    }
+  }
+}

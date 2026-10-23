@@ -1,0 +1,182 @@
+{
+  "status": "answered",
+  "question": "Почему виджет с width: 100 может оказаться не шириной 100 пикселей?",
+  "text": "Виджет с width: 100 может оказаться не шириной 100 пикселей, потому что его размер ограничивается родителем. Например, если экран заставляет корневой Container быть точно такого же размера, как экран, то Container заполнит весь экран и проигнорирует заданную ширину [5].",
+  "sources": [
+    {
+      "number": 5,
+      "title": "Understanding constraints",
+      "section": "Examples > Example 2",
+      "url": "https://docs.flutter.dev/ui/layout/constraints#example-2",
+      "score": 0.6955,
+      "chunk_id": "5767ec83-914a-51da-9d34-5ceb2e821e30"
+    }
+  ],
+  "retrieved": [
+    {
+      "rank": 1,
+      "score": 0.6955,
+      "document_id": "ui/layout/constraints",
+      "section": "Examples > Example 2",
+      "chunk_id": "5767ec83-914a-51da-9d34-5ceb2e821e30"
+    },
+    {
+      "rank": 2,
+      "score": 0.6954,
+      "document_id": "ui/layout/constraints",
+      "section": "",
+      "chunk_id": "f16a6629-ec3b-546b-893b-ce3de31b9973"
+    },
+    {
+      "rank": 3,
+      "score": 0.6841,
+      "document_id": "ui/layout/constraints",
+      "section": "Examples > Example 3",
+      "chunk_id": "dcb1f286-0454-5e38-9d1e-818fcb24ee02"
+    },
+    {
+      "rank": 4,
+      "score": 0.663,
+      "document_id": "ui/layout/constraints",
+      "section": "Limitations",
+      "chunk_id": "dc6ae26d-c00a-55c1-b7fd-b671d47788c1"
+    },
+    {
+      "rank": 5,
+      "score": 0.6585,
+      "document_id": "ui/layout/constraints",
+      "section": "Examples > Example 12",
+      "chunk_id": "a75296a9-26f1-582a-abc3-ce1a9f2c43ed"
+    },
+    {
+      "rank": 6,
+      "score": 0.654,
+      "document_id": "ui/layout/constraints",
+      "section": "Examples",
+      "chunk_id": "1b27cf9f-ac63-5672-b57e-a9a5731f4752"
+    },
+    {
+      "rank": 7,
+      "score": 0.6501,
+      "document_id": "ui/layout/constraints",
+      "section": "Examples",
+      "chunk_id": "dd9251e3-3668-53dc-95aa-f25c43c04292"
+    },
+    {
+      "rank": 8,
+      "score": 0.6498,
+      "document_id": "ui/layout/constraints",
+      "section": "Examples > Example 9",
+      "chunk_id": "c86559a7-7986-54b4-86f8-dbc1ae21f420"
+    },
+    {
+      "rank": 9,
+      "score": 0.6481,
+      "document_id": "ui/layout/constraints",
+      "section": "Examples",
+      "chunk_id": "3361f09a-a6f7-5dc0-8d5e-a7efcd8cd271"
+    },
+    {
+      "rank": 10,
+      "score": 0.6472,
+      "document_id": "ui/layout/constraints",
+      "section": "Examples > Example 26",
+      "chunk_id": "57fc87b1-832e-55e2-8075-04845ee2019a"
+    },
+    {
+      "rank": 11,
+      "score": 0.6453,
+      "document_id": "ui/layout/constraints",
+      "section": "Examples > Example 10",
+      "chunk_id": "3ccfdc9f-da7d-5854-85ff-4b066c31d203"
+    },
+    {
+      "rank": 12,
+      "score": 0.645,
+      "document_id": "ui/layout/constraints",
+      "section": "Examples > Example 11",
+      "chunk_id": "3975249e-bf93-59c5-9c90-042f49783cb2"
+    },
+    {
+      "rank": 13,
+      "score": 0.6448,
+      "document_id": "ui/layout/constraints",
+      "section": "",
+      "chunk_id": "19d49396-f683-5aaa-bcef-184cd1a1f8c6"
+    },
+    {
+      "rank": 14,
+      "score": 0.6446,
+      "document_id": "ui/layout/constraints",
+      "section": "Examples > Example 22",
+      "chunk_id": "5e31db8c-5377-5d23-9374-288c097cb42a"
+    },
+    {
+      "rank": 15,
+      "score": 0.6421,
+      "document_id": "ui/layout/constraints",
+      "section": "Learning the layout rules for specific widgets",
+      "chunk_id": "f5f5596a-9dd0-5fc7-8c4f-b4e2c7928cee"
+    },
+    {
+      "rank": 16,
+      "score": 0.6414,
+      "document_id": "ui/layout/constraints",
+      "section": "Examples > Example 18",
+      "chunk_id": "ad3bb861-3f2b-5260-ba9c-881f8c1dfdb6"
+    },
+    {
+      "rank": 17,
+      "score": 0.6397,
+      "document_id": "ui/layout/constraints",
+      "section": "Examples > Example 7",
+      "chunk_id": "ae140b48-3219-5570-b752-8c28028d2aca"
+    },
+    {
+      "rank": 18,
+      "score": 0.6396,
+      "document_id": "ui/layout/constraints",
+      "section": "Examples",
+      "chunk_id": "e44619c5-ede1-5a58-8a95-8f5d0fe8dca5"
+    },
+    {
+      "rank": 19,
+      "score": 0.639,
+      "document_id": "ui/layout/constraints",
+      "section": "Examples > Example 6",
+      "chunk_id": "6ef90ac3-3672-5a23-9c1b-effd673edc3b"
+    },
+    {
+      "rank": 20,
+      "score": 0.6374,
+      "document_id": "ui/layout/constraints",
+      "section": "Examples",
+      "chunk_id": "b59eb5cc-262c-5883-a85e-5748d49afefa"
+    }
+  ],
+  "warnings": [],
+  "error": null,
+  "usage": {
+    "input": 3166,
+    "output": 102,
+    "total": 3268
+  },
+  "latency_ms": {
+    "retrieve": 1.2,
+    "llm": 10194.9
+  },
+  "trace_id": "8c72809d01802a8830788edb9b7a1bea",
+  "trace_url": "https://cloud.langfuse.com/project/cmvl28r6600z6ad0kmhvny3nt/traces/8c72809d01802a8830788edb9b7a1bea",
+  "meta": {
+    "config_id": "slice-v1",
+    "config_fingerprint": "e39f698c6ecd",
+    "collection": "flutter__slice8__gemini-embedding-001-768__section-512-o0",
+    "corpus_commit": "3eb87869bb0ddf57047150c2132324afc5c55f22",
+    "embedding_model": "gemini-embedding-001@768",
+    "llm_model": "gemini-3.5-flash-lite",
+    "prompt_version": "answer/v1.2",
+    "prompt_sha256": "f78187d8a28ab3c8",
+    "git_sha": "20a258b9d4cfcb55313ede23addc155e9e92b563",
+    "git_dirty": true
+  }
+}

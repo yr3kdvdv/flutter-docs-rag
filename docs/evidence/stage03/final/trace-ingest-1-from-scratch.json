@@ -1,0 +1,21 @@
+{
+  "trace_id": "d966b328f8f7854fa85929f59d750b6c",
+  "observations": [
+    {
+      "name": "preprocess_embed_upsert",
+      "type": "SPAN",
+      "parent": "b50e2a0214c8816e"
+    },
+    {
+      "name": "grab",
+      "type": "SPAN",
+      "parent": "b50e2a0214c8816e"
+    },
+    {
+      "name": "rag.ingest",
+      "type": "SPAN",
+      "parent": null
+    }
+  ],
+  "url": "https://cloud.langfuse.com/project/cmvl28r6600z6ad0kmhvny3nt/traces/d966b328f8f7854fa85929f59d750b6c"
+}

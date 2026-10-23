@@ -1,0 +1,198 @@
+{
+  "status": "answered",
+  "question": "How do I parse a JSON response from an HTTP request into a Dart object?",
+  "text": "To convert an http.Response into a custom Dart object, you can create a class with a factory constructor that creates the object from JSON [4][5]. For example, you can create an Album class with an Album.fromJson() factory constructor [5]:\n\n```dart\nclass Album {\n  final int userId;\n  final int id;\n  final String title;\n\n  const Album({required this.userId, required this.id, required this.title});\n\n  factory Album.fromJson(Map<String, dynamic> json) {\n    return switch (json) {\n      {'userId': int userId, 'id': int id, 'title': String title} => Album(\n        userId: userId,\n        id: id,\n        title: title,\n      ),\n      _ => throw const FormatException('Failed to load album.'),\n    };\n  }\n}\n```\n\nThen, if the server returns a 200 OK response, use the dart:convert package's jsonDecode() function to convert the response body into a JSON Map, and pass it to the fromJson() method [6]:\n\n```dart\nreturn Album.fromJson(jsonDecode(response.body) as Map<String, dynamic>);\n```",
+  "sources": [
+    {
+      "number": 4,
+      "title": "Fetch data from the internet",
+      "section": "3. Convert the response into a custom Dart object",
+      "url": "https://docs.flutter.dev/cookbook/networking/fetch-data#3-convert-the-response-into-a-custom-dart-object",
+      "score": 0.7551,
+      "chunk_id": "e196a016-ddb6-5098-857b-0fa6743cf30c"
+    },
+    {
+      "number": 5,
+      "title": "Fetch data from the internet",
+      "section": "3. Convert the response into a custom Dart object > Create an `Album` class",
+      "url": "https://docs.flutter.dev/cookbook/networking/fetch-data#create-an-album-class",
+      "score": 0.7062,
+      "chunk_id": "d13b86d5-f99a-50c8-9bbe-76364f90ff99"
+    },
+    {
+      "number": 6,
+      "title": "Fetch data from the internet",
+      "section": "3. Convert the response into a custom Dart object > Convert the `http.Response` to an `Album`",
+      "url": "https://docs.flutter.dev/cookbook/networking/fetch-data#convert-the-http-response-to-an-album",
+      "score": 0.7253,
+      "chunk_id": "b1212bc0-d6bb-5dd4-a58e-93c7209fde78"
+    }
+  ],
+  "retrieved": [
+    {
+      "rank": 1,
+      "score": 0.7551,
+      "document_id": "cookbook/networking/fetch-data",
+      "section": "3. Convert the response into a custom Dart object",
+      "chunk_id": "e196a016-ddb6-5098-857b-0fa6743cf30c"
+    },
+    {
+      "rank": 2,
+      "score": 0.7253,
+      "document_id": "cookbook/networking/fetch-data",
+      "section": "3. Convert the response into a custom Dart object > Convert the `http.Response` to an `Album`",
+      "chunk_id": "b1212bc0-d6bb-5dd4-a58e-93c7209fde78"
+    },
+    {
+      "rank": 3,
+      "score": 0.7069,
+      "document_id": "cookbook/networking/fetch-data",
+      "section": "",
+      "chunk_id": "d1a2d881-ca0e-5a01-a974-8eee3a208b05"
+    },
+    {
+      "rank": 4,
+      "score": 0.7062,
+      "document_id": "cookbook/networking/fetch-data",
+      "section": "3. Convert the response into a custom Dart object > Create an `Album` class",
+      "chunk_id": "d13b86d5-f99a-50c8-9bbe-76364f90ff99"
+    },
+    {
+      "rank": 5,
+      "score": 0.6872,
+      "document_id": "cookbook/networking/fetch-data",
+      "section": "2. Make a network request",
+      "chunk_id": "c47ebab9-ef41-559c-86cf-3a25292f1fa3"
+    },
+    {
+      "rank": 6,
+      "score": 0.6686,
+      "document_id": "cookbook/networking/fetch-data",
+      "section": "Complete example",
+      "chunk_id": "1964e7e5-51d7-5efb-a476-c938aaac25d6"
+    },
+    {
+      "rank": 7,
+      "score": 0.6499,
+      "document_id": "cookbook/networking/fetch-data",
+      "section": "1. Add the `http` package",
+      "chunk_id": "2a338daf-d22c-563f-97d2-825ea32b8c4e"
+    },
+    {
+      "rank": 8,
+      "score": 0.632,
+      "document_id": "cookbook/networking/fetch-data",
+      "section": "5. Display the data",
+      "chunk_id": "3db26e8f-14bf-58d8-8aca-93872f1f8095"
+    },
+    {
+      "rank": 9,
+      "score": 0.6194,
+      "document_id": "cookbook/networking/fetch-data",
+      "section": "4. Fetch the data",
+      "chunk_id": "a721eb0b-1d70-53b3-a2c5-cf6d78a68de4"
+    },
+    {
+      "rank": 10,
+      "score": 0.6177,
+      "document_id": "cookbook/networking/fetch-data",
+      "section": "Testing",
+      "chunk_id": "c7bb5011-7a1f-5d00-a827-f2f938f085a1"
+    },
+    {
+      "rank": 11,
+      "score": 0.5856,
+      "document_id": "cookbook/networking/fetch-data",
+      "section": "Why is fetchAlbum() called in initState()?",
+      "chunk_id": "f36030b0-6687-575b-97c4-34d71ef0c6dd"
+    },
+    {
+      "rank": 12,
+      "score": 0.5822,
+      "document_id": "ui/layout/constraints",
+      "section": "Examples",
+      "chunk_id": "05f439f9-3179-5e66-9c3d-f86b1453f0ab"
+    },
+    {
+      "rank": 13,
+      "score": 0.5766,
+      "document_id": "tools/hot-reload",
+      "section": "",
+      "chunk_id": "f8a911f7-01ef-52c5-abd3-7d83eedbd7a5"
+    },
+    {
+      "rank": 14,
+      "score": 0.5758,
+      "document_id": "ui/navigation/index",
+      "section": "Using the Router",
+      "chunk_id": "cccaae7a-dd2b-58d3-9dcc-89d6b5e4b850"
+    },
+    {
+      "rank": 15,
+      "score": 0.573,
+      "document_id": "testing/overview",
+      "section": "Unit tests > Recipes",
+      "chunk_id": "9b1a0149-766f-5834-9162-ca1d9decb3ce"
+    },
+    {
+      "rank": 16,
+      "score": 0.5697,
+      "document_id": "tools/hot-reload",
+      "section": "How it works",
+      "chunk_id": "89d26959-9074-53b1-85af-2d538f666117"
+    },
+    {
+      "rank": 17,
+      "score": 0.5682,
+      "document_id": "tools/hot-reload",
+      "section": "Special cases",
+      "chunk_id": "cebcd854-06ce-566d-ad1f-c42176991c53"
+    },
+    {
+      "rank": 18,
+      "score": 0.5661,
+      "document_id": "ui/layout/constraints",
+      "section": "Examples",
+      "chunk_id": "fa26f328-40fc-51b0-a47f-df22b463be3e"
+    },
+    {
+      "rank": 19,
+      "score": 0.5646,
+      "document_id": "ui/layout/constraints",
+      "section": "Examples",
+      "chunk_id": "026acd95-0b7a-5cac-8144-0b76c833f03f"
+    },
+    {
+      "rank": 20,
+      "score": 0.563,
+      "document_id": "data-and-backend/state-mgmt/simple",
+      "section": "Accessing the state",
+      "chunk_id": "a125bd6a-1eb8-5ff1-96ed-78d959162279"
+    }
+  ],
+  "warnings": [],
+  "error": null,
+  "usage": {
+    "input": 2710,
+    "output": 313,
+    "total": 3023
+  },
+  "latency_ms": {
+    "retrieve": 435.1,
+    "llm": 24950.5
+  },
+  "trace_id": "9411244585f659726f4db21a06afa493",
+  "trace_url": "https://cloud.langfuse.com/project/cmvl28r6600z6ad0kmhvny3nt/traces/9411244585f659726f4db21a06afa493",
+  "meta": {
+    "config_id": "slice-v1",
+    "config_fingerprint": "e39f698c6ecd",
+    "collection": "flutter__slice8__gemini-embedding-001-768__section-512-o0",
+    "corpus_commit": "3eb87869bb0ddf57047150c2132324afc5c55f22",
+    "embedding_model": "gemini-embedding-001@768",
+    "llm_model": "gemini-3.5-flash-lite",
+    "prompt_version": "answer/v1.2",
+    "prompt_sha256": "f78187d8a28ab3c8",
+    "git_sha": "7cac4caf786a0fc321493c7213e3aea961b5c389",
+    "git_dirty": false
+  }
+}
