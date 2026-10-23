@@ -57,7 +57,7 @@ def test_secret_status_hides_values(monkeypatch):
 
 
 def test_unimplemented_commands_fail_honestly(capsys):
-    assert cli.main(["ask"]) == 2
+    assert cli.main(["evaluate"]) == 2
     assert "not implemented" in capsys.readouterr().err
 
 
