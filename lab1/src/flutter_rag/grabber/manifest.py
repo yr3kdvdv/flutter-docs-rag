@@ -55,17 +55,20 @@ class ManifestDiff:
     modified: list[str]
     deleted: list[str]
     unchanged: list[str]
+    failed: list[str] = field(default_factory=list)  # still in the tree, download failed
 
 
 def diff_manifests(old: Manifest | None, new: Manifest) -> ManifestDiff:
+    """A failed download is not a deletion: the page is still in the snapshot (review F2)."""
     new_ok = {k for k, v in new.documents.items() if v.status == "ok"}
+    new_failed = {k for k, v in new.documents.items() if v.status == "failed"}
     old_ok = {k for k, v in old.documents.items() if v.status == "ok"} if old else set()
     added = sorted(new_ok - old_ok)
-    deleted = sorted(old_ok - new_ok)
+    deleted = sorted(old_ok - new_ok - new_failed)
     both = new_ok & old_ok
     modified = sorted(k for k in both if old.version_key(k) != new.version_key(k))
     unchanged = sorted(both - set(modified))
-    return ManifestDiff(added, modified, deleted, unchanged)
+    return ManifestDiff(added, modified, deleted, unchanged, sorted(new_failed))
 
 
 def write_atomic(path: Path, text: str) -> None:

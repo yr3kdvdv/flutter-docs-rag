@@ -2,13 +2,15 @@
 
 from __future__ import annotations
 
+import re
 import time
+from contextlib import ExitStack
 from dataclasses import asdict, dataclass, field
 from typing import Any, Literal
 
 from flutter_rag.config import Settings
 from flutter_rag.embeddings import CachedEmbedder, EmbeddingCache, EmbeddingProvider
-from flutter_rag.errors import MissingSecretError, RagError, UpstreamError
+from flutter_rag.errors import IndexNotReadyError, MissingSecretError, RagError, UpstreamError
 from flutter_rag.filtering import build_context, filter_candidates, render_context
 from flutter_rag.generation import GeminiLLM, LLMResult, Prompt, load_prompt
 from flutter_rag.grabber import RawStore, grab, load_latest_manifest
@@ -113,6 +115,7 @@ class IngestReport:
     points_total: int
     embedding: dict[str, Any]
     failed: list[str]
+    stale_documents: list[str]  # download failed: the previous indexed version is kept
     missing_renders: dict[str, list[str]]
     duration_s: float
     trace_id: str | None = None
@@ -123,9 +126,15 @@ def ingest(rt: Runtime) -> IngestReport:
     t0 = time.monotonic()
     cfg = rt.cfg
     meta = rt.run_metadata()
-    with rt.tracer.trace(
-        "rag.ingest", input={"config_id": cfg.config_id}, metadata=meta, tags=["ingest"]
-    ) as root:
+    # The snapshot is only known after grab; before it latest.json holds the PREVIOUS one,
+    # so it must not be reported as this run's corpus_commit (review F5).
+    meta["previous_corpus_commit"] = meta.pop("corpus_commit")
+    with (
+        rt.tracer.trace(
+            "rag.ingest", input={"config_id": cfg.config_id}, metadata=meta, tags=["ingest"]
+        ) as root,
+        ExitStack() as after_grab,
+    ):
         with rt.tracer.observe(
             "grab", input={"repo": cfg.corpus.repo, "ref": cfg.corpus.ref}
         ) as obs:
@@ -143,12 +152,17 @@ def ingest(rt: Runtime) -> IngestReport:
                     "failed": res.failed,
                 }
             )
+        after_grab.enter_context(rt.tracer.annotate(root, {"corpus_commit": manifest.commit_sha}))
 
         rt.store.ensure()
         state = rt.store.load_state()
         ok_docs = {k: d for k, d in manifest.documents.items() if d.status == "ok"}
+        failed_docs = {k for k, d in manifest.documents.items() if d.status == "failed"}
         to_index = [k for k in sorted(ok_docs) if state.get(k) != _index_version(manifest, k)]
-        to_remove = sorted(set(state) - set(ok_docs))
+        # Remove only pages that left the snapshot or are excluded on purpose (skipped).
+        # A failed download keeps the last good version and its state (review F2).
+        to_remove = sorted(set(state) - set(ok_docs) - failed_docs)
+        stale = sorted(failed_docs & set(state))
 
         raw = RawStore(rt.data_dir / "raw")
 
@@ -195,7 +209,12 @@ def ingest(rt: Runtime) -> IngestReport:
                 rt.store.save_state(state)
             stats = asdict(rt.embedder.stats)
             obs.update(
-                output={"chunks_upserted": upserted, "removed": to_remove, "embedding": stats}
+                output={
+                    "chunks_upserted": upserted,
+                    "removed": to_remove,
+                    "stale": stale,
+                    "embedding": stats,
+                }
             )
 
         statuses = {
@@ -214,6 +233,7 @@ def ingest(rt: Runtime) -> IngestReport:
             points_total=rt.store.count(),
             embedding=stats,
             failed=res.failed,
+            stale_documents=stale,
             missing_renders=missing_renders,
             duration_s=round(time.monotonic() - t0, 2),
         )
@@ -272,6 +292,7 @@ def ask(rt: Runtime, question: str) -> Answer:
     meta = rt.run_metadata()
     lat: dict[str, float] = {}
     answer = Answer(status="upstream_error", question=question, text=None, sources=[], meta=meta)
+    not_ready: IndexNotReadyError | None = None
     with rt.tracer.trace(
         "rag.ask", input={"question": question}, metadata=meta, tags=["ask"]
     ) as root:
@@ -280,6 +301,10 @@ def ask(rt: Runtime, question: str) -> Answer:
             _ask_inner(rt, question, answer, lat)
         except UpstreamError as err:
             answer.status, answer.error = "upstream_error", err.to_dict()
+            root.update(level="ERROR", status_message=str(err))
+        except IndexNotReadyError as err:  # no index is a system state, not "no answer"
+            not_ready = err
+            answer.error = {"kind": "index_not_ready", "message": str(err)}
             root.update(level="ERROR", status_message=str(err))
         answer.latency_ms = lat
         root.update(
@@ -293,11 +318,17 @@ def ask(rt: Runtime, question: str) -> Answer:
         )
     rt.tracer.flush()
     answer.trace_url = rt.tracer.trace_url(answer.trace_id)
+    if not_ready:
+        raise not_ready
     return answer
 
 
 def _ask_inner(rt: Runtime, question: str, answer: Answer, lat: dict[str, float]) -> None:
     cfg, tr = rt.cfg, rt.tracer
+    if rt.store.count() == 0:
+        raise IndexNotReadyError(
+            f"индекс {rt.store.collection} пуст или не создан — сначала `flutter-rag ingest`"
+        )
     with (
         tr.observe(
             "retrieve",
@@ -349,7 +380,7 @@ def _ask_inner(rt: Runtime, question: str, answer: Answer, lat: dict[str, float]
     if not items:
         # Below threshold / nothing indexed: refuse WITHOUT calling the LLM.
         answer.status = "insufficient_context"
-        answer.text = "В проиндексированной документации нет подходящих фрагментов для ответа."
+        answer.text = REFUSAL_TEXT[question_language(question)]
         return
 
     user_text = rt.prompt.render_user(context=render_context(items), question=question)
@@ -379,7 +410,7 @@ def _ask_inner(rt: Runtime, question: str, answer: Answer, lat: dict[str, float]
     answer.usage = result.usage
 
     with tr.observe("validate", input=result.parsed.model_dump()) as obs:
-        _apply_llm_result(answer, result, items)
+        _apply_llm_result(answer, result, items, question_language(question))
         obs.update(
             output={
                 "status": answer.status,
@@ -389,7 +420,27 @@ def _ask_inner(rt: Runtime, question: str, answer: Answer, lat: dict[str, float]
         )
 
 
-def _apply_llm_result(answer: Answer, result: LLMResult, items) -> None:
+_CYRILLIC = re.compile(r"[а-яё]", re.IGNORECASE)
+
+# Refusals are structural (status == insufficient_context), so their text is ours, not the
+# model's: at temperature 0 Gemini still sometimes refused in English (review F6). The model's
+# own wording stays in the LLM observation of the trace.
+REFUSAL_TEXT = {
+    "ru": "В проиндексированной документации нет информации для ответа на этот вопрос.",
+    "en": "The indexed documentation does not contain information to answer this question.",
+}
+
+
+def question_language(question: str) -> str:
+    """'ru' if the question has any Cyrillic letter, else 'en'.
+
+    Not a majority vote: Russian questions about Flutter are often mostly Latin names
+    ("Как настроить Firebase Cloud Messaging ... во Flutter?").
+    """
+    return "ru" if _CYRILLIC.search(question) else "en"
+
+
+def _apply_llm_result(answer: Answer, result: LLMResult, items, language: str = "en") -> None:
     parsed = result.parsed
     by_number = {i.number: i for i in items}
     valid = [n for n in dict.fromkeys(parsed.citations) if n in by_number]
@@ -399,7 +450,10 @@ def _apply_llm_result(answer: Answer, result: LLMResult, items) -> None:
     answer.text = parsed.answer
     if parsed.status == "insufficient_context":
         answer.status = "insufficient_context"
+        answer.text = REFUSAL_TEXT[language]
         return
+    if language == "ru" and not _CYRILLIC.search(parsed.answer):
+        answer.warnings.append("answer_language_mismatch: expected ru")
     if not valid:
         answer.warnings.append("answered_without_citations")
     answer.status = "answered"

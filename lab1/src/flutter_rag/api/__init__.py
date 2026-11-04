@@ -9,7 +9,7 @@ from fastapi.responses import JSONResponse
 from pydantic import BaseModel, Field
 
 from flutter_rag.config import load_settings
-from flutter_rag.errors import RagError
+from flutter_rag.errors import IndexNotReadyError, RagError
 
 
 class AskRequest(BaseModel):
@@ -58,7 +58,10 @@ def create_app(config_path: str, runtime=None) -> FastAPI:
         rt = state["rt"]
         if rt is None:
             raise HTTPException(503, detail=state["error"] or "not ready")
-        answer = ask(rt, req.question)
+        try:
+            answer = ask(rt, req.question)
+        except IndexNotReadyError as exc:  # same contract as /ready (review F3)
+            return JSONResponse({"status": "not_ready", "reason": str(exc)}, 503)
         if answer.status == "upstream_error":
             code = 429 if answer.error and answer.error["kind"] == "rate_limited" else 503
             return JSONResponse(answer.to_dict(), code)

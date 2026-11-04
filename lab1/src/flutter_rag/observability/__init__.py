@@ -89,6 +89,21 @@ class Tracer:
         with self._lf.start_as_current_observation(as_type=as_type, name=name, **kwargs) as obs:
             yield obs
 
+    @contextmanager
+    def annotate(self, root: Any, metadata: dict) -> Iterator[None]:
+        """Add metadata learned mid-run to the root observation and to every later child.
+
+        Observations that already ended are not changed (Langfuse propagation semantics).
+        """
+        if not self._lf:
+            yield
+            return
+        from langfuse import propagate_attributes
+
+        root.update(metadata=metadata)
+        with propagate_attributes(metadata=_flat(metadata)):
+            yield
+
     def current_trace_id(self) -> str | None:
         return self._lf.get_current_trace_id() if self._lf else None
 

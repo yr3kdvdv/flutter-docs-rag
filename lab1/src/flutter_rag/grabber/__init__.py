@@ -153,7 +153,8 @@ def grab(
         with ThreadPoolExecutor(max_workers=corpus.download_concurrency) as pool:
             for entry, result in pool.map(fetch, todo):
                 if isinstance(result, Exception):
-                    failed.append(entry.path)
+                    if entry.path not in failed:
+                        failed.append(entry.path)
                 else:
                     store.write(entry.blob_sha, result)
                     downloaded += 1
@@ -192,6 +193,12 @@ def grab(
                 for t in RENDER_RE.findall(store.read(e.blob_sha))
             ]
             depth += 1
+        # A fragment that exists in the tree but could not be downloaded makes the page
+        # incomplete: indexing it now would freeze the truncated text under the final
+        # version key, and a later successful retry would not reindex it (review F1).
+        lost = sorted(p for p, sha in doc.includes.items() if not store.has(sha))
+        if lost:
+            doc.status, doc.reason = "failed", f"include download failed: {', '.join(lost)}"
 
     manifest = Manifest(
         repo=corpus.repo,
