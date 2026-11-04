@@ -1,0 +1,182 @@
+{
+  "status": "answered",
+  "question": "Как родительский виджет передаёт ограничения (constraints) дочернему?",
+  "text": "В соответствии с правилами компоновки Flutter, виджет получает собственные ограничения от своего родителя [1]. Затем родительский виджет передает дочерним виджетам их индивидуальные ограничения (которые могут различаться для каждого ребенка) поочередно [1].",
+  "sources": [
+    {
+      "number": 1,
+      "title": "Understanding constraints",
+      "section": "",
+      "url": "https://docs.flutter.dev/ui/layout/constraints",
+      "score": 0.7393,
+      "chunk_id": "f16a6629-ec3b-546b-893b-ce3de31b9973"
+    }
+  ],
+  "retrieved": [
+    {
+      "rank": 1,
+      "score": 0.7749,
+      "document_id": "ui/layout/constraints",
+      "section": "",
+      "chunk_id": "19d49396-f683-5aaa-bcef-184cd1a1f8c6"
+    },
+    {
+      "rank": 2,
+      "score": 0.7443,
+      "document_id": "ui/layout/constraints",
+      "section": "Limitations",
+      "chunk_id": "dc6ae26d-c00a-55c1-b7fd-b671d47788c1"
+    },
+    {
+      "rank": 3,
+      "score": 0.7393,
+      "document_id": "ui/layout/constraints",
+      "section": "",
+      "chunk_id": "f16a6629-ec3b-546b-893b-ce3de31b9973"
+    },
+    {
+      "rank": 4,
+      "score": 0.724,
+      "document_id": "ui/layout/constraints",
+      "section": "Examples > Example 9",
+      "chunk_id": "c86559a7-7986-54b4-86f8-dbc1ae21f420"
+    },
+    {
+      "rank": 5,
+      "score": 0.7178,
+      "document_id": "ui/layout/constraints",
+      "section": "Examples > Example 7",
+      "chunk_id": "ae140b48-3219-5570-b752-8c28028d2aca"
+    },
+    {
+      "rank": 6,
+      "score": 0.7139,
+      "document_id": "ui/layout/constraints",
+      "section": "Examples",
+      "chunk_id": "969a6d06-0b09-5c6c-8704-afe725124995"
+    },
+    {
+      "rank": 7,
+      "score": 0.7119,
+      "document_id": "ui/layout/constraints",
+      "section": "Examples > Example 28",
+      "chunk_id": "81ffe013-953c-50eb-8d83-b41221dd9f79"
+    },
+    {
+      "rank": 8,
+      "score": 0.7111,
+      "document_id": "ui/layout/constraints",
+      "section": "Examples",
+      "chunk_id": "9763a94a-a5f8-54ea-9fe4-7c54fd783309"
+    },
+    {
+      "rank": 9,
+      "score": 0.7096,
+      "document_id": "ui/layout/constraints",
+      "section": "Examples > Example 3",
+      "chunk_id": "dcb1f286-0454-5e38-9d1e-818fcb24ee02"
+    },
+    {
+      "rank": 10,
+      "score": 0.7096,
+      "document_id": "ui/layout/constraints",
+      "section": "Examples > Example 13",
+      "chunk_id": "6a2418b2-4114-5cea-9fb9-a0ae90718868"
+    },
+    {
+      "rank": 11,
+      "score": 0.7089,
+      "document_id": "ui/layout/constraints",
+      "section": "Examples > Example 1",
+      "chunk_id": "9b9fe7b5-3da2-5510-8b79-4b3e0cfaee3c"
+    },
+    {
+      "rank": 12,
+      "score": 0.7065,
+      "document_id": "perf/best-practices",
+      "section": "Minimize expensive operations > Minimize layout passes caused by intrinsic operations",
+      "chunk_id": "c32afd2e-8f43-5273-93c3-44f6fa46e004"
+    },
+    {
+      "rank": 13,
+      "score": 0.7053,
+      "document_id": "ui/layout/constraints",
+      "section": "Examples > Example 12",
+      "chunk_id": "a75296a9-26f1-582a-abc3-ce1a9f2c43ed"
+    },
+    {
+      "rank": 14,
+      "score": 0.7052,
+      "document_id": "ui/layout/constraints",
+      "section": "Examples > Example 6",
+      "chunk_id": "6ef90ac3-3672-5a23-9c1b-effd673edc3b"
+    },
+    {
+      "rank": 15,
+      "score": 0.7046,
+      "document_id": "ui/layout/constraints",
+      "section": "Examples > Example 11",
+      "chunk_id": "3975249e-bf93-59c5-9c90-042f49783cb2"
+    },
+    {
+      "rank": 16,
+      "score": 0.7028,
+      "document_id": "ui/layout/constraints",
+      "section": "Examples",
+      "chunk_id": "dd9251e3-3668-53dc-95aa-f25c43c04292"
+    },
+    {
+      "rank": 17,
+      "score": 0.7013,
+      "document_id": "ui/layout/constraints",
+      "section": "Examples > Example 10",
+      "chunk_id": "3ccfdc9f-da7d-5854-85ff-4b066c31d203"
+    },
+    {
+      "rank": 18,
+      "score": 0.7008,
+      "document_id": "ui/layout/constraints",
+      "section": "Tight vs loose constraints > Loose constraints",
+      "chunk_id": "5b2184d5-131e-5def-ad9a-017aeab7164f"
+    },
+    {
+      "rank": 19,
+      "score": 0.6989,
+      "document_id": "ui/layout/constraints",
+      "section": "Examples > Example 17",
+      "chunk_id": "379ccc3e-74a6-510f-8920-ee81abc78fba"
+    },
+    {
+      "rank": 20,
+      "score": 0.6978,
+      "document_id": "ui/layout/constraints",
+      "section": "Examples",
+      "chunk_id": "97bc153c-1c74-5a59-a648-258a4d66e107"
+    }
+  ],
+  "warnings": [],
+  "error": null,
+  "usage": {
+    "input": 3387,
+    "output": 84,
+    "total": 3471
+  },
+  "latency_ms": {
+    "retrieve": 382.3,
+    "llm": 80711.9
+  },
+  "trace_id": "992e30c62e691e7f4f92a1f33b2ea1e0",
+  "trace_url": "https://cloud.langfuse.com/project/cmvl28r6600z6ad0kmhvny3nt/traces/992e30c62e691e7f4f92a1f33b2ea1e0",
+  "meta": {
+    "config_id": "slice-v1",
+    "config_fingerprint": "e39f698c6ecd",
+    "collection": "flutter__slice8__gemini-embedding-001-768__section-512-o0",
+    "corpus_commit": "b017c8c937343e82170ead7b4aa9e3bde4fd69f6",
+    "embedding_model": "gemini-embedding-001@768",
+    "llm_model": "gemini-3.5-flash-lite",
+    "prompt_version": "answer/v1.2",
+    "prompt_sha256": "f78187d8a28ab3c8",
+    "git_sha": "b6bc7233f84c98bd69410576c8cb701258cd3709",
+    "git_dirty": false
+  }
+}

@@ -1,0 +1,173 @@
+{
+  "status": "insufficient_context",
+  "question": "Как опубликовать Flutter-приложение в App Store?",
+  "text": "В проиндексированной документации нет информации для ответа на этот вопрос.",
+  "sources": [],
+  "retrieved": [
+    {
+      "rank": 1,
+      "score": 0.6311,
+      "document_id": "testing/overview",
+      "section": "Continuous integration services",
+      "chunk_id": "344eb5d3-2a41-517b-be64-6a6a9767c0d0"
+    },
+    {
+      "rank": 2,
+      "score": 0.6288,
+      "document_id": "data-and-backend/state-mgmt/simple",
+      "section": "",
+      "chunk_id": "c8ef2042-6abe-56c6-85dc-6f3f992c6d29"
+    },
+    {
+      "rank": 3,
+      "score": 0.6218,
+      "document_id": "add-to-app/android/add-flutter-screen",
+      "section": "",
+      "chunk_id": "314a1c0a-9d18-5a58-b612-78c63d450f0c"
+    },
+    {
+      "rank": 4,
+      "score": 0.6153,
+      "document_id": "tools/hot-reload",
+      "section": "",
+      "chunk_id": "f8a911f7-01ef-52c5-abd3-7d83eedbd7a5"
+    },
+    {
+      "rank": 5,
+      "score": 0.6148,
+      "document_id": "data-and-backend/state-mgmt/simple",
+      "section": "Accessing the state",
+      "chunk_id": "a125bd6a-1eb8-5ff1-96ed-78d959162279"
+    },
+    {
+      "rank": 6,
+      "score": 0.6141,
+      "document_id": "ui/navigation/index",
+      "section": "",
+      "chunk_id": "444b46ff-5d16-50c7-aabb-5e2588fdb5d6"
+    },
+    {
+      "rank": 7,
+      "score": 0.6099,
+      "document_id": "cookbook/networking/fetch-data",
+      "section": "",
+      "chunk_id": "d1a2d881-ca0e-5a01-a974-8eee3a208b05"
+    },
+    {
+      "rank": 8,
+      "score": 0.6096,
+      "document_id": "cookbook/networking/fetch-data",
+      "section": "1. Add the `http` package",
+      "chunk_id": "2a338daf-d22c-563f-97d2-825ea32b8c4e"
+    },
+    {
+      "rank": 9,
+      "score": 0.6075,
+      "document_id": "tools/hot-reload",
+      "section": "How it works",
+      "chunk_id": "89d26959-9074-53b1-85af-2d538f666117"
+    },
+    {
+      "rank": 10,
+      "score": 0.6073,
+      "document_id": "tools/hot-reload",
+      "section": "Special cases > Native code",
+      "chunk_id": "f64f29ac-68ca-5857-bd73-cc4095c6a502"
+    },
+    {
+      "rank": 11,
+      "score": 0.6067,
+      "document_id": "testing/overview",
+      "section": "Integration tests",
+      "chunk_id": "6904dca6-6a3d-5f58-9b58-6023120de2c7"
+    },
+    {
+      "rank": 12,
+      "score": 0.6019,
+      "document_id": "data-and-backend/state-mgmt/simple",
+      "section": "Our example",
+      "chunk_id": "ce55e6b1-424b-5b53-8faf-11bab14b2436"
+    },
+    {
+      "rank": 13,
+      "score": 0.6002,
+      "document_id": "perf/best-practices",
+      "section": "",
+      "chunk_id": "129b7fd5-ba59-58d9-954c-07d8093cec15"
+    },
+    {
+      "rank": 14,
+      "score": 0.6001,
+      "document_id": "tools/hot-reload",
+      "section": "How to perform a hot reload",
+      "chunk_id": "683c56d6-b5e1-51fc-b88c-74652eee492d"
+    },
+    {
+      "rank": 15,
+      "score": 0.5993,
+      "document_id": "tools/hot-reload",
+      "section": "Special cases",
+      "chunk_id": "cebcd854-06ce-566d-ad1f-c42176991c53"
+    },
+    {
+      "rank": 16,
+      "score": 0.598,
+      "document_id": "testing/overview",
+      "section": "",
+      "chunk_id": "8d42f8a6-6343-585e-9aa2-aa7015ac2414"
+    },
+    {
+      "rank": 17,
+      "score": 0.597,
+      "document_id": "tools/hot-reload",
+      "section": "How to perform a hot reload",
+      "chunk_id": "d5647015-746e-530a-92cc-81ef28fe8039"
+    },
+    {
+      "rank": 18,
+      "score": 0.5967,
+      "document_id": "data-and-backend/state-mgmt/simple",
+      "section": "Lifting state up",
+      "chunk_id": "d014ad34-0567-5ecd-8cde-10247d4ecb91"
+    },
+    {
+      "rank": 19,
+      "score": 0.5955,
+      "document_id": "data-and-backend/state-mgmt/simple",
+      "section": "ChangeNotifierProvider",
+      "chunk_id": "8f284a47-14c8-54e5-8172-f085c3e331db"
+    },
+    {
+      "rank": 20,
+      "score": 0.5926,
+      "document_id": "tools/hot-reload",
+      "section": "Special cases > An app is killed",
+      "chunk_id": "0c78f287-1236-5b7c-a933-f2124f405016"
+    }
+  ],
+  "warnings": [],
+  "error": null,
+  "usage": {
+    "input": 1892,
+    "output": 49,
+    "total": 1941
+  },
+  "latency_ms": {
+    "retrieve": 363.2,
+    "llm": 10286.0
+  },
+  "trace_id": "26e7f03cf6245cdf3b5be2e6475e7cb5",
+  "trace_url": "https://cloud.langfuse.com/project/cmvl28r6600z6ad0kmhvny3nt/traces/26e7f03cf6245cdf3b5be2e6475e7cb5",
+  "meta": {
+    "config_id": "slice-v1",
+    "config_fingerprint": "e39f698c6ecd",
+    "collection": "flutter__slice8__gemini-embedding-001-768__section-512-o0",
+    "corpus_commit": "b017c8c937343e82170ead7b4aa9e3bde4fd69f6",
+    "embedding_model": "gemini-embedding-001@768",
+    "llm_model": "gemini-3.5-flash-lite",
+    "prompt_version": "answer/v1.2",
+    "prompt_sha256": "f78187d8a28ab3c8",
+    "git_sha": "b6bc7233f84c98bd69410576c8cb701258cd3709",
+    "git_dirty": false
+  }
+}

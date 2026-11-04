@@ -1,0 +1,156 @@
+{
+ "25cc8630b9ad968a34691a8b83ddca0d": [
+  {
+   "name": "rag.ingest",
+   "type": "SPAN",
+   "level": "DEFAULT",
+   "parent": false,
+   "metadata": {
+    "corpus_commit": "b017c8c937343e82170ead7b4aa9e3bde4fd69f6",
+    "git_sha": "b6bc7233f84c98bd69410576c8cb701258cd3709",
+    "git_dirty": "False",
+    "prompt_version": "answer/v1.2"
+   }
+  },
+  {
+   "name": "grab",
+   "type": "SPAN",
+   "level": "DEFAULT",
+   "parent": true,
+   "metadata": {
+    "git_sha": "b6bc7233f84c98bd69410576c8cb701258cd3709",
+    "git_dirty": "False",
+    "prompt_version": "answer/v1.2"
+   }
+  },
+  {
+   "name": "preprocess_embed_upsert",
+   "type": "SPAN",
+   "level": "DEFAULT",
+   "parent": true,
+   "metadata": {
+    "corpus_commit": "b017c8c937343e82170ead7b4aa9e3bde4fd69f6",
+    "git_sha": "b6bc7233f84c98bd69410576c8cb701258cd3709",
+    "git_dirty": "False",
+    "prompt_version": "answer/v1.2"
+   }
+  }
+ ],
+ "013ce2046e8e1ec6065583ecc06cbff7": [
+  {
+   "name": "rag.ingest",
+   "type": "SPAN",
+   "level": "DEFAULT",
+   "parent": false,
+   "metadata": {
+    "corpus_commit": "b017c8c937343e82170ead7b4aa9e3bde4fd69f6",
+    "previous_corpus_commit": "b017c8c937343e82170ead7b4aa9e3bde4fd69f6",
+    "git_sha": "b6bc7233f84c98bd69410576c8cb701258cd3709",
+    "git_dirty": "False",
+    "prompt_version": "answer/v1.2"
+   }
+  },
+  {
+   "name": "grab",
+   "type": "SPAN",
+   "level": "DEFAULT",
+   "parent": true,
+   "metadata": {
+    "previous_corpus_commit": "b017c8c937343e82170ead7b4aa9e3bde4fd69f6",
+    "git_sha": "b6bc7233f84c98bd69410576c8cb701258cd3709",
+    "git_dirty": "False",
+    "prompt_version": "answer/v1.2"
+   }
+  },
+  {
+   "name": "preprocess_embed_upsert",
+   "type": "SPAN",
+   "level": "DEFAULT",
+   "parent": true,
+   "metadata": {
+    "corpus_commit": "b017c8c937343e82170ead7b4aa9e3bde4fd69f6",
+    "previous_corpus_commit": "b017c8c937343e82170ead7b4aa9e3bde4fd69f6",
+    "git_sha": "b6bc7233f84c98bd69410576c8cb701258cd3709",
+    "git_dirty": "False",
+    "prompt_version": "answer/v1.2"
+   }
+  }
+ ],
+ "049e77768ca8b499e36465adae166a01": [
+  {
+   "name": "rag.ingest",
+   "type": "SPAN",
+   "level": "DEFAULT",
+   "parent": false,
+   "metadata": {
+    "corpus_commit": "602492ca8d616c0ef768dbe28d61c097e0570d9d",
+    "git_sha": "b6bc7233f84c98bd69410576c8cb701258cd3709",
+    "git_dirty": "False",
+    "prompt_version": "answer/v1.2"
+   }
+  },
+  {
+   "name": "grab",
+   "type": "SPAN",
+   "level": "DEFAULT",
+   "parent": true,
+   "metadata": {
+    "git_sha": "b6bc7233f84c98bd69410576c8cb701258cd3709",
+    "git_dirty": "False",
+    "prompt_version": "answer/v1.2"
+   }
+  },
+  {
+   "name": "preprocess_embed_upsert",
+   "type": "SPAN",
+   "level": "DEFAULT",
+   "parent": true,
+   "metadata": {
+    "corpus_commit": "602492ca8d616c0ef768dbe28d61c097e0570d9d",
+    "git_sha": "b6bc7233f84c98bd69410576c8cb701258cd3709",
+    "git_dirty": "False",
+    "prompt_version": "answer/v1.2"
+   }
+  }
+ ],
+ "64f521d134a92458f5ddabf8d6f3975d": [
+  {
+   "name": "rag.ingest",
+   "type": "SPAN",
+   "level": "DEFAULT",
+   "parent": false,
+   "metadata": {
+    "corpus_commit": "5ce3d6a03a22ae4738b49aafd24423e030e0fcf9",
+    "previous_corpus_commit": "602492ca8d616c0ef768dbe28d61c097e0570d9d",
+    "git_sha": "b6bc7233f84c98bd69410576c8cb701258cd3709",
+    "git_dirty": "False",
+    "prompt_version": "answer/v1.2"
+   }
+  },
+  {
+   "name": "grab",
+   "type": "SPAN",
+   "level": "DEFAULT",
+   "parent": true,
+   "metadata": {
+    "previous_corpus_commit": "602492ca8d616c0ef768dbe28d61c097e0570d9d",
+    "git_sha": "b6bc7233f84c98bd69410576c8cb701258cd3709",
+    "git_dirty": "False",
+    "prompt_version": "answer/v1.2"
+   }
+  },
+  {
+   "name": "preprocess_embed_upsert",
+   "type": "SPAN",
+   "level": "DEFAULT",
+   "parent": true,
+   "metadata": {
+    "corpus_commit": "5ce3d6a03a22ae4738b49aafd24423e030e0fcf9",
+    "previous_corpus_commit": "602492ca8d616c0ef768dbe28d61c097e0570d9d",
+    "git_sha": "b6bc7233f84c98bd69410576c8cb701258cd3709",
+    "git_dirty": "False",
+    "prompt_version": "answer/v1.2"
+   }
+  }
+ ]
+}
