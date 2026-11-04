@@ -1,65 +1,71 @@
-# Handoff — этап 03 (вертикальный срез) → этап 04 (проверка Codex)
+# Handoff — исправления по проверке Codex (этап 04) → повторная проверка / слияние PR #14
 
 ```yaml
-task_id: LAB1-003
-sender_role: "Claude Code (Opus 5.5, CLI 2.1.309) — основной исполнитель"
-receiver_role: "Codex — независимая проверка воспроизводимости (prompts/04-codex-verify.md)"
+task_id: LAB1-004-fixes
+sender_role: "Claude Code (Opus 5.5) — основной исполнитель и интегратор"
+receiver_role: "Codex — повторная проверка исправлений F1–F6 (затем интегратор вливает PR #14)"
 status: ready_for_next_step
-goal: "Проверить сквозной срез на конкретном SHA: setup, тесты, ingest x2, ask, отказ, ошибки API, trace"
+goal: "Подтвердить, что F1–F6 из docs/reviews/verification.md исправлены и регрессий нет"
 repository: "https://github.com/yr3kdvdv/flutter-docs-rag"
-branch: "stage-03-vertical-slice (PR в main)"
-commit_sha: "код: 7cac4ca; коммит с evidence/handoff — следующий в ветке (git log)"
+branch: "stage-03-vertical-slice (PR #14 в main, ещё не влит)"
+commit_sha: "код исправлений: b6bc723; evidence: 29f9afc; handoff — следующий коммит (git log)"
+worktree: "основной checkout; worktree проверяющего ../flutter-docs-rag-verify-a54a5c5 не менялся"
 working_tree_clean: "true после коммита handoff — проверить git status"
 requirements:
-  - "docs/requirements.md — раздел «Статус выполнения после этапа 03»"
+  - "docs/reviews/verification.md — F1–F6"
+  - "docs/requirements.md — раздел «Статус после исправлений этапа 04»"
 read_first:
   - AGENTS.md
-  - lab1/README.md
-  - docs/architecture.md   # §9 — факты этапа 03
-  - docs/evidence/stage03/README.md
+  - docs/reviews/verification.md
+  - docs/evidence/stage04/README.md
+  - docs/architecture.md   # §3.1, §5, §10
+  - lab1/tests/test_review_regressions.py
 allowed_paths:
-  - "проверяющему: только docs/reviews/verification.md в своём worktree"
+  - "проверяющему: только docs/reviews/verification-fixes.md в своём worktree"
+do_not_edit:
+  - "docs/reviews/verification.md — сохранён без изменений как отчёт Codex"
 decisions:
-  - "LLM gemini-3.5-flash-lite, embeddings gemini-embedding-001@768 — подтверждены реальными запросами"
-  - "Лимиты из AI Studio пользователя: embeddings 100 RPM/30K TPM/1K RPD; LLM 15 RPM/500 RPD; в конфиге 80 RPM/24K TPM и 12 RPM"
-  - "Коллекция включает имя корпуса; состояние индекса включает PREPROCESS_VERSION"
-  - "Промпт answer/v1.2 (v1, v1.1 — дефекты языка, сохранены)"
+  - "failed-загрузка (страницы или её include) ≠ удаление: прежняя версия остаётся, отчёт stale_documents, diff.failed"
+  - "Страница с найденным в tree, но не скачанным include — failed (не индексируется неполной)"
+  - "Пустой/несозданный индекс — IndexNotReadyError: /ask 503 {status: not_ready}, CLI exit 2; не insufficient_context"
+  - "Пустые/пробельные секреты = не заданы"
+  - "ingest trace: corpus_commit пишется после grab; прошлый SHA — previous_corpus_commit"
+  - "Текст отказа формирует код по языку вопроса (кириллица → ru); prompt answer/v1.2 не менялся"
 completed:
-  - "grabber, preprocessing, embeddings, vectorstore, retrieval, filtering, generation, observability, CLI, FastAPI"
-  - "51 офлайн-тест (fakes явно помечены)"
+  - "F1–F6 исправлены (b6bc723), 12 регрессионных тестов; на старом коде 11 из 12 падают"
+  - "Отчёт Codex сохранён в docs/reviews/verification.md"
+  - "architecture §3.1/§5/§10, requirements, prompts CHANGELOG, evidence stage04 обновлены"
 verification:
   - command: "cd lab1 && uv run pytest && uv run ruff check . && uv run ruff format --check ."
-    result: "51 passed; lint/format ok"
-  - command: "rm -rf data/raw data/cache data/index && uv run flutter-rag ingest"
-    result: "8 docs, 144 chunks, 9 embedding API calls, limiter 54 s, 0 retries; trace d966b328f8f7854fa85929f59d750b6c"
-  - command: "uv run flutter-rag ingest (повтор)"
-    result: "0 downloads, 2 GitHub requests, 0 embedding calls, 144 points; trace 47b77ddcde745237265e8f881f8ca2d5"
-  - command: "uv run flutter-rag ask (RU, в корпусе)"
-    result: "answered, источники constraints; trace e2c97be2c40fe72b5fe6a5034d945e16"
-  - command: "uv run flutter-rag ask (RU, FCM — вне корпуса)"
-    result: "insufficient_context, без источников; trace b0fef497d5e85746a59c6c94dbfdefaa"
-  - command: "uv run flutter-rag ask (EN, JSON → Dart)"
-    result: "answered, код Album.fromJson, 3 источника; trace 9411244585f659726f4db21a06afa493"
-  - command: "GEMINI_API_KEY=invalid… uv run flutter-rag ask …"
-    result: "upstream_error/auth, exit 4, без повторов; trace e646547efc489a60cc41745bf292f274"
-  - command: "uv run flutter-rag trace-show <id> (отдельный процесс, для всех 6)"
-    result: "все trace получены из Langfuse API; metadata git_sha 7cac4ca, git_dirty False"
-  - command: "проверка всех 144 url#anchor по docs.flutter.dev"
-    result: "0 битых (до исправления slug — 6)"
-    artifact: "docs/evidence/stage03/dev-runs/source-links-check.txt"
-  - command: "flutter-rag serve + curl /health /ready /ask + параллельный ask"
-    result: "200/200/answered, пустой вопрос 422; параллельный CLI — exit 3 с подсказкой (B2)"
+    result: "63 passed; lint/format ok; exit 0"
+  - command: "pytest новых тестов против src из a54a5c5 (временная копия с мягкими импортами)"
+    result: "11 failed, 1 passed — тесты ловят исходные дефекты"
+  - command: "GEMINI_API_KEY= LANGFUSE_PUBLIC_KEY= LANGFUSE_SECRET_KEY= uv run flutter-rag env-check / ingest"
+    result: "MISSING ×3, exit 0 / MissingSecretError, exit 2"
+    artifact: "docs/evidence/stage04/f4-blank-keys.txt"
+  - command: "flutter-rag serve (пустой DATA_DIR) + curl /health /ready POST /ask"
+    result: "200 / 503 / 503 {status: not_ready}"
+    artifact: "docs/evidence/stage04/f3-ask-before-ingest.txt"
+  - command: "uv run flutter-rag ingest (с нуля, затем повтор), snapshot b017c8c"
+    result: "exit 0: 144 points, 9 embedding calls; повтор 0 downloads/0 calls/144 points; traces 25cc8630…, 013ce204…"
+  - command: "ingest tools/hot-reload @602492c → @5ce3d6a (временные конфиги вне репозитория)"
+    result: "exit 0: added=1, затем modified=1, 15→15 points; traces 049e7776…, 64f521d1…"
+  - command: "чтение observations metadata 4 ingest-traces из Langfuse API"
+    result: "root corpus_commit = фактический SHA, previous_corpus_commit = прошлый; git_sha b6bc723, git_dirty False"
+    artifact: "docs/evidence/stage04/f5-ingest-trace-metadata.json"
+  - command: "uv run flutter-rag ask × 7 (5 RU вне корпуса, RU и EN в корпусе) + 1 с неверным ключом"
+    result: "5/5 RU отказов по-русски; RU answered по-русски; EN answered с кодом; неверный ключ exit 4 auth"
+    artifact: "docs/evidence/stage04/ask/, f6-ask-traces-from-langfuse.json"
 not_verified:
-  - "GitHub 403/429 и сетевые сбои grabber — только офлайн-тесты логики, в реальности не наблюдались"
-  - "Gemini 429 и подсказка retryDelay — только офлайн-тест, реальных 429 не было"
-  - "Реальное удаление/изменение страницы во flutter/website между снапшотами — только офлайн-тест"
-  - "Детерминизм ответов: при temperature 0 формулировка ответа на один вопрос различалась между запусками"
-  - "Полный корпус (638 страниц): ~150K токенов ≈ 6+ мин из-за 30K TPM — не запускался"
-  - "Reranker, вторая embedding-модель, калибровка min_score, evaluation"
-  - "Поведение при недоступности Langfuse (код не падает по замыслу, но вживую не проверено)"
+  - "F1/F2 при реальном сбое GitHub — только инъекция UpstreamError в fake-клиент; живой 5xx/403/429 не наблюдался"
+  - "Сама модель (answer/v1.2) в 3/3 FCM-запусках отказала по-английски — исправлен вывод, не поведение модели"
+  - "Язык ответов status=answered не исправляется, только warning answer_language_mismatch"
+  - "Реальное удаление страницы upstream, недоступность Langfuse, Qdrant server, Gemini 429"
+  - "CI GitHub Actions на новом SHA — см. PR #14 после push"
+  - "Независимая повторная проверка исправлений (Codex) не проводилась"
 blockers: []
-next_action: "Codex по prompts/04-codex-verify.md проверяет PR этапа 03 в отдельном worktree"
+next_action: "Codex повторно проверяет исправления F1–F6 на последнем SHA ветки по docs/evidence/stage04/README.md"
 acceptance_criteria:
-  - "Отчёт docs/reviews/verification.md с SHA, повторёнными командами и findings"
-student_explanation: "См. docs/PROJECT_STATE.md и объяснение в чате: путь одного вопроса от ввода до ответа"
+  - "Отчёт docs/reviews/verification-fixes.md с SHA, повторёнными сценариями F1–F6 и статусом каждого"
+student_explanation: "Ошибка сети при обновлении больше не стирает рабочую страницу из индекса и не закрепляет неполную; пустой индекс — понятная ошибка 503, а не «нет ответа»; отказ всегда на языке вопроса."
 ```
