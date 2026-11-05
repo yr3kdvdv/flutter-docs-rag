@@ -37,6 +37,7 @@ class EmbedStats:
     est_tokens_sent: int = 0
     cache_hits: int = 0
     retries: int = 0
+    api_tokens: int = 0  # tokens billed as reported by the provider (0 if it does not report)
     limiter_wait_s: float = 0.0
 
 
@@ -107,7 +108,11 @@ def make_embedder(cfg: EmbeddingConfig, settings: Settings) -> EmbeddingProvider
         from flutter_rag.embeddings.gemini import GeminiEmbedder
 
         return GeminiEmbedder(_secret(settings.gemini_api_key, "GEMINI_API_KEY"), cfg)
-    raise NotImplementedError(f"embedding provider {cfg.provider!r}: stage 05, retrieval-engineer")
+    if cfg.provider == "voyage":
+        from flutter_rag.embeddings.voyage import VoyageEmbedder
+
+        return VoyageEmbedder(_secret(settings.voyage_api_key, "VOYAGE_API_KEY"), cfg)
+    raise NotImplementedError(f"embedding provider {cfg.provider!r}: not supported")
 
 
 def _secret(value, name: str) -> str:
