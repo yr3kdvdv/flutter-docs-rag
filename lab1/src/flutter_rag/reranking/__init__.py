@@ -25,4 +25,9 @@ class Reranker(Protocol):
 def make_reranker(cfg: RerankingConfig, settings: Settings) -> Reranker | None:
     if not cfg.enabled:
         return None
-    raise NotImplementedError(f"reranker {cfg.provider!r}: stage 05, retrieval-engineer")
+    if cfg.provider == "voyage":
+        from flutter_rag.embeddings import _secret
+        from flutter_rag.reranking.voyage import VoyageReranker
+
+        return VoyageReranker(_secret(settings.voyage_api_key, "VOYAGE_API_KEY"), cfg)
+    raise NotImplementedError(f"reranker {cfg.provider!r}: not supported")

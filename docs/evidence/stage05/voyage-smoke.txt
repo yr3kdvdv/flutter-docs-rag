@@ -1,0 +1,75 @@
+# Stage 05 Voyage REAL API smoke evidence (retrieval-engineer, Claude Code subagent, Opus 5.5)
+# Command (from lab1/): uv run python scripts/smoke_voyage.py --env-file <main checkout>/.env
+# Key loaded via flutter_rag.config.Settings (SecretStr); its value is never printed.
+# Code: base 5dab44b + the Voyage adapters of this commit (uncommitted at run time).
+
+=== Run 2: clean run after a 75 s pause (exit 0) ===
+# REAL Voyage API smoke test (not a mocked unit test)
+time_utc: 2026-11-05T23:22:14+00:00  git: 5dab44b
+VOYAGE_API_KEY present: True (value not printed)
+
+## embeddings model=voyage-4-lite output_dimension=1024
+endpoint: https://api.voyageai.com/v1/embeddings
+document: 3 vectors, lengths=[1024], response model='voyage-4-lite', HTTP 200, latency=0.430s, usage.total_tokens=48
+rate-limit headers: none; selected: {'x-api-warning': 'You have not yet added your payment method in the billing page and will have reduced rate limits of 3 RPM and 10K TPM. To unlock our standard rate limits, please add a payment method in the billing page for the appropriate organization in the user dashboard (https://dashboard.voyageai.com/). Even with payment methods entered, the free tokens (200M tokens for Voyage series 3) will still apply. After adding a payment method, you should see your rate limits increase after several minutes. See our pricing docs (https://docs.voyageai.com/docs/pricing) for the free tokens for your model.', 'x-request-id': '583179f1153f13625df39baeb7b8416d'}; all names: ['alt-svc', 'content-length', 'content-type', 'date', 'server', 'via', 'x-api-warning', 'x-request-id', 'x-served-by']
+query: 1 vector, length=1024, response model='voyage-4-lite', HTTP 200, latency=0.657s, usage.total_tokens=6
+rate-limit headers: none; selected: {'x-api-warning': 'You have not yet added your payment method in the billing page and will have reduced rate limits of 3 RPM and 10K TPM. To unlock our standard rate limits, please add a payment method in the billing page for the appropriate organization in the user dashboard (https://dashboard.voyageai.com/). Even with payment methods entered, the free tokens (200M tokens for Voyage series 3) will still apply. After adding a payment method, you should see your rate limits increase after several minutes. See our pricing docs (https://docs.voyageai.com/docs/pricing) for the free tokens for your model.', 'x-request-id': '3be6125c405101245df39baeb7b84ffa'}; all names: ['alt-svc', 'content-length', 'content-type', 'date', 'server', 'via', 'x-api-warning', 'x-request-id', 'x-served-by']
+query: 'How do I arrange widgets horizontally?'
+  cos=0.1079 doc[0] 'Hot reload injects updated source code into the running Dart'
+  cos=0.6632 doc[1] 'Use a Row widget to lay out children horizontally and a Colu'
+  cos=0.1733 doc[2] 'To publish an Android app, build a release app bundle with f'
+CHECK dims == 1024: PASS
+CHECK closest doc is doc[1]: PASS
+stats: EmbedStats(api_calls=2, texts_sent=4, est_tokens_sent=75, cache_hits=0, retries=0, api_tokens=54, limiter_wait_s=0.0)
+retry events: []
+
+## rerank model=rerank-2.5
+response model='rerank-2.5', HTTP 200, latency=0.286s, usage.total_tokens=68
+rate-limit headers: none; selected: {'x-api-warning': 'You have not yet added your payment method in the billing page and will have reduced rate limits of 3 RPM and 10K TPM. To unlock our standard rate limits, please add a payment method in the billing page for the appropriate organization in the user dashboard (https://dashboard.voyageai.com/). Even with payment methods entered, the free tokens (200M tokens for Voyage series 3) will still apply. After adding a payment method, you should see your rate limits increase after several minutes. See our pricing docs (https://docs.voyageai.com/docs/pricing) for the free tokens for your model.', 'x-request-id': '708650ced9fc8f9e589f69f12a334f87'}; all names: ['alt-svc', 'content-length', 'content-type', 'date', 'server', 'via', 'x-api-warning', 'x-request-id', 'x-served-by']
+query: 'How can a child take the remaining space in a Row?'
+  rerank_score=0.6564 smoke-0 'Expanded makes a child of a Row or Column fill the available'
+  rerank_score=0.5536 smoke-2 'Wrap a child in Padding to add empty space around it.'
+  rerank_score=0.2260 smoke-1 'The pubspec.yaml file lists the package dependencies of a Fl'
+CHECK same Candidate objects returned: PASS
+CHECK best snippet is smoke-0: PASS
+stats: RerankStats(api_calls=1, documents_sent=3, est_tokens_sent=94, api_tokens=68, retries=0, limiter_wait_s=0.0)
+retry events: []
+client limiter waited: 0.00s
+
+RESULT: PASS
+
+=== Run 1: burst run, started < 60 s after two earlier smoke runs (exit 0) ===
+=== observed real HTTP 429 (no Retry-After header) on embeddings, recovered by our backoff ===
+# REAL Voyage API smoke test (not a mocked unit test)
+time_utc: 2026-11-05T23:20:43+00:00  git: 5dab44b
+VOYAGE_API_KEY present: True (value not printed)
+
+## embeddings model=voyage-4-lite output_dimension=1024
+endpoint: https://api.voyageai.com/v1/embeddings
+document: 3 vectors, lengths=[1024], response model='voyage-4-lite', HTTP 200, latency=0.428s, usage.total_tokens=48
+rate-limit headers: none; selected: {'x-api-warning': 'You have not yet added your payment method in the billing page and will have reduced rate limits of 3 RPM and 10K TPM. To unlock our standard rate limits, please add a payment method in the billing page for the appropriate organization in the user dashboard (https://dashboard.voyageai.com/). Even with payment methods entered, the free tokens (200M tokens for Voyage series 3) will still apply. After adding a payment method, you should see your rate limits increase after several minutes. See our pricing docs (https://docs.voyageai.com/docs/pricing) for the free tokens for your model.', 'x-request-id': '01aa68b8a30d4d5f69f567a0b1d49f1d'}; all names: ['alt-svc', 'content-length', 'content-type', 'date', 'server', 'via', 'x-api-warning', 'x-request-id', 'x-served-by']
+query: 1 vector, length=1024, response model='voyage-4-lite', HTTP 200, latency=0.664s, usage.total_tokens=6
+rate-limit headers: none; selected: {'x-api-warning': 'You have not yet added your payment method in the billing page and will have reduced rate limits of 3 RPM and 10K TPM. To unlock our standard rate limits, please add a payment method in the billing page for the appropriate organization in the user dashboard (https://dashboard.voyageai.com/). Even with payment methods entered, the free tokens (200M tokens for Voyage series 3) will still apply. After adding a payment method, you should see your rate limits increase after several minutes. See our pricing docs (https://docs.voyageai.com/docs/pricing) for the free tokens for your model.', 'x-request-id': '0877d85c7371dd4a69f567a0b1d49d90'}; all names: ['alt-svc', 'content-length', 'content-type', 'date', 'server', 'via', 'x-api-warning', 'x-request-id', 'x-served-by']
+query: 'How do I arrange widgets horizontally?'
+  cos=0.1079 doc[0] 'Hot reload injects updated source code into the running Dart'
+  cos=0.6632 doc[1] 'Use a Row widget to lay out children horizontally and a Colu'
+  cos=0.1733 doc[2] 'To publish an Android app, build a release app bundle with f'
+CHECK dims == 1024: PASS
+CHECK closest doc is doc[1]: PASS
+stats: EmbedStats(api_calls=4, texts_sent=4, est_tokens_sent=75, cache_hits=0, retries=2, api_tokens=54, limiter_wait_s=0.0)
+retry events: [{'kind': 'rate_limited', 'status_code': 429, 'retry_after_s': None, 'delay_s': 2.07, 'message': 'voyage: rate_limited (HTTP 429): You have not yet added your payment method in the billing page and will have reduced rate limits of 3 RPM and 10K TPM. To unlock our standard rate limits, please add a'}, {'kind': 'rate_limited', 'status_code': 429, 'retry_after_s': None, 'delay_s': 4.39, 'message': 'voyage: rate_limited (HTTP 429): You have not yet added your payment method in the billing page and will have reduced rate limits of 3 RPM and 10K TPM. To unlock our standard rate limits, please add a'}]
+
+## rerank model=rerank-2.5
+response model='rerank-2.5', HTTP 200, latency=0.283s, usage.total_tokens=68
+rate-limit headers: none; selected: {'x-api-warning': 'You have not yet added your payment method in the billing page and will have reduced rate limits of 3 RPM and 10K TPM. To unlock our standard rate limits, please add a payment method in the billing page for the appropriate organization in the user dashboard (https://dashboard.voyageai.com/). Even with payment methods entered, the free tokens (200M tokens for Voyage series 3) will still apply. After adding a payment method, you should see your rate limits increase after several minutes. See our pricing docs (https://docs.voyageai.com/docs/pricing) for the free tokens for your model.', 'x-request-id': '19c0b767943d89fb67860cdd815378ad'}; all names: ['alt-svc', 'content-length', 'content-type', 'date', 'server', 'via', 'x-api-warning', 'x-request-id', 'x-served-by']
+query: 'How can a child take the remaining space in a Row?'
+  rerank_score=0.6564 smoke-0 'Expanded makes a child of a Row or Column fill the available'
+  rerank_score=0.5536 smoke-2 'Wrap a child in Padding to add empty space around it.'
+  rerank_score=0.2260 smoke-1 'The pubspec.yaml file lists the package dependencies of a Fl'
+CHECK same Candidate objects returned: PASS
+CHECK best snippet is smoke-0: PASS
+stats: RerankStats(api_calls=1, documents_sent=3, est_tokens_sent=94, api_tokens=68, retries=0, limiter_wait_s=0.0)
+retry events: []
+client limiter waited: 0.00s
+
+RESULT: PASS
