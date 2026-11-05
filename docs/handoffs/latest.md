@@ -1,71 +1,58 @@
-# Handoff — исправления по проверке Codex (этап 04) → повторная проверка / слияние PR #14
+# Handoff — этап 04b (G1 и EN-ответ после повторной проверки Codex) → решение о слиянии PR #14
 
 ```yaml
-task_id: LAB1-004-fixes
+task_id: LAB1-004b-fixes
 sender_role: "Claude Code (Opus 5.5) — основной исполнитель и интегратор"
-receiver_role: "Codex — повторная проверка исправлений F1–F6 (затем интегратор вливает PR #14)"
+receiver_role: "Пользователь (решение о слиянии PR #14); опционально Codex — проверка G1"
 status: ready_for_next_step
-goal: "Подтвердить, что F1–F6 из docs/reviews/verification.md исправлены и регрессий нет"
+goal: "Закрыть G1 P2 и непроверенный EN answered из docs/reviews/verification-fixes.md"
 repository: "https://github.com/yr3kdvdv/flutter-docs-rag"
 branch: "stage-03-vertical-slice (PR #14 в main, ещё не влит)"
-commit_sha: "код исправлений: b6bc723; evidence: 29f9afc; handoff — следующий коммит (git log)"
-worktree: "основной checkout; worktree проверяющего ../flutter-docs-rag-verify-a54a5c5 не менялся"
-working_tree_clean: "true после коммита handoff — проверить git status"
+commit_sha: "код G1: b6c32e1; evidence/handoff — следующий коммит (git log)"
+worktree: "основной checkout; worktrees проверяющего (…-verify-a54a5c5, …-verify-e366b6e) не менялись"
+working_tree_clean: "после коммита остаётся untracked lab1/2026-11-04-213321-projectstate-latest-handoff.txt (экспорт разговора /export) — не коммитится, его стоит перенести из репозитория"
 requirements:
-  - "docs/reviews/verification.md — F1–F6"
-  - "docs/requirements.md — раздел «Статус после исправлений этапа 04»"
+  - "docs/reviews/verification-fixes.md — G1 и раздел «Непроверенное»"
 read_first:
   - AGENTS.md
-  - docs/reviews/verification.md
-  - docs/evidence/stage04/README.md
-  - docs/architecture.md   # §3.1, §5, §10
-  - lab1/tests/test_review_regressions.py
+  - docs/reviews/verification-fixes.md
+  - docs/evidence/stage04b/README.md
+  - docs/architecture.md   # §10
 allowed_paths:
-  - "проверяющему: только docs/reviews/verification-fixes.md в своём worktree"
+  - "проверяющему: только docs/reviews/verification-g1.md в своём worktree"
 do_not_edit:
-  - "docs/reviews/verification.md — сохранён без изменений как отчёт Codex"
+  - "docs/reviews/verification.md, docs/reviews/verification-fixes.md — отчёты Codex, сохранены без изменений"
 decisions:
-  - "failed-загрузка (страницы или её include) ≠ удаление: прежняя версия остаётся, отчёт stale_documents, diff.failed"
-  - "Страница с найденным в tree, но не скачанным include — failed (не индексируется неполной)"
-  - "Пустой/несозданный индекс — IndexNotReadyError: /ask 503 {status: not_ready}, CLI exit 2; не insufficient_context"
-  - "Пустые/пробельные секреты = не заданы"
-  - "ingest trace: corpus_commit пишется после grab; прошлый SHA — previous_corpus_commit"
-  - "Текст отказа формирует код по языку вопроса (кириллица → ru); prompt answer/v1.2 не менялся"
+  - "Язык вопроса: текст вне кавычек/кода; есть кириллица → ru; полностью в кавычках → весь текст"
+  - "Явный параметр языка в CLI/API не вводится (минимальное исправление); ограничение задокументировано"
 completed:
-  - "F1–F6 исправлены (b6bc723), 12 регрессионных тестов; на старом коде 11 из 12 падают"
-  - "Отчёт Codex сохранён в docs/reviews/verification.md"
-  - "architecture §3.1/§5/§10, requirements, prompts CHANGELOG, evidence stage04 обновлены"
+  - "G1 исправлен (b6c32e1), 11 новых регрессионных случаев; на e366b6e 5 из 11 падают"
+  - "EN answered с проверенными источниками получен реально (2 вопроса)"
+  - "Отчёт Codex и промпт 04b сохранены в репозитории"
 verification:
   - command: "cd lab1 && uv run pytest && uv run ruff check . && uv run ruff format --check ."
-    result: "63 passed; lint/format ok; exit 0"
-  - command: "pytest новых тестов против src из a54a5c5 (временная копия с мягкими импортами)"
-    result: "11 failed, 1 passed — тесты ловят исходные дефекты"
-  - command: "GEMINI_API_KEY= LANGFUSE_PUBLIC_KEY= LANGFUSE_SECRET_KEY= uv run flutter-rag env-check / ingest"
-    result: "MISSING ×3, exit 0 / MissingSecretError, exit 2"
-    artifact: "docs/evidence/stage04/f4-blank-keys.txt"
-  - command: "flutter-rag serve (пустой DATA_DIR) + curl /health /ready POST /ask"
-    result: "200 / 503 / 503 {status: not_ready}"
-    artifact: "docs/evidence/stage04/f3-ask-before-ingest.txt"
-  - command: "uv run flutter-rag ingest (с нуля, затем повтор), snapshot b017c8c"
-    result: "exit 0: 144 points, 9 embedding calls; повтор 0 downloads/0 calls/144 points; traces 25cc8630…, 013ce204…"
-  - command: "ingest tools/hot-reload @602492c → @5ce3d6a (временные конфиги вне репозитория)"
-    result: "exit 0: added=1, затем modified=1, 15→15 points; traces 049e7776…, 64f521d1…"
-  - command: "чтение observations metadata 4 ingest-traces из Langfuse API"
-    result: "root corpus_commit = фактический SHA, previous_corpus_commit = прошлый; git_sha b6bc723, git_dirty False"
-    artifact: "docs/evidence/stage04/f5-ingest-trace-metadata.json"
-  - command: "uv run flutter-rag ask × 7 (5 RU вне корпуса, RU и EN в корпусе) + 1 с неверным ключом"
-    result: "5/5 RU отказов по-русски; RU answered по-русски; EN answered с кодом; неверный ключ exit 4 auth"
-    artifact: "docs/evidence/stage04/ask/, f6-ask-traces-from-langfuse.json"
+    result: "73 passed; lint/format ok; exit 0"
+  - command: "pytest G1-кейсов против src из e366b6e"
+    result: "5 failed (EN с кириллицей в кавычках), RU-кейсы passed"
+  - command: "uv run flutter-rag ingest (snapshot 4fee025)"
+    result: "exit 0; 8 unchanged, 144 points; trace 2de73a48…"
+  - command: "uv run flutter-rag ask: 2 × G1, RU FCM, RU с цитатой, EN hot reload, EN JSON ×2"
+    result: "G1 → EN отказ; RU FCM → RU отказ; RU/EN answered с источниками; EN JSON: 1-я попытка Gemini 503 (exit 4), 2-я answered"
+    artifact: "docs/evidence/stage04b/ask/"
+  - command: "проверка источников в Qdrant и якорей на живых страницах"
+    result: "6/6 источников найдены, URL совпадают, якоря существуют"
+    artifact: "docs/evidence/stage04b/sources-check.txt"
+  - command: "чтение 8 traces из Langfuse API отдельным процессом"
+    result: "все найдены, git_sha b6c32e1"
+    artifact: "docs/evidence/stage04b/traces-from-langfuse.json"
 not_verified:
-  - "F1/F2 при реальном сбое GitHub — только инъекция UpstreamError в fake-клиент; живой 5xx/403/429 не наблюдался"
-  - "Сама модель (answer/v1.2) в 3/3 FCM-запусках отказала по-английски — исправлен вывод, не поведение модели"
-  - "Язык ответов status=answered не исправляется, только warning answer_language_mismatch"
-  - "Реальное удаление страницы upstream, недоступность Langfuse, Qdrant server, Gemini 429"
-  - "CI GitHub Actions на новом SHA — см. PR #14 после push"
-  - "Независимая повторная проверка исправлений (Codex) не проводилась"
+  - "Независимая проверка исправления G1"
+  - "Русское имя без кавычек в EN-вопросе всё ещё даёт ru (известное ограничение)"
+  - "Реальные сбои GitHub (F1/F2 — инъекция), Gemini 429, недоступность Langfuse, Qdrant server, удаление страницы upstream"
+  - "CI на последнем SHA — см. PR #14"
 blockers: []
-next_action: "Codex повторно проверяет исправления F1–F6 на последнем SHA ветки по docs/evidence/stage04/README.md"
+next_action: "Пользователь решает: влить PR #14 сейчас или после короткой проверки G1 Codex"
 acceptance_criteria:
-  - "Отчёт docs/reviews/verification-fixes.md с SHA, повторёнными сценариями F1–F6 и статусом каждого"
-student_explanation: "Ошибка сети при обновлении больше не стирает рабочую страницу из индекса и не закрепляет неполную; пустой индекс — понятная ошибка 503, а не «нет ответа»; отказ всегда на языке вопроса."
+  - "PR #14 влит в main с зелёным CI, либо отчёт docs/reviews/verification-g1.md"
+student_explanation: "Язык отказа теперь определяется по самому вопросу, а не по цитатам и именам в кавычках; английский ответ с проверенными источниками подтверждён реальным запуском."
 ```

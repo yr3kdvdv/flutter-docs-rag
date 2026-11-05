@@ -1,0 +1,173 @@
+{
+  "status": "insufficient_context",
+  "question": "How do I add Stripe payments to an app called «Магазин»?",
+  "text": "The indexed documentation does not contain information to answer this question.",
+  "sources": [],
+  "retrieved": [
+    {
+      "rank": 1,
+      "score": 0.573,
+      "document_id": "data-and-backend/state-mgmt/simple",
+      "section": "Our example",
+      "chunk_id": "ce55e6b1-424b-5b53-8faf-11bab14b2436"
+    },
+    {
+      "rank": 2,
+      "score": 0.5718,
+      "document_id": "data-and-backend/state-mgmt/simple",
+      "section": "Accessing the state",
+      "chunk_id": "a125bd6a-1eb8-5ff1-96ed-78d959162279"
+    },
+    {
+      "rank": 3,
+      "score": 0.5655,
+      "document_id": "add-to-app/android/add-flutter-screen",
+      "section": "",
+      "chunk_id": "314a1c0a-9d18-5a58-b612-78c63d450f0c"
+    },
+    {
+      "rank": 4,
+      "score": 0.559,
+      "document_id": "data-and-backend/state-mgmt/simple",
+      "section": "ChangeNotifierProvider",
+      "chunk_id": "8f284a47-14c8-54e5-8172-f085c3e331db"
+    },
+    {
+      "rank": 5,
+      "score": 0.5578,
+      "document_id": "data-and-backend/state-mgmt/simple",
+      "section": "ChangeNotifier",
+      "chunk_id": "1eb1fcef-8685-5a92-a2c8-8f6bc03a241e"
+    },
+    {
+      "rank": 6,
+      "score": 0.5561,
+      "document_id": "ui/layout/constraints",
+      "section": "Examples",
+      "chunk_id": "fa26f328-40fc-51b0-a47f-df22b463be3e"
+    },
+    {
+      "rank": 7,
+      "score": 0.555,
+      "document_id": "data-and-backend/state-mgmt/simple",
+      "section": "",
+      "chunk_id": "c8ef2042-6abe-56c6-85dc-6f3f992c6d29"
+    },
+    {
+      "rank": 8,
+      "score": 0.5538,
+      "document_id": "data-and-backend/state-mgmt/simple",
+      "section": "Consumer",
+      "chunk_id": "46e8c836-d443-5f56-a032-ef1fbced8567"
+    },
+    {
+      "rank": 9,
+      "score": 0.5523,
+      "document_id": "tools/hot-reload",
+      "section": "Special cases > Native code",
+      "chunk_id": "f64f29ac-68ca-5857-bd73-cc4095c6a502"
+    },
+    {
+      "rank": 10,
+      "score": 0.5486,
+      "document_id": "cookbook/networking/fetch-data",
+      "section": "1. Add the `http` package",
+      "chunk_id": "2a338daf-d22c-563f-97d2-825ea32b8c4e"
+    },
+    {
+      "rank": 11,
+      "score": 0.5414,
+      "document_id": "data-and-backend/state-mgmt/simple",
+      "section": "Consumer",
+      "chunk_id": "6b88f60d-1ece-5475-9da9-c33dbf076dd6"
+    },
+    {
+      "rank": 12,
+      "score": 0.5397,
+      "document_id": "ui/layout/constraints",
+      "section": "Examples",
+      "chunk_id": "026acd95-0b7a-5cac-8144-0b76c833f03f"
+    },
+    {
+      "rank": 13,
+      "score": 0.5373,
+      "document_id": "cookbook/networking/fetch-data",
+      "section": "",
+      "chunk_id": "d1a2d881-ca0e-5a01-a974-8eee3a208b05"
+    },
+    {
+      "rank": 14,
+      "score": 0.5357,
+      "document_id": "add-to-app/android/add-flutter-screen",
+      "section": "Add a translucent Flutter screen > Step 2: Start FlutterActivity with transparency",
+      "chunk_id": "1eba102f-0371-525d-8e4c-2ebc7d2fc26f"
+    },
+    {
+      "rank": 15,
+      "score": 0.5354,
+      "document_id": "ui/layout/constraints",
+      "section": "Examples",
+      "chunk_id": "fee0455b-9041-5290-8144-a43afbc4eb6a"
+    },
+    {
+      "rank": 16,
+      "score": 0.5351,
+      "document_id": "add-to-app/android/add-flutter-screen",
+      "section": "Add a normal Flutter screen > Step 1: Add FlutterActivity to AndroidManifest.xml",
+      "chunk_id": "007343da-fb1c-5055-8836-e947b80fe9a4"
+    },
+    {
+      "rank": 17,
+      "score": 0.5331,
+      "document_id": "data-and-backend/state-mgmt/simple",
+      "section": "ChangeNotifier",
+      "chunk_id": "749d4792-b1a3-53d4-909c-be5f0be98820"
+    },
+    {
+      "rank": 18,
+      "score": 0.5325,
+      "document_id": "ui/layout/constraints",
+      "section": "Examples",
+      "chunk_id": "df97dea1-4749-562d-b93b-c7e02cdd7930"
+    },
+    {
+      "rank": 19,
+      "score": 0.532,
+      "document_id": "testing/overview",
+      "section": "Continuous integration services",
+      "chunk_id": "344eb5d3-2a41-517b-be64-6a6a9767c0d0"
+    },
+    {
+      "rank": 20,
+      "score": 0.5319,
+      "document_id": "data-and-backend/state-mgmt/simple",
+      "section": "Consumer > Provider.of",
+      "chunk_id": "559c2df2-88e2-55d6-859a-3f9fb86dfc80"
+    }
+  ],
+  "warnings": [],
+  "error": null,
+  "usage": {
+    "input": 2804,
+    "output": 46,
+    "total": 2850
+  },
+  "latency_ms": {
+    "retrieve": 373.6,
+    "llm": 931.8
+  },
+  "trace_id": "de76030f7cd380768d070097c8b37f69",
+  "trace_url": "https://cloud.langfuse.com/project/cmvl28r6600z6ad0kmhvny3nt/traces/de76030f7cd380768d070097c8b37f69",
+  "meta": {
+    "config_id": "slice-v1",
+    "config_fingerprint": "e39f698c6ecd",
+    "collection": "flutter__slice8__gemini-embedding-001-768__section-512-o0",
+    "corpus_commit": "4fee0255ef9f0c85f6dd37513bf659613f57e5eb",
+    "embedding_model": "gemini-embedding-001@768",
+    "llm_model": "gemini-3.5-flash-lite",
+    "prompt_version": "answer/v1.2",
+    "prompt_sha256": "f78187d8a28ab3c8",
+    "git_sha": "b6c32e166aadad1740c524b177906738c78bac2f",
+    "git_dirty": false
+  }
+}

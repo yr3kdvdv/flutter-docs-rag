@@ -1,0 +1,190 @@
+{
+  "status": "answered",
+  "question": "What does hot reload preserve in Flutter? Answer in one sentence with a citation.",
+  "text": "Hot reload preserves the current state of your app [2][6].",
+  "sources": [
+    {
+      "number": 2,
+      "title": "Hot reload",
+      "section": "How to perform a hot reload",
+      "url": "https://docs.flutter.dev/tools/hot-reload#how-to-perform-a-hot-reload",
+      "score": 0.7504,
+      "chunk_id": "683c56d6-b5e1-51fc-b88c-74652eee492d"
+    },
+    {
+      "number": 6,
+      "title": "Hot reload",
+      "section": "Special cases > Previous state is combined with new code",
+      "url": "https://docs.flutter.dev/tools/hot-reload#previous-state-is-combined-with-new-code",
+      "score": 0.7796,
+      "chunk_id": "f1b162d6-31db-5747-ac55-407baddfbf3e"
+    }
+  ],
+  "retrieved": [
+    {
+      "rank": 1,
+      "score": 0.7796,
+      "document_id": "tools/hot-reload",
+      "section": "Special cases > Previous state is combined with new code",
+      "chunk_id": "f1b162d6-31db-5747-ac55-407baddfbf3e"
+    },
+    {
+      "rank": 2,
+      "score": 0.7574,
+      "document_id": "tools/hot-reload",
+      "section": "How to perform a hot reload",
+      "chunk_id": "d5647015-746e-530a-92cc-81ef28fe8039"
+    },
+    {
+      "rank": 3,
+      "score": 0.7573,
+      "document_id": "tools/hot-reload",
+      "section": "",
+      "chunk_id": "f8a911f7-01ef-52c5-abd3-7d83eedbd7a5"
+    },
+    {
+      "rank": 4,
+      "score": 0.7504,
+      "document_id": "tools/hot-reload",
+      "section": "How to perform a hot reload",
+      "chunk_id": "683c56d6-b5e1-51fc-b88c-74652eee492d"
+    },
+    {
+      "rank": 5,
+      "score": 0.7489,
+      "document_id": "tools/hot-reload",
+      "section": "How it works",
+      "chunk_id": "89d26959-9074-53b1-85af-2d538f666117"
+    },
+    {
+      "rank": 6,
+      "score": 0.7417,
+      "document_id": "tools/hot-reload",
+      "section": "Special cases",
+      "chunk_id": "cebcd854-06ce-566d-ad1f-c42176991c53"
+    },
+    {
+      "rank": 7,
+      "score": 0.7204,
+      "document_id": "tools/hot-reload",
+      "section": "Special cases > An app is killed",
+      "chunk_id": "0c78f287-1236-5b7c-a933-f2124f405016"
+    },
+    {
+      "rank": 8,
+      "score": 0.7166,
+      "document_id": "tools/hot-reload",
+      "section": "Special cases > Recent code change is included but app state is excluded",
+      "chunk_id": "80a4194b-fd3f-54f5-b0ce-796b636e21bd"
+    },
+    {
+      "rank": 9,
+      "score": 0.7102,
+      "document_id": "tools/hot-reload",
+      "section": "Special cases > Recent UI change is excluded",
+      "chunk_id": "bfde9911-3bba-5adc-8121-00ce8cd91038"
+    },
+    {
+      "rank": 10,
+      "score": 0.7074,
+      "document_id": "tools/hot-reload",
+      "section": "Special cases > Native code",
+      "chunk_id": "f64f29ac-68ca-5857-bd73-cc4095c6a502"
+    },
+    {
+      "rank": 11,
+      "score": 0.7026,
+      "document_id": "tools/hot-reload",
+      "section": "Special cases > Compilation errors",
+      "chunk_id": "7ed33bee-6e38-5b21-8725-d4cfdd2653b4"
+    },
+    {
+      "rank": 12,
+      "score": 0.6957,
+      "document_id": "tools/hot-reload",
+      "section": "Special cases > Recent code change is included but app state is excluded",
+      "chunk_id": "7cd2c8e5-ecf8-5f8e-ad27-2b095d551bb4"
+    },
+    {
+      "rank": 13,
+      "score": 0.6919,
+      "document_id": "tools/hot-reload",
+      "section": "Special cases > CupertinoTabView's builder",
+      "chunk_id": "e88e9820-b19e-5d25-b3b2-1472fed54b50"
+    },
+    {
+      "rank": 14,
+      "score": 0.6902,
+      "document_id": "tools/hot-reload",
+      "section": "Special cases > Enumerated types",
+      "chunk_id": "f32c2e4f-2b01-55a6-9d41-231ad6b62af4"
+    },
+    {
+      "rank": 15,
+      "score": 0.6624,
+      "document_id": "data-and-backend/state-mgmt/simple",
+      "section": "Lifting state up",
+      "chunk_id": "b047d74a-cee4-5719-ae0c-5f252cc99d4c"
+    },
+    {
+      "rank": 16,
+      "score": 0.6607,
+      "document_id": "tools/hot-reload",
+      "section": "Special cases > Generic types",
+      "chunk_id": "ed386ee4-50a0-58c3-8497-db4610318448"
+    },
+    {
+      "rank": 17,
+      "score": 0.6544,
+      "document_id": "add-to-app/android/add-flutter-screen",
+      "section": "Add a normal Flutter screen > Step 3: (Optional) Use a cached FlutterEngine",
+      "chunk_id": "d5c8919e-fbd0-5d42-8820-c265e7dca0fb"
+    },
+    {
+      "rank": 18,
+      "score": 0.6415,
+      "document_id": "data-and-backend/state-mgmt/simple",
+      "section": "Lifting state up",
+      "chunk_id": "d014ad34-0567-5ecd-8cde-10247d4ecb91"
+    },
+    {
+      "rank": 19,
+      "score": 0.6372,
+      "document_id": "perf/best-practices",
+      "section": "Resources",
+      "chunk_id": "b844ad5c-265a-5924-aae3-07d39c001f55"
+    },
+    {
+      "rank": 20,
+      "score": 0.6309,
+      "document_id": "add-to-app/android/add-flutter-screen",
+      "section": "Add a normal Flutter screen > Step 3: (Optional) Use a cached FlutterEngine",
+      "chunk_id": "d2fd196f-41d0-55e9-9c24-bf21bfe38d2e"
+    }
+  ],
+  "warnings": [],
+  "error": null,
+  "usage": {
+    "input": 2463,
+    "output": 48,
+    "total": 2511
+  },
+  "latency_ms": {
+    "retrieve": 365.2,
+    "llm": 3938.8
+  },
+  "trace_id": "406f5edc8cd1a745e6f271d6a389d448",
+  "trace_url": "https://cloud.langfuse.com/project/cmvl28r6600z6ad0kmhvny3nt/traces/406f5edc8cd1a745e6f271d6a389d448",
+  "meta": {
+    "config_id": "slice-v1",
+    "config_fingerprint": "e39f698c6ecd",
+    "collection": "flutter__slice8__gemini-embedding-001-768__section-512-o0",
+    "corpus_commit": "4fee0255ef9f0c85f6dd37513bf659613f57e5eb",
+    "embedding_model": "gemini-embedding-001@768",
+    "llm_model": "gemini-3.5-flash-lite",
+    "prompt_version": "answer/v1.2",
+    "prompt_sha256": "f78187d8a28ab3c8",
+    "git_sha": "b6c32e166aadad1740c524b177906738c78bac2f",
+    "git_dirty": false
+  }
+}

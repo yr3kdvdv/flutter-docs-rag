@@ -11,3 +11,5 @@ Never edit a published version: traces reference prompts by version and sha256.
 - (stage 04, no new prompt version) v1.2 still refused in English to Russian questions
   (Codex review F6; 3 of 3 FCM runs on 2026-11-04). The refusal text shown to the user is now
   produced by code from the question language (`pipeline.REFUSAL_TEXT`); the prompt is unchanged.
+- (stage 04b, no new prompt version) the language detector ignores quoted text and code spans
+  (re-verification finding G1). Prompt unchanged.

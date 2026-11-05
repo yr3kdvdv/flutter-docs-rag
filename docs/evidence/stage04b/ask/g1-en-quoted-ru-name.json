@@ -1,0 +1,173 @@
+{
+  "status": "insufficient_context",
+  "question": "How do I publish a Flutter app named \"Привет\" to the Apple App Store?",
+  "text": "The indexed documentation does not contain information to answer this question.",
+  "sources": [],
+  "retrieved": [
+    {
+      "rank": 1,
+      "score": 0.6244,
+      "document_id": "data-and-backend/state-mgmt/simple",
+      "section": "",
+      "chunk_id": "c8ef2042-6abe-56c6-85dc-6f3f992c6d29"
+    },
+    {
+      "rank": 2,
+      "score": 0.6126,
+      "document_id": "cookbook/networking/fetch-data",
+      "section": "1. Add the `http` package",
+      "chunk_id": "2a338daf-d22c-563f-97d2-825ea32b8c4e"
+    },
+    {
+      "rank": 3,
+      "score": 0.6052,
+      "document_id": "data-and-backend/state-mgmt/simple",
+      "section": "Our example",
+      "chunk_id": "ce55e6b1-424b-5b53-8faf-11bab14b2436"
+    },
+    {
+      "rank": 4,
+      "score": 0.6019,
+      "document_id": "add-to-app/android/add-flutter-screen",
+      "section": "",
+      "chunk_id": "314a1c0a-9d18-5a58-b612-78c63d450f0c"
+    },
+    {
+      "rank": 5,
+      "score": 0.5983,
+      "document_id": "tools/hot-reload",
+      "section": "",
+      "chunk_id": "f8a911f7-01ef-52c5-abd3-7d83eedbd7a5"
+    },
+    {
+      "rank": 6,
+      "score": 0.5979,
+      "document_id": "testing/overview",
+      "section": "Continuous integration services",
+      "chunk_id": "344eb5d3-2a41-517b-be64-6a6a9767c0d0"
+    },
+    {
+      "rank": 7,
+      "score": 0.5976,
+      "document_id": "data-and-backend/state-mgmt/simple",
+      "section": "Accessing the state",
+      "chunk_id": "a125bd6a-1eb8-5ff1-96ed-78d959162279"
+    },
+    {
+      "rank": 8,
+      "score": 0.597,
+      "document_id": "cookbook/networking/fetch-data",
+      "section": "",
+      "chunk_id": "d1a2d881-ca0e-5a01-a974-8eee3a208b05"
+    },
+    {
+      "rank": 9,
+      "score": 0.5929,
+      "document_id": "tools/hot-reload",
+      "section": "Special cases > Native code",
+      "chunk_id": "f64f29ac-68ca-5857-bd73-cc4095c6a502"
+    },
+    {
+      "rank": 10,
+      "score": 0.5905,
+      "document_id": "ui/navigation/index",
+      "section": "",
+      "chunk_id": "444b46ff-5d16-50c7-aabb-5e2588fdb5d6"
+    },
+    {
+      "rank": 11,
+      "score": 0.5896,
+      "document_id": "data-and-backend/state-mgmt/simple",
+      "section": "ChangeNotifierProvider",
+      "chunk_id": "8f284a47-14c8-54e5-8172-f085c3e331db"
+    },
+    {
+      "rank": 12,
+      "score": 0.589,
+      "document_id": "cookbook/networking/fetch-data",
+      "section": "Complete example",
+      "chunk_id": "1964e7e5-51d7-5efb-a476-c938aaac25d6"
+    },
+    {
+      "rank": 13,
+      "score": 0.5856,
+      "document_id": "tools/hot-reload",
+      "section": "Special cases",
+      "chunk_id": "cebcd854-06ce-566d-ad1f-c42176991c53"
+    },
+    {
+      "rank": 14,
+      "score": 0.5849,
+      "document_id": "tools/hot-reload",
+      "section": "How to perform a hot reload",
+      "chunk_id": "683c56d6-b5e1-51fc-b88c-74652eee492d"
+    },
+    {
+      "rank": 15,
+      "score": 0.5811,
+      "document_id": "ui/navigation/index",
+      "section": "Using named routes",
+      "chunk_id": "188da8cf-f22a-5105-a08f-d0489604fa0b"
+    },
+    {
+      "rank": 16,
+      "score": 0.5801,
+      "document_id": "tools/hot-reload",
+      "section": "How it works",
+      "chunk_id": "89d26959-9074-53b1-85af-2d538f666117"
+    },
+    {
+      "rank": 17,
+      "score": 0.5781,
+      "document_id": "tools/hot-reload",
+      "section": "How to perform a hot reload",
+      "chunk_id": "d5647015-746e-530a-92cc-81ef28fe8039"
+    },
+    {
+      "rank": 18,
+      "score": 0.5781,
+      "document_id": "testing/overview",
+      "section": "Integration tests",
+      "chunk_id": "6904dca6-6a3d-5f58-9b58-6023120de2c7"
+    },
+    {
+      "rank": 19,
+      "score": 0.5774,
+      "document_id": "add-to-app/android/add-flutter-screen",
+      "section": "Add a normal Flutter screen > Step 3: (Optional) Use a cached FlutterEngine",
+      "chunk_id": "d2fd196f-41d0-55e9-9c24-bf21bfe38d2e"
+    },
+    {
+      "rank": 20,
+      "score": 0.577,
+      "document_id": "tools/hot-reload",
+      "section": "Special cases > Recent UI change is excluded",
+      "chunk_id": "bfde9911-3bba-5adc-8121-00ce8cd91038"
+    }
+  ],
+  "warnings": [],
+  "error": null,
+  "usage": {
+    "input": 2025,
+    "output": 48,
+    "total": 2073
+  },
+  "latency_ms": {
+    "retrieve": 398.8,
+    "llm": 897.3
+  },
+  "trace_id": "54e8ad8e2e7c00b335c205934199cd3b",
+  "trace_url": "https://cloud.langfuse.com/project/cmvl28r6600z6ad0kmhvny3nt/traces/54e8ad8e2e7c00b335c205934199cd3b",
+  "meta": {
+    "config_id": "slice-v1",
+    "config_fingerprint": "e39f698c6ecd",
+    "collection": "flutter__slice8__gemini-embedding-001-768__section-512-o0",
+    "corpus_commit": "4fee0255ef9f0c85f6dd37513bf659613f57e5eb",
+    "embedding_model": "gemini-embedding-001@768",
+    "llm_model": "gemini-3.5-flash-lite",
+    "prompt_version": "answer/v1.2",
+    "prompt_sha256": "f78187d8a28ab3c8",
+    "git_sha": "b6c32e166aadad1740c524b177906738c78bac2f",
+    "git_dirty": false
+  }
+}
