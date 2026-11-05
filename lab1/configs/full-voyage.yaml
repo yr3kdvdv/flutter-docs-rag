@@ -33,6 +33,8 @@ reranking:
   enabled: false
   provider: voyage
   model: rerank-2.5
+  max_rpm: 3           # Voyage free tier without payment method: 3 RPM / 10K TPM
+  max_tpm: 9000        # (x-api-warning header of this account, 2026-11-06)
   top_n: 8            # = filtering.max_chunks: same final budget with rerank on/off
 generation:
   provider: gemini

@@ -16,8 +16,9 @@
 | LLM #2 | `gemma-4-31b-it` (открытая модель, через Gemini API) | HTTP 200, system_instruction + JSON schema работают; ~18 с; 30 RPM / 14.4K RPD |
 | Режим (резерв) | flash-lite c `thinking_budget` | не подтверждён: 3 × 503 |
 
-Лимиты Voyage free tier без способа оплаты по документации — 3 RPM / 10K TPM; в аккаунте не
-проверены, поэтому в конфигах стоят консервативные `max_rpm: 3`, `max_tpm: 9000` до проверки.
+Лимиты Voyage free tier без способа оплаты — 3 RPM / 10K TPM: это подтверждает заголовок
+`x-api-warning` каждого ответа аккаунта (smoke retrieval-engineer, `docs/evidence/stage05/voyage-smoke.txt`;
+наблюдались реальные 429 при серии запросов). В конфигах `max_rpm: 3`, `max_tpm: 9000` для embeddings и rerank.
 Вопрос 2 к преподавателю («бесплатные квоты API = бесплатные модели?») не закрыт; `gemma-4-31b-it`
 — открытая модель и закрывает §12 при отрицательном ответе.
 
