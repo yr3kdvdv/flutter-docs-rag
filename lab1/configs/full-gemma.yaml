@@ -1,0 +1,44 @@
+# Stage 05 baseline over the FULL corpus at a fixed snapshot (docs/contracts/stage05.md §1).
+# Starting points, not tuned results: tuning happens on the dev split in stage 06.
+config_id: full-gemini-section512-gemma
+corpus:
+  name: full
+  repo: flutter/website
+  ref: 4fee0255ef9f0c85f6dd37513bf659613f57e5eb   # fixed snapshot of 2026-11-06
+  include: ["sites/docs/src/content/**/*.md"]
+  exclude:
+    - "sites/docs/src/content/**/_*.md"   # partials: no own page, URL is 404 (audit B3)
+    - "sites/docs/src/content/release/release-notes/**"
+  skip_front_matter: {noindex: true, sitemap: false}   # internal contributor pages
+chunking:
+  strategy: section    # fixed | fixed_overlap | paragraph | section
+  max_tokens: 512
+  overlap: 0.0
+  code_soft_cap_tokens: 1024   # longer code blocks are split by lines (audit H4)
+embedding:
+  provider: gemini
+  model: gemini-embedding-001
+  dimensions: 768
+  batch_size: 50       # texts per request (audit B1)
+  max_rpm: 80          # AI Studio free tier: 100 RPM / 30K TPM / 1K RPD
+  max_tpm: 24000
+retrieval:
+  top_k: 20
+filtering:
+  max_chunks: 8
+  min_score: null      # null = refusal only by the LLM; calibrated on dev per embedding model (audit H3)
+  dedupe: content_hash  # never drop other ordinals of the same section (audit H2)
+  min_chars: 80
+reranking:
+  enabled: false
+  provider: voyage
+  model: rerank-2.5
+  top_n: 8            # = filtering.max_chunks: same final budget with rerank on/off
+generation:
+  provider: gemini
+  model: gemma-4-31b-it          # open model via Gemini API (smoke 2026-11-06), LLM #2
+  prompt_name: answer
+  prompt_version: v1.2 # lab1/prompts/answer/v1.2.md in Git (audit M2)
+  max_context_tokens: 6000
+  max_output_tokens: 1024
+  temperature: 0.0

@@ -98,7 +98,9 @@ class Runtime:
         self.client.close()
 
     def run_metadata(self) -> dict[str, Any]:
-        manifest = load_latest_manifest(self.data_dir, self.cfg.config_id)
+        # Manifests are keyed by corpus.name, like collections: configs that differ only in
+        # LLM/prompt/top_k share one snapshot and one index (contract §1).
+        manifest = load_latest_manifest(self.data_dir, self.cfg.corpus.name)
         return {
             "config_id": self.cfg.config_id,
             "config_fingerprint": self.cfg.fingerprint(),
@@ -156,7 +158,7 @@ def ingest(rt: Runtime) -> IngestReport:
         ) as obs:
             client = rt.github_factory()
             try:
-                res = grab(cfg.corpus, cfg.config_id, rt.data_dir, client)
+                res = grab(cfg.corpus, cfg.corpus.name, rt.data_dir, client)
             finally:
                 client.close()
             manifest = res.manifest

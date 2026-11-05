@@ -26,6 +26,9 @@
 Фиксированный snapshot: `flutter/website@4fee0255ef9f0c85f6dd37513bf659613f57e5eb`
 (`configs/full.yaml`, `corpus.ref` = этот SHA, `corpus.name: full`). Все include/exclude как в base.yaml.
 Dataset размечается на этом же snapshot.
+Manifest хранится по `corpus.name` (`data/manifests/<corpus.name>/`), как и коллекция: конфиги,
+отличающиеся только LLM/prompt/top_k/rerank, делят один snapshot и один индекс. Поле manifest
+`config_id` с этой ревизии содержит имя корпуса (историческое имя поля).
 
 ## 2. Chunking (corpus-engineer)
 

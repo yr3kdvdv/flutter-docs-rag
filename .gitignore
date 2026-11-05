@@ -13,3 +13,6 @@
 .worktrees/
 *.log
 .claude/settings.local.json
+
+# subagent git worktrees (Claude Code isolation: worktree)
+.claude/worktrees/
