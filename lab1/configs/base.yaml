@@ -2,6 +2,7 @@
 # Model IDs are candidates and must be confirmed with a small real API call (stage 03).
 config_id: baseline-draft
 corpus:
+  name: full
   repo: flutter/website
   ref: main            # pinned to a commit SHA in each snapshot manifest
   include: ["sites/docs/src/content/**/*.md"]
@@ -19,10 +20,12 @@ embedding:
   model: gemini-embedding-001
   dimensions: 768
   batch_size: 50       # texts per request (audit B1)
-  max_rpm: null        # set after checking the real quota in AI Studio
+  max_rpm: 80          # AI Studio free tier: 100 RPM / 30K TPM / 1K RPD
+  max_tpm: 24000
 retrieval:
   top_k: 20
 filtering:
+  max_chunks: 8
   min_score: null      # null = refusal only by the LLM; calibrated on dev per embedding model (audit H3)
   dedupe: content_hash  # never drop other ordinals of the same section (audit H2)
   min_chars: 80
@@ -33,6 +36,7 @@ reranking:
   top_n: 5
 generation:
   provider: gemini
-  model: null          # chosen after a real availability check
-  prompt_version: v1   # lab1/prompts/answer/v1.md in Git (audit M2)
+  model: gemini-3.5-flash-lite   # confirmed by a real request (stage 03)
+  prompt_name: answer
+  prompt_version: v1.2 # lab1/prompts/answer/v1.2.md in Git (audit M2)
   max_context_tokens: 6000

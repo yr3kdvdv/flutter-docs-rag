@@ -7,7 +7,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from pydantic import Field, SecretStr
+from pydantic import Field, SecretStr, field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 LAB1_DIR = Path(__file__).resolve().parents[2]
@@ -39,6 +39,23 @@ class Settings(BaseSettings):
     qdrant_url: str | None = None
     qdrant_path: Path = Field(default=LAB1_DIR / "data" / "index" / "qdrant")
     data_dir: Path = Field(default=LAB1_DIR / "data")
+
+    @field_validator(
+        "gemini_api_key",
+        "langfuse_public_key",
+        "langfuse_secret_key",
+        "voyage_api_key",
+        "github_token",
+        mode="before",
+    )
+    @classmethod
+    def _blank_secret_is_missing(cls, value):
+        """`KEY=` copied from .env.example means "not set", not an empty key (review F4)."""
+        if isinstance(value, SecretStr):
+            value = value.get_secret_value()
+        if isinstance(value, str) and not value.strip():
+            return None
+        return value
 
     def secret_status(self) -> dict[str, bool]:
         """Report which secrets are present without exposing their values."""

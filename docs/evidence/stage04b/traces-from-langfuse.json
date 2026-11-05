@@ -1,0 +1,91 @@
+{
+ "2de73a48b7adbc0c3cf14de61e027a48": {
+  "observations": 3,
+  "llm_model_output": null,
+  "root_level": "DEFAULT",
+  "root_corpus_commit": "4fee0255ef9f0c85f6dd37513bf659613f57e5eb",
+  "git_sha": "b6c32e166aadad1740c524b177906738c78bac2f"
+ },
+ "54e8ad8e2e7c00b335c205934199cd3b": {
+  "observations": 6,
+  "llm_model_output": {
+   "status": "insufficient_context",
+   "answer": "Документация, предоставленная в контексте, не содержит информации о публикации приложений в Apple App Store.",
+   "citations": []
+  },
+  "root_level": "DEFAULT",
+  "root_corpus_commit": "4fee0255ef9f0c85f6dd37513bf659613f57e5eb",
+  "git_sha": "b6c32e166aadad1740c524b177906738c78bac2f"
+ },
+ "de76030f7cd380768d070097c8b37f69": {
+  "observations": 6,
+  "llm_model_output": {
+   "status": "insufficient_context",
+   "answer": "Предоставленная документация не содержит информации о том, как добавить платежи Stripe в приложение.",
+   "citations": []
+  },
+  "root_level": "DEFAULT",
+  "root_corpus_commit": "4fee0255ef9f0c85f6dd37513bf659613f57e5eb",
+  "git_sha": "b6c32e166aadad1740c524b177906738c78bac2f"
+ },
+ "a52e682bfcbae47803885eb059257789": {
+  "observations": 6,
+  "llm_model_output": {
+   "status": "insufficient_context",
+   "answer": "The provided documentation does not contain information about configuring Firebase Cloud Messaging for push notifications in Flutter.",
+   "citations": []
+  },
+  "root_level": "DEFAULT",
+  "root_corpus_commit": "4fee0255ef9f0c85f6dd37513bf659613f57e5eb",
+  "git_sha": "b6c32e166aadad1740c524b177906738c78bac2f"
+ },
+ "2e892c1e1e6d26e24d9918019e875ba2": {
+  "observations": 6,
+  "llm_model_output": {
+   "status": "answered",
+   "answer": "Во Flutter layout устроен так, что ограничений передаются сверху вниз, размеры возвращаются снизу вверх, а положение устанавливается родителем [1][8]. Подробности правила:\n* Родитель передает виджету его **ограничения** (констрейнты), которые состоят из четырех чисел: минимальной и максимальной ширины, а также минимальной и максимальной высоты [1].\n* Виджет проходит по своему списку детей, задает каждому из них ограничения (для каждого ребенка они могут отличаться) и запрашивает у каждого ребенка желаемый размер [1].\n* Виджет позиционирует своих детей (по горизонтали на оси x и по вертикали на оси y) по одному [1].\n* В конце виджет сообщает своему родителю собственный размер (в рамках исходных ограничений) [1].",
+   "citations": [
+    1,
+    8
+   ]
+  },
+  "root_level": "DEFAULT",
+  "root_corpus_commit": "4fee0255ef9f0c85f6dd37513bf659613f57e5eb",
+  "git_sha": "b6c32e166aadad1740c524b177906738c78bac2f"
+ },
+ "406f5edc8cd1a745e6f271d6a389d448": {
+  "observations": 6,
+  "llm_model_output": {
+   "status": "answered",
+   "answer": "Hot reload preserves the current state of your app [2][6].",
+   "citations": [
+    2,
+    6
+   ]
+  },
+  "root_level": "DEFAULT",
+  "root_corpus_commit": "4fee0255ef9f0c85f6dd37513bf659613f57e5eb",
+  "git_sha": "b6c32e166aadad1740c524b177906738c78bac2f"
+ },
+ "7e992574ac7f9c62ff5cc5bec58954c2": {
+  "observations": 5,
+  "llm_model_output": null,
+  "root_level": "ERROR",
+  "root_corpus_commit": "4fee0255ef9f0c85f6dd37513bf659613f57e5eb",
+  "git_sha": "b6c32e166aadad1740c524b177906738c78bac2f"
+ },
+ "75a1ae1df3709f430172a5f3652ce653": {
+  "observations": 6,
+  "llm_model_output": {
+   "status": "answered",
+   "answer": "To convert the response body into a custom Dart object, you can first convert the response body into a JSON Map using the `dart:convert` package [6]. Then, you can create an `Album` class that contains a factory constructor using pattern matching to create an `Album` from JSON [5]:\n\n```dart\nclass Album {\n  final int userId;\n  final int id;\n  final String title;\n\n  const Album({required this.userId, required this.id, required this.title});\n\n  factory Album.fromJson(Map<String, dynamic> json) {\n    return switch (json) {\n      {'userId': int userId, 'id': int id, 'title': String title} => Album(\n        userId: userId,\n        id: id,\n        title: title,\n      ),\n      _ => throw const FormatException('Failed to load album.'),\n    };\n  }\n}\n```\n\nWhen fetching the data, if the server returns a 200 OK response, you parse the JSON by passing it to the factory method [6]:\n\n```dart\nreturn Album.fromJson(jsonDecode(response.body) as Map<String, dynamic>);\n```",
+   "citations": [
+    5,
+    6
+   ]
+  },
+  "root_level": "DEFAULT",
+  "root_corpus_commit": "4fee0255ef9f0c85f6dd37513bf659613f57e5eb",
+  "git_sha": "b6c32e166aadad1740c524b177906738c78bac2f"
+ }
+}

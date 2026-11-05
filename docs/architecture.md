@@ -89,6 +89,10 @@ flutter-rag ingest --config configs/base.yaml
 Идемпотентность: повторный запуск при том же SHA → 0 загрузок, 0 embedding-вызовов,
 число точек не меняется. Ошибка одного файла не роняет весь запуск: файл помечается
 `failed` в manifest и повторяется в следующий раз; manifest пишется атомарно (tmp + rename).
+`failed` — не удаление: прежняя проиндексированная версия и её state сохраняются (отчёт
+`stale_documents`), точки удаляются только если страницы нет в новом tree или она исключена
+правилом (`skipped`). Страница, чей найденный в tree `{% render %}`-фрагмент не скачался, тоже
+`failed` — иначе неполный текст закрепился бы под итоговым version key (этап 04, F1/F2).
 
 ### 3.2 Query
 
@@ -194,15 +198,16 @@ HTTP-коды: 200 для `answered` и `insufficient_context`; 422 неверн
 | Ситуация | Поведение | Пользователь видит |
 |---|---|---|
 | GitHub 403/429 rate limit | Ждать до `X-RateLimit-Reset`/`Retry-After` (ограничено), затем fail с понятным сообщением; `GITHUB_TOKEN` опционален | «лимит GitHub, повторите позже / задайте токен» |
-| Ошибка загрузки одного файла | 3 повтора с backoff, затем `failed` в manifest | итог ingest: N failed |
+| Ошибка загрузки одного файла (или его include) | 3 повтора с backoff, затем `failed` в manifest; прежняя версия в индексе сохраняется | итог ingest: N failed, `stale_documents`, exit 4 |
 | Embedding/LLM 429 | tenacity: экспоненциальный backoff + jitter, ≤3–5 попыток, уважать retry-delay | `upstream_error` (429) |
 | Embedding/LLM 5xx / timeout | таймаут на запрос (A-4: 30 с LLM, 20 с embeddings), ≤3 повтора | `upstream_error` (503) |
 | 400 / превышение контекста | без повторов; бюджет контекста считается заранее | `upstream_error`, kind=bad_request |
 | Нет кандидатов выше порога | LLM не вызывается | `insufficient_context` |
 | LLM ответила без цитат или с чужими [n] | пометка `unsupported_citation`, в строгом режиме — отказ | ответ с предупреждением |
-| Qdrant недоступен / нет коллекции | `/ready` = 503 | `upstream_error` |
+| Qdrant недоступен | `/ready` = 503 | `upstream_error` |
+| Индекс пуст / коллекция не создана (до ingest) | `IndexNotReadyError` до вызова embeddings/LLM; это не `insufficient_context` | `/ask` = 503 `{"status":"not_ready"}`, CLI exit 2 |
 | Embedded Qdrant занят другим процессом [B2] (проверено: `RuntimeError: Storage folder … is already accessed by another instance`) | vectorstore перехватывает ошибку и сообщает: «Локальная база занята другим процессом (например, `flutter-rag serve`). Остановите его или задайте `QDRANT_URL`» | понятная ошибка, exit 3 |
-| Нет ключа, нужного команде [M4] | проверка до любой работы: `ask` — GEMINI + LANGFUSE; `ingest` — GEMINI (+VOYAGE для voyage-конфига) + LANGFUSE; `serve` — как ask | «Не задан GEMINI_API_KEY. Заполните .env по docs/SETUP_ACCOUNTS.md», exit 2 |
+| Нет ключа, нужного команде [M4] (пустое значение `KEY=` из `.env.example` = нет ключа) | проверка до любой работы: `ask` — GEMINI + LANGFUSE; `ingest` — GEMINI (+VOYAGE для voyage-конфига) + LANGFUSE; `serve` — как ask | «Не задан GEMINI_API_KEY. Заполните .env по docs/SETUP_ACCOUNTS.md», exit 2 |
 | Langfuse недоступен | ответ всё равно выдаётся, `trace_id=null`, warning в лог; в evaluation запуск помечается `trace_missing` | ответ |
 
 Принцип: «в корпусе нет ответа» (`insufficient_context`) и «сервис недоступен»
@@ -249,3 +254,41 @@ HTTP-коды: 200 для `answered` и `insufficient_context`; 422 неверн
 
 Микросервисы, аутентификация, очереди, Docker/Kubernetes, полный декартов перебор параметров,
 UI сложнее одной страницы/CLI.
+
+## 9. Что выяснилось при реализации этапа 03 (факты, 2026-10-23)
+
+- **Модели** (проверены реальными запросами на ключе пользователя, free tier): LLM
+  `gemini-3.5-flash-lite` (AI Studio: 15 RPM / 500 RPD), embeddings `gemini-embedding-001`, 768 dims
+  (100 RPM / **30K TPM** / 1K RPD). Узкое место ingest — TPM, а не RPM: 8 страниц ≈ 35K токенов,
+  ограничитель (`max_tpm: 24000`) выждал 55 с, 0 ответов 429. 144 chunks → 9 запросов (батчи, B1).
+- Векторы 768 dims приходят **ненормированными** (норма ≈ 0.59). Qdrant с метрикой cosine это учитывает;
+  при переходе на dot product нормировать вручную.
+- SDK `google-genai` в синхронном режиме сам **не повторяет** запросы, если не задан `retry_options`
+  (`_api_client.py:677`), поэтому повторы делает только `flutter_rag.retry` — без умножения попыток.
+- Gemini отвечает HTTP 400 (а не 401/403) на неверный ключ; классифицируем как `auth` по `API_KEY_INVALID`.
+- Якоря docs.flutter.dev: точка → дефис, дубли заголовков → `-1`, `-2`, `{:.class}` вырезается.
+  Проверено: все 144 `url#anchor` среза существуют на живых страницах.
+- Имя коллекции включает имя корпуса: `flutter__<corpus>__<model>-<dims>__<strategy>` — срез и полный
+  корпус не делят индекс. Состояние индекса учитывает `PREPROCESS_VERSION`: изменение кода очистки
+  переиндексирует документы, embeddings при неизменном тексте берутся из кэша.
+- Промпт: `answer/v1` отвечал по-английски на русский вопрос → `v1.1`, отказ всё ещё по-английски →
+  `v1.2` (см. `lab1/prompts/answer/CHANGELOG.md`). Это исправления дефектов, а не варианты эксперимента.
+- Langfuse показывает `cost_details` по своему прейскуранту — это оценка, а не счёт: free tier бесплатен.
+- Ограничение среза: reranker выключен, `min_score: null` — отказ делает только LLM (H3).
+
+## 10. Исправления по проверке Codex (этап 04, 2026-11-04)
+
+Отчёт: `docs/reviews/verification.md`; доказательства: `docs/evidence/stage04/README.md`.
+
+- F1/F2 — см. §3.1: ошибка скачивания страницы или её include не удаляет прежнюю версию и
+  не закрепляет неполную.
+- F3/F4 — см. §5.
+- F5: metadata `corpus_commit` ingest-trace записывается после grab (root + последующие
+  observations); прошлый snapshot — отдельное поле `previous_corpus_commit`.
+- F6: текст отказа (`insufficient_context`) формирует код по языку вопроса (есть кириллица → ru),
+  а не модель: при `answer/v1.2` и temperature 0 модель в 3 из 3 реальных FCM-запусков отказала
+  по-английски. Собственная формулировка модели остаётся в LLM-observation trace. Английский
+  ответ на русский вопрос получает warning `answer_language_mismatch`. Prompt не менялся.
+- G1 (повторная проверка `e366b6e`, `docs/reviews/verification-fixes.md`): текст в кавычках и коде
+  не влияет на язык (`How … named "Привет"?` → en). Ограничение: русское имя без кавычек в
+  английском вопросе всё ещё даёт ru. Доказательства: `docs/evidence/stage04b/README.md`.

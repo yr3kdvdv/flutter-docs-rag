@@ -1,0 +1,173 @@
+{
+  "status": "insufficient_context",
+  "question": "Как настроить push-уведомления через Firebase Cloud Messaging во Flutter-приложении?",
+  "text": "The provided documentation does not contain information on how to set up push notifications via Firebase Cloud Messaging in a Flutter application.",
+  "sources": [],
+  "retrieved": [
+    {
+      "rank": 1,
+      "score": 0.5992,
+      "document_id": "add-to-app/android/add-flutter-screen",
+      "section": "Add a normal Flutter screen > Step 2: Launch FlutterActivity",
+      "chunk_id": "73bdffae-149b-55b2-9c99-06df2ed17a22"
+    },
+    {
+      "rank": 2,
+      "score": 0.5984,
+      "document_id": "add-to-app/android/add-flutter-screen",
+      "section": "Add a normal Flutter screen > Step 1: Add FlutterActivity to AndroidManifest.xml",
+      "chunk_id": "007343da-fb1c-5055-8836-e947b80fe9a4"
+    },
+    {
+      "rank": 3,
+      "score": 0.5978,
+      "document_id": "data-and-backend/state-mgmt/simple",
+      "section": "ChangeNotifier",
+      "chunk_id": "1eb1fcef-8685-5a92-a2c8-8f6bc03a241e"
+    },
+    {
+      "rank": 4,
+      "score": 0.5963,
+      "document_id": "add-to-app/android/add-flutter-screen",
+      "section": "Add a normal Flutter screen > Step 3: (Optional) Use a cached FlutterEngine > Initial route with a cached engine",
+      "chunk_id": "f0212c2e-64db-51da-b51b-d91461049837"
+    },
+    {
+      "rank": 5,
+      "score": 0.595,
+      "document_id": "cookbook/networking/fetch-data",
+      "section": "1. Add the `http` package",
+      "chunk_id": "2a338daf-d22c-563f-97d2-825ea32b8c4e"
+    },
+    {
+      "rank": 6,
+      "score": 0.5947,
+      "document_id": "data-and-backend/state-mgmt/simple",
+      "section": "Accessing the state",
+      "chunk_id": "a125bd6a-1eb8-5ff1-96ed-78d959162279"
+    },
+    {
+      "rank": 7,
+      "score": 0.5936,
+      "document_id": "testing/overview",
+      "section": "Continuous integration services",
+      "chunk_id": "344eb5d3-2a41-517b-be64-6a6a9767c0d0"
+    },
+    {
+      "rank": 8,
+      "score": 0.5922,
+      "document_id": "add-to-app/android/add-flutter-screen",
+      "section": "Add a translucent Flutter screen > Step 2: Start FlutterActivity with transparency",
+      "chunk_id": "1eba102f-0371-525d-8e4c-2ebc7d2fc26f"
+    },
+    {
+      "rank": 9,
+      "score": 0.5919,
+      "document_id": "add-to-app/android/add-flutter-screen",
+      "section": "",
+      "chunk_id": "314a1c0a-9d18-5a58-b612-78c63d450f0c"
+    },
+    {
+      "rank": 10,
+      "score": 0.5905,
+      "document_id": "add-to-app/android/add-flutter-screen",
+      "section": "Add a normal Flutter screen > Step 3: (Optional) Use a cached FlutterEngine",
+      "chunk_id": "d2fd196f-41d0-55e9-9c24-bf21bfe38d2e"
+    },
+    {
+      "rank": 11,
+      "score": 0.588,
+      "document_id": "data-and-backend/state-mgmt/simple",
+      "section": "ChangeNotifierProvider",
+      "chunk_id": "8f284a47-14c8-54e5-8172-f085c3e331db"
+    },
+    {
+      "rank": 12,
+      "score": 0.5861,
+      "document_id": "add-to-app/android/add-flutter-screen",
+      "section": "Add a normal Flutter screen > Step 3: (Optional) Use a cached FlutterEngine",
+      "chunk_id": "fe678c56-baae-52d0-9335-35fb20f30f6c"
+    },
+    {
+      "rank": 13,
+      "score": 0.5851,
+      "document_id": "add-to-app/android/add-flutter-screen",
+      "section": "Add a normal Flutter screen > Step 2: Launch FlutterActivity",
+      "chunk_id": "447bced1-006f-50e8-b856-9fab189a6a92"
+    },
+    {
+      "rank": 14,
+      "score": 0.5846,
+      "document_id": "cookbook/networking/fetch-data",
+      "section": "",
+      "chunk_id": "d1a2d881-ca0e-5a01-a974-8eee3a208b05"
+    },
+    {
+      "rank": 15,
+      "score": 0.5845,
+      "document_id": "add-to-app/android/add-flutter-screen",
+      "section": "Add a normal Flutter screen > Step 3: (Optional) Use a cached FlutterEngine > Initial route with a cached engine",
+      "chunk_id": "9acb889f-5c76-54ba-9b89-56e77453d9a4"
+    },
+    {
+      "rank": 16,
+      "score": 0.5839,
+      "document_id": "tools/hot-reload",
+      "section": "How to perform a hot reload",
+      "chunk_id": "683c56d6-b5e1-51fc-b88c-74652eee492d"
+    },
+    {
+      "rank": 17,
+      "score": 0.5799,
+      "document_id": "data-and-backend/state-mgmt/simple",
+      "section": "",
+      "chunk_id": "c8ef2042-6abe-56c6-85dc-6f3f992c6d29"
+    },
+    {
+      "rank": 18,
+      "score": 0.5794,
+      "document_id": "add-to-app/android/add-flutter-screen",
+      "section": "Add a translucent Flutter screen",
+      "chunk_id": "49f48c42-aebc-5c1f-830d-dd94cbd98fba"
+    },
+    {
+      "rank": 19,
+      "score": 0.5788,
+      "document_id": "add-to-app/android/add-flutter-screen",
+      "section": "Add a translucent Flutter screen > Step 1: Use a theme with translucency",
+      "chunk_id": "381a4a2a-eef4-593b-a984-6f731d48eb48"
+    },
+    {
+      "rank": 20,
+      "score": 0.5786,
+      "document_id": "cookbook/networking/fetch-data",
+      "section": "Complete example",
+      "chunk_id": "1964e7e5-51d7-5efb-a476-c938aaac25d6"
+    }
+  ],
+  "warnings": [],
+  "error": null,
+  "usage": {
+    "input": 3341,
+    "output": 49,
+    "total": 3390
+  },
+  "latency_ms": {
+    "retrieve": 393.2,
+    "llm": 8559.3
+  },
+  "trace_id": "86a9d232cc799983c798239cada32a38",
+  "trace_url": "https://cloud.langfuse.com/project/cmvl28r6600z6ad0kmhvny3nt/traces/86a9d232cc799983c798239cada32a38",
+  "meta": {
+    "config_id": "slice-v1",
+    "config_fingerprint": "9ffb64687be7",
+    "collection": "flutter__slice8__gemini-embedding-001-768__section-512-o0",
+    "corpus_commit": "3eb87869bb0ddf57047150c2132324afc5c55f22",
+    "embedding_model": "gemini-embedding-001@768",
+    "llm_model": "gemini-3.5-flash-lite",
+    "prompt_version": "answer/v1.1",
+    "prompt_sha256": "14b43778df322dba",
+    "git_sha": "20a258b9d4cfcb55313ede23addc155e9e92b563",
+    "git_dirty": true
+  }
+}

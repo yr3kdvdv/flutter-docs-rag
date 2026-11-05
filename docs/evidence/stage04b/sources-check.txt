@@ -1,0 +1,6 @@
+en-hot-reload.json 2 in_qdrant=True url_match=True anchor_on_page=True https://docs.flutter.dev/tools/hot-reload#how-to-perform-a-hot-reload
+en-hot-reload.json 6 in_qdrant=True url_match=True anchor_on_page=True https://docs.flutter.dev/tools/hot-reload#previous-state-is-combined-with-new-code
+en-json-try2.json 5 in_qdrant=True url_match=True anchor_on_page=True https://docs.flutter.dev/cookbook/networking/fetch-data#create-an-album-class
+en-json-try2.json 6 in_qdrant=True url_match=True anchor_on_page=True https://docs.flutter.dev/cookbook/networking/fetch-data#convert-the-http-response-to-an-album
+ru-quoted-rule.json 1 in_qdrant=True url_match=True anchor_on_page=True https://docs.flutter.dev/ui/layout/constraints
+ru-quoted-rule.json 8 in_qdrant=True url_match=True anchor_on_page=True https://docs.flutter.dev/perf/best-practices#minimize-layout-passes-caused-by-intrinsic-operations

@@ -1,0 +1,35 @@
+{
+  "corpus_commit": "b017c8c937343e82170ead7b4aa9e3bde4fd69f6",
+  "documents": {
+    "ok": 8,
+    "skipped": 0,
+    "failed": 0
+  },
+  "diff": {
+    "added": 0,
+    "modified": 0,
+    "deleted": 0,
+    "unchanged": 8,
+    "failed": 0
+  },
+  "downloaded_files": 0,
+  "github_requests": 2,
+  "indexed_documents": [],
+  "removed_documents": [],
+  "chunks_upserted": 0,
+  "points_total": 144,
+  "embedding": {
+    "api_calls": 0,
+    "texts_sent": 0,
+    "est_tokens_sent": 0,
+    "cache_hits": 0,
+    "retries": 0,
+    "limiter_wait_s": 0.0
+  },
+  "failed": [],
+  "stale_documents": [],
+  "missing_renders": {},
+  "duration_s": 2.06,
+  "trace_id": "013ce2046e8e1ec6065583ecc06cbff7",
+  "trace_url": "https://cloud.langfuse.com/project/cmvl28r6600z6ad0kmhvny3nt/traces/013ce2046e8e1ec6065583ecc06cbff7"
+}

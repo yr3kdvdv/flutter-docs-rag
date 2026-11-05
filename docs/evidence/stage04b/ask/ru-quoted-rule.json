@@ -1,0 +1,190 @@
+{
+  "status": "answered",
+  "question": "Почему во Flutter говорят «Constraints go down. Sizes go up. Parent sets position»? Объясни правило с источниками.",
+  "text": "Во Flutter layout устроен так, что ограничений передаются сверху вниз, размеры возвращаются снизу вверх, а положение устанавливается родителем [1][8]. Подробности правила:\n* Родитель передает виджету его **ограничения** (констрейнты), которые состоят из четырех чисел: минимальной и максимальной ширины, а также минимальной и максимальной высоты [1].\n* Виджет проходит по своему списку детей, задает каждому из них ограничения (для каждого ребенка они могут отличаться) и запрашивает у каждого ребенка желаемый размер [1].\n* Виджет позиционирует своих детей (по горизонтали на оси x и по вертикали на оси y) по одному [1].\n* В конце виджет сообщает своему родителю собственный размер (в рамках исходных ограничений) [1].",
+  "sources": [
+    {
+      "number": 1,
+      "title": "Understanding constraints",
+      "section": "",
+      "url": "https://docs.flutter.dev/ui/layout/constraints",
+      "score": 0.8002,
+      "chunk_id": "f16a6629-ec3b-546b-893b-ce3de31b9973"
+    },
+    {
+      "number": 8,
+      "title": "Performance best practices",
+      "section": "Minimize expensive operations > Minimize layout passes caused by intrinsic operations",
+      "url": "https://docs.flutter.dev/perf/best-practices#minimize-layout-passes-caused-by-intrinsic-operations",
+      "score": 0.7547,
+      "chunk_id": "c32afd2e-8f43-5273-93c3-44f6fa46e004"
+    }
+  ],
+  "retrieved": [
+    {
+      "rank": 1,
+      "score": 0.8002,
+      "document_id": "ui/layout/constraints",
+      "section": "",
+      "chunk_id": "f16a6629-ec3b-546b-893b-ce3de31b9973"
+    },
+    {
+      "rank": 2,
+      "score": 0.7811,
+      "document_id": "ui/layout/constraints",
+      "section": "Limitations",
+      "chunk_id": "dc6ae26d-c00a-55c1-b7fd-b671d47788c1"
+    },
+    {
+      "rank": 3,
+      "score": 0.7551,
+      "document_id": "ui/layout/constraints",
+      "section": "",
+      "chunk_id": "19d49396-f683-5aaa-bcef-184cd1a1f8c6"
+    },
+    {
+      "rank": 4,
+      "score": 0.7547,
+      "document_id": "perf/best-practices",
+      "section": "Minimize expensive operations > Minimize layout passes caused by intrinsic operations",
+      "chunk_id": "c32afd2e-8f43-5273-93c3-44f6fa46e004"
+    },
+    {
+      "rank": 5,
+      "score": 0.7163,
+      "document_id": "ui/layout/constraints",
+      "section": "Examples > Example 28",
+      "chunk_id": "81ffe013-953c-50eb-8d83-b41221dd9f79"
+    },
+    {
+      "rank": 6,
+      "score": 0.7112,
+      "document_id": "ui/layout/constraints",
+      "section": "Examples > Example 7",
+      "chunk_id": "ae140b48-3219-5570-b752-8c28028d2aca"
+    },
+    {
+      "rank": 7,
+      "score": 0.7085,
+      "document_id": "ui/layout/constraints",
+      "section": "Examples > Example 3",
+      "chunk_id": "dcb1f286-0454-5e38-9d1e-818fcb24ee02"
+    },
+    {
+      "rank": 8,
+      "score": 0.7078,
+      "document_id": "ui/layout/constraints",
+      "section": "Learning the layout rules for specific widgets",
+      "chunk_id": "f5f5596a-9dd0-5fc7-8c4f-b4e2c7928cee"
+    },
+    {
+      "rank": 9,
+      "score": 0.7057,
+      "document_id": "ui/layout/constraints",
+      "section": "Tight vs loose constraints > Tight constraints",
+      "chunk_id": "3e02783c-2b65-5924-b27c-5211003e5202"
+    },
+    {
+      "rank": 10,
+      "score": 0.7011,
+      "document_id": "ui/layout/constraints",
+      "section": "Examples",
+      "chunk_id": "969a6d06-0b09-5c6c-8704-afe725124995"
+    },
+    {
+      "rank": 11,
+      "score": 0.6992,
+      "document_id": "ui/layout/constraints",
+      "section": "Examples > Example 1",
+      "chunk_id": "9b9fe7b5-3da2-5510-8b79-4b3e0cfaee3c"
+    },
+    {
+      "rank": 12,
+      "score": 0.6975,
+      "document_id": "ui/layout/constraints",
+      "section": "Examples > Example 9",
+      "chunk_id": "c86559a7-7986-54b4-86f8-dbc1ae21f420"
+    },
+    {
+      "rank": 13,
+      "score": 0.6956,
+      "document_id": "ui/layout/constraints",
+      "section": "Tight vs loose constraints > Loose constraints",
+      "chunk_id": "5b2184d5-131e-5def-ad9a-017aeab7164f"
+    },
+    {
+      "rank": 14,
+      "score": 0.6951,
+      "document_id": "ui/layout/constraints",
+      "section": "Examples > Example 12",
+      "chunk_id": "a75296a9-26f1-582a-abc3-ce1a9f2c43ed"
+    },
+    {
+      "rank": 15,
+      "score": 0.6949,
+      "document_id": "ui/layout/constraints",
+      "section": "Examples > Example 6",
+      "chunk_id": "6ef90ac3-3672-5a23-9c1b-effd673edc3b"
+    },
+    {
+      "rank": 16,
+      "score": 0.6948,
+      "document_id": "ui/layout/constraints",
+      "section": "Examples",
+      "chunk_id": "dd9251e3-3668-53dc-95aa-f25c43c04292"
+    },
+    {
+      "rank": 17,
+      "score": 0.6946,
+      "document_id": "ui/layout/constraints",
+      "section": "Examples",
+      "chunk_id": "7c4e15af-6bc6-5edd-a530-ece6ee945191"
+    },
+    {
+      "rank": 18,
+      "score": 0.6934,
+      "document_id": "ui/layout/constraints",
+      "section": "Flex",
+      "chunk_id": "50995dfa-6cdd-5455-9e78-ba1540e38ed6"
+    },
+    {
+      "rank": 19,
+      "score": 0.6929,
+      "document_id": "ui/layout/constraints",
+      "section": "Unbounded constraints",
+      "chunk_id": "2bf12ca9-cbfe-50a0-b104-a7d7a2ebb611"
+    },
+    {
+      "rank": 20,
+      "score": 0.6913,
+      "document_id": "ui/layout/constraints",
+      "section": "Examples > Example 11",
+      "chunk_id": "3975249e-bf93-59c5-9c90-042f49783cb2"
+    }
+  ],
+  "warnings": [],
+  "error": null,
+  "usage": {
+    "input": 2864,
+    "output": 220,
+    "total": 3084
+  },
+  "latency_ms": {
+    "retrieve": 374.4,
+    "llm": 9425.4
+  },
+  "trace_id": "2e892c1e1e6d26e24d9918019e875ba2",
+  "trace_url": "https://cloud.langfuse.com/project/cmvl28r6600z6ad0kmhvny3nt/traces/2e892c1e1e6d26e24d9918019e875ba2",
+  "meta": {
+    "config_id": "slice-v1",
+    "config_fingerprint": "e39f698c6ecd",
+    "collection": "flutter__slice8__gemini-embedding-001-768__section-512-o0",
+    "corpus_commit": "4fee0255ef9f0c85f6dd37513bf659613f57e5eb",
+    "embedding_model": "gemini-embedding-001@768",
+    "llm_model": "gemini-3.5-flash-lite",
+    "prompt_version": "answer/v1.2",
+    "prompt_sha256": "f78187d8a28ab3c8",
+    "git_sha": "b6c32e166aadad1740c524b177906738c78bac2f",
+    "git_dirty": false
+  }
+}

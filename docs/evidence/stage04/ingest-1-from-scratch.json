@@ -1,0 +1,44 @@
+{
+  "corpus_commit": "b017c8c937343e82170ead7b4aa9e3bde4fd69f6",
+  "documents": {
+    "ok": 8,
+    "skipped": 0,
+    "failed": 0
+  },
+  "diff": {
+    "added": 8,
+    "modified": 0,
+    "deleted": 0,
+    "unchanged": 0,
+    "failed": 0
+  },
+  "downloaded_files": 11,
+  "github_requests": 13,
+  "indexed_documents": [
+    "add-to-app/android/add-flutter-screen",
+    "cookbook/networking/fetch-data",
+    "data-and-backend/state-mgmt/simple",
+    "perf/best-practices",
+    "testing/overview",
+    "tools/hot-reload",
+    "ui/layout/constraints",
+    "ui/navigation/index"
+  ],
+  "removed_documents": [],
+  "chunks_upserted": 144,
+  "points_total": 144,
+  "embedding": {
+    "api_calls": 9,
+    "texts_sent": 144,
+    "est_tokens_sent": 34961,
+    "cache_hits": 0,
+    "retries": 0,
+    "limiter_wait_s": 55.78755762500222
+  },
+  "failed": [],
+  "stale_documents": [],
+  "missing_renders": {},
+  "duration_s": 68.21,
+  "trace_id": "25cc8630b9ad968a34691a8b83ddca0d",
+  "trace_url": "https://cloud.langfuse.com/project/cmvl28r6600z6ad0kmhvny3nt/traces/25cc8630b9ad968a34691a8b83ddca0d"
+}

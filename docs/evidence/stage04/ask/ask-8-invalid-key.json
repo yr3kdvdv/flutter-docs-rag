@@ -1,0 +1,33 @@
+{
+  "status": "upstream_error",
+  "question": "Что делает hot reload с состоянием приложения?",
+  "text": null,
+  "sources": [],
+  "retrieved": [],
+  "warnings": [],
+  "error": {
+    "provider": "gemini",
+    "kind": "auth",
+    "status_code": 400,
+    "retryable": false,
+    "message": "gemini: auth (HTTP 400): API key not valid. Please pass a valid API key."
+  },
+  "usage": null,
+  "latency_ms": {
+    "retrieve": 144.6
+  },
+  "trace_id": "fea36698625597151444716199794f3f",
+  "trace_url": "https://cloud.langfuse.com/project/cmvl28r6600z6ad0kmhvny3nt/traces/fea36698625597151444716199794f3f",
+  "meta": {
+    "config_id": "slice-v1",
+    "config_fingerprint": "e39f698c6ecd",
+    "collection": "flutter__slice8__gemini-embedding-001-768__section-512-o0",
+    "corpus_commit": "b017c8c937343e82170ead7b4aa9e3bde4fd69f6",
+    "embedding_model": "gemini-embedding-001@768",
+    "llm_model": "gemini-3.5-flash-lite",
+    "prompt_version": "answer/v1.2",
+    "prompt_sha256": "f78187d8a28ab3c8",
+    "git_sha": "b6bc7233f84c98bd69410576c8cb701258cd3709",
+    "git_dirty": false
+  }
+}

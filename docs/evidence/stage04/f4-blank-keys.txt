@@ -1,0 +1,10 @@
+## F4: blank keys (git b6bc723)
+$ GEMINI_API_KEY= LANGFUSE_PUBLIC_KEY= LANGFUSE_SECRET_KEY= uv run flutter-rag env-check
+GEMINI_API_KEY: MISSING
+LANGFUSE_PUBLIC_KEY: MISSING
+LANGFUSE_SECRET_KEY: MISSING
+VOYAGE_API_KEY: set
+exit=0
+$ GEMINI_API_KEY= LANGFUSE_PUBLIC_KEY= LANGFUSE_SECRET_KEY= uv run flutter-rag ingest
+error: Не задан(ы) GEMINI_API_KEY, LANGFUSE_PUBLIC_KEY, LANGFUSE_SECRET_KEY. Заполните .env по docs/SETUP_ACCOUNTS.md и проверьте командой `uv run flutter-rag env-check`.
+exit=2

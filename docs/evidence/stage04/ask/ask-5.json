@@ -1,0 +1,173 @@
+{
+  "status": "insufficient_context",
+  "question": "Как добавить Google Maps в приложение Flutter?",
+  "text": "В проиндексированной документации нет информации для ответа на этот вопрос.",
+  "sources": [],
+  "retrieved": [
+    {
+      "rank": 1,
+      "score": 0.6454,
+      "document_id": "add-to-app/android/add-flutter-screen",
+      "section": "",
+      "chunk_id": "314a1c0a-9d18-5a58-b612-78c63d450f0c"
+    },
+    {
+      "rank": 2,
+      "score": 0.6424,
+      "document_id": "cookbook/networking/fetch-data",
+      "section": "1. Add the `http` package",
+      "chunk_id": "2a338daf-d22c-563f-97d2-825ea32b8c4e"
+    },
+    {
+      "rank": 3,
+      "score": 0.6334,
+      "document_id": "cookbook/networking/fetch-data",
+      "section": "",
+      "chunk_id": "d1a2d881-ca0e-5a01-a974-8eee3a208b05"
+    },
+    {
+      "rank": 4,
+      "score": 0.6208,
+      "document_id": "add-to-app/android/add-flutter-screen",
+      "section": "Add a normal Flutter screen > Step 3: (Optional) Use a cached FlutterEngine > Initial route with a cached engine",
+      "chunk_id": "f0212c2e-64db-51da-b51b-d91461049837"
+    },
+    {
+      "rank": 5,
+      "score": 0.6205,
+      "document_id": "add-to-app/android/add-flutter-screen",
+      "section": "Add a normal Flutter screen > Step 2: Launch FlutterActivity",
+      "chunk_id": "73bdffae-149b-55b2-9c99-06df2ed17a22"
+    },
+    {
+      "rank": 6,
+      "score": 0.6188,
+      "document_id": "add-to-app/android/add-flutter-screen",
+      "section": "Add a normal Flutter screen > Step 3: (Optional) Use a cached FlutterEngine",
+      "chunk_id": "d2fd196f-41d0-55e9-9c24-bf21bfe38d2e"
+    },
+    {
+      "rank": 7,
+      "score": 0.6183,
+      "document_id": "cookbook/networking/fetch-data",
+      "section": "Complete example",
+      "chunk_id": "1964e7e5-51d7-5efb-a476-c938aaac25d6"
+    },
+    {
+      "rank": 8,
+      "score": 0.6143,
+      "document_id": "ui/navigation/index",
+      "section": "",
+      "chunk_id": "444b46ff-5d16-50c7-aabb-5e2588fdb5d6"
+    },
+    {
+      "rank": 9,
+      "score": 0.6125,
+      "document_id": "add-to-app/android/add-flutter-screen",
+      "section": "Add a normal Flutter screen > Step 2: Launch FlutterActivity",
+      "chunk_id": "447bced1-006f-50e8-b856-9fab189a6a92"
+    },
+    {
+      "rank": 10,
+      "score": 0.6119,
+      "document_id": "add-to-app/android/add-flutter-screen",
+      "section": "Add a normal Flutter screen > Step 3: (Optional) Use a cached FlutterEngine > Initial route with a cached engine",
+      "chunk_id": "9acb889f-5c76-54ba-9b89-56e77453d9a4"
+    },
+    {
+      "rank": 11,
+      "score": 0.6116,
+      "document_id": "add-to-app/android/add-flutter-screen",
+      "section": "Add a normal Flutter screen > Step 1: Add FlutterActivity to AndroidManifest.xml",
+      "chunk_id": "007343da-fb1c-5055-8836-e947b80fe9a4"
+    },
+    {
+      "rank": 12,
+      "score": 0.6109,
+      "document_id": "data-and-backend/state-mgmt/simple",
+      "section": "Accessing the state",
+      "chunk_id": "a125bd6a-1eb8-5ff1-96ed-78d959162279"
+    },
+    {
+      "rank": 13,
+      "score": 0.6101,
+      "document_id": "data-and-backend/state-mgmt/simple",
+      "section": "",
+      "chunk_id": "c8ef2042-6abe-56c6-85dc-6f3f992c6d29"
+    },
+    {
+      "rank": 14,
+      "score": 0.6097,
+      "document_id": "ui/navigation/index",
+      "section": "Using the Router",
+      "chunk_id": "cccaae7a-dd2b-58d3-9dcc-89d6b5e4b850"
+    },
+    {
+      "rank": 15,
+      "score": 0.6095,
+      "document_id": "cookbook/networking/fetch-data",
+      "section": "5. Display the data",
+      "chunk_id": "3db26e8f-14bf-58d8-8aca-93872f1f8095"
+    },
+    {
+      "rank": 16,
+      "score": 0.6058,
+      "document_id": "ui/layout/constraints",
+      "section": "Examples",
+      "chunk_id": "026acd95-0b7a-5cac-8144-0b76c833f03f"
+    },
+    {
+      "rank": 17,
+      "score": 0.6054,
+      "document_id": "ui/layout/constraints",
+      "section": "Examples",
+      "chunk_id": "fee0455b-9041-5290-8144-a43afbc4eb6a"
+    },
+    {
+      "rank": 18,
+      "score": 0.6051,
+      "document_id": "ui/layout/constraints",
+      "section": "Examples",
+      "chunk_id": "df97dea1-4749-562d-b93b-c7e02cdd7930"
+    },
+    {
+      "rank": 19,
+      "score": 0.6038,
+      "document_id": "ui/navigation/index",
+      "section": "Using named routes",
+      "chunk_id": "188da8cf-f22a-5105-a08f-d0489604fa0b"
+    },
+    {
+      "rank": 20,
+      "score": 0.6037,
+      "document_id": "add-to-app/android/add-flutter-screen",
+      "section": "Add a normal Flutter screen > Step 3: (Optional) Use a cached FlutterEngine",
+      "chunk_id": "fe678c56-baae-52d0-9335-35fb20f30f6c"
+    }
+  ],
+  "warnings": [],
+  "error": null,
+  "usage": {
+    "input": 3014,
+    "output": 46,
+    "total": 3060
+  },
+  "latency_ms": {
+    "retrieve": 382.8,
+    "llm": 11327.1
+  },
+  "trace_id": "d3ce3c7c172bdaeb91d92a57d0b79a7f",
+  "trace_url": "https://cloud.langfuse.com/project/cmvl28r6600z6ad0kmhvny3nt/traces/d3ce3c7c172bdaeb91d92a57d0b79a7f",
+  "meta": {
+    "config_id": "slice-v1",
+    "config_fingerprint": "e39f698c6ecd",
+    "collection": "flutter__slice8__gemini-embedding-001-768__section-512-o0",
+    "corpus_commit": "b017c8c937343e82170ead7b4aa9e3bde4fd69f6",
+    "embedding_model": "gemini-embedding-001@768",
+    "llm_model": "gemini-3.5-flash-lite",
+    "prompt_version": "answer/v1.2",
+    "prompt_sha256": "f78187d8a28ab3c8",
+    "git_sha": "b6bc7233f84c98bd69410576c8cb701258cd3709",
+    "git_dirty": false
+  }
+}

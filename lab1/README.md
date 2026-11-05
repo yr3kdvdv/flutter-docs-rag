@@ -3,7 +3,8 @@
 RAG-система, отвечающая на вопросы по официальной документации Flutter
 (`flutter/website`, Markdown) с указанием источников и трассировкой в Langfuse.
 
-**Статус: этап 01 — подготовлены среда, каркас и документы. RAG ещё не реализован.**
+**Статус: этап 03 — работает сквозной срез на 8 страницах документации** (реальные Gemini API,
+Qdrant, Langfuse). Эксперименты, reranker, вторая embedding-модель и dataset — этапы 05–06.
 Архитектура: [../docs/architecture.md](../docs/architecture.md).
 Матрица требований: [../docs/requirements.md](../docs/requirements.md).
 
@@ -26,24 +27,56 @@ cp ../.env.example ../.env   # затем заполнить локально, �
 
 ## Команды
 
-### Работают сейчас (проверено на этапе 01)
+Все команды запускаются из `lab1/`. Ключи берутся из `../.env` (см. docs/SETUP_ACCOUNTS.md).
+
+### Работают (проверено на этапе 03)
 
 | Команда | Что делает |
 |---|---|
-| `uv sync` | Воспроизводимо ставит зависимости из `uv.lock` |
-| `uv export --no-header --no-hashes --no-dev --no-emit-project -o requirements.txt` | Обновить requirements.txt из lock (CI сверяет) |
-| `uv run pytest` | Проверки среды и каркаса (не проверяют RAG) |
+| `uv sync` | Ставит зависимости из `uv.lock` |
+| `uv run pytest` | Офлайн-тесты (fake-провайдеры; **не** являются проверкой API) |
 | `uv run ruff check .` | Линтер |
-| `uv run flutter-rag env-check` | Версии и наличие ключей: `set`/`MISSING`, без значений |
+| `uv run flutter-rag env-check` | Наличие ключей: `set`/`MISSING`, без значений |
+| `uv run flutter-rag ingest` | GitHub → очистка → chunks → Gemini embeddings → Qdrant; повторный запуск качает и векторизует только изменённое |
+| `uv run flutter-rag ask "вопрос"` | Ответ + источники + ссылка на trace Langfuse (`--json`, `--save file`) |
+| `uv run flutter-rag trace-show <trace_id>` | Читает trace обратно из Langfuse API (доказательство доставки) |
+| `uv run flutter-rag serve` | FastAPI: `GET /health`, `GET /ready`, `POST /ask {"question": "..."}`; Swagger на `/docs` |
+| `uv export --no-header --no-hashes --no-dev --no-emit-project -o requirements.txt` | Обновить requirements.txt из lock |
 
-### Ещё не реализованы (возвращают код 2 и сообщение `not implemented`)
+По умолчанию используется `configs/slice.yaml` (8 страниц); другой конфиг — `--config`.
 
-| Команда | Этап |
+Коды выхода: 0 — успех (в том числе корректный отказ `insufficient_context`), 2 — конфигурация
+или нет ключей, 3 — локальная база Qdrant занята другим процессом, 4 — внешний сервис недоступен.
+
+**Важно:** встроенный Qdrant допускает один процесс. Пока работает `serve`, команды `ingest`/`ask`
+в другом терминале завершатся с кодом 3 и подсказкой. Это ограничение embedded-режима (аудит B2).
+
+### Ещё не реализованы
+
+| Команда / функция | Этап |
 |---|---|
-| `uv run flutter-rag ingest` | 03: grabber → chunks → embeddings → Qdrant |
-| `uv run flutter-rag ask "..."` | 03: ответ + источники + trace Langfuse |
-| `uv run flutter-rag serve` | 03: FastAPI `/health`, `/ready`, `/ask` |
-| `uv run flutter-rag evaluate` | 05: прогон эксперимента по dataset |
+| `uv run flutter-rag evaluate` (возвращает код 2) | 05 |
+| Reranker (Voyage), вторая embedding-модель, другие стратегии chunking | 05 |
+| Полный корпус (`configs/base.yaml`, 638 страниц) — код готов, но не запускался | 04–05 |
+
+## Пример (реальный запуск на commit 7cac4ca, prompt answer/v1.2)
+
+```text
+$ uv run flutter-rag ask "Почему виджет с width: 100 может оказаться не шириной 100 пикселей?"
+status: answered
+
+Виджет с width: 100 может не быть шириной 100 пикселей, потому что родительский виджет или экран может навязывать ему другие ограничения (например, экран заставляет контейнер занять весь экран целиком) [1][5].
+
+Источники:
+  [1] Understanding constraints
+      https://docs.flutter.dev/ui/layout/constraints  (score 0.6954)
+  [5] Understanding constraints — Examples > Example 2
+      https://docs.flutter.dev/ui/layout/constraints#example-2  (score 0.6955)
+
+trace: e2c97be2c40fe72b5fe6a5034d945e16
+```
+
+Сохранённые ответы, отчёты ingest и trace — в `docs/evidence/stage03/` (см. README там).
 
 ## Структура
 
@@ -55,8 +88,9 @@ lab1/
 │   ├── retrieval/ reranking/ filtering/ generation/
 │   ├── evaluation/ observability/ api/
 │   ├── config.py  cli.py
-├── configs/      # конфигурации экспериментов (base.yaml — черновик)
-├── data/         # снапшоты корпуса (сырые данные в git не попадают)
+├── configs/      # slice.yaml (этап 03), base.yaml (полный корпус)
+├── prompts/      # версионируемые промпты (answer/v1, v1.1, v1.2 + CHANGELOG)
+├── data/         # manifests/ в Git; raw/, cache/, index/ — локально, git-ignored
 ├── experiments/  # результаты (пока пусто)
 └── tests/
 ```
@@ -65,9 +99,9 @@ lab1/
 `src/flutter_rag/` (src-layout), чтобы импорты были однозначными, и добавлены
 `vectorstore/`, `filtering/`, `observability/`, `api/` как отдельные зоны ответственности.
 
-## Конфигурация, API, примеры, тестирование, результаты, выводы
+## Результаты экспериментов, выводы
 
-Появятся на этапах 03–06. Сейчас результатов экспериментов нет.
+Появятся на этапах 05–06. Сейчас экспериментов нет: этап 03 — работающий срез.
 
 ## Лицензия корпуса
 

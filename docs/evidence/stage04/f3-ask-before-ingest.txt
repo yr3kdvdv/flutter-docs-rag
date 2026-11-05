@@ -1,0 +1,7 @@
+## F3: POST /ask before the first ingest (real uvicorn, git b6bc723, empty DATA_DIR)
+$ curl /health
+{"status":"ok"} HTTP 200
+$ curl /ready
+{"status":"not_ready","reason":"index is empty"} HTTP 503
+$ curl -X POST /ask
+{"status":"not_ready","reason":"индекс flutter__slice8__gemini-embedding-001-768__section-512-o0 пуст или не создан — сначала `flutter-rag ingest`"} HTTP 503

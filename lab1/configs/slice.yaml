@@ -1,0 +1,51 @@
+# Stage 03 vertical slice: 8 real pages, real APIs, real Langfuse traces.
+# Limits are set below the free-tier quotas seen in AI Studio on 2026-10-23
+# (Gemini Embedding 1: 100 RPM / 30K TPM / 1K RPD; Gemini 3.5 Flash Lite: 15 RPM / 500 RPD).
+config_id: slice-v1
+corpus:
+  name: slice8
+  repo: flutter/website
+  ref: main
+  include: ["sites/docs/src/content/**/*.md"]
+  exclude:
+    - "sites/docs/src/content/**/_*.md"
+    - "sites/docs/src/content/release/release-notes/**"
+  skip_front_matter: {noindex: true, sitemap: false}
+  pages:
+    - ui/layout/constraints
+    - tools/hot-reload
+    - cookbook/networking/fetch-data
+    - testing/overview
+    - perf/best-practices
+    - add-to-app/android/add-flutter-screen
+    - data-and-backend/state-mgmt/simple
+    - ui/navigation/index
+chunking:
+  strategy: section
+  max_tokens: 512
+  overlap: 0.0
+  code_soft_cap_tokens: 1024
+embedding:
+  provider: gemini
+  model: gemini-embedding-001
+  dimensions: 768
+  batch_size: 50
+  max_rpm: 80
+  max_tpm: 24000      # 80% of 30K TPM; our token count is an estimate (chars/4)
+retrieval:
+  top_k: 20
+filtering:
+  min_score: null     # not calibrated yet: refusal is done by the LLM (audit H3)
+  dedupe: content_hash
+  min_chars: 80
+  max_chunks: 8
+reranking:
+  enabled: false
+generation:
+  provider: gemini
+  model: gemini-3.5-flash-lite   # confirmed by a real request on 2026-10-23
+  prompt_name: answer
+  prompt_version: v1.2
+  max_context_tokens: 6000
+  max_output_tokens: 1024
+  temperature: 0.0

@@ -1,0 +1,36 @@
+{
+  "trace_id": "8c72809d01802a8830788edb9b7a1bea",
+  "observations": [
+    {
+      "name": "validate",
+      "type": "SPAN",
+      "parent": "05c970765a6b290a"
+    },
+    {
+      "name": "llm",
+      "type": "GENERATION",
+      "parent": "05c970765a6b290a"
+    },
+    {
+      "name": "build_context",
+      "type": "SPAN",
+      "parent": "05c970765a6b290a"
+    },
+    {
+      "name": "filter",
+      "type": "SPAN",
+      "parent": "05c970765a6b290a"
+    },
+    {
+      "name": "retrieve",
+      "type": "RETRIEVER",
+      "parent": "05c970765a6b290a"
+    },
+    {
+      "name": "rag.ask",
+      "type": "SPAN",
+      "parent": null
+    }
+  ],
+  "url": "https://cloud.langfuse.com/project/cmvl28r6600z6ad0kmhvny3nt/traces/8c72809d01802a8830788edb9b7a1bea"
+}

@@ -1,0 +1,91 @@
+{
+ "c43dcf15610540139f1c6598c6f905fb": {
+  "observations": 6,
+  "llm_model_output": {
+   "status": "insufficient_context",
+   "answer": "The provided documentation does not contain information about setting up Firebase Cloud Messaging for push notifications in Flutter.",
+   "citations": []
+  },
+  "root_level": "DEFAULT",
+  "root_corpus_commit": "b017c8c937343e82170ead7b4aa9e3bde4fd69f6",
+  "git_sha": "b6bc7233f84c98bd69410576c8cb701258cd3709"
+ },
+ "0992be01b8f11a270ca741281ce6c4b0": {
+  "observations": 6,
+  "llm_model_output": {
+   "status": "insufficient_context",
+   "answer": "The provided documentation does not contain information on how to set up Firebase Cloud Messaging for push notifications in Flutter.",
+   "citations": []
+  },
+  "root_level": "DEFAULT",
+  "root_corpus_commit": "b017c8c937343e82170ead7b4aa9e3bde4fd69f6",
+  "git_sha": "b6bc7233f84c98bd69410576c8cb701258cd3709"
+ },
+ "9c8fd65791fddab23787260004fa22b8": {
+  "observations": 6,
+  "llm_model_output": {
+   "status": "insufficient_context",
+   "answer": "The documentation provided does not contain this information.",
+   "citations": []
+  },
+  "root_level": "DEFAULT",
+  "root_corpus_commit": "b017c8c937343e82170ead7b4aa9e3bde4fd69f6",
+  "git_sha": "b6bc7233f84c98bd69410576c8cb701258cd3709"
+ },
+ "26e7f03cf6245cdf3b5be2e6475e7cb5": {
+  "observations": 6,
+  "llm_model_output": {
+   "status": "insufficient_context",
+   "answer": "Предоставленная документация не содержит информации о том, как опубликовать Flutter-приложение в App Store.",
+   "citations": []
+  },
+  "root_level": "DEFAULT",
+  "root_corpus_commit": "b017c8c937343e82170ead7b4aa9e3bde4fd69f6",
+  "git_sha": "b6bc7233f84c98bd69410576c8cb701258cd3709"
+ },
+ "d3ce3c7c172bdaeb91d92a57d0b79a7f": {
+  "observations": 6,
+  "llm_model_output": {
+   "status": "insufficient_context",
+   "answer": "Предоставленная документация не содержит информации о том, как добавить Google Maps в приложение Flutter.",
+   "citations": []
+  },
+  "root_level": "DEFAULT",
+  "root_corpus_commit": "b017c8c937343e82170ead7b4aa9e3bde4fd69f6",
+  "git_sha": "b6bc7233f84c98bd69410576c8cb701258cd3709"
+ },
+ "992e30c62e691e7f4f92a1f33b2ea1e0": {
+  "observations": 6,
+  "llm_model_output": {
+   "status": "answered",
+   "answer": "В соответствии с правилами компоновки Flutter, виджет получает собственные ограничения от своего родителя [1]. Затем родительский виджет передает дочерним виджетам их индивидуальные ограничения (которые могут различаться для каждого ребенка) поочередно [1].",
+   "citations": [
+    1
+   ]
+  },
+  "root_level": "DEFAULT",
+  "root_corpus_commit": "b017c8c937343e82170ead7b4aa9e3bde4fd69f6",
+  "git_sha": "b6bc7233f84c98bd69410576c8cb701258cd3709"
+ },
+ "963301bf89f6cce0a7867f4b9b740ecf": {
+  "observations": 6,
+  "llm_model_output": {
+   "status": "answered",
+   "answer": "To convert the response body into a custom Dart object, you can use the `dart:convert` package to decode the response body into a JSON Map, and then use a factory method like `fromJson()` to parse it [6]. For example:\n\n```dart\nclass Album {\n  final int userId;\n  final int id;\n  final String title;\n\n  const Album({required this.userId, required this.id, required this.title});\n\n  factory Album.fromJson(Map<String, dynamic> json) {\n    return switch (json) {\n      {'userId': int userId, 'id': int id, 'title': String title} => Album(\n        userId: userId,\n        id: id,\n        title: title,\n      ),\n      _ => throw const FormatException('Failed to load album.'),\n    };\n  }\n}\n```\n\nYou can then call this inside your network request function when the server returns a 200 OK response [6]:\n\n```dart\nreturn Album.fromJson(jsonDecode(response.body) as Map<String, dynamic>);\n```",
+   "citations": [
+    6,
+    5
+   ]
+  },
+  "root_level": "DEFAULT",
+  "root_corpus_commit": "b017c8c937343e82170ead7b4aa9e3bde4fd69f6",
+  "git_sha": "b6bc7233f84c98bd69410576c8cb701258cd3709"
+ },
+ "fea36698625597151444716199794f3f": {
+  "observations": 2,
+  "llm_model_output": null,
+  "root_level": "ERROR",
+  "root_corpus_commit": "b017c8c937343e82170ead7b4aa9e3bde4fd69f6",
+  "git_sha": "b6bc7233f84c98bd69410576c8cb701258cd3709"
+ }
+}
