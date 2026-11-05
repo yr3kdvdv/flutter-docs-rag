@@ -14,7 +14,11 @@ import threading
 from collections.abc import Sequence
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Literal, Protocol
+from typing import TYPE_CHECKING, Literal, Protocol
+
+if TYPE_CHECKING:
+    from flutter_rag.config import Settings
+    from flutter_rag.runconfig import EmbeddingConfig
 
 EmbeddingTask = Literal["document", "query"]
 
@@ -95,3 +99,20 @@ class CachedEmbedder:
             self.cache.put_many(new)
             found.update(new)
         return [found[k] for k in keys]
+
+
+def make_embedder(cfg: EmbeddingConfig, settings: Settings) -> EmbeddingProvider:
+    """The only place that maps a config to a provider SDK (docs/contracts/stage05.md §3)."""
+    if cfg.provider == "gemini":
+        from flutter_rag.embeddings.gemini import GeminiEmbedder
+
+        return GeminiEmbedder(_secret(settings.gemini_api_key, "GEMINI_API_KEY"), cfg)
+    raise NotImplementedError(f"embedding provider {cfg.provider!r}: stage 05, retrieval-engineer")
+
+
+def _secret(value, name: str) -> str:
+    from flutter_rag.errors import MissingSecretError
+
+    if value is None:
+        raise MissingSecretError([name])
+    return value.get_secret_value()

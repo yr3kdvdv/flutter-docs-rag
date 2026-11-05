@@ -9,9 +9,9 @@ from dataclasses import asdict, dataclass, field
 from typing import Any, Literal
 
 from flutter_rag.config import Settings
-from flutter_rag.embeddings import CachedEmbedder, EmbeddingCache, EmbeddingProvider
-from flutter_rag.errors import IndexNotReadyError, MissingSecretError, RagError, UpstreamError
-from flutter_rag.filtering import build_context, filter_candidates, render_context
+from flutter_rag.embeddings import CachedEmbedder, EmbeddingCache, EmbeddingProvider, make_embedder
+from flutter_rag.errors import IndexNotReadyError, MissingSecretError, UpstreamError
+from flutter_rag.filtering import ContextItem, build_context, filter_candidates, render_context
 from flutter_rag.generation import GeminiLLM, LLMResult, Prompt, load_prompt
 from flutter_rag.grabber import RawStore, grab, load_latest_manifest
 from flutter_rag.grabber.github import GitHubClient
@@ -20,20 +20,29 @@ from flutter_rag.preprocessing import PREPROCESS_VERSION
 from flutter_rag.preprocessing.chunking import chunk_document
 from flutter_rag.preprocessing.clean import clean_markdown
 from flutter_rag.ratelimit import RateLimiter
-from flutter_rag.retrieval import retrieve
+from flutter_rag.reranking import make_reranker
+from flutter_rag.retrieval import Candidate, retrieve
 from flutter_rag.runconfig import DOCS_INCLUDES_ROOT, RunConfig
 from flutter_rag.vectorstore import VectorStore, open_qdrant
 
 REQUIRED_SECRETS = {
     "ingest": ["GEMINI_API_KEY", "LANGFUSE_PUBLIC_KEY", "LANGFUSE_SECRET_KEY"],
     "ask": ["GEMINI_API_KEY", "LANGFUSE_PUBLIC_KEY", "LANGFUSE_SECRET_KEY"],
+    "evaluate": ["GEMINI_API_KEY", "LANGFUSE_PUBLIC_KEY", "LANGFUSE_SECRET_KEY"],
 }
 
 
-def require_secrets(settings: Settings, command: str) -> None:
+def required_secrets(command: str, cfg: RunConfig | None = None) -> list[str]:
+    names = list(REQUIRED_SECRETS.get(command, []))
+    if cfg is not None and (cfg.embedding.provider == "voyage" or cfg.reranking.enabled):
+        names.append("VOYAGE_API_KEY")
+    return names
+
+
+def require_secrets(settings: Settings, command: str, cfg: RunConfig | None = None) -> None:
     """Fail fast before any work if a key needed by the command is missing (audit M4)."""
     status = settings.secret_status()
-    missing = [n for n in REQUIRED_SECRETS.get(command, []) if not status.get(n)]
+    missing = [n for n in required_secrets(command, cfg) if not status.get(n)]
     if missing:
         raise MissingSecretError(missing)
 
@@ -48,6 +57,7 @@ class Runtime:
         settings: Settings,
         *,
         embedder: EmbeddingProvider | None = None,
+        reranker: Any | None = None,
         llm: Any | None = None,
         tracer: Tracer | None = None,
         github_factory: Any | None = None,
@@ -64,10 +74,11 @@ class Runtime:
         )
         self.cache = EmbeddingCache(self.data_dir / "cache" / "embeddings.sqlite")
         if embedder is None:
-            from flutter_rag.embeddings.gemini import GeminiEmbedder
-
-            embedder = GeminiEmbedder(settings.gemini_api_key.get_secret_value(), cfg.embedding)
+            embedder = make_embedder(cfg.embedding, settings)
         self.embedder = CachedEmbedder(embedder, self.cache)
+        if reranker is None and cfg.reranking.enabled:
+            reranker = make_reranker(cfg.reranking, settings)
+        self.reranker = reranker
         if llm is None:
             llm = GeminiLLM(
                 settings.gemini_api_key.get_secret_value(),
@@ -95,6 +106,11 @@ class Runtime:
             "corpus_commit": manifest.commit_sha if manifest else None,
             "embedding_model": f"{self.cfg.embedding.model}@{self.cfg.embedding.dimensions}",
             "llm_model": self.cfg.generation.model,
+            "thinking_budget": self.cfg.generation.thinking_budget,
+            "chunking": self.cfg.chunking.strategy_id,
+            "top_k": self.cfg.retrieval.top_k,
+            "min_score": self.cfg.filtering.min_score,
+            "reranker": self.cfg.reranking.model if self.cfg.reranking.enabled else None,
             "prompt_version": f"{self.prompt.name}/{self.prompt.version}",
             "prompt_sha256": self.prompt.sha256[:16],
             **git_revision(),
@@ -265,6 +281,7 @@ class Answer:
     text: str | None
     sources: list[Source]
     retrieved: list[dict] = field(default_factory=list)
+    ranked: list[dict] = field(default_factory=list)  # after filter + rerank
     warnings: list[str] = field(default_factory=list)
     error: dict | None = None
     usage: dict | None = None
@@ -323,8 +340,36 @@ def ask(rt: Runtime, question: str) -> Answer:
     return answer
 
 
-def _ask_inner(rt: Runtime, question: str, answer: Answer, lat: dict[str, float]) -> None:
+@dataclass
+class SearchResult:
+    """Every stage of retrieval, for `ask` and for retrieval-only evaluation (contract §4)."""
+
+    retrieved: list[Candidate]  # vector search order, top_k
+    kept: list[Candidate]  # after filtering (threshold, dedupe, length)
+    ranked: list[Candidate]  # after the reranker (== kept when reranking is off)
+    context: list[ContextItem]  # what the LLM gets, numbered [1..n]
+    dropped: dict[str, int]
+
+
+def _candidate_row(c: Candidate) -> dict:
+    return {
+        "rank": c.rank,
+        "score": round(c.score, 4),
+        "rerank_score": None if c.rerank_score is None else round(c.rerank_score, 4),
+        "document_id": c.chunk.document_id,
+        "section": c.chunk.section,
+        "section_ids": c.chunk.section_ids,
+        "chunk_id": c.chunk.chunk_id,
+    }
+
+
+def search(rt: Runtime, question: str, lat: dict[str, float] | None = None) -> SearchResult:
+    """retrieve -> filter -> rerank -> build_context, one observation per stage.
+
+    Raises IndexNotReadyError on an empty index and UpstreamError on provider failures.
+    """
     cfg, tr = rt.cfg, rt.tracer
+    lat = lat if lat is not None else {}
     if rt.store.count() == 0:
         raise IndexNotReadyError(
             f"индекс {rt.store.collection} пуст или не создан — сначала `flutter-rag ingest`"
@@ -339,17 +384,7 @@ def _ask_inner(rt: Runtime, question: str, answer: Answer, lat: dict[str, float]
         _Timer(lat, "retrieve"),
     ):
         candidates = retrieve(question, rt.embedder, rt.store, cfg.retrieval.top_k)
-        answer.retrieved = [
-            {
-                "rank": c.rank,
-                "score": round(c.score, 4),
-                "document_id": c.chunk.document_id,
-                "section": c.chunk.section,
-                "chunk_id": c.chunk.chunk_id,
-            }
-            for c in candidates
-        ]
-        obs.update(output=answer.retrieved)
+        obs.update(output=[_candidate_row(c) for c in candidates])
 
     with tr.observe(
         "filter", input={"candidates": len(candidates), "config": cfg.filtering.model_dump()}
@@ -357,12 +392,22 @@ def _ask_inner(rt: Runtime, question: str, answer: Answer, lat: dict[str, float]
         report = filter_candidates(candidates, cfg.filtering)
         obs.update(output={"kept": len(report.kept), "dropped": dict(report.dropped)})
 
-    if cfg.reranking.enabled:
-        raise RagError("reranking is configured but not implemented yet (stage 05)")
+    ranked = report.kept
+    if rt.reranker is not None and report.kept:
+        with (
+            tr.observe(
+                "rerank",
+                input={"candidates": len(report.kept), "top_n": cfg.reranking.top_n},
+                metadata={"model": rt.reranker.model_id},
+            ) as obs,
+            _Timer(lat, "rerank"),
+        ):
+            ranked = rt.reranker.rerank(question, report.kept, cfg.reranking.top_n)
+            obs.update(output=[_candidate_row(c) for c in ranked])
 
-    with tr.observe("build_context", input={"kept": len(report.kept)}) as obs:
+    with tr.observe("build_context", input={"candidates": len(ranked)}) as obs:
         items = build_context(
-            report.kept,
+            ranked,
             max_chunks=cfg.filtering.max_chunks,
             max_tokens=cfg.generation.max_context_tokens,
         )
@@ -376,6 +421,15 @@ def _ask_inner(rt: Runtime, question: str, answer: Answer, lat: dict[str, float]
                 for i in items
             ]
         )
+    return SearchResult(candidates, report.kept, ranked, items, dict(report.dropped))
+
+
+def _ask_inner(rt: Runtime, question: str, answer: Answer, lat: dict[str, float]) -> None:
+    cfg, tr = rt.cfg, rt.tracer
+    found = search(rt, question, lat)
+    answer.retrieved = [_candidate_row(c) for c in found.retrieved]
+    answer.ranked = [_candidate_row(c) for c in found.ranked]
+    items = found.context
 
     if not items:
         # Below threshold / nothing indexed: refuse WITHOUT calling the LLM.

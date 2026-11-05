@@ -48,8 +48,9 @@ def _runtime(args: argparse.Namespace, command: str):
     from flutter_rag.runconfig import load_run_config
 
     settings = load_settings()
-    require_secrets(settings, command)
-    return Runtime(load_run_config(args.config), settings)
+    cfg = load_run_config(args.config)
+    require_secrets(settings, command, cfg)  # Voyage key only for Voyage configs
+    return Runtime(cfg, settings)
 
 
 def _save(path: str | None, data: dict) -> None:

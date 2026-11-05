@@ -38,6 +38,10 @@ def slugify(heading: str) -> str:
     return s.strip("-")
 
 
+def section_id(document_id: str, anchor: str | None) -> str:
+    return f"{document_id}#{anchor or ''}"
+
+
 @dataclass
 class Chunk:
     chunk_id: str
@@ -54,6 +58,10 @@ class Chunk:
     code_split: bool
     token_count: int
     content_hash: str
+    # Every section the chunk text overlaps, as "<document_id>#<anchor>" ("<document_id>#" for
+    # text before the first heading). Stable across strategies: gold labels of the evaluation
+    # dataset use the same IDs (docs/contracts/stage05.md §2).
+    section_ids: list[str] = field(default_factory=list)
 
     @property
     def section(self) -> str:
@@ -159,6 +167,8 @@ def chunk_document(
     body: str,
     cfg: ChunkingConfig,
 ) -> list[Chunk]:
+    if cfg.strategy != "section":
+        raise NotImplementedError(f"chunking strategy {cfg.strategy!r}: stage 05, corpus-engineer")
     chunks: list[Chunk] = []
     strategy_id = cfg.strategy_id
 
@@ -186,6 +196,7 @@ def chunk_document(
                 code_split=any(b.code_split for b in blocks),
                 token_count=estimate_tokens(embed_text),
                 content_hash=hashlib.sha256(embed_text.encode()).hexdigest(),
+                section_ids=[section_id(document_id, section.anchor)],
             )
         )
 
