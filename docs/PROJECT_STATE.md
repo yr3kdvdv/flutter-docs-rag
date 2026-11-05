@@ -2,7 +2,7 @@
 
 Дата: 6 ноября 2026. Этап: **04b — повторная проверка Codex выполнена**: F1–F6 закрыты
 (`docs/reviews/verification-fixes.md`), новый G1 P2 исправлен в `b6c32e1`, EN-ответ с источниками
-подтверждён (`docs/evidence/stage04b/`). PR #14 ещё не влит. Следующий — решение о слиянии PR #14, затем этап 05.
+подтверждён (`docs/evidence/stage04b/`). PR #14 влит в main (`e0e1fdd`, CI зелёный). Идёт этап 05.
 Подробно: [docs/handoffs/latest.md](handoffs/latest.md).
 
 ## Сделано
@@ -48,6 +48,4 @@
   3.5/3.1 Flash Lite 15 RPM / 500 RPD; Flash-модели 5 RPM / 20 RPD; Gemma 4 31B 30 RPM / 14.4K RPD; Pro — 0.
 
 ## Следующее действие
-1. Пользователь решает: влить PR #14 сейчас (G1 — P2, покрыт тестами) или сначала
-   короткая проверка G1 Codex на последнем SHA ветки.
-2. Основная часть этапа 05 (prompts/05-claude-full-pipeline.md).
+1. Этап 05 (prompts/05-claude-full-pipeline.md), ветка `stage-05-full-pipeline`.
