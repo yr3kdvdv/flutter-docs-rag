@@ -214,9 +214,33 @@ def test_ingest_trace_gets_the_snapshot_it_actually_indexed(make_rt):
 
 
 # ---------------------------------------------------------------- F6
-def test_question_language():
-    assert question_language("Как настроить Firebase Cloud Messaging для push во Flutter?") == "ru"
-    assert question_language("How do I use hot reload?") == "en"
+@pytest.mark.parametrize(
+    "question, expected",
+    [
+        ("Как настроить Firebase Cloud Messaging для push-уведомлений во Flutter?", "ru"),
+        ("How do I use hot reload?", "en"),
+        # G1 (re-verification e366b6e): quoted Russian name inside an English question
+        ('How do I publish a Flutter app named "Привет" to the Apple App Store?', "en"),
+        ("How do I show the text «Привет, мир» in a Text widget?", "en"),
+        ("Why does `Text('Привет')` overflow in a Row?", "en"),
+        ("Don't I need 'Привет' localized?", "en"),
+        # Russian questions full of Latin names, quotes and code stay Russian
+        ("Почему говорят «Constraints go down. Sizes go up. Parent sets position»?", "ru"),
+        ('Как работает `setState` в StatefulWidget и что делает "hot reload"?', "ru"),
+        ("Что значит «Привет»?", "ru"),
+        ("«Как работает hot reload?»", "ru"),  # fully quoted: the whole text decides
+    ],
+)
+def test_question_language(question, expected):
+    assert question_language(question) == expected
+
+
+def test_english_refusal_kept_english_for_quoted_russian_name(make_rt):
+    english = LLMAnswer(status="insufficient_context", answer="No info.", citations=[])
+    rt = make_rt(FakeGitHub({PAGE: LAYOUT}), llm=FakeLLM(english))
+    ingest(rt)
+    a = ask(rt, 'How do I publish a Flutter app named "Привет" to the Apple App Store?')
+    assert a.status == "insufficient_context" and a.text == REFUSAL_TEXT["en"]
 
 
 def test_english_refusal_to_russian_question_is_returned_in_russian(make_rt):

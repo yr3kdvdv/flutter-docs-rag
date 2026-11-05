@@ -431,13 +431,27 @@ REFUSAL_TEXT = {
 }
 
 
+# Quoted names and code literals do not define the language of the question (review G1):
+# "How do I publish an app named "Привет"?" is English. Single quotes count only as a pair
+# outside words, so English apostrophes ("don't") are left alone.
+_QUOTED = re.compile(
+    r"```.*?```|`[^`]*`|\"[^\"]*\"|«[^»]*»|“[^”]*”|„[^“”]*[“”]|(?<!\w)'[^']*'(?!\w)",
+    re.DOTALL,
+)
+_LETTER = re.compile(r"[^\W\d_]")
+
+
 def question_language(question: str) -> str:
-    """'ru' if the question has any Cyrillic letter, else 'en'.
+    """'ru' if the question outside quotes/code has any Cyrillic letter, else 'en'.
 
     Not a majority vote: Russian questions about Flutter are often mostly Latin names
-    ("Как настроить Firebase Cloud Messaging ... во Flutter?").
+    ("Как настроить Firebase Cloud Messaging ... во Flutter?"). If nothing but quotes is
+    left (the whole question is quoted), the full text decides. Known limit: an unquoted
+    Russian name inside an English question still gives 'ru'.
     """
-    return "ru" if _CYRILLIC.search(question) else "en"
+    outside = _QUOTED.sub(" ", question)
+    text = outside if _LETTER.search(outside) else question
+    return "ru" if _CYRILLIC.search(text) else "en"
 
 
 def _apply_llm_result(answer: Answer, result: LLMResult, items, language: str = "en") -> None:
