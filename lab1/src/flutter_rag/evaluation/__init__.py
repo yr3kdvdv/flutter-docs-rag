@@ -1,3 +1,4 @@
-"""Dataset loading, retrieval/answer metrics and experiment runner.
+"""Evaluation: dataset (schema, loader, split guard), validator, metrics, judge, runner.
 
-Not implemented yet; see docs/architecture.md."""
+See docs/contracts/stage05.md §5 and docs/architecture.md §3.3.
+"""
