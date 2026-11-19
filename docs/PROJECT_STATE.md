@@ -1,8 +1,7 @@
 # Состояние проекта
 
-Дата: 6 ноября 2026. Этап: **04b — повторная проверка Codex выполнена**: F1–F6 закрыты
-(`docs/reviews/verification-fixes.md`), новый G1 P2 исправлен в `b6c32e1`, EN-ответ с источниками
-подтверждён (`docs/evidence/stage04b/`). PR #14 влит в main (`e0e1fdd`, CI зелёный). Идёт этап 05.
+Дата: 19 ноября 2026. Этап: **05 — полный pipeline и evaluation сделаны**, ветка `stage-05-full-pipeline`.
+Ждёт: независимая проверка dataset (все 45 вопросов draft) и завершение индекса Voyage. Затем этап 06.
 Подробно: [docs/handoffs/latest.md](handoffs/latest.md).
 
 ## Сделано
@@ -31,7 +30,13 @@
   переключало отказ на русский). Исправлено в `b6c32e1`, 73 теста; реальные G1/RU/EN ask повторены,
   EN answered получен со второй попытки (первая — Gemini 503).
 
+- Этап 05: контракты (`docs/contracts/stage05.md`), chunking section/fixed/paragraph, Voyage
+  embeddings + rerank-2.5, Gemma 4 как LLM #2, prompt answer/v2, dataset flutter-qa-v1 (45, draft),
+  метрики/judge/runner. Полный корпус 647 страниц: индекс Gemini 5815 точек. Gemini переведён на
+  платный Tier 1 (free tier = 1000 текстов embeddings в день). Runner проверен на dev (retrieval + full).
+
 ## Не выполнено
+- Независимая проверка dataset; индекс Voyage полного корпуса (строится); эксперименты этапа 06.
 - Независимая проверка исправления G1; реальный сбой GitHub (F1/F2 — только инъекция).
 - Модель при prompt v1.2 всё ещё отказывает по-английски на часть RU-вопросов (вывод исправлен кодом).
 - Полный корпус, reranker, вторая embedding-модель, калибровка порога, dataset, эксперименты.
@@ -48,4 +53,5 @@
   3.5/3.1 Flash Lite 15 RPM / 500 RPD; Flash-модели 5 RPM / 20 RPD; Gemma 4 31B 30 RPM / 14.4K RPD; Pro — 0.
 
 ## Следующее действие
-1. Этап 05 (prompts/05-claude-full-pipeline.md), ветка `stage-05-full-pipeline`.
+1. Независимая проверка dataset: prompts/05b-codex-dataset-check.md (Codex или Gemini).
+2. Влить PR этапа 05; этап 06 (prompts/06-research.md) — после принятия dataset.

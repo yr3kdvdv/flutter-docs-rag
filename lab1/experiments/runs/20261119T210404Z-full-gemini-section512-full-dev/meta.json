@@ -1,0 +1,104 @@
+{
+  "run_id": "20261119T210404Z-full-gemini-section512-full-dev",
+  "identity": {
+    "mode": "full",
+    "split": "dev",
+    "final": false,
+    "dataset_version": "flutter-qa-v1",
+    "dataset_sha256": "04b5fe8c66ad5a977bd34462cb521776774f8f551ff1d8227bda4f8a988e62ca",
+    "config_fingerprint": "01b55d3a2e20",
+    "judge_model": "gemini-3.1-flash-lite",
+    "judge_prompt_sha256": "7a8ab5254c3f6146"
+  },
+  "created_at": "2026-11-19T21:04:04+00:00",
+  "config_path": "configs/full.yaml",
+  "dataset": {
+    "version": "flutter-qa-v1",
+    "split": "dev",
+    "path": "evaluation/datasets/flutter-qa-v1/dev.jsonl",
+    "sha256": "04b5fe8c66ad5a977bd34462cb521776774f8f551ff1d8227bda4f8a988e62ca",
+    "items": 15,
+    "statuses": {
+      "draft": 15
+    }
+  },
+  "final": false,
+  "pipeline": {
+    "config_id": "full-gemini-section512",
+    "config_fingerprint": "01b55d3a2e20",
+    "collection": "flutter__full__gemini-embedding-001-768__section-512-o0",
+    "corpus_commit": "4fee0255ef9f0c85f6dd37513bf659613f57e5eb",
+    "embedding_model": "gemini-embedding-001@768",
+    "llm_model": "gemini-3.5-flash-lite",
+    "thinking_budget": null,
+    "chunking": "section-512-o0",
+    "top_k": 20,
+    "min_score": null,
+    "reranker": null,
+    "prompt_version": "answer/v1.2",
+    "prompt_sha256": "f78187d8a28ab3c8",
+    "git_sha": "71ab3d5171b23de0d32321926b5edb55446b3871",
+    "git_dirty": false
+  },
+  "judge": {
+    "model": "gemini-3.1-flash-lite",
+    "prompt_version": "judge/v1",
+    "prompt_sha256": "7a8ab5254c3f6146",
+    "temperature": 0.0
+  },
+  "langfuse": {
+    "enabled": true,
+    "session_id": "20261119T210404Z-full-gemini-section512-full-dev"
+  },
+  "invocations": [
+    {
+      "started_at": "2026-11-19T21:04:04+00:00",
+      "git_sha": "71ab3d5171b23de0d32321926b5edb55446b3871",
+      "git_dirty": false,
+      "processed": 15,
+      "skipped": 0,
+      "finished_at": "2026-11-19T21:05:09+00:00",
+      "errors": 0,
+      "stopped_early": false
+    }
+  ],
+  "updated_at": "2026-11-19T21:05:09+00:00",
+  "complete": true,
+  "not_run": [],
+  "remaining_errors": [],
+  "errors": [],
+  "trace_ids": {
+    "dev-001": "f83b3f2be53d7b687ef2b3c7781fd85e",
+    "dev-002": "111f94c55b1dd58685d4d09bb59c36c0",
+    "dev-003": "1676d67bccc45a02fae78f715085ccd2",
+    "dev-004": "507e34f35c558a8a803f8dbef4034052",
+    "dev-005": "5dc2e53d55337ecb43cd454486065dfe",
+    "dev-006": "2b068af8a96d88e96865cf6431686865",
+    "dev-007": "84f0aeebec0f614e29c82c2a83901c07",
+    "dev-008": "e0bcb2712fe6c670dc2ed83033a00802",
+    "dev-009": "bb91fb660d442f394507060f731156bf",
+    "dev-010": "83fe3fa46127018273d0df7a5a4b819b",
+    "dev-011": "c2a74b82d887c3266a12204996680e38",
+    "dev-012": "21b3bfdd1c8df219358ce8de9c37446f",
+    "dev-013": "1d34f4a6f8dcd1482cf595a93bd5a91f",
+    "dev-014": "a4b114af26f26b7fd74d8a2695a0148a",
+    "dev-015": "e2ef34ab1d9ad60b8295ebe8d91f5efe"
+  },
+  "all_trace_ids": [
+    "f83b3f2be53d7b687ef2b3c7781fd85e",
+    "111f94c55b1dd58685d4d09bb59c36c0",
+    "1676d67bccc45a02fae78f715085ccd2",
+    "507e34f35c558a8a803f8dbef4034052",
+    "5dc2e53d55337ecb43cd454486065dfe",
+    "2b068af8a96d88e96865cf6431686865",
+    "84f0aeebec0f614e29c82c2a83901c07",
+    "e0bcb2712fe6c670dc2ed83033a00802",
+    "bb91fb660d442f394507060f731156bf",
+    "83fe3fa46127018273d0df7a5a4b819b",
+    "c2a74b82d887c3266a12204996680e38",
+    "21b3bfdd1c8df219358ce8de9c37446f",
+    "1d34f4a6f8dcd1482cf595a93bd5a91f",
+    "a4b114af26f26b7fd74d8a2695a0148a",
+    "e2ef34ab1d9ad60b8295ebe8d91f5efe"
+  ]
+}

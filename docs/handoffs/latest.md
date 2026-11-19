@@ -1,58 +1,65 @@
-# Handoff — этап 04b (G1 и EN-ответ после повторной проверки Codex) → решение о слиянии PR #14
+# Handoff — этап 05 (полный pipeline и evaluation) → независимая проверка dataset, затем этап 06
 
 ```yaml
-task_id: LAB1-004b-fixes
-sender_role: "Claude Code (Opus 5.5) — основной исполнитель и интегратор"
-receiver_role: "Пользователь (решение о слиянии PR #14); опционально Codex — проверка G1"
+task_id: LAB1-005
+sender_role: "Claude Code (Opus 5.5) — интегратор; субагенты Claude: corpus-engineer, retrieval-engineer, evaluation-engineer"
+receiver_role: "Codex или Gemini — независимая проверка dataset (prompts/05b-codex-dataset-check.md); затем Claude Code — этап 06"
 status: ready_for_next_step
-goal: "Закрыть G1 P2 и непроверенный EN answered из docs/reviews/verification-fixes.md"
+goal: "Подтвердить эталоны flutter-qa-v1 до настройки параметров на dev"
 repository: "https://github.com/yr3kdvdv/flutter-docs-rag"
-branch: "stage-03-vertical-slice (PR #14 в main, ещё не влит)"
-commit_sha: "код G1: b6c32e1; evidence/handoff — следующий коммит (git log)"
-worktree: "основной checkout; worktrees проверяющего (…-verify-a54a5c5, …-verify-e366b6e) не менялись"
-working_tree_clean: "после коммита остаётся untracked lab1/2026-11-04-213321-projectstate-latest-handoff.txt (экспорт разговора /export) — не коммитится, его стоит перенести из репозитория"
+branch: "stage-05-full-pipeline (PR в main — см. GitHub)"
+commit_sha: "последний коммит ветки (git log); код этапа до 71ab3d5, далее docs/evidence"
+worktree: "основной checkout; worktrees субагентов влиты и удалены (кроме ещё не удалённого evaluation, см. git worktree list)"
+working_tree_clean: "после коммита — untracked lab1/2026-11-04-213321-projectstate-latest-handoff.txt (экспорт /export, не коммитится) и docs/evidence/stage05/.voyage-ingest.log (лог фонового ingest)"
 requirements:
-  - "docs/reviews/verification-fixes.md — G1 и раздел «Непроверенное»"
+  - "docs/requirements.md — «Статус после этапа 05»"
+  - "docs/contracts/stage05.md"
 read_first:
   - AGENTS.md
-  - docs/reviews/verification-fixes.md
-  - docs/evidence/stage04b/README.md
-  - docs/architecture.md   # §10
+  - docs/contracts/stage05.md
+  - docs/evidence/stage05/README.md
+  - lab1/evaluation/datasets/flutter-qa-v1/README.md
+  - lab1/README.md
 allowed_paths:
-  - "проверяющему: только docs/reviews/verification-g1.md в своём worktree"
-do_not_edit:
-  - "docs/reviews/verification.md, docs/reviews/verification-fixes.md — отчёты Codex, сохранены без изменений"
+  - "проверяющему dataset: только docs/reviews/dataset-check.md в своём worktree"
 decisions:
-  - "Язык вопроса: текст вне кавычек/кода; есть кириллица → ru; полностью в кавычках → весь текст"
-  - "Явный параметр языка в CLI/API не вводится (минимальное исправление); ограничение задокументировано"
+  - "Полный корпус: flutter/website@4fee025, 647 ok страниц; manifests и коллекции по corpus.name"
+  - "Gemini embeddings: free tier = 1000 текстов/день → billing Tier 1 подключён пользователем 2026-11-19"
+  - "Embeddings #2: Voyage voyage-4-lite 1024 (free tier 3 RPM / 10K TPM, подтверждено заголовком)"
+  - "Reranker: Voyage rerank-2.5 после filter, top_n = max_chunks (одинаковый бюджет on/off)"
+  - "LLM #2: gemma-4-31b-it (открытая, через Gemini API); prompt answer/v2 — вариант для сравнения"
+  - "Judge: gemini-3.1-flash-lite, judge/v1, temperature 0"
+  - "Dataset: 45 вопросов (15 dev + 30 test), все draft; test только с --final"
+  - "Runner full-режима вызывает pipeline._ask_inner внутри своей trace eval.full (решение evaluation-engineer, принято; публичный ask(trace_name=) — кандидат на этап 06)"
 completed:
-  - "G1 исправлен (b6c32e1), 11 новых регрессионных случаев; на e366b6e 5 из 11 падают"
-  - "EN answered с проверенными источниками получен реально (2 вопроса)"
-  - "Отчёт Codex и промпт 04b сохранены в репозитории"
+  - "Chunking section/fixed/paragraph + section_ids; Voyage embeddings + rerank; pipeline.search(); Gemma; prompt v2"
+  - "Dataset flutter-qa-v1, dataset-check, метрики, judge, runner evaluate"
+  - "Индекс Gemini полного корпуса (5815 точек), повтор идемпотентен"
+  - "Реальные прогоны runner на dev: retrieval и full (15/15, 0 ошибок), traces/session/scores прочитаны из Langfuse"
 verification:
   - command: "cd lab1 && uv run pytest && uv run ruff check . && uv run ruff format --check ."
-    result: "73 passed; lint/format ok; exit 0"
-  - command: "pytest G1-кейсов против src из e366b6e"
-    result: "5 failed (EN с кириллицей в кавычках), RU-кейсы passed"
-  - command: "uv run flutter-rag ingest (snapshot 4fee025)"
-    result: "exit 0; 8 unchanged, 144 points; trace 2de73a48…"
-  - command: "uv run flutter-rag ask: 2 × G1, RU FCM, RU с цитатой, EN hot reload, EN JSON ×2"
-    result: "G1 → EN отказ; RU FCM → RU отказ; RU/EN answered с источниками; EN JSON: 1-я попытка Gemini 503 (exit 4), 2-я answered"
-    artifact: "docs/evidence/stage04b/ask/"
-  - command: "проверка источников в Qdrant и якорей на живых страницах"
-    result: "6/6 источников найдены, URL совпадают, якоря существуют"
-    artifact: "docs/evidence/stage04b/sources-check.txt"
-  - command: "чтение 8 traces из Langfuse API отдельным процессом"
-    result: "все найдены, git_sha b6c32e1"
-    artifact: "docs/evidence/stage04b/traces-from-langfuse.json"
+    result: "150 passed; lint/format ok"
+  - command: "uv run flutter-rag ingest --config configs/full.yaml (+ повтор с GITHUB_TOKEN)"
+    result: "exit 0: 5815 точек, 0 failed; повтор 0 загрузок/0 embedding-вызовов"
+    artifact: "docs/evidence/stage05/ingest-full-gemini-section512*.json"
+  - command: "повтор ingest без GITHUB_TOKEN"
+    result: "реальный GitHub 403 (60/60), понятная ошибка, exit 4"
+    artifact: "docs/evidence/stage05/github-403-unauthenticated.txt"
+  - command: "uv run flutter-rag dataset-check"
+    result: "OK: 80 цитат, 50 gold-секций, 30 absent terms; statuses draft 45"
+  - command: "uv run flutter-rag evaluate --config configs/full.yaml --split dev --mode retrieval / full"
+    result: "run 20261119T210351Z…retrieval-dev, 20261119T210404Z…full-dev: 15/15, 0 ошибок"
+    artifact: "lab1/experiments/runs/, docs/evidence/stage05/eval-full-dev-readback.json"
+  - command: "ask через full-gemma.yaml и с reranker Voyage"
+    result: "оба answered с источниками; traces 5c29c434…, ad4873c3…"
 not_verified:
-  - "Независимая проверка исправления G1"
-  - "Русское имя без кавычек в EN-вопросе всё ещё даёт ru (известное ограничение)"
-  - "Реальные сбои GitHub (F1/F2 — инъекция), Gemini 429, недоступность Langfuse, Qdrant server, удаление страницы upstream"
-  - "CI на последнем SHA — см. PR #14"
+  - "Индекс Voyage полного корпуса — строится в фоне на free tier (см. evidence, обновится по завершении)"
+  - "Эталоны dataset — независимой проверки нет; Hit@1 11/12 на dev подозрительно высок"
+  - "answer/v2, thinking_budget, индексы fixed/paragraph, калибровка min_score — этап 06"
+  - "Точные лимиты Tier 1 Gemini; отказ Langfuse; Qdrant server; GitHub 5xx; удаление страницы upstream"
 blockers: []
-next_action: "Пользователь решает: влить PR #14 сейчас или после короткой проверки G1 Codex"
+next_action: "Независимая проверка dataset по prompts/05b-codex-dataset-check.md на последнем SHA ветки"
 acceptance_criteria:
-  - "PR #14 влит в main с зелёным CI, либо отчёт docs/reviews/verification-g1.md"
-student_explanation: "Язык отказа теперь определяется по самому вопросу, а не по цитатам и именам в кавычках; английский ответ с проверенными источниками подтверждён реальным запуском."
+  - "docs/reviews/dataset-check.md со статусом ok/fix/drop по всем 45 id"
+student_explanation: "Система теперь работает на всей документации Flutter и умеет сравнивать варианты: разные способы резки текста, две модели векторов, reranker, две LLM и два промпта. Есть набор из 45 вопросов и автоматический подсчёт метрик; но пока эталоны не проверены независимо, числа на dev — проверка работоспособности, а не результат исследования."
 ```

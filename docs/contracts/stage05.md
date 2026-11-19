@@ -9,7 +9,7 @@
 
 | Роль | Модель | Факт |
 |---|---|---|
-| Embeddings #1 | `gemini-embedding-001`, 768 | этапы 03–04; 100 RPM / 30K TPM / 1K RPD (AI Studio) |
+| Embeddings #1 | `gemini-embedding-001`, 768 | этапы 03–04; free tier 1000 **текстов** в день (реальный 429, batch считается по текстам) → с 2026-11-19 платный Tier 1 (решение пользователя), $0.15 / 1M токенов |
 | Embeddings #2 | Voyage `voyage-4-lite`, 1024 (по умолчанию) | HTTP 200, document и query, 1024 dims; заголовков rate limit нет |
 | Reranker | Voyage `rerank-2.5` | HTTP 200, relevance_score; 17 токенов на тестовый вызов |
 | LLM #1 | `gemini-3.5-flash-lite` | этапы 03–04; 15 RPM / 500 RPD; частые 503 high demand |
