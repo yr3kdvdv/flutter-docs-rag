@@ -20,8 +20,8 @@ embedding:
   model: gemini-embedding-001
   dimensions: 768
   batch_size: 50       # texts per request (audit B1)
-  max_rpm: 80          # AI Studio free tier: 100 RPM / 30K TPM / 1K RPD
-  max_tpm: 24000
+  max_rpm: 100         # paid Tier 1 since 2026-11-19 (free tier was 100 RPM / 30K TPM / 1000 texts per day)
+  max_tpm: 200000      # conservative: exact Tier 1 limits are only shown in the AI Studio account
 retrieval:
   top_k: 20
 filtering:
