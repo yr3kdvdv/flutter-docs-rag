@@ -341,3 +341,11 @@ def test_make_reranker_dispatch():
     assert isinstance(r, VoyageReranker) and r.model_id == "rerank-2.5"
     with pytest.raises(MissingSecretError):
         make_reranker(RerankingConfig(enabled=True), settings(None))
+
+
+def test_429_without_retry_after_waits_for_the_next_minute_window():
+    from flutter_rag.embeddings.voyage_http import RATE_LIMIT_WAIT_S, VoyageHTTPError, to_upstream
+
+    err = to_upstream(VoyageHTTPError(429, "reduced rate limits of 3 RPM and 10K TPM"))
+    assert err.kind == "rate_limited" and err.retry_after_s == RATE_LIMIT_WAIT_S
+    assert to_upstream(VoyageHTTPError(429, "slow down", retry_after_s=5.0)).retry_after_s == 5.0

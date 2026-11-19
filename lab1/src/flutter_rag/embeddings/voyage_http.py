@@ -88,6 +88,9 @@ class VoyageHTTP:
         self._client.close()
 
 
+RATE_LIMIT_WAIT_S = 30.0
+
+
 def to_upstream(exc: Exception) -> UpstreamError:
     """Translate transport/HTTP failures; anything else (our bugs) is re-raised as is."""
     if isinstance(exc, UpstreamError):
@@ -102,6 +105,10 @@ def to_upstream(exc: Exception) -> UpstreamError:
             kind = kind_from_status(status)
         err = UpstreamError(PROVIDER, kind, exc.message, status)
         err.retry_after_s = exc.retry_after_s
+        if kind == "rate_limited" and err.retry_after_s is None:
+            # Voyage sends no Retry-After; its limits are per minute (3 RPM / 10K TPM on the free
+            # tier), so a 2-8 s backoff retries into the same window (seen on 2026-11-19).
+            err.retry_after_s = RATE_LIMIT_WAIT_S
         return err
     if isinstance(exc, httpx.TimeoutException):
         return UpstreamError(PROVIDER, "timeout", "request timed out")
