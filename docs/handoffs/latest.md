@@ -34,7 +34,7 @@ decisions:
 completed:
   - "Chunking section/fixed/paragraph + section_ids; Voyage embeddings + rerank; pipeline.search(); Gemma; prompt v2"
   - "Dataset flutter-qa-v1, dataset-check, метрики, judge, runner evaluate"
-  - "Индекс Gemini полного корпуса (5815 точек), повтор идемпотентен"
+  - "Индексы Gemini и Voyage полного корпуса (по 5815 точек), повтор Gemini идемпотентен; retrieval-прогон dev на обоих"
   - "Реальные прогоны runner на dev: retrieval и full (15/15, 0 ошибок), traces/session/scores прочитаны из Langfuse"
 verification:
   - command: "cd lab1 && uv run pytest && uv run ruff check . && uv run ruff format --check ."
@@ -53,7 +53,6 @@ verification:
   - command: "ask через full-gemma.yaml и с reranker Voyage"
     result: "оба answered с источниками; traces 5c29c434…, ad4873c3…"
 not_verified:
-  - "Индекс Voyage полного корпуса — строится в фоне на free tier (см. evidence, обновится по завершении)"
   - "Эталоны dataset — независимой проверки нет; Hit@1 11/12 на dev подозрительно высок"
   - "answer/v2, thinking_budget, индексы fixed/paragraph, калибровка min_score — этап 06"
   - "Точные лимиты Tier 1 Gemini; отказ Langfuse; Qdrant server; GitHub 5xx; удаление страницы upstream"
