@@ -1,0 +1,358 @@
+{
+  "status": "answered",
+  "question": "Как в Flutter обфусцировать Dart-код при сборке релиза?",
+  "text": "Чтобы обфусцировать Dart-код и создать карту символов, используйте команду flutter build в режиме релиза с флагами --obfuscate и --split-debug-info [3]:\n\n```console\n$ flutter build <build-target> \\\n   --obfuscate \\\n   --split-debug-info=/<symbols-directory>\n```",
+  "sources": [
+    {
+      "number": 3,
+      "title": "Obfuscate Dart code",
+      "section": "Obfuscate your app",
+      "url": "https://docs.flutter.dev/deployment/obfuscate#obfuscate-your-app",
+      "score": 0.7514,
+      "chunk_id": "a701f896-7aca-5cd9-bf42-80aad2b13e49"
+    }
+  ],
+  "retrieved": [
+    {
+      "rank": 1,
+      "score": 0.7765,
+      "rerank_score": 0.7453,
+      "document_id": "deployment/obfuscate",
+      "section": "Limitations and warnings",
+      "section_ids": [
+        "deployment/obfuscate#limitations"
+      ],
+      "chunk_id": "fc08c986-79be-552f-86b4-b18c3eb8c348"
+    },
+    {
+      "rank": 2,
+      "score": 0.755,
+      "rerank_score": 0.6642,
+      "document_id": "deployment/obfuscate",
+      "section": "What is code obfuscation?",
+      "section_ids": [
+        "deployment/obfuscate#what-is-code-obfuscation"
+      ],
+      "chunk_id": "d7fb5dc1-82b6-544f-8a24-9e18b789c149"
+    },
+    {
+      "rank": 3,
+      "score": 0.7514,
+      "rerank_score": 0.9128,
+      "document_id": "deployment/obfuscate",
+      "section": "Obfuscate your app",
+      "section_ids": [
+        "deployment/obfuscate#obfuscate-your-app"
+      ],
+      "chunk_id": "a701f896-7aca-5cd9-bf42-80aad2b13e49"
+    },
+    {
+      "rank": 4,
+      "score": 0.7418,
+      "rerank_score": 0.8267,
+      "document_id": "deployment/obfuscate",
+      "section": "Supported targets",
+      "section_ids": [
+        "deployment/obfuscate#supported-targets"
+      ],
+      "chunk_id": "2b0a5723-0493-594e-94d1-82c89a724619"
+    },
+    {
+      "rank": 5,
+      "score": 0.7192,
+      "rerank_score": 0.669,
+      "document_id": "testing/build-modes",
+      "section": "Release",
+      "section_ids": [
+        "testing/build-modes#release"
+      ],
+      "chunk_id": "e405f05d-dac5-5b52-8913-cf97d4dce701"
+    },
+    {
+      "rank": 6,
+      "score": 0.7169,
+      "rerank_score": 0.8452,
+      "document_id": "deployment/android",
+      "section": "Build the app for release > Build an app bundle",
+      "section_ids": [
+        "deployment/android#build-an-app-bundle"
+      ],
+      "chunk_id": "51cfaa31-d598-5d33-8260-535f239f333e"
+    },
+    {
+      "rank": 7,
+      "score": 0.7054,
+      "rerank_score": 0.6905,
+      "document_id": "deployment/android",
+      "section": "Shrink your code with R8",
+      "section_ids": [
+        "deployment/android#shrink-your-code-with-r8"
+      ],
+      "chunk_id": "03793494-c17b-577f-b749-25d98c1e03c2"
+    },
+    {
+      "rank": 8,
+      "score": 0.7047,
+      "rerank_score": 0.726,
+      "document_id": "perf/app-size",
+      "section": "Reducing app size",
+      "section_ids": [
+        "perf/app-size#reducing-app-size"
+      ],
+      "chunk_id": "3e72fe18-a3db-5ca9-9536-8720d94f6d14"
+    },
+    {
+      "rank": 9,
+      "score": 0.6995,
+      "rerank_score": 0.5577,
+      "document_id": "deployment/obfuscate",
+      "section": "Read an obfuscated stack trace",
+      "section_ids": [
+        "deployment/obfuscate#read-an-obfuscated-stack-trace"
+      ],
+      "chunk_id": "3965e5ec-9e39-58b1-a759-4935a8a767fb"
+    },
+    {
+      "rank": 10,
+      "score": 0.6986,
+      "rerank_score": 0.8316,
+      "document_id": "deployment/obfuscate",
+      "section": "Read an obfuscated name",
+      "section_ids": [
+        "deployment/obfuscate#read-an-obfuscated-name"
+      ],
+      "chunk_id": "023f9a74-2bd5-5e66-8ad1-5fc4a5003a17"
+    },
+    {
+      "rank": 11,
+      "score": 0.6955,
+      "rerank_score": 0.4679,
+      "document_id": "testing/build-modes",
+      "section": "",
+      "section_ids": [
+        "testing/build-modes#"
+      ],
+      "chunk_id": "f1b1f52b-2dbf-5895-8cdd-319c8e21ccd8"
+    },
+    {
+      "rank": 12,
+      "score": 0.6938,
+      "rerank_score": 0.6001,
+      "document_id": "deployment/obfuscate",
+      "section": "Caveat",
+      "section_ids": [
+        "deployment/obfuscate#caveat"
+      ],
+      "chunk_id": "2e9dbe21-1dd0-5c93-92e2-11d793dc68b1"
+    },
+    {
+      "rank": 13,
+      "score": 0.693,
+      "rerank_score": 0.8574,
+      "document_id": "deployment/android",
+      "section": "Build the app for release > Build an APK",
+      "section_ids": [
+        "deployment/android#build-an-apk"
+      ],
+      "chunk_id": "f474b9a5-7943-520c-b59a-4cd29bc76ae3"
+    },
+    {
+      "rank": 14,
+      "score": 0.6903,
+      "rerank_score": 0.6532,
+      "document_id": "deployment/web",
+      "section": "Minification",
+      "section_ids": [
+        "deployment/web#minification"
+      ],
+      "chunk_id": "64b281d2-2e98-5325-9c57-7a7da4646050"
+    },
+    {
+      "rank": 15,
+      "score": 0.6899,
+      "rerank_score": 0.4909,
+      "document_id": "tools/devtools/app-size",
+      "section": "What is it? > Dart size information",
+      "section_ids": [
+        "tools/devtools/app-size#dart-size-information"
+      ],
+      "chunk_id": "18af40bb-2a61-530f-bf7f-d7fcd83553d2"
+    },
+    {
+      "rank": 16,
+      "score": 0.689,
+      "rerank_score": 0.5098,
+      "document_id": "release/breaking-changes/restrict-android-engine-flags-release-mode",
+      "section": "Summary",
+      "section_ids": [
+        "release/breaking-changes/restrict-android-engine-flags-release-mode#summary"
+      ],
+      "chunk_id": "59b2cb08-6558-525e-9dc4-3a86a4f96d84"
+    },
+    {
+      "rank": 17,
+      "score": 0.6835,
+      "rerank_score": 0.4372,
+      "document_id": "ui/assets/asset-transformation",
+      "section": "",
+      "section_ids": [
+        "ui/assets/asset-transformation#"
+      ],
+      "chunk_id": "ab29c68a-010f-5995-a690-10885a39251f"
+    },
+    {
+      "rank": 18,
+      "score": 0.679,
+      "rerank_score": 0.3908,
+      "document_id": "resources/faq",
+      "section": "Capabilities > Does Flutter come with a reflection / mirrors system?",
+      "section_ids": [
+        "resources/faq#does-flutter-come-with-a-reflection-mirrors-system"
+      ],
+      "chunk_id": "aa04d118-8c10-5c48-bf0b-55a670c0aa63"
+    },
+    {
+      "rank": 19,
+      "score": 0.6745,
+      "rerank_score": 0.4649,
+      "document_id": "testing/build-modes",
+      "section": "Profile",
+      "section_ids": [
+        "testing/build-modes#profile"
+      ],
+      "chunk_id": "c5779241-dd11-57cd-b0f5-d12a3e045529"
+    },
+    {
+      "rank": 20,
+      "score": 0.6737,
+      "rerank_score": 0.4245,
+      "document_id": "resources/faq",
+      "section": "Technology > How does Flutter run my code on Android?",
+      "section_ids": [
+        "resources/faq#run-android"
+      ],
+      "chunk_id": "751f5698-e8a6-5218-9f61-9578d54c6fc3"
+    }
+  ],
+  "ranked": [
+    {
+      "rank": 3,
+      "score": 0.7514,
+      "rerank_score": 0.9128,
+      "document_id": "deployment/obfuscate",
+      "section": "Obfuscate your app",
+      "section_ids": [
+        "deployment/obfuscate#obfuscate-your-app"
+      ],
+      "chunk_id": "a701f896-7aca-5cd9-bf42-80aad2b13e49"
+    },
+    {
+      "rank": 13,
+      "score": 0.693,
+      "rerank_score": 0.8574,
+      "document_id": "deployment/android",
+      "section": "Build the app for release > Build an APK",
+      "section_ids": [
+        "deployment/android#build-an-apk"
+      ],
+      "chunk_id": "f474b9a5-7943-520c-b59a-4cd29bc76ae3"
+    },
+    {
+      "rank": 6,
+      "score": 0.7169,
+      "rerank_score": 0.8452,
+      "document_id": "deployment/android",
+      "section": "Build the app for release > Build an app bundle",
+      "section_ids": [
+        "deployment/android#build-an-app-bundle"
+      ],
+      "chunk_id": "51cfaa31-d598-5d33-8260-535f239f333e"
+    },
+    {
+      "rank": 10,
+      "score": 0.6986,
+      "rerank_score": 0.8316,
+      "document_id": "deployment/obfuscate",
+      "section": "Read an obfuscated name",
+      "section_ids": [
+        "deployment/obfuscate#read-an-obfuscated-name"
+      ],
+      "chunk_id": "023f9a74-2bd5-5e66-8ad1-5fc4a5003a17"
+    },
+    {
+      "rank": 4,
+      "score": 0.7418,
+      "rerank_score": 0.8267,
+      "document_id": "deployment/obfuscate",
+      "section": "Supported targets",
+      "section_ids": [
+        "deployment/obfuscate#supported-targets"
+      ],
+      "chunk_id": "2b0a5723-0493-594e-94d1-82c89a724619"
+    },
+    {
+      "rank": 1,
+      "score": 0.7765,
+      "rerank_score": 0.7453,
+      "document_id": "deployment/obfuscate",
+      "section": "Limitations and warnings",
+      "section_ids": [
+        "deployment/obfuscate#limitations"
+      ],
+      "chunk_id": "fc08c986-79be-552f-86b4-b18c3eb8c348"
+    },
+    {
+      "rank": 8,
+      "score": 0.7047,
+      "rerank_score": 0.726,
+      "document_id": "perf/app-size",
+      "section": "Reducing app size",
+      "section_ids": [
+        "perf/app-size#reducing-app-size"
+      ],
+      "chunk_id": "3e72fe18-a3db-5ca9-9536-8720d94f6d14"
+    },
+    {
+      "rank": 7,
+      "score": 0.7054,
+      "rerank_score": 0.6905,
+      "document_id": "deployment/android",
+      "section": "Shrink your code with R8",
+      "section_ids": [
+        "deployment/android#shrink-your-code-with-r8"
+      ],
+      "chunk_id": "03793494-c17b-577f-b749-25d98c1e03c2"
+    }
+  ],
+  "warnings": [],
+  "error": null,
+  "usage": {
+    "input": 2333,
+    "output": 112,
+    "total": 2445
+  },
+  "latency_ms": {
+    "retrieve": 12.2,
+    "rerank": 402.3,
+    "llm": 1240.6
+  },
+  "trace_id": "ad4873c3187f3c12a74af3e57a5c70fd",
+  "trace_url": "https://cloud.langfuse.com/project/cmvl28r6600z6ad0kmhvny3nt/traces/ad4873c3187f3c12a74af3e57a5c70fd",
+  "meta": {
+    "config_id": "full-gemini-section512-rerank",
+    "config_fingerprint": "536382dda5a4",
+    "collection": "flutter__full__gemini-embedding-001-768__section-512-o0",
+    "corpus_commit": "4fee0255ef9f0c85f6dd37513bf659613f57e5eb",
+    "embedding_model": "gemini-embedding-001@768",
+    "llm_model": "gemini-3.5-flash-lite",
+    "thinking_budget": null,
+    "chunking": "section-512-o0",
+    "top_k": 20,
+    "min_score": null,
+    "reranker": "rerank-2.5",
+    "prompt_version": "answer/v1.2",
+    "prompt_sha256": "f78187d8a28ab3c8",
+    "git_sha": "71ab3d5171b23de0d32321926b5edb55446b3871",
+    "git_dirty": false
+  }
+}

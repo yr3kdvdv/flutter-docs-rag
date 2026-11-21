@@ -1,0 +1,5 @@
+## 2026-11-19, git 85d06c6: repeated ingest without GITHUB_TOKEN
+$ uv run flutter-rag ingest --config configs/full.yaml
+error: github: rate_limited (HTTP 403): GitHub rate limit; повторите позже или задайте GITHUB_TOKEN
+exit=4
+unauthenticated core rate limit: 60 / 60 remaining 0

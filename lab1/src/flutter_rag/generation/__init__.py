@@ -78,6 +78,11 @@ class GeminiLLM:
             max_output_tokens=self.cfg.max_output_tokens,
             response_mime_type="application/json",
             response_schema=LLMAnswer,
+            **(
+                {"thinking_config": types.ThinkingConfig(thinking_budget=self.cfg.thinking_budget)}
+                if self.cfg.thinking_budget is not None
+                else {}
+            ),
         )
 
         def call() -> types.GenerateContentResponse:

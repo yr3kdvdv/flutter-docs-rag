@@ -14,8 +14,9 @@ _CHUNK_FIELDS = {f.name for f in fields(Chunk)}
 @dataclass
 class Candidate:
     chunk: Chunk
-    score: float
+    score: float  # vector similarity (cosine)
     rank: int  # 1-based rank from vector search
+    rerank_score: float | None = None  # set by a reranker; None when reranking is off
 
 
 def chunk_from_payload(payload: dict) -> Chunk:
