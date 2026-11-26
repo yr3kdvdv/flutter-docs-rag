@@ -78,3 +78,20 @@ judge_correctness, judge_faithfulness).
   `min_score`, перебор конфигураций — этап 06.
 - Точные лимиты Tier 1 Gemini (видны только в кабинете AI Studio); в конфиге осторожные 100 RPM / 200K TPM.
 - Отказ Langfuse, Qdrant server, реальный сбой GitHub 5xx и удаление страницы upstream.
+
+## Принятая разметка после этапа 05b
+
+26 ноября Codex применил рекомендации независимого аудита к 29 вопросам в `cafe488`.
+Проверка `uv run flutter-rag dataset-check` на снимке `4fee025` завершилась с exit 0.
+
+```text
+dataset: flutter-qa-v1  corpus: 4fee0255ef9f0c85f6dd37513bf659613f57e5eb
+dev.jsonl sha256 df6fb5d791a9b7889591d71d65b33a1e9f1ea49ea89dedc97e3e21f240d1100a
+test.jsonl sha256 680ba531b37b71ba725796a75ea541ac8092845a59de704110cf15794426f2eb
+checked: 82 excerpts, 51 gold sections, 30 absent terms; statuses {'verified': 45}
+OK
+```
+
+Все 51 секция обнаружены в обеих коллекциях полного корпуса, по 5815 точек каждая.
+151 тест прошёл. Результаты прогонов из предыдущих разделов относятся к исходному черновику.
+[Отчёт проверки](../../reviews/dataset-check.md)
