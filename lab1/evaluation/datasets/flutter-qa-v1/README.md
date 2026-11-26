@@ -1,18 +1,32 @@
-# flutter-qa-v1 — evaluation dataset (DRAFT)
+# flutter-qa-v1 — verified evaluation dataset
 
 45 questions about the official Flutter documentation, labelled on the fixed corpus snapshot
 `flutter/website@4fee0255ef9f0c85f6dd37513bf659613f57e5eb` (`configs/full.yaml`).
 Schema and rules: `docs/contracts/stage05.md` §5.1; loader and validator:
 `src/flutter_rag/evaluation/{dataset,check}.py`.
 
-**Status: every item is `draft`.** The items were written by one agent (evaluation-engineer,
-Claude subagent, 2026-11-06). Nobody has checked them independently yet. They must not be
-marked `agent_checked` or `verified` until that check is done (see "Status" below).
+**Status: all 45 items are `verified`.** The dataset was drafted by the Claude evaluation-engineer
+subagent. Codex independently reviewed the draft at `af6ab74` on 2026-11-26. The accepted revision
+applies the recommendations for 29 items and keeps the content of the other 16 items.
+[Independent review](../../../../docs/reviews/dataset-check.md)
 
 | file | items | use |
 |---|---|---|
 | `dev.jsonl` | 15 | tuning and comparing configurations (stage 06) |
-| `test.jsonl` | 30 | final hold-out; opened only with `flutter-rag evaluate --final` (N03) |
+| `test.jsonl` | 30 | final evaluation with `flutter-rag evaluate --final` (N03) |
+
+## Accepted revision
+
+Use these SHA-256 hashes to pin the inputs for stage 06. The stage 05 smoke runs used the draft.
+
+| File | SHA-256 |
+|---|---|
+| `dev.jsonl` | `df6fb5d791a9b7889591d71d65b33a1e9f1ea49ea89dedc97e3e21f240d1100a` |
+| `test.jsonl` | `680ba531b37b71ba725796a75ea541ac8092845a59de704110cf15794426f2eb` |
+
+The validator passed on the pinned corpus with 82 excerpts, 51 gold sections and 30 absence terms.
+All 51 sections were found in both full-corpus Qdrant collections. The offline dataset test checks
+each reference answer against its own `must_include` and `expected_code` markers.
 
 ## Distribution (type × split × language)
 
@@ -25,7 +39,7 @@ marked `agent_checked` or `verified` until that check is done (see "Status" belo
 | unanswerable | 2 | 1 | 3 | 3 | 5 / 4 |
 | **all** | **8** | **7** | **15** | **15** | **23 / 22** |
 
-Gold labels point to 34 different documents in many areas: deployment (Android, obfuscation,
+Gold labels point to 31 different documents in areas including deployment (Android, obfuscation,
 flavors), web (Wasm, URL strategies), platform integration (predictive back, deep links),
 performance (Impeller, isolates), testing, accessibility, i18n, state management, architecture,
 tools (hot reload, Widget Previewer), Swift Package Manager, add-to-app, security.
@@ -57,20 +71,17 @@ questions keep API names in Latin script, as Russian-speaking developers write t
    section ids came from `chunking.document_section_ids` (`"<document_id>#<anchor>"`).
 3. Questions were drafted from the real cleaned text. `supporting_excerpts[].text` are copied
    verbatim from the cleaned page and must lie inside the named section.
-4. `expected_answer` is a short reference written from those excerpts; `must_include` holds only
-   language-neutral identifiers/numbers that a correct answer in either language should contain
-   (checked case-insensitively); `expected_code` is checked ignoring whitespace.
-5. `uv run flutter-rag dataset-check` validates everything against the snapshot.
-
-Known weak spots for the independent check: a few `must_include` entries are weak (for example
-`"5"` for "5 working days"); some pages are used by more than one item (obfuscation, hot reload,
-Wasm, URL strategies, SwiftPM, app links); `expected_answer` reflects one author's reading.
+4. `expected_answer` is a short reference based on those excerpts. `must_include` checks literal
+   markers case-insensitively. `expected_code` checks a substring after removing whitespace.
+   The judge and manual review assess facts that need semantic comparison, such as dates,
+   units and equivalent formulations.
+5. Run `uv run flutter-rag dataset-check` to validate the schema, distribution, exact quotes,
+   gold section IDs and recorded absence terms against the snapshot.
 
 ## Status values
 
-- `draft` — written, validated by `dataset-check` only (all 45 items now).
-- `agent_checked` — re-read against the source text by a separate Claude subagent (not an
-  independent check).
+- `draft` — written and validated by `dataset-check`.
+- `agent_checked` — re-read against the source text by a separate Claude subagent.
 - `verified` — checked by Codex/Gemini or by the student.
 
 ## Leakage rules

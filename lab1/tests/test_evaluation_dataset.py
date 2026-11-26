@@ -13,6 +13,7 @@ from flutter_rag.evaluation.dataset import (
     SplitGuardError,
     load_split,
 )
+from flutter_rag.evaluation.metrics import code_present, must_include_found
 from flutter_rag.grabber import RawStore, glob_to_regex
 from flutter_rag.grabber.manifest import DocEntry, Manifest
 from flutter_rag.runconfig import load_run_config
@@ -188,13 +189,16 @@ def test_split_guard_n03(tmp_path):
     assert ds.sha256 and len(ds.items) == 5
 
 
-def test_real_dataset_shape():
-    """The committed flutter-qa-v1 parses and has 15/30 items; all are draft until checked."""
+def test_real_dataset_shape_and_reference_answers():
+    """The verified dataset has 15/30 items and its references pass their literal checks."""
     dev = load_split("dev")
     test = load_split("test", final=True)
     assert len(dev.items) == 15 and len(test.items) == 30
-    assert {i.status for i in dev.items + test.items} == {"draft"}
+    assert {i.status for i in dev.items + test.items} == {"verified"}
     assert not {i.id for i in dev.items} & {i.id for i in test.items}
+    for item in dev.items + test.items:
+        assert all(must_include_found(item.expected_answer, item.must_include)), item.id
+        assert code_present(item.expected_answer, item.expected_code) is not False, item.id
 
 
 def test_n04_corpus_include_cannot_match_evaluation_files():
