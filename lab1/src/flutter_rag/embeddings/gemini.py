@@ -25,6 +25,7 @@ class GeminiEmbedder:
     def __init__(self, api_key: str, cfg: EmbeddingConfig, limiter: RateLimiter | None = None):
         self.model_id = cfg.model
         self.dimensions = cfg.dimensions
+        self.max_batch = MAX_BATCH
         self.batch_size = min(cfg.batch_size, MAX_BATCH)
         self.max_tpm = cfg.max_tpm
         self._client = genai.Client(

@@ -1,0 +1,21 @@
+{
+ "run_id": "20261119T210404Z-full-gemini-section512-full-dev",
+ "traces_expected": 15,
+ "found": 15,
+ "scores_total": 124,
+ "score_names": [
+  "doc_hit@5",
+  "doc_mrr",
+  "doc_recall@5",
+  "expected_code_present",
+  "judge_correctness",
+  "judge_faithfulness",
+  "must_include",
+  "refusal_correct",
+  "sec_hit@5",
+  "sec_mrr",
+  "sec_recall@5"
+ ],
+ "missing": [],
+ "session_check": "15 root traces eval.full found via observations.get_many(session_id=run_id) (separate process, 2026-11-19)"
+}

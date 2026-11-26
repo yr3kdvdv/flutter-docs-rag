@@ -13,3 +13,7 @@ Never edit a published version: traces reference prompts by version and sha256.
   produced by code from the question language (`pipeline.REFUSAL_TEXT`); the prompt is unchanged.
 - (stage 04b, no new prompt version) the language detector ignores quoted text and code spans
   (re-verification finding G1). Prompt unchanged.
+- v2 (stage 05) — the second prompt VARIANT for the R29 comparison (not a bug fix of v1.2):
+  explicit evidence step, stricter refusal (no partial answers from general knowledge),
+  explicit handling of partially answered questions, a citation after every factual sentence,
+  conciseness. Same JSON schema and language rule as v1.2. Compared in stage 06 on dev only.

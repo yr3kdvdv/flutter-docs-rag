@@ -26,10 +26,9 @@ from flutter_rag.errors import (
 )
 
 DEFAULT_CONFIG = "configs/slice.yaml"
+EVAL_CONFIG = "configs/full.yaml"  # the dataset is labelled on the full-corpus snapshot
 
-PLANNED = {
-    "evaluate": "run an experiment config against the dev/test dataset (stage 05)",
-}
+PLANNED: dict[str, str] = {}
 
 
 def cmd_env_check() -> int:
@@ -48,8 +47,9 @@ def _runtime(args: argparse.Namespace, command: str):
     from flutter_rag.runconfig import load_run_config
 
     settings = load_settings()
-    require_secrets(settings, command)
-    return Runtime(load_run_config(args.config), settings)
+    cfg = load_run_config(args.config)
+    require_secrets(settings, command, cfg)  # Voyage key only for Voyage configs
+    return Runtime(cfg, settings)
 
 
 def _save(path: str | None, data: dict) -> None:
@@ -126,6 +126,103 @@ def cmd_trace_show(args: argparse.Namespace) -> int:
     return EXIT_OK if obs else EXIT_UPSTREAM
 
 
+def cmd_dataset_check(args: argparse.Namespace) -> int:
+    """Validate the dataset against the manifest + raw store of the config's corpus (§5.1)."""
+    from flutter_rag.evaluation.check import check_dataset
+    from flutter_rag.grabber import RawStore, load_latest_manifest
+    from flutter_rag.runconfig import load_run_config
+
+    settings = load_settings()
+    cfg = load_run_config(args.config)
+    manifest = load_latest_manifest(settings.data_dir, cfg.corpus.name)
+    if manifest is None:
+        print(
+            f"error: no manifest for corpus {cfg.corpus.name!r} in {settings.data_dir}; "
+            "run `flutter-rag ingest` first",
+            file=sys.stderr,
+        )
+        return EXIT_CONFIG
+    report = check_dataset(manifest, RawStore(settings.data_dir / "raw"), version=args.dataset)
+    print(f"dataset: {report.dataset}  corpus: {manifest.commit_sha}")
+    for split, sha in report.files.items():
+        print(f"{split}.jsonl sha256 {sha}")
+    print("type          split  ru  en")
+    for split, table in report.counts.items():
+        for t, c in table.items():
+            print(f"{t:<13} {split:<5} {c['ru']:>3} {c['en']:>3}")
+    print(
+        f"checked: {report.checked_excerpts} excerpts, {report.checked_sections} gold sections, "
+        f"{report.checked_absent_terms} absent terms; statuses {report.statuses}"
+    )
+    for err in report.errors:
+        print(f"FAIL {err}", file=sys.stderr)
+    print("OK" if report.ok else f"{len(report.errors)} problem(s)")
+    return EXIT_OK if report.ok else EXIT_CONFIG
+
+
+def cmd_evaluate(args: argparse.Namespace) -> int:
+    from flutter_rag.evaluation.dataset import load_split
+    from flutter_rag.evaluation.judge import GeminiJudge
+    from flutter_rag.evaluation.runner import default_run_id, run_evaluation
+
+    # Split guard before any key check or API call (N03).
+    dataset = load_split(args.split, version=args.dataset, final=args.final)
+    rt = _runtime(args, "evaluate")
+    try:
+        judge = None
+        if args.mode == "full":
+            judge = GeminiJudge(
+                rt.settings.gemini_api_key.get_secret_value(),
+                args.judge_model,
+                args.judge_prompt,
+            )
+        run_id = args.run_id or default_run_id(rt.cfg.config_id, args.mode, args.split)
+        summary = run_evaluation(
+            rt,
+            dataset,
+            mode=args.mode,
+            run_id=run_id,
+            final=args.final,
+            judge=judge,
+            config_path=args.config,
+            limit=args.limit,
+            max_consecutive_errors=args.max_consecutive_errors,
+        )
+    finally:
+        rt.close()
+    metrics = json.loads((summary.out_dir / "metrics.json").read_text())
+    sec = metrics["retrieval"]["section"]
+    doc = metrics["retrieval"]["document"]
+    print(f"run: {summary.run_id}\nout: {summary.out_dir}")
+    print(
+        f"processed {summary.processed}, skipped (already done) {summary.skipped}, "
+        f"errors this run {summary.errors}" + (" (stopped early)" if summary.stopped_early else "")
+    )
+    n = metrics["retrieval"]["n"]
+    for k in (1, 5, 20):
+        s_hit, d_hit = sec[f"hit@{k}"]["k"], doc[f"hit@{k}"]["k"]
+        print(f"section hit@{k} {s_hit}/{n}  document hit@{k} {d_hit}/{n}")
+    print(f"section MRR {sec['mrr']}  document MRR {doc['mrr']}")
+    gen = metrics.get("generation")
+    if gen:
+        for key in ("refusal_accuracy_answerable", "refusal_accuracy_unanswerable"):
+            print(f"{key} {gen[key]['k']}/{gen[key]['n']}")
+        print(f"upstream_error {gen['upstream_error']['k']}/{gen['upstream_error']['n']}")
+        print(
+            f"judge correctness mean {gen['judge_correctness']['mean']} "
+            f"(n={gen['judge_correctness']['n']}), faithfulness mean "
+            f"{gen['judge_faithfulness']['mean']}"
+        )
+    if summary.remaining_errors or metrics["not_run"]:
+        print(
+            f"incomplete: errors {summary.remaining_errors}, not run {metrics['not_run']}; "
+            f"resume with --run-id {summary.run_id}",
+            file=sys.stderr,
+        )
+        return EXIT_UPSTREAM
+    return EXIT_OK
+
+
 def cmd_serve(args: argparse.Namespace) -> int:
     import uvicorn
 
@@ -157,6 +254,25 @@ def main(argv: list[str] | None = None) -> int:
     p = with_config(sub.add_parser("serve", help="run the FastAPI service (1 worker)"))
     p.add_argument("--host", default="127.0.0.1")
     p.add_argument("--port", type=int, default=8000)
+    p = sub.add_parser("evaluate", help="run a config against the dev (or --final test) split")
+    p.add_argument("--config", default=EVAL_CONFIG, help=f"default: {EVAL_CONFIG}")
+    p.add_argument("--split", choices=["dev", "test"], default="dev")
+    p.add_argument("--final", action="store_true", help="required for --split test (N03)")
+    p.add_argument("--mode", choices=["retrieval", "full"], default="retrieval")
+    p.add_argument("--run-id", help="resume this run (items without errors are skipped)")
+    p.add_argument("--dataset", default="flutter-qa-v1")
+    p.add_argument("--judge-model", default="gemini-3.1-flash-lite")
+    p.add_argument("--judge-prompt", default="v1")
+    p.add_argument("--limit", type=int, help="process at most N pending items")
+    p.add_argument(
+        "--max-consecutive-errors",
+        type=int,
+        default=3,
+        help="stop after N failed items in a row (quota); 0 = never",
+    )
+    p = sub.add_parser("dataset-check", help="validate the dataset against the corpus snapshot")
+    p.add_argument("--config", default=EVAL_CONFIG, help=f"default: {EVAL_CONFIG}")
+    p.add_argument("--dataset", default="flutter-qa-v1")
     for name, help_text in PLANNED.items():
         sub.add_parser(name, help=f"[not implemented] {help_text}")
     args = parser.parse_args(argv)
@@ -170,6 +286,8 @@ def main(argv: list[str] | None = None) -> int:
         "ask": lambda: cmd_ask(args),
         "trace-show": lambda: cmd_trace_show(args),
         "serve": lambda: cmd_serve(args),
+        "evaluate": lambda: cmd_evaluate(args),
+        "dataset-check": lambda: cmd_dataset_check(args),
     }
     try:
         return handlers[args.command]()

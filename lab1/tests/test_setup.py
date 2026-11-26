@@ -56,9 +56,10 @@ def test_secret_status_hides_values(monkeypatch):
     assert "dummy-not-a-real-key" not in repr(settings)
 
 
-def test_unimplemented_commands_fail_honestly(capsys):
-    assert cli.main(["evaluate"]) == 2
-    assert "not implemented" in capsys.readouterr().err
+def test_evaluate_refuses_test_split_without_final(capsys):
+    # `evaluate` is implemented in stage 05 (was a PLANNED stub); no network: the guard runs first.
+    assert cli.main(["evaluate", "--split", "test"]) == 2
+    assert "--final" in capsys.readouterr().err
 
 
 def test_env_check_runs(capsys):

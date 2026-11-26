@@ -27,8 +27,9 @@ def create_app(config_path: str, runtime=None) -> FastAPI:
 
             try:
                 settings = load_settings()
-                require_secrets(settings, "ask")
-                state["rt"] = Runtime(load_run_config(config_path), settings)
+                cfg = load_run_config(config_path)
+                require_secrets(settings, "ask", cfg)
+                state["rt"] = Runtime(cfg, settings)
             except RagError as exc:  # keep serving /health; /ready reports why
                 state["error"] = str(exc)
         yield

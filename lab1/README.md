@@ -3,16 +3,27 @@
 RAG-система, отвечающая на вопросы по официальной документации Flutter
 (`flutter/website`, Markdown) с указанием источников и трассировкой в Langfuse.
 
-**Статус: этап 03 — работает сквозной срез на 8 страницах документации** (реальные Gemini API,
-Qdrant, Langfuse). Эксперименты, reranker, вторая embedding-модель и dataset — этапы 05–06.
+**Статус: этапы 05 и 05b — полный pipeline и проверенный датасет** (647 страниц, snapshot
+`flutter/website@4fee025`): 3 стратегии chunking, 2 embedding-модели (Gemini, Voyage), reranker
+Voyage, 2 LLM (Gemini Flash-Lite, открытая Gemma 4), 2 версии prompt, dataset из 45 вопросов
+(`verified`) и runner экспериментов. Сравнение конфигураций — этап 06.
+[Проверка и версия датасета](evaluation/datasets/flutter-qa-v1/README.md).
 Архитектура: [../docs/architecture.md](../docs/architecture.md).
 Матрица требований: [../docs/requirements.md](../docs/requirements.md).
 
-## Технологии (план)
+## Технологии
 
-Python 3.12 (через uv), Gemini API (LLM + embeddings), Voyage AI (вторая
-embedding-модель и reranker), Qdrant (embedded/локальный режим), Langfuse Cloud,
-FastAPI. Обоснование и альтернативы — в architecture.md.
+| Компонент | Что используется (проверено реальными запросами) |
+|---|---|
+| Embeddings | `gemini-embedding-001` (768 dims, платный tier с 2026-11-19), Voyage `voyage-4-lite` (1024 dims, free tier 3 RPM / 10K TPM) |
+| Reranker | Voyage `rerank-2.5` |
+| LLM | `gemini-3.5-flash-lite` (основная), `gemma-4-31b-it` (открытая, через Gemini API) |
+| Judge | `gemini-3.1-flash-lite`, prompt `judge/v1` |
+| Хранилище | Qdrant embedded (одна коллекция на модель+dims+стратегию) |
+| Трассировка | Langfuse Cloud (trace на каждый ingest/ask/вопрос evaluation, scores) |
+
+Python 3.12 (через uv), FastAPI. Обоснование и альтернативы — в architecture.md, контракты этапа 05 —
+[../docs/contracts/stage05.md](../docs/contracts/stage05.md).
 
 ## Установка
 
@@ -29,7 +40,7 @@ cp ../.env.example ../.env   # затем заполнить локально, �
 
 Все команды запускаются из `lab1/`. Ключи берутся из `../.env` (см. docs/SETUP_ACCOUNTS.md).
 
-### Работают (проверено на этапе 03)
+### Работают (проверено на этапах 03–05)
 
 | Команда | Что делает |
 |---|---|
@@ -41,9 +52,14 @@ cp ../.env.example ../.env   # затем заполнить локально, �
 | `uv run flutter-rag ask "вопрос"` | Ответ + источники + ссылка на trace Langfuse (`--json`, `--save file`) |
 | `uv run flutter-rag trace-show <trace_id>` | Читает trace обратно из Langfuse API (доказательство доставки) |
 | `uv run flutter-rag serve` | FastAPI: `GET /health`, `GET /ready`, `POST /ask {"question": "..."}`; Swagger на `/docs` |
+| `uv run flutter-rag dataset-check` | Проверяет dataset: схему, 15/30, дословность цитат и существование gold-секций на snapshot |
+| `uv run flutter-rag evaluate --config configs/full.yaml --split dev --mode retrieval\|full` | Метрики на dev; результат в `experiments/runs/<run_id>/`; `--run-id` продолжает прерванный запуск; test — только с `--final` |
 | `uv export --no-header --no-hashes --no-dev --no-emit-project -o requirements.txt` | Обновить requirements.txt из lock |
 
-По умолчанию используется `configs/slice.yaml` (8 страниц); другой конфиг — `--config`.
+По умолчанию `ingest`/`ask`/`serve` используют `configs/slice.yaml` (8 страниц), `evaluate` — `configs/full.yaml`.
+Конфиги полного корпуса: `full.yaml` (Gemini), `full-voyage.yaml` (Voyage), `full-gemma.yaml` (LLM Gemma).
+Без `GITHUB_TOKEN` GitHub разрешает 60 запросов в час (реальный 403 наблюдался 2026-11-19) — задайте
+токен, например `GITHUB_TOKEN=$(gh auth token) uv run flutter-rag ingest ...`.
 
 Коды выхода: 0 — успех (в том числе корректный отказ `insufficient_context`), 2 — конфигурация
 или нет ключей, 3 — локальная база Qdrant занята другим процессом, 4 — внешний сервис недоступен.
@@ -51,13 +67,12 @@ cp ../.env.example ../.env   # затем заполнить локально, �
 **Важно:** встроенный Qdrant допускает один процесс. Пока работает `serve`, команды `ingest`/`ask`
 в другом терминале завершатся с кодом 3 и подсказкой. Это ограничение embedded-режима (аудит B2).
 
-### Ещё не реализованы
+### Ещё не сделано
 
-| Команда / функция | Этап |
+| Что | Этап |
 |---|---|
-| `uv run flutter-rag evaluate` (возвращает код 2) | 05 |
-| Reranker (Voyage), вторая embedding-модель, другие стратегии chunking | 05 |
-| Полный корпус (`configs/base.yaml`, 638 страниц) — код готов, но не запускался | 04–05 |
+| Индексы остальных стратегий chunking, калибровка `min_score`, перебор конфигураций | 06 |
+| Финальный прогон на test (`--final`) | 06, после выбора конфигурации |
 
 ## Пример (реальный запуск на commit 7cac4ca, prompt answer/v1.2)
 
@@ -88,10 +103,11 @@ lab1/
 │   ├── retrieval/ reranking/ filtering/ generation/
 │   ├── evaluation/ observability/ api/
 │   ├── config.py  cli.py
-├── configs/      # slice.yaml (этап 03), base.yaml (полный корпус)
-├── prompts/      # версионируемые промпты (answer/v1, v1.1, v1.2 + CHANGELOG)
+├── configs/      # slice.yaml (этап 03), full*.yaml (полный корпус), base.yaml (черновик)
+├── prompts/      # answer/v1…v2, judge/v1 + CHANGELOG
+├── evaluation/   # datasets/flutter-qa-v1/{dev,test}.jsonl (не индексируются)
 ├── data/         # manifests/ в Git; raw/, cache/, index/ — локально, git-ignored
-├── experiments/  # результаты (пока пусто)
+├── experiments/  # runs/<run_id>/{config.yaml, raw.jsonl, metrics.json, meta.json}
 └── tests/
 ```
 
@@ -101,7 +117,9 @@ lab1/
 
 ## Результаты экспериментов, выводы
 
-Появятся на этапах 05–06. Сейчас экспериментов нет: этап 03 — работающий срез.
+Эксперименты — этап 06. На этапе 05 проверена работоспособность runner на черновом `dev`
+из 15 вопросов с конфигом `full.yaml`. Сравнения начнутся на принятой в этапе 05b версии `dev`.
+Артефакты прежних запусков лежат в `experiments/runs/`. [Сводка](../docs/evidence/stage05/README.md)
 
 ## Лицензия корпуса
 

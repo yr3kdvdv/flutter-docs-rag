@@ -11,7 +11,7 @@ from pathlib import Path
 from typing import Literal
 
 import yaml
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, model_validator
 
 from flutter_rag.config import LAB1_DIR
 
@@ -33,11 +33,30 @@ class CorpusConfig(BaseModel):
     download_concurrency: int = 8
 
 
+ChunkStrategy = Literal["section", "fixed", "paragraph"]
+
+
 class ChunkingConfig(BaseModel):
-    strategy: Literal["section"] = "section"
-    max_tokens: int = 512
-    overlap: float = 0.0
+    """Contract (docs/contracts/stage05.md §2):
+
+    - section:   never crosses a heading; blocks packed up to max_tokens (stage 03 behaviour)
+    - fixed:     token windows over the whole cleaned body, ignoring structure; overlap allowed
+    - paragraph: whole paragraphs (a fenced code block is one paragraph) packed up to
+                 max_tokens, may cross headings; a paragraph is split only if > max_tokens
+    """
+
+    strategy: ChunkStrategy = "section"
+    max_tokens: int = Field(default=512, ge=64, le=4096)
+    overlap: float = Field(default=0.0, ge=0.0, lt=0.5)  # fraction of max_tokens; fixed only
     code_soft_cap_tokens: int = 1024
+
+    @model_validator(mode="after")
+    def _overlap_only_for_fixed(self):
+        if self.overlap and self.strategy != "fixed":
+            raise ValueError(
+                f"overlap is supported only by strategy 'fixed', not {self.strategy!r}"
+            )
+        return self
 
     @property
     def strategy_id(self) -> str:
@@ -45,7 +64,7 @@ class ChunkingConfig(BaseModel):
 
 
 class EmbeddingConfig(BaseModel):
-    provider: Literal["gemini"] = "gemini"
+    provider: Literal["gemini", "voyage"] = "gemini"
     model: str = "gemini-embedding-001"
     dimensions: int = 768
     batch_size: int = 50
@@ -70,15 +89,22 @@ class FilteringConfig(BaseModel):
 
 
 class RerankingConfig(BaseModel):
+    """Reranks the FILTERED candidates (at most retrieval.top_k) and keeps top_n.
+    rerank on/off is compared with the same retrieval.top_k and the same final budget."""
+
     enabled: bool = False
-    provider: str = "voyage"
+    provider: Literal["voyage"] = "voyage"
     model: str = "rerank-2.5"
-    top_n: int = 5
+    top_n: int = 8
+    max_rpm: int | None = None
+    max_tpm: int | None = None
+    timeout_s: float = 20.0
 
 
 class GenerationConfig(BaseModel):
-    provider: Literal["gemini"] = "gemini"
+    provider: Literal["gemini"] = "gemini"  # Gemini API also serves open Gemma models
     model: str
+    thinking_budget: int | None = None  # None = model default; a "mode" for R29
     prompt_name: str = "answer"
     prompt_version: str = "v1"
     max_context_tokens: int = 6000
