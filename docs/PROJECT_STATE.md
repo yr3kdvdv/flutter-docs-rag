@@ -1,9 +1,9 @@
 # Состояние проекта
 
-26 ноября 2026. **Этапы 05 и 05b завершены в локальной ветке `stage-05-full-pipeline`.**
+26 ноября 2026. **Этапы 05 и 05b завершены.**
 Оба индекса полного корпуса готовы (по 5815 точек). Все 45 вопросов `flutter-qa-v1` имеют
-статус `verified` в `cafe488`. Перед исследованием этапа 06 нужно обновить [PR #15](https://github.com/yr3kdvdv/flutter-docs-rag/pull/15) и проверить CI.
-[Текущий handoff](handoffs/latest.md)
+статус `verified` в `cafe488`. Изменения этапов собраны в [PR #15](https://github.com/yr3kdvdv/flutter-docs-rag/pull/15).
+[Handoff для этапа 06](handoffs/latest.md)
 
 ## Сделано
 - Подготовительный пакет координатора (задание, инструкции, prompts) — в Git.
@@ -59,5 +59,5 @@
   3.5/3.1 Flash Lite 15 RPM / 500 RPD; Flash-модели 5 RPM / 20 RPD; Gemma 4 31B 30 RPM / 14.4K RPD; Pro — 0.
 
 ## Следующее действие
-Обновить PR #15 локальными коммитами, проверить CI и влить в `main`. Затем начать
-[этап 06](../prompts/06-research.md) с гипотез и retrieval-only на принятом `dev`.
+После слияния PR #15 начать [этап 06](../prompts/06-research.md) с гипотез и
+retrieval-only на принятом `dev`.

@@ -9,7 +9,7 @@ goal: "Передать проверенный датасет для иссле�
 repository: "https://github.com/yr3kdvdv/flutter-docs-rag"
 branch: "stage-05-full-pipeline"
 commit_sha: "cafe488706a064465c7991e541847b99166af45d"
-worktree: "Основной checkout outputs/flutter-docs-rag. SHA выше закрепляет датасет и тесты. Следующий коммит обновляет документацию."
+worktree: "Основной checkout outputs/flutter-docs-rag. SHA выше закрепляет датасет и тесты."
 working_tree_clean: false
 untracked:
   - "lab1/2026-11-04-213321-projectstate-latest-handoff.txt"
@@ -57,7 +57,6 @@ verification:
   - command: "Qdrant scroll по payload section_ids для configs/full.yaml и configs/full-voyage.yaml"
     result: "Exit 0, в каждой коллекции присутствуют все 51 gold-секция и 5815 точек."
 not_verified:
-  - "GitHub CI для коммита принятого набора. У открытого draft PR #15 на момент handoff head af6ab74."
   - "Результаты поиска и генерации на принятой версии, калибровка min_score, индексы fixed/paragraph и сравнение вариантов генерации."
 experiment:
   dataset_version: "flutter-qa-v1"
@@ -67,9 +66,10 @@ experiment:
   config_id: "full-gemini-section512"
   langfuse_run_id: null
 blockers: []
-next_action: "Обновить PR #15 локальными коммитами и проверить CI перед слиянием в main."
+integration: "https://github.com/yr3kdvdv/flutter-docs-rag/pull/15 — статус PR, CI и коммит слияния"
+next_action: "После слияния PR #15 записать гипотезы и порядок сравнений, затем запустить retrieval-only baseline на принятом dev."
 acceptance_criteria:
-  - "В PR #15 опубликован принятый датасет с указанными SHA-256, CI на этом коммите зелёный."
-  - "После слияния этап 06 начинает с гипотез и retrieval-only на dev, фиксируя SHA и конфигурацию в новых прогонах."
+  - "Сравнения этапа 06 проводятся на dev. Для запусков зафиксированы SHA, конфигурация, порядок сравнений и run/trace IDs."
+  - "Финальный test используется с --final после выбора конфигурации."
 student_explanation: "Вопросы, эталоны и источники сверены с одной версией документации Flutter. Для настройки используем 15 dev-вопросов. На 30 test-вопросах оценим уже выбранную конфигурацию."
 ```
