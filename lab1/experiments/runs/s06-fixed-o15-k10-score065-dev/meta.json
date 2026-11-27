@@ -1,0 +1,103 @@
+{
+  "run_id": "s06-fixed-o15-k10-score065-dev",
+  "identity": {
+    "mode": "retrieval",
+    "split": "dev",
+    "final": false,
+    "dataset_version": "flutter-qa-v1",
+    "dataset_sha256": "df6fb5d791a9b7889591d71d65b33a1e9f1ea49ea89dedc97e3e21f240d1100a",
+    "config_fingerprint": "d2a77e80e8e5",
+    "git_sha": "04ca4d9b2f9979634b774ac896228c2a0540c833",
+    "git_dirty": false,
+    "corpus_commit": "4fee0255ef9f0c85f6dd37513bf659613f57e5eb",
+    "prompt_sha256": "f78187d8a28ab3c8",
+    "judge_model": null,
+    "judge_prompt_sha256": null
+  },
+  "created_at": "2026-11-26T21:27:11+00:00",
+  "config_path": "experiments/configs/s06-fixed-o15-k10-score065.yaml",
+  "dataset": {
+    "version": "flutter-qa-v1",
+    "split": "dev",
+    "path": "evaluation/datasets/flutter-qa-v1/dev.jsonl",
+    "sha256": "df6fb5d791a9b7889591d71d65b33a1e9f1ea49ea89dedc97e3e21f240d1100a",
+    "items": 15,
+    "statuses": {
+      "verified": 15
+    }
+  },
+  "final": false,
+  "pipeline": {
+    "config_id": "s06-fixed-o15-k10-score065",
+    "config_fingerprint": "d2a77e80e8e5",
+    "collection": "flutter__full__gemini-embedding-001-768__fixed-512-o15",
+    "corpus_commit": "4fee0255ef9f0c85f6dd37513bf659613f57e5eb",
+    "embedding_model": "gemini-embedding-001@768",
+    "llm_model": "gemini-3.5-flash-lite",
+    "thinking_budget": null,
+    "chunking": "fixed-512-o15",
+    "top_k": 10,
+    "min_score": 0.65,
+    "reranker": null,
+    "prompt_version": "answer/v1.2",
+    "prompt_sha256": "f78187d8a28ab3c8",
+    "git_sha": "04ca4d9b2f9979634b774ac896228c2a0540c833",
+    "git_dirty": false
+  },
+  "judge": null,
+  "langfuse": {
+    "enabled": true,
+    "session_id": "s06-fixed-o15-k10-score065-dev"
+  },
+  "complete": true,
+  "invocations": [
+    {
+      "started_at": "2026-11-26T21:27:11+00:00",
+      "git_sha": "04ca4d9b2f9979634b774ac896228c2a0540c833",
+      "git_dirty": false,
+      "processed": 15,
+      "skipped": 0,
+      "finished_at": "2026-11-26T21:27:12+00:00",
+      "errors": 0,
+      "stopped_early": false
+    }
+  ],
+  "updated_at": "2026-11-26T21:27:12+00:00",
+  "not_run": [],
+  "remaining_errors": [],
+  "errors": [],
+  "trace_ids": {
+    "dev-001": "90b9b33692bdd01cb209115e55b28ef9",
+    "dev-002": "26776a6a7fcd3be33ec1c5e63c97c65c",
+    "dev-003": "8e1ba01551e8e9272b3ee0f1f27180ca",
+    "dev-004": "5a3e200796c1a38d9abeff88dd539da9",
+    "dev-005": "341fd4df0f098d2794231b0474e577fc",
+    "dev-006": "63ac420ef231dd3125665195005bcdaa",
+    "dev-007": "5ed8f732b62641ae7b15938e5889ea87",
+    "dev-008": "6d14df72234bf6e959a17521a8b4a74f",
+    "dev-009": "26890198ed6038948c1e9fdfa7f24c99",
+    "dev-010": "68a738206c8a05d868eaad0c526fba76",
+    "dev-011": "14e454b4666c230dcd622c5b3a123093",
+    "dev-012": "274709209c5af7fe13fa277c4e1fd687",
+    "dev-013": "5f1e4cdc875a3a61e979bc176b66a21e",
+    "dev-014": "3c8a3de36ed584812b0ab8bc946b42a4",
+    "dev-015": "7dc0418973679c56767984738b88ce4f"
+  },
+  "all_trace_ids": [
+    "90b9b33692bdd01cb209115e55b28ef9",
+    "26776a6a7fcd3be33ec1c5e63c97c65c",
+    "8e1ba01551e8e9272b3ee0f1f27180ca",
+    "5a3e200796c1a38d9abeff88dd539da9",
+    "341fd4df0f098d2794231b0474e577fc",
+    "63ac420ef231dd3125665195005bcdaa",
+    "5ed8f732b62641ae7b15938e5889ea87",
+    "6d14df72234bf6e959a17521a8b4a74f",
+    "26890198ed6038948c1e9fdfa7f24c99",
+    "68a738206c8a05d868eaad0c526fba76",
+    "14e454b4666c230dcd622c5b3a123093",
+    "274709209c5af7fe13fa277c4e1fd687",
+    "5f1e4cdc875a3a61e979bc176b66a21e",
+    "3c8a3de36ed584812b0ab8bc946b42a4",
+    "7dc0418973679c56767984738b88ce4f"
+  ]
+}

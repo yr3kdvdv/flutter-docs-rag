@@ -1,75 +1,75 @@
-# Handoff этапа 05b → этап 06
+# Handoff этапа 06 → этап 07
 
 ```yaml
-task_id: LAB1-005B
-sender_role: "Codex (GPT-6), независимый проверяющий черновика и исполнитель правок по отчёту"
-receiver_role: "Координатор проекта, затем исполнитель этапа 06"
+task_id: LAB1-006
+sender_role: "Codex (GPT-6), исполнитель исследования и координатор независимых проверок"
+receiver_role: "Gemini через Antigravity, аудитор этапа 07"
 status: ready_for_next_step
-goal: "Передать проверенный датасет для исследования влияния конфигураций RAG"
+goal: "Сверить соответствие лабораторной, воспроизводимость, качество и доказательства этапов 03–06"
 repository: "https://github.com/yr3kdvdv/flutter-docs-rag"
-branch: "stage-05-full-pipeline"
-commit_sha: "cafe488706a064465c7991e541847b99166af45d"
-worktree: "Основной checkout outputs/flutter-docs-rag. SHA выше закрепляет датасет и тесты."
+branch: "stage-06-research"
+commit_sha: "fdd529d9073e94a41e043572b786953a139025d8"
+worktree: "Основной checkout outputs/flutter-docs-rag. SHA выше закрепляет код, отчёт и результаты. За ним следует обновление статуса проекта."
 working_tree_clean: false
 untracked:
   - "lab1/2026-11-04-213321-projectstate-latest-handoff.txt"
   - "lab1/claude_pad_last_dialog.txt"
 requirements:
-  - "docs/requirements.md, R30/R31/R32 и N02/N03/N04"
-  - "docs/contracts/stage05.md §5.1–5.3"
-  - "prompts/06-research.md"
+  - "docs/requirements.md, R15/R18/R20–R22/R28/R29/R32 и P01/N02/N03"
+  - "prompts/07-gemini-final-audit.md"
 read_first:
   - AGENTS.md
   - docs/PROJECT_STATE.md
+  - docs/source/README_PAD.md
+  - docs/requirements.md
   - docs/architecture.md
-  - docs/RESEARCH_PLAN.md
-  - docs/reviews/dataset-check.md
-  - lab1/evaluation/datasets/flutter-qa-v1/README.md
-  - docs/evidence/stage05/README.md
+  - lab1/README.md
+  - lab1/experiments/report.md
+  - lab1/experiments/method-audit.md
+  - lab1/experiments/selection.md
 allowed_paths:
-  - "Экспериментальные конфигурации, артефакты и отчёт из prompts/06-research.md"
-  - "docs/PROJECT_STATE.md и docs/handoffs/latest.md после этапа"
+  - "docs/reviews/final-audit.md, результат отдельного этапа 07"
 do_not_edit:
-  - "Принятые dev.jsonl и test.jsonl при подборе конфигураций. Они закреплены контрольными суммами."
-  - "Незакоммиченные экспорты диалогов из untracked"
+  - "Реализация, frozen config, dev.jsonl и test.jsonl во время аудита"
+  - "Два существующих незакоммиченных экспорта диалогов"
 decisions:
-  - "Исходный dataset независимо проверен на af6ab74. Применены предложения для 29 вопросов, содержание 16 вопросов сохранено."
-  - "flutter-qa-v1 сохраняет 15 dev и 30 test, пять типов и 23 ru / 22 en. Все записи verified."
-  - "Настраивать конфигурации по dev. Использовать test с --final после выбора конфигурации."
-  - "Исходные прогоны dev этапа 05 использовали черновик. Для сравнений этапа 06 запустить новый baseline."
-  - "Baseline полного корпуса full-gemini-section512, prompt answer/v1.2. Judge gemini-3.1-flash-lite, prompt judge/v1."
+  - "На dev первичный показатель поиска — micro Recall@5, дальше контекст и MRR@8."
+  - "Fixed 512 с overlap 15%, K=10, min_score 0,65, rerank выключен. Gemini embeddings, Flash-Lite и answer/v1.2."
+  - "Финальный конфиг закреплён в 1e030da до единственного финального прогона. Test не использован для выбора."
+  - "Judge той же семьи, что Flash-Lite. Claude вслепую проверил семь dev-примеров, Gemini сверил числа восьми прогонов."
 completed:
-  - "Сохранён независимый отчёт с решением по всем 45 ID и поправками к эталонам, вопросам и gold-секциям."
-  - "Поправки интегрированы. Тест реального набора проверяет эталоны функциями must_include_found и code_present."
-  - "На рабочей копии проверены два индекса по 5815 точек и присутствие всех 51 gold-секций."
+  - "21 retrieval и 3 full dev-прогона. Один ретрай Gemma после HTTP 429 сохранён в raw."
+  - "Один полный финальный прогон на 30 test. 24/24 answerable с ответом, 6/6 верных отказов, 21/24 с обеими оценками judge ≥4."
+  - "Сохранены конфиги, raw, метрики, provenance, анализ и идентификаторы/оценки Langfuse."
 verification:
-  - command: "uv sync --locked --offline с временными UV_CACHE_DIR и UV_PROJECT_ENVIRONMENT"
-    result: "Exit 0, Python 3.12.15."
-  - command: "DATA_DIR=<изолированная копия>/data uv run --locked --no-sync flutter-rag dataset-check"
-    result: "Exit 0, 82 excerpts, 51 gold sections, 30 absent terms, verified 45."
-    artifact: "docs/evidence/stage05/README.md"
-  - command: "uv run --locked --no-sync pytest -o addopts= -q"
-    result: "Exit 0, 151 passed."
-  - command: "uv run --locked --no-sync ruff check . и uv run --locked --no-sync ruff format --check ."
-    result: "Обе команды exit 0. Проверка форматирования охватила 60 файлов."
-  - command: "uv export --locked --no-header --no-hashes --no-dev --no-emit-project и diff с requirements.txt"
-    result: "Exit 0, содержимое совпадает."
-  - command: "Qdrant scroll по payload section_ids для configs/full.yaml и configs/full-voyage.yaml"
-    result: "Exit 0, в каждой коллекции присутствуют все 51 gold-секция и 5815 точек."
+  - command: "uv run flutter-rag dataset-check на pinned snapshot"
+    result: "Exit 0; 45 verified, 82 excerpts, 51 gold section, 30 absent terms."
+  - command: "pytest -o addopts= -q, ruff check ., ruff format --check ."
+    result: "Все exit 0; 152 теста, 69 файлов уже отформатированы."
+  - command: "uv export --locked --no-header --no-hashes --no-dev --no-emit-project и diff"
+    result: "Exit 0, requirements.txt соответствует lockfile."
+  - command: "python experiments/analyze.py --final experiments/runs/s06-*-dev experiments/runs/s06-final-test"
+    result: "Exit 0, воспроизведены все 25 агрегатов из 391 строки попыток."
+    artifact: "lab1/experiments/evidence/stage06/analysis.json"
+  - command: "python experiments/export_langfuse.py в отдельном процессе"
+    result: "Exit 0, прочитаны 391 трасса оценки и 2131 численная оценка. Отдельно подтверждены 11 трасс построения индексов и пакета финальных embeddings."
+    artifact: "lab1/experiments/evidence/stage06/"
 not_verified:
-  - "Результаты поиска и генерации на принятой версии, калибровка min_score, индексы fixed/paragraph и сравнение вариантов генерации."
+  - "Полный независимый аудит реализации по требованиям лабораторной (этап 07)."
+  - "Перенос эффекта rerank с section-512 на fixed. Калибровка judge на более широком ручном наборе."
+  - "Язык ответов и неполнота отдельных примеров отмечены в report.md и method-audit.md."
 experiment:
   dataset_version: "flutter-qa-v1"
   dev_sha256: "df6fb5d791a9b7889591d71d65b33a1e9f1ea49ea89dedc97e3e21f240d1100a"
   test_sha256: "680ba531b37b71ba725796a75ea541ac8092845a59de704110cf15794426f2eb"
   corpus_snapshot: "flutter/website@4fee0255ef9f0c85f6dd37513bf659613f57e5eb"
-  config_id: "full-gemini-section512"
-  langfuse_run_id: null
+  config_id: "s06-final"
+  freeze_commit: "1e030daeb47c0b30726756e744700404027b0584"
+  langfuse_run_id: "s06-final-test"
 blockers: []
-integration: "https://github.com/yr3kdvdv/flutter-docs-rag/pull/15 — статус PR, CI и коммит слияния"
-next_action: "После слияния PR #15 записать гипотезы и порядок сравнений, затем запустить retrieval-only baseline на принятом dev."
+next_action: "Провести независимый аудит этапа 07 по prompts/07-gemini-final-audit.md и вернуть findings с доказательствами."
 acceptance_criteria:
-  - "Сравнения этапа 06 проводятся на dev. Для запусков зафиксированы SHA, конфигурация, порядок сравнений и run/trace IDs."
-  - "Финальный test используется с --final после выбора конфигурации."
-student_explanation: "Вопросы, эталоны и источники сверены с одной версией документации Flutter. Для настройки используем 15 dev-вопросов. На 30 test-вопросах оценим уже выбранную конфигурацию."
+  - "В docs/reviews/final-audit.md указан проверенный SHA и сверены критерии лабораторной."
+  - "Есть приоритизированные findings, минимальные исправления, непроверенное и checklist сдачи."
+student_explanation: "Сначала на dev отдельно поменяли настройки поиска и генерации. Затем зафиксировали конфиг и один раз проверили его на 30 тестовых вопросах. Три ответа оказались неполными или неточными даже при попадании в нужную секцию. Это примеры для независимого аудита."
 ```

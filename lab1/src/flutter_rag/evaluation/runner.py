@@ -154,19 +154,22 @@ def run_evaluation(
         "dataset_version": dataset.version,
         "dataset_sha256": dataset.sha256,
         "config_fingerprint": run_meta["config_fingerprint"],
+        "git_sha": run_meta["git_sha"],
+        "git_dirty": run_meta["git_dirty"],
+        "corpus_commit": run_meta["corpus_commit"],
+        "prompt_sha256": run_meta["prompt_sha256"],
         "judge_model": judge.model_id if judge else None,
         "judge_prompt_sha256": judge.prompt.sha256[:16] if judge else None,
     }
     meta = json.loads(meta_path.read_text()) if meta_path.exists() else None
     if meta is not None:
-        diff = {
-            k: (meta["identity"].get(k), v)
-            for k, v in identity.items()
-            if meta["identity"].get(k) != v
-        }
+        previous = {**meta["pipeline"], **meta["identity"]}
+        diff = {k: (previous.get(k), v) for k, v in identity.items() if previous.get(k) != v}
         if diff:
             raise RunMismatchError(f"run {run_id} exists with different settings: {diff}")
     else:
+        if raw_path.exists() and raw_path.stat().st_size:
+            raise RunMismatchError(f"run {run_id} has raw attempts without provenance")
         (out / "config.yaml").write_text(
             yaml.safe_dump(rt.cfg.model_dump(mode="json"), sort_keys=False, allow_unicode=True)
         )
@@ -198,8 +201,10 @@ def run_evaluation(
                 else None
             ),
             "langfuse": {"enabled": rt.tracer.enabled, "session_id": run_id},
+            "complete": False,
             "invocations": [],
         }
+        meta_path.write_text(json.dumps(meta, indent=2, ensure_ascii=False) + "\n")
 
     rows = _read_raw(raw_path)
     done = {r["id"] for r in rows if r.get("error") is None}
@@ -265,10 +270,20 @@ def _count(values) -> dict[str, int]:
     return out
 
 
+def _provider_stats(rt) -> dict:
+    providers = {"embedding": rt.embedder, "rerank": rt.reranker}
+    return {
+        stage: asdict(stats)
+        for stage, provider in providers.items()
+        if (stats := getattr(provider, "stats", None)) is not None
+    }
+
+
 def _run_item(rt, item: QAItem, *, mode: str, run_id: str, judge, base_meta: dict) -> dict:
     from flutter_rag.pipeline import Answer, _ask_inner, _candidate_row, search
 
     t0 = time.monotonic()
+    before = _provider_stats(rt)
     row: dict[str, Any] = {
         "id": item.id,
         "run_id": run_id,
@@ -305,6 +320,9 @@ def _run_item(rt, item: QAItem, *, mode: str, run_id: str, judge, base_meta: dic
                 row["retrieved"] = [_candidate_row(c) for c in found.retrieved]
                 row["ranked"] = [_candidate_row(c) for c in found.ranked]
                 row["context_chunk_ids"] = [i.candidate.chunk.chunk_id for i in found.context]
+                row["context_tokens_est"] = sum(
+                    i.candidate.chunk.token_count for i in found.context
+                )
                 row["dropped"] = found.dropped
             else:
                 answer = Answer(
@@ -339,6 +357,10 @@ def _run_item(rt, item: QAItem, *, mode: str, run_id: str, judge, base_meta: dic
                 )
         except UpstreamError as err:
             row["error"] = {"stage": "judge" if mode == "full" else "retrieval", **err.to_dict()}
+        row["provider_usage"] = {
+            stage: {key: round(value - before[stage][key], 4) for key, value in totals.items()}
+            for stage, totals in _provider_stats(rt).items()
+        }
         row["latency_ms"] = {**lat, "total": round((time.monotonic() - t0) * 1000, 1)}
 
         if row["error"] is not None:

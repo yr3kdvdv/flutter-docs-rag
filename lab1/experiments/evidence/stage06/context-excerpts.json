@@ -1,0 +1,3917 @@
+{
+  "s06-fixed-o15-k10-dev": {
+    "totals": {
+      "matched": 25,
+      "total": 28,
+      "all_excerpts_items": 11,
+      "at_least_one_excerpt_items": 12,
+      "total_items": 12,
+      "section_present_but_excerpt_missed": 0,
+      "excerpt_text_found_other_sections": 0
+    },
+    "items": {
+      "dev-001": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "deployment/obfuscate#limitations"
+        ],
+        "gold_sections": [
+          "deployment/obfuscate#limitations"
+        ],
+        "missed": []
+      },
+      "dev-002": {
+        "matched": 1,
+        "total": 1,
+        "covered_sections": [
+          "deployment/android#version-code-and-name"
+        ],
+        "gold_sections": [
+          "deployment/android#version-code-and-name"
+        ],
+        "missed": []
+      },
+      "dev-003": {
+        "matched": 3,
+        "total": 3,
+        "covered_sections": [
+          "security/index#reporting-vulnerabilities"
+        ],
+        "gold_sections": [
+          "security/index#reporting-vulnerabilities"
+        ],
+        "missed": []
+      },
+      "dev-004": {
+        "matched": 3,
+        "total": 3,
+        "covered_sections": [
+          "testing/build-modes#debug",
+          "tools/hot-reload#native-code"
+        ],
+        "gold_sections": [
+          "testing/build-modes#debug",
+          "tools/hot-reload#native-code"
+        ],
+        "missed": []
+      },
+      "dev-005": {
+        "matched": 3,
+        "total": 3,
+        "covered_sections": [
+          "cookbook/navigation/set-up-app-links#assetlinks-json",
+          "cookbook/navigation/set-up-universal-links#create-and-host-apple-app-site-association-json-file"
+        ],
+        "gold_sections": [
+          "cookbook/navigation/set-up-app-links#assetlinks-json",
+          "cookbook/navigation/set-up-universal-links#create-and-host-apple-app-site-association-json-file"
+        ],
+        "missed": []
+      },
+      "dev-006": {
+        "matched": 1,
+        "total": 4,
+        "covered_sections": [
+          "data-and-backend/state-mgmt/ephemeral-vs-app#app-state"
+        ],
+        "gold_sections": [
+          "data-and-backend/state-mgmt/ephemeral-vs-app#app-state",
+          "data-and-backend/state-mgmt/simple#changenotifier",
+          "data-and-backend/state-mgmt/simple#changenotifierprovider",
+          "data-and-backend/state-mgmt/simple#consumer"
+        ],
+        "missed": [
+          {
+            "section_id": "data-and-backend/state-mgmt/simple#changenotifier",
+            "text": "In our shopping app example, we want to manage the state of the cart in a",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          },
+          {
+            "section_id": "data-and-backend/state-mgmt/simple#changenotifierprovider",
+            "text": "`ChangeNotifierProvider` is the widget that provides an instance of",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          },
+          {
+            "section_id": "data-and-backend/state-mgmt/simple#consumer",
+            "text": "Consumer<CartModel>",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          }
+        ]
+      },
+      "dev-007": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "deployment/android#create-an-upload-keystore"
+        ],
+        "gold_sections": [
+          "deployment/android#create-an-upload-keystore"
+        ],
+        "missed": []
+      },
+      "dev-008": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "platform-integration/web/wasm#serve-the-built-output-with-an-http-server"
+        ],
+        "gold_sections": [
+          "platform-integration/web/wasm#serve-the-built-output-with-an-http-server"
+        ],
+        "missed": []
+      },
+      "dev-009": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "deployment/flavors#access-the-current-flavor",
+          "deployment/flavors#use-flavors-in-flutter-code"
+        ],
+        "gold_sections": [
+          "deployment/flavors#use-flavors-in-flutter-code",
+          "deployment/flavors#access-the-current-flavor"
+        ],
+        "missed": []
+      },
+      "dev-010": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "testing/common-errors#vertical-viewport-was-given-unbounded-height"
+        ],
+        "gold_sections": [
+          "testing/common-errors#vertical-viewport-was-given-unbounded-height"
+        ],
+        "missed": []
+      },
+      "dev-011": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "app-architecture/guide#repositories"
+        ],
+        "gold_sections": [
+          "app-architecture/guide#repositories"
+        ],
+        "missed": []
+      },
+      "dev-012": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "tools/hot-reload#recent-code-change-is-included-but-app-state-is-excluded"
+        ],
+        "gold_sections": [
+          "tools/hot-reload#recent-code-change-is-included-but-app-state-is-excluded"
+        ],
+        "missed": []
+      }
+    }
+  },
+  "s06-fixed-o15-k10-score065-dev": {
+    "totals": {
+      "matched": 25,
+      "total": 28,
+      "all_excerpts_items": 11,
+      "at_least_one_excerpt_items": 12,
+      "total_items": 12,
+      "section_present_but_excerpt_missed": 0,
+      "excerpt_text_found_other_sections": 0
+    },
+    "items": {
+      "dev-001": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "deployment/obfuscate#limitations"
+        ],
+        "gold_sections": [
+          "deployment/obfuscate#limitations"
+        ],
+        "missed": []
+      },
+      "dev-002": {
+        "matched": 1,
+        "total": 1,
+        "covered_sections": [
+          "deployment/android#version-code-and-name"
+        ],
+        "gold_sections": [
+          "deployment/android#version-code-and-name"
+        ],
+        "missed": []
+      },
+      "dev-003": {
+        "matched": 3,
+        "total": 3,
+        "covered_sections": [
+          "security/index#reporting-vulnerabilities"
+        ],
+        "gold_sections": [
+          "security/index#reporting-vulnerabilities"
+        ],
+        "missed": []
+      },
+      "dev-004": {
+        "matched": 3,
+        "total": 3,
+        "covered_sections": [
+          "testing/build-modes#debug",
+          "tools/hot-reload#native-code"
+        ],
+        "gold_sections": [
+          "testing/build-modes#debug",
+          "tools/hot-reload#native-code"
+        ],
+        "missed": []
+      },
+      "dev-005": {
+        "matched": 3,
+        "total": 3,
+        "covered_sections": [
+          "cookbook/navigation/set-up-app-links#assetlinks-json",
+          "cookbook/navigation/set-up-universal-links#create-and-host-apple-app-site-association-json-file"
+        ],
+        "gold_sections": [
+          "cookbook/navigation/set-up-app-links#assetlinks-json",
+          "cookbook/navigation/set-up-universal-links#create-and-host-apple-app-site-association-json-file"
+        ],
+        "missed": []
+      },
+      "dev-006": {
+        "matched": 1,
+        "total": 4,
+        "covered_sections": [
+          "data-and-backend/state-mgmt/ephemeral-vs-app#app-state"
+        ],
+        "gold_sections": [
+          "data-and-backend/state-mgmt/ephemeral-vs-app#app-state",
+          "data-and-backend/state-mgmt/simple#changenotifier",
+          "data-and-backend/state-mgmt/simple#changenotifierprovider",
+          "data-and-backend/state-mgmt/simple#consumer"
+        ],
+        "missed": [
+          {
+            "section_id": "data-and-backend/state-mgmt/simple#changenotifier",
+            "text": "In our shopping app example, we want to manage the state of the cart in a",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          },
+          {
+            "section_id": "data-and-backend/state-mgmt/simple#changenotifierprovider",
+            "text": "`ChangeNotifierProvider` is the widget that provides an instance of",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          },
+          {
+            "section_id": "data-and-backend/state-mgmt/simple#consumer",
+            "text": "Consumer<CartModel>",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          }
+        ]
+      },
+      "dev-007": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "deployment/android#create-an-upload-keystore"
+        ],
+        "gold_sections": [
+          "deployment/android#create-an-upload-keystore"
+        ],
+        "missed": []
+      },
+      "dev-008": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "platform-integration/web/wasm#serve-the-built-output-with-an-http-server"
+        ],
+        "gold_sections": [
+          "platform-integration/web/wasm#serve-the-built-output-with-an-http-server"
+        ],
+        "missed": []
+      },
+      "dev-009": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "deployment/flavors#access-the-current-flavor",
+          "deployment/flavors#use-flavors-in-flutter-code"
+        ],
+        "gold_sections": [
+          "deployment/flavors#use-flavors-in-flutter-code",
+          "deployment/flavors#access-the-current-flavor"
+        ],
+        "missed": []
+      },
+      "dev-010": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "testing/common-errors#vertical-viewport-was-given-unbounded-height"
+        ],
+        "gold_sections": [
+          "testing/common-errors#vertical-viewport-was-given-unbounded-height"
+        ],
+        "missed": []
+      },
+      "dev-011": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "app-architecture/guide#repositories"
+        ],
+        "gold_sections": [
+          "app-architecture/guide#repositories"
+        ],
+        "missed": []
+      },
+      "dev-012": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "tools/hot-reload#recent-code-change-is-included-but-app-state-is-excluded"
+        ],
+        "gold_sections": [
+          "tools/hot-reload#recent-code-change-is-included-but-app-state-is-excluded"
+        ],
+        "missed": []
+      }
+    }
+  },
+  "s06-fixed-o15-k3-dev": {
+    "totals": {
+      "matched": 21,
+      "total": 28,
+      "all_excerpts_items": 9,
+      "at_least_one_excerpt_items": 11,
+      "total_items": 12,
+      "section_present_but_excerpt_missed": 0,
+      "excerpt_text_found_other_sections": 0
+    },
+    "items": {
+      "dev-001": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "deployment/obfuscate#limitations"
+        ],
+        "gold_sections": [
+          "deployment/obfuscate#limitations"
+        ],
+        "missed": []
+      },
+      "dev-002": {
+        "matched": 1,
+        "total": 1,
+        "covered_sections": [
+          "deployment/android#version-code-and-name"
+        ],
+        "gold_sections": [
+          "deployment/android#version-code-and-name"
+        ],
+        "missed": []
+      },
+      "dev-003": {
+        "matched": 3,
+        "total": 3,
+        "covered_sections": [
+          "security/index#reporting-vulnerabilities"
+        ],
+        "gold_sections": [
+          "security/index#reporting-vulnerabilities"
+        ],
+        "missed": []
+      },
+      "dev-004": {
+        "matched": 0,
+        "total": 3,
+        "covered_sections": [],
+        "gold_sections": [
+          "testing/build-modes#debug",
+          "tools/hot-reload#native-code"
+        ],
+        "missed": [
+          {
+            "section_id": "testing/build-modes#debug",
+            "text": "* Hot reload works _only_ in debug mode.",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          },
+          {
+            "section_id": "tools/hot-reload#native-code",
+            "text": "If you've changed native code (such as Kotlin, Java, Swift,",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          },
+          {
+            "section_id": "tools/hot-reload#native-code",
+            "text": "or Objective-C), you must perform a full restart (stop and",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          }
+        ]
+      },
+      "dev-005": {
+        "matched": 2,
+        "total": 3,
+        "covered_sections": [
+          "cookbook/navigation/set-up-universal-links#create-and-host-apple-app-site-association-json-file"
+        ],
+        "gold_sections": [
+          "cookbook/navigation/set-up-app-links#assetlinks-json",
+          "cookbook/navigation/set-up-universal-links#create-and-host-apple-app-site-association-json-file"
+        ],
+        "missed": [
+          {
+            "section_id": "cookbook/navigation/set-up-app-links#assetlinks-json",
+            "text": "<webdomain>/.well-known/assetlinks.json",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          }
+        ]
+      },
+      "dev-006": {
+        "matched": 1,
+        "total": 4,
+        "covered_sections": [
+          "data-and-backend/state-mgmt/ephemeral-vs-app#app-state"
+        ],
+        "gold_sections": [
+          "data-and-backend/state-mgmt/ephemeral-vs-app#app-state",
+          "data-and-backend/state-mgmt/simple#changenotifier",
+          "data-and-backend/state-mgmt/simple#changenotifierprovider",
+          "data-and-backend/state-mgmt/simple#consumer"
+        ],
+        "missed": [
+          {
+            "section_id": "data-and-backend/state-mgmt/simple#changenotifier",
+            "text": "In our shopping app example, we want to manage the state of the cart in a",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          },
+          {
+            "section_id": "data-and-backend/state-mgmt/simple#changenotifierprovider",
+            "text": "`ChangeNotifierProvider` is the widget that provides an instance of",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          },
+          {
+            "section_id": "data-and-backend/state-mgmt/simple#consumer",
+            "text": "Consumer<CartModel>",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          }
+        ]
+      },
+      "dev-007": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "deployment/android#create-an-upload-keystore"
+        ],
+        "gold_sections": [
+          "deployment/android#create-an-upload-keystore"
+        ],
+        "missed": []
+      },
+      "dev-008": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "platform-integration/web/wasm#serve-the-built-output-with-an-http-server"
+        ],
+        "gold_sections": [
+          "platform-integration/web/wasm#serve-the-built-output-with-an-http-server"
+        ],
+        "missed": []
+      },
+      "dev-009": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "deployment/flavors#access-the-current-flavor",
+          "deployment/flavors#use-flavors-in-flutter-code"
+        ],
+        "gold_sections": [
+          "deployment/flavors#use-flavors-in-flutter-code",
+          "deployment/flavors#access-the-current-flavor"
+        ],
+        "missed": []
+      },
+      "dev-010": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "testing/common-errors#vertical-viewport-was-given-unbounded-height"
+        ],
+        "gold_sections": [
+          "testing/common-errors#vertical-viewport-was-given-unbounded-height"
+        ],
+        "missed": []
+      },
+      "dev-011": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "app-architecture/guide#repositories"
+        ],
+        "gold_sections": [
+          "app-architecture/guide#repositories"
+        ],
+        "missed": []
+      },
+      "dev-012": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "tools/hot-reload#recent-code-change-is-included-but-app-state-is-excluded"
+        ],
+        "gold_sections": [
+          "tools/hot-reload#recent-code-change-is-included-but-app-state-is-excluded"
+        ],
+        "missed": []
+      }
+    }
+  },
+  "s06-fixed-o15-k5-dev": {
+    "totals": {
+      "matched": 23,
+      "total": 28,
+      "all_excerpts_items": 9,
+      "at_least_one_excerpt_items": 12,
+      "total_items": 12,
+      "section_present_but_excerpt_missed": 1,
+      "excerpt_text_found_other_sections": 0
+    },
+    "items": {
+      "dev-001": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "deployment/obfuscate#limitations"
+        ],
+        "gold_sections": [
+          "deployment/obfuscate#limitations"
+        ],
+        "missed": []
+      },
+      "dev-002": {
+        "matched": 1,
+        "total": 1,
+        "covered_sections": [
+          "deployment/android#version-code-and-name"
+        ],
+        "gold_sections": [
+          "deployment/android#version-code-and-name"
+        ],
+        "missed": []
+      },
+      "dev-003": {
+        "matched": 3,
+        "total": 3,
+        "covered_sections": [
+          "security/index#reporting-vulnerabilities"
+        ],
+        "gold_sections": [
+          "security/index#reporting-vulnerabilities"
+        ],
+        "missed": []
+      },
+      "dev-004": {
+        "matched": 2,
+        "total": 3,
+        "covered_sections": [
+          "testing/build-modes#debug",
+          "tools/hot-reload#native-code"
+        ],
+        "gold_sections": [
+          "testing/build-modes#debug",
+          "tools/hot-reload#native-code"
+        ],
+        "missed": [
+          {
+            "section_id": "tools/hot-reload#native-code",
+            "text": "or Objective-C), you must perform a full restart (stop and",
+            "section_in_context": true,
+            "context_ordinals_in_section": [
+              2
+            ],
+            "any_context_match": false
+          }
+        ]
+      },
+      "dev-005": {
+        "matched": 2,
+        "total": 3,
+        "covered_sections": [
+          "cookbook/navigation/set-up-universal-links#create-and-host-apple-app-site-association-json-file"
+        ],
+        "gold_sections": [
+          "cookbook/navigation/set-up-app-links#assetlinks-json",
+          "cookbook/navigation/set-up-universal-links#create-and-host-apple-app-site-association-json-file"
+        ],
+        "missed": [
+          {
+            "section_id": "cookbook/navigation/set-up-app-links#assetlinks-json",
+            "text": "<webdomain>/.well-known/assetlinks.json",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          }
+        ]
+      },
+      "dev-006": {
+        "matched": 1,
+        "total": 4,
+        "covered_sections": [
+          "data-and-backend/state-mgmt/ephemeral-vs-app#app-state"
+        ],
+        "gold_sections": [
+          "data-and-backend/state-mgmt/ephemeral-vs-app#app-state",
+          "data-and-backend/state-mgmt/simple#changenotifier",
+          "data-and-backend/state-mgmt/simple#changenotifierprovider",
+          "data-and-backend/state-mgmt/simple#consumer"
+        ],
+        "missed": [
+          {
+            "section_id": "data-and-backend/state-mgmt/simple#changenotifier",
+            "text": "In our shopping app example, we want to manage the state of the cart in a",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          },
+          {
+            "section_id": "data-and-backend/state-mgmt/simple#changenotifierprovider",
+            "text": "`ChangeNotifierProvider` is the widget that provides an instance of",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          },
+          {
+            "section_id": "data-and-backend/state-mgmt/simple#consumer",
+            "text": "Consumer<CartModel>",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          }
+        ]
+      },
+      "dev-007": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "deployment/android#create-an-upload-keystore"
+        ],
+        "gold_sections": [
+          "deployment/android#create-an-upload-keystore"
+        ],
+        "missed": []
+      },
+      "dev-008": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "platform-integration/web/wasm#serve-the-built-output-with-an-http-server"
+        ],
+        "gold_sections": [
+          "platform-integration/web/wasm#serve-the-built-output-with-an-http-server"
+        ],
+        "missed": []
+      },
+      "dev-009": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "deployment/flavors#access-the-current-flavor",
+          "deployment/flavors#use-flavors-in-flutter-code"
+        ],
+        "gold_sections": [
+          "deployment/flavors#use-flavors-in-flutter-code",
+          "deployment/flavors#access-the-current-flavor"
+        ],
+        "missed": []
+      },
+      "dev-010": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "testing/common-errors#vertical-viewport-was-given-unbounded-height"
+        ],
+        "gold_sections": [
+          "testing/common-errors#vertical-viewport-was-given-unbounded-height"
+        ],
+        "missed": []
+      },
+      "dev-011": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "app-architecture/guide#repositories"
+        ],
+        "gold_sections": [
+          "app-architecture/guide#repositories"
+        ],
+        "missed": []
+      },
+      "dev-012": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "tools/hot-reload#recent-code-change-is-included-but-app-state-is-excluded"
+        ],
+        "gold_sections": [
+          "tools/hot-reload#recent-code-change-is-included-but-app-state-is-excluded"
+        ],
+        "missed": []
+      }
+    }
+  },
+  "s06-fixed-o15-score065-dev": {
+    "totals": {
+      "matched": 25,
+      "total": 28,
+      "all_excerpts_items": 11,
+      "at_least_one_excerpt_items": 12,
+      "total_items": 12,
+      "section_present_but_excerpt_missed": 0,
+      "excerpt_text_found_other_sections": 0
+    },
+    "items": {
+      "dev-001": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "deployment/obfuscate#limitations"
+        ],
+        "gold_sections": [
+          "deployment/obfuscate#limitations"
+        ],
+        "missed": []
+      },
+      "dev-002": {
+        "matched": 1,
+        "total": 1,
+        "covered_sections": [
+          "deployment/android#version-code-and-name"
+        ],
+        "gold_sections": [
+          "deployment/android#version-code-and-name"
+        ],
+        "missed": []
+      },
+      "dev-003": {
+        "matched": 3,
+        "total": 3,
+        "covered_sections": [
+          "security/index#reporting-vulnerabilities"
+        ],
+        "gold_sections": [
+          "security/index#reporting-vulnerabilities"
+        ],
+        "missed": []
+      },
+      "dev-004": {
+        "matched": 3,
+        "total": 3,
+        "covered_sections": [
+          "testing/build-modes#debug",
+          "tools/hot-reload#native-code"
+        ],
+        "gold_sections": [
+          "testing/build-modes#debug",
+          "tools/hot-reload#native-code"
+        ],
+        "missed": []
+      },
+      "dev-005": {
+        "matched": 3,
+        "total": 3,
+        "covered_sections": [
+          "cookbook/navigation/set-up-app-links#assetlinks-json",
+          "cookbook/navigation/set-up-universal-links#create-and-host-apple-app-site-association-json-file"
+        ],
+        "gold_sections": [
+          "cookbook/navigation/set-up-app-links#assetlinks-json",
+          "cookbook/navigation/set-up-universal-links#create-and-host-apple-app-site-association-json-file"
+        ],
+        "missed": []
+      },
+      "dev-006": {
+        "matched": 1,
+        "total": 4,
+        "covered_sections": [
+          "data-and-backend/state-mgmt/ephemeral-vs-app#app-state"
+        ],
+        "gold_sections": [
+          "data-and-backend/state-mgmt/ephemeral-vs-app#app-state",
+          "data-and-backend/state-mgmt/simple#changenotifier",
+          "data-and-backend/state-mgmt/simple#changenotifierprovider",
+          "data-and-backend/state-mgmt/simple#consumer"
+        ],
+        "missed": [
+          {
+            "section_id": "data-and-backend/state-mgmt/simple#changenotifier",
+            "text": "In our shopping app example, we want to manage the state of the cart in a",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          },
+          {
+            "section_id": "data-and-backend/state-mgmt/simple#changenotifierprovider",
+            "text": "`ChangeNotifierProvider` is the widget that provides an instance of",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          },
+          {
+            "section_id": "data-and-backend/state-mgmt/simple#consumer",
+            "text": "Consumer<CartModel>",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          }
+        ]
+      },
+      "dev-007": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "deployment/android#create-an-upload-keystore"
+        ],
+        "gold_sections": [
+          "deployment/android#create-an-upload-keystore"
+        ],
+        "missed": []
+      },
+      "dev-008": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "platform-integration/web/wasm#serve-the-built-output-with-an-http-server"
+        ],
+        "gold_sections": [
+          "platform-integration/web/wasm#serve-the-built-output-with-an-http-server"
+        ],
+        "missed": []
+      },
+      "dev-009": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "deployment/flavors#access-the-current-flavor",
+          "deployment/flavors#use-flavors-in-flutter-code"
+        ],
+        "gold_sections": [
+          "deployment/flavors#use-flavors-in-flutter-code",
+          "deployment/flavors#access-the-current-flavor"
+        ],
+        "missed": []
+      },
+      "dev-010": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "testing/common-errors#vertical-viewport-was-given-unbounded-height"
+        ],
+        "gold_sections": [
+          "testing/common-errors#vertical-viewport-was-given-unbounded-height"
+        ],
+        "missed": []
+      },
+      "dev-011": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "app-architecture/guide#repositories"
+        ],
+        "gold_sections": [
+          "app-architecture/guide#repositories"
+        ],
+        "missed": []
+      },
+      "dev-012": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "tools/hot-reload#recent-code-change-is-included-but-app-state-is-excluded"
+        ],
+        "gold_sections": [
+          "tools/hot-reload#recent-code-change-is-included-but-app-state-is-excluded"
+        ],
+        "missed": []
+      }
+    }
+  },
+  "s06-fixed512-o0-dev": {
+    "totals": {
+      "matched": 25,
+      "total": 28,
+      "all_excerpts_items": 11,
+      "at_least_one_excerpt_items": 12,
+      "total_items": 12,
+      "section_present_but_excerpt_missed": 1,
+      "excerpt_text_found_other_sections": 0
+    },
+    "items": {
+      "dev-001": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "deployment/obfuscate#limitations"
+        ],
+        "gold_sections": [
+          "deployment/obfuscate#limitations"
+        ],
+        "missed": []
+      },
+      "dev-002": {
+        "matched": 1,
+        "total": 1,
+        "covered_sections": [
+          "deployment/android#version-code-and-name"
+        ],
+        "gold_sections": [
+          "deployment/android#version-code-and-name"
+        ],
+        "missed": []
+      },
+      "dev-003": {
+        "matched": 3,
+        "total": 3,
+        "covered_sections": [
+          "security/index#reporting-vulnerabilities"
+        ],
+        "gold_sections": [
+          "security/index#reporting-vulnerabilities"
+        ],
+        "missed": []
+      },
+      "dev-004": {
+        "matched": 3,
+        "total": 3,
+        "covered_sections": [
+          "testing/build-modes#debug",
+          "tools/hot-reload#native-code"
+        ],
+        "gold_sections": [
+          "testing/build-modes#debug",
+          "tools/hot-reload#native-code"
+        ],
+        "missed": []
+      },
+      "dev-005": {
+        "matched": 3,
+        "total": 3,
+        "covered_sections": [
+          "cookbook/navigation/set-up-app-links#assetlinks-json",
+          "cookbook/navigation/set-up-universal-links#create-and-host-apple-app-site-association-json-file"
+        ],
+        "gold_sections": [
+          "cookbook/navigation/set-up-app-links#assetlinks-json",
+          "cookbook/navigation/set-up-universal-links#create-and-host-apple-app-site-association-json-file"
+        ],
+        "missed": []
+      },
+      "dev-006": {
+        "matched": 1,
+        "total": 4,
+        "covered_sections": [
+          "data-and-backend/state-mgmt/ephemeral-vs-app#app-state",
+          "data-and-backend/state-mgmt/simple#changenotifier"
+        ],
+        "gold_sections": [
+          "data-and-backend/state-mgmt/ephemeral-vs-app#app-state",
+          "data-and-backend/state-mgmt/simple#changenotifier",
+          "data-and-backend/state-mgmt/simple#changenotifierprovider",
+          "data-and-backend/state-mgmt/simple#consumer"
+        ],
+        "missed": [
+          {
+            "section_id": "data-and-backend/state-mgmt/simple#changenotifier",
+            "text": "In our shopping app example, we want to manage the state of the cart in a",
+            "section_in_context": true,
+            "context_ordinals_in_section": [
+              2
+            ],
+            "any_context_match": false
+          },
+          {
+            "section_id": "data-and-backend/state-mgmt/simple#changenotifierprovider",
+            "text": "`ChangeNotifierProvider` is the widget that provides an instance of",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          },
+          {
+            "section_id": "data-and-backend/state-mgmt/simple#consumer",
+            "text": "Consumer<CartModel>",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          }
+        ]
+      },
+      "dev-007": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "deployment/android#create-an-upload-keystore"
+        ],
+        "gold_sections": [
+          "deployment/android#create-an-upload-keystore"
+        ],
+        "missed": []
+      },
+      "dev-008": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "platform-integration/web/wasm#serve-the-built-output-with-an-http-server"
+        ],
+        "gold_sections": [
+          "platform-integration/web/wasm#serve-the-built-output-with-an-http-server"
+        ],
+        "missed": []
+      },
+      "dev-009": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "deployment/flavors#access-the-current-flavor",
+          "deployment/flavors#use-flavors-in-flutter-code"
+        ],
+        "gold_sections": [
+          "deployment/flavors#use-flavors-in-flutter-code",
+          "deployment/flavors#access-the-current-flavor"
+        ],
+        "missed": []
+      },
+      "dev-010": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "testing/common-errors#vertical-viewport-was-given-unbounded-height"
+        ],
+        "gold_sections": [
+          "testing/common-errors#vertical-viewport-was-given-unbounded-height"
+        ],
+        "missed": []
+      },
+      "dev-011": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "app-architecture/guide#repositories"
+        ],
+        "gold_sections": [
+          "app-architecture/guide#repositories"
+        ],
+        "missed": []
+      },
+      "dev-012": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "tools/hot-reload#recent-code-change-is-included-but-app-state-is-excluded"
+        ],
+        "gold_sections": [
+          "tools/hot-reload#recent-code-change-is-included-but-app-state-is-excluded"
+        ],
+        "missed": []
+      }
+    }
+  },
+  "s06-fixed512-o15-dev": {
+    "totals": {
+      "matched": 25,
+      "total": 28,
+      "all_excerpts_items": 11,
+      "at_least_one_excerpt_items": 12,
+      "total_items": 12,
+      "section_present_but_excerpt_missed": 0,
+      "excerpt_text_found_other_sections": 0
+    },
+    "items": {
+      "dev-001": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "deployment/obfuscate#limitations"
+        ],
+        "gold_sections": [
+          "deployment/obfuscate#limitations"
+        ],
+        "missed": []
+      },
+      "dev-002": {
+        "matched": 1,
+        "total": 1,
+        "covered_sections": [
+          "deployment/android#version-code-and-name"
+        ],
+        "gold_sections": [
+          "deployment/android#version-code-and-name"
+        ],
+        "missed": []
+      },
+      "dev-003": {
+        "matched": 3,
+        "total": 3,
+        "covered_sections": [
+          "security/index#reporting-vulnerabilities"
+        ],
+        "gold_sections": [
+          "security/index#reporting-vulnerabilities"
+        ],
+        "missed": []
+      },
+      "dev-004": {
+        "matched": 3,
+        "total": 3,
+        "covered_sections": [
+          "testing/build-modes#debug",
+          "tools/hot-reload#native-code"
+        ],
+        "gold_sections": [
+          "testing/build-modes#debug",
+          "tools/hot-reload#native-code"
+        ],
+        "missed": []
+      },
+      "dev-005": {
+        "matched": 3,
+        "total": 3,
+        "covered_sections": [
+          "cookbook/navigation/set-up-app-links#assetlinks-json",
+          "cookbook/navigation/set-up-universal-links#create-and-host-apple-app-site-association-json-file"
+        ],
+        "gold_sections": [
+          "cookbook/navigation/set-up-app-links#assetlinks-json",
+          "cookbook/navigation/set-up-universal-links#create-and-host-apple-app-site-association-json-file"
+        ],
+        "missed": []
+      },
+      "dev-006": {
+        "matched": 1,
+        "total": 4,
+        "covered_sections": [
+          "data-and-backend/state-mgmt/ephemeral-vs-app#app-state"
+        ],
+        "gold_sections": [
+          "data-and-backend/state-mgmt/ephemeral-vs-app#app-state",
+          "data-and-backend/state-mgmt/simple#changenotifier",
+          "data-and-backend/state-mgmt/simple#changenotifierprovider",
+          "data-and-backend/state-mgmt/simple#consumer"
+        ],
+        "missed": [
+          {
+            "section_id": "data-and-backend/state-mgmt/simple#changenotifier",
+            "text": "In our shopping app example, we want to manage the state of the cart in a",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          },
+          {
+            "section_id": "data-and-backend/state-mgmt/simple#changenotifierprovider",
+            "text": "`ChangeNotifierProvider` is the widget that provides an instance of",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          },
+          {
+            "section_id": "data-and-backend/state-mgmt/simple#consumer",
+            "text": "Consumer<CartModel>",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          }
+        ]
+      },
+      "dev-007": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "deployment/android#create-an-upload-keystore"
+        ],
+        "gold_sections": [
+          "deployment/android#create-an-upload-keystore"
+        ],
+        "missed": []
+      },
+      "dev-008": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "platform-integration/web/wasm#serve-the-built-output-with-an-http-server"
+        ],
+        "gold_sections": [
+          "platform-integration/web/wasm#serve-the-built-output-with-an-http-server"
+        ],
+        "missed": []
+      },
+      "dev-009": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "deployment/flavors#access-the-current-flavor",
+          "deployment/flavors#use-flavors-in-flutter-code"
+        ],
+        "gold_sections": [
+          "deployment/flavors#use-flavors-in-flutter-code",
+          "deployment/flavors#access-the-current-flavor"
+        ],
+        "missed": []
+      },
+      "dev-010": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "testing/common-errors#vertical-viewport-was-given-unbounded-height"
+        ],
+        "gold_sections": [
+          "testing/common-errors#vertical-viewport-was-given-unbounded-height"
+        ],
+        "missed": []
+      },
+      "dev-011": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "app-architecture/guide#repositories"
+        ],
+        "gold_sections": [
+          "app-architecture/guide#repositories"
+        ],
+        "missed": []
+      },
+      "dev-012": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "tools/hot-reload#recent-code-change-is-included-but-app-state-is-excluded"
+        ],
+        "gold_sections": [
+          "tools/hot-reload#recent-code-change-is-included-but-app-state-is-excluded"
+        ],
+        "missed": []
+      }
+    }
+  },
+  "s06-gemini-baseline-dev": {
+    "totals": {
+      "matched": 23,
+      "total": 28,
+      "all_excerpts_items": 9,
+      "at_least_one_excerpt_items": 12,
+      "total_items": 12,
+      "section_present_but_excerpt_missed": 0,
+      "excerpt_text_found_other_sections": 0
+    },
+    "items": {
+      "dev-001": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "deployment/obfuscate#limitations"
+        ],
+        "gold_sections": [
+          "deployment/obfuscate#limitations"
+        ],
+        "missed": []
+      },
+      "dev-002": {
+        "matched": 1,
+        "total": 1,
+        "covered_sections": [
+          "deployment/android#version-code-and-name"
+        ],
+        "gold_sections": [
+          "deployment/android#version-code-and-name"
+        ],
+        "missed": []
+      },
+      "dev-003": {
+        "matched": 3,
+        "total": 3,
+        "covered_sections": [
+          "security/index#reporting-vulnerabilities"
+        ],
+        "gold_sections": [
+          "security/index#reporting-vulnerabilities"
+        ],
+        "missed": []
+      },
+      "dev-004": {
+        "matched": 2,
+        "total": 3,
+        "covered_sections": [
+          "tools/hot-reload#native-code"
+        ],
+        "gold_sections": [
+          "testing/build-modes#debug",
+          "tools/hot-reload#native-code"
+        ],
+        "missed": [
+          {
+            "section_id": "testing/build-modes#debug",
+            "text": "* Hot reload works _only_ in debug mode.",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          }
+        ]
+      },
+      "dev-005": {
+        "matched": 2,
+        "total": 3,
+        "covered_sections": [
+          "cookbook/navigation/set-up-universal-links#create-and-host-apple-app-site-association-json-file"
+        ],
+        "gold_sections": [
+          "cookbook/navigation/set-up-app-links#assetlinks-json",
+          "cookbook/navigation/set-up-universal-links#create-and-host-apple-app-site-association-json-file"
+        ],
+        "missed": [
+          {
+            "section_id": "cookbook/navigation/set-up-app-links#assetlinks-json",
+            "text": "<webdomain>/.well-known/assetlinks.json",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          }
+        ]
+      },
+      "dev-006": {
+        "matched": 1,
+        "total": 4,
+        "covered_sections": [
+          "data-and-backend/state-mgmt/ephemeral-vs-app#app-state"
+        ],
+        "gold_sections": [
+          "data-and-backend/state-mgmt/ephemeral-vs-app#app-state",
+          "data-and-backend/state-mgmt/simple#changenotifier",
+          "data-and-backend/state-mgmt/simple#changenotifierprovider",
+          "data-and-backend/state-mgmt/simple#consumer"
+        ],
+        "missed": [
+          {
+            "section_id": "data-and-backend/state-mgmt/simple#changenotifier",
+            "text": "In our shopping app example, we want to manage the state of the cart in a",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          },
+          {
+            "section_id": "data-and-backend/state-mgmt/simple#changenotifierprovider",
+            "text": "`ChangeNotifierProvider` is the widget that provides an instance of",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          },
+          {
+            "section_id": "data-and-backend/state-mgmt/simple#consumer",
+            "text": "Consumer<CartModel>",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          }
+        ]
+      },
+      "dev-007": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "deployment/android#create-an-upload-keystore"
+        ],
+        "gold_sections": [
+          "deployment/android#create-an-upload-keystore"
+        ],
+        "missed": []
+      },
+      "dev-008": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "platform-integration/web/wasm#serve-the-built-output-with-an-http-server"
+        ],
+        "gold_sections": [
+          "platform-integration/web/wasm#serve-the-built-output-with-an-http-server"
+        ],
+        "missed": []
+      },
+      "dev-009": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "deployment/flavors#access-the-current-flavor",
+          "deployment/flavors#use-flavors-in-flutter-code"
+        ],
+        "gold_sections": [
+          "deployment/flavors#use-flavors-in-flutter-code",
+          "deployment/flavors#access-the-current-flavor"
+        ],
+        "missed": []
+      },
+      "dev-010": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "testing/common-errors#vertical-viewport-was-given-unbounded-height"
+        ],
+        "gold_sections": [
+          "testing/common-errors#vertical-viewport-was-given-unbounded-height"
+        ],
+        "missed": []
+      },
+      "dev-011": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "app-architecture/guide#repositories"
+        ],
+        "gold_sections": [
+          "app-architecture/guide#repositories"
+        ],
+        "missed": []
+      },
+      "dev-012": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "tools/hot-reload#recent-code-change-is-included-but-app-state-is-excluded"
+        ],
+        "gold_sections": [
+          "tools/hot-reload#recent-code-change-is-included-but-app-state-is-excluded"
+        ],
+        "missed": []
+      }
+    }
+  },
+  "s06-paragraph512-o0-dev": {
+    "totals": {
+      "matched": 25,
+      "total": 28,
+      "all_excerpts_items": 11,
+      "at_least_one_excerpt_items": 12,
+      "total_items": 12,
+      "section_present_but_excerpt_missed": 0,
+      "excerpt_text_found_other_sections": 0
+    },
+    "items": {
+      "dev-001": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "deployment/obfuscate#limitations"
+        ],
+        "gold_sections": [
+          "deployment/obfuscate#limitations"
+        ],
+        "missed": []
+      },
+      "dev-002": {
+        "matched": 1,
+        "total": 1,
+        "covered_sections": [
+          "deployment/android#version-code-and-name"
+        ],
+        "gold_sections": [
+          "deployment/android#version-code-and-name"
+        ],
+        "missed": []
+      },
+      "dev-003": {
+        "matched": 3,
+        "total": 3,
+        "covered_sections": [
+          "security/index#reporting-vulnerabilities"
+        ],
+        "gold_sections": [
+          "security/index#reporting-vulnerabilities"
+        ],
+        "missed": []
+      },
+      "dev-004": {
+        "matched": 3,
+        "total": 3,
+        "covered_sections": [
+          "testing/build-modes#debug",
+          "tools/hot-reload#native-code"
+        ],
+        "gold_sections": [
+          "testing/build-modes#debug",
+          "tools/hot-reload#native-code"
+        ],
+        "missed": []
+      },
+      "dev-005": {
+        "matched": 3,
+        "total": 3,
+        "covered_sections": [
+          "cookbook/navigation/set-up-app-links#assetlinks-json",
+          "cookbook/navigation/set-up-universal-links#create-and-host-apple-app-site-association-json-file"
+        ],
+        "gold_sections": [
+          "cookbook/navigation/set-up-app-links#assetlinks-json",
+          "cookbook/navigation/set-up-universal-links#create-and-host-apple-app-site-association-json-file"
+        ],
+        "missed": []
+      },
+      "dev-006": {
+        "matched": 1,
+        "total": 4,
+        "covered_sections": [
+          "data-and-backend/state-mgmt/ephemeral-vs-app#app-state"
+        ],
+        "gold_sections": [
+          "data-and-backend/state-mgmt/ephemeral-vs-app#app-state",
+          "data-and-backend/state-mgmt/simple#changenotifier",
+          "data-and-backend/state-mgmt/simple#changenotifierprovider",
+          "data-and-backend/state-mgmt/simple#consumer"
+        ],
+        "missed": [
+          {
+            "section_id": "data-and-backend/state-mgmt/simple#changenotifier",
+            "text": "In our shopping app example, we want to manage the state of the cart in a",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          },
+          {
+            "section_id": "data-and-backend/state-mgmt/simple#changenotifierprovider",
+            "text": "`ChangeNotifierProvider` is the widget that provides an instance of",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          },
+          {
+            "section_id": "data-and-backend/state-mgmt/simple#consumer",
+            "text": "Consumer<CartModel>",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          }
+        ]
+      },
+      "dev-007": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "deployment/android#create-an-upload-keystore"
+        ],
+        "gold_sections": [
+          "deployment/android#create-an-upload-keystore"
+        ],
+        "missed": []
+      },
+      "dev-008": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "platform-integration/web/wasm#serve-the-built-output-with-an-http-server"
+        ],
+        "gold_sections": [
+          "platform-integration/web/wasm#serve-the-built-output-with-an-http-server"
+        ],
+        "missed": []
+      },
+      "dev-009": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "deployment/flavors#access-the-current-flavor",
+          "deployment/flavors#use-flavors-in-flutter-code"
+        ],
+        "gold_sections": [
+          "deployment/flavors#use-flavors-in-flutter-code",
+          "deployment/flavors#access-the-current-flavor"
+        ],
+        "missed": []
+      },
+      "dev-010": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "testing/common-errors#vertical-viewport-was-given-unbounded-height"
+        ],
+        "gold_sections": [
+          "testing/common-errors#vertical-viewport-was-given-unbounded-height"
+        ],
+        "missed": []
+      },
+      "dev-011": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "app-architecture/guide#repositories"
+        ],
+        "gold_sections": [
+          "app-architecture/guide#repositories"
+        ],
+        "missed": []
+      },
+      "dev-012": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "tools/hot-reload#recent-code-change-is-included-but-app-state-is-excluded"
+        ],
+        "gold_sections": [
+          "tools/hot-reload#recent-code-change-is-included-but-app-state-is-excluded"
+        ],
+        "missed": []
+      }
+    }
+  },
+  "s06-reference-k10-dev": {
+    "totals": {
+      "matched": 23,
+      "total": 28,
+      "all_excerpts_items": 9,
+      "at_least_one_excerpt_items": 12,
+      "total_items": 12,
+      "section_present_but_excerpt_missed": 0,
+      "excerpt_text_found_other_sections": 0
+    },
+    "items": {
+      "dev-001": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "deployment/obfuscate#limitations"
+        ],
+        "gold_sections": [
+          "deployment/obfuscate#limitations"
+        ],
+        "missed": []
+      },
+      "dev-002": {
+        "matched": 1,
+        "total": 1,
+        "covered_sections": [
+          "deployment/android#version-code-and-name"
+        ],
+        "gold_sections": [
+          "deployment/android#version-code-and-name"
+        ],
+        "missed": []
+      },
+      "dev-003": {
+        "matched": 3,
+        "total": 3,
+        "covered_sections": [
+          "security/index#reporting-vulnerabilities"
+        ],
+        "gold_sections": [
+          "security/index#reporting-vulnerabilities"
+        ],
+        "missed": []
+      },
+      "dev-004": {
+        "matched": 2,
+        "total": 3,
+        "covered_sections": [
+          "tools/hot-reload#native-code"
+        ],
+        "gold_sections": [
+          "testing/build-modes#debug",
+          "tools/hot-reload#native-code"
+        ],
+        "missed": [
+          {
+            "section_id": "testing/build-modes#debug",
+            "text": "* Hot reload works _only_ in debug mode.",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          }
+        ]
+      },
+      "dev-005": {
+        "matched": 2,
+        "total": 3,
+        "covered_sections": [
+          "cookbook/navigation/set-up-universal-links#create-and-host-apple-app-site-association-json-file"
+        ],
+        "gold_sections": [
+          "cookbook/navigation/set-up-app-links#assetlinks-json",
+          "cookbook/navigation/set-up-universal-links#create-and-host-apple-app-site-association-json-file"
+        ],
+        "missed": [
+          {
+            "section_id": "cookbook/navigation/set-up-app-links#assetlinks-json",
+            "text": "<webdomain>/.well-known/assetlinks.json",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          }
+        ]
+      },
+      "dev-006": {
+        "matched": 1,
+        "total": 4,
+        "covered_sections": [
+          "data-and-backend/state-mgmt/ephemeral-vs-app#app-state"
+        ],
+        "gold_sections": [
+          "data-and-backend/state-mgmt/ephemeral-vs-app#app-state",
+          "data-and-backend/state-mgmt/simple#changenotifier",
+          "data-and-backend/state-mgmt/simple#changenotifierprovider",
+          "data-and-backend/state-mgmt/simple#consumer"
+        ],
+        "missed": [
+          {
+            "section_id": "data-and-backend/state-mgmt/simple#changenotifier",
+            "text": "In our shopping app example, we want to manage the state of the cart in a",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          },
+          {
+            "section_id": "data-and-backend/state-mgmt/simple#changenotifierprovider",
+            "text": "`ChangeNotifierProvider` is the widget that provides an instance of",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          },
+          {
+            "section_id": "data-and-backend/state-mgmt/simple#consumer",
+            "text": "Consumer<CartModel>",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          }
+        ]
+      },
+      "dev-007": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "deployment/android#create-an-upload-keystore"
+        ],
+        "gold_sections": [
+          "deployment/android#create-an-upload-keystore"
+        ],
+        "missed": []
+      },
+      "dev-008": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "platform-integration/web/wasm#serve-the-built-output-with-an-http-server"
+        ],
+        "gold_sections": [
+          "platform-integration/web/wasm#serve-the-built-output-with-an-http-server"
+        ],
+        "missed": []
+      },
+      "dev-009": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "deployment/flavors#access-the-current-flavor",
+          "deployment/flavors#use-flavors-in-flutter-code"
+        ],
+        "gold_sections": [
+          "deployment/flavors#use-flavors-in-flutter-code",
+          "deployment/flavors#access-the-current-flavor"
+        ],
+        "missed": []
+      },
+      "dev-010": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "testing/common-errors#vertical-viewport-was-given-unbounded-height"
+        ],
+        "gold_sections": [
+          "testing/common-errors#vertical-viewport-was-given-unbounded-height"
+        ],
+        "missed": []
+      },
+      "dev-011": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "app-architecture/guide#repositories"
+        ],
+        "gold_sections": [
+          "app-architecture/guide#repositories"
+        ],
+        "missed": []
+      },
+      "dev-012": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "tools/hot-reload#recent-code-change-is-included-but-app-state-is-excluded"
+        ],
+        "gold_sections": [
+          "tools/hot-reload#recent-code-change-is-included-but-app-state-is-excluded"
+        ],
+        "missed": []
+      }
+    }
+  },
+  "s06-reference-k3-dev": {
+    "totals": {
+      "matched": 19,
+      "total": 28,
+      "all_excerpts_items": 8,
+      "at_least_one_excerpt_items": 10,
+      "total_items": 12,
+      "section_present_but_excerpt_missed": 0,
+      "excerpt_text_found_other_sections": 0
+    },
+    "items": {
+      "dev-001": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "deployment/obfuscate#limitations"
+        ],
+        "gold_sections": [
+          "deployment/obfuscate#limitations"
+        ],
+        "missed": []
+      },
+      "dev-002": {
+        "matched": 1,
+        "total": 1,
+        "covered_sections": [
+          "deployment/android#version-code-and-name"
+        ],
+        "gold_sections": [
+          "deployment/android#version-code-and-name"
+        ],
+        "missed": []
+      },
+      "dev-003": {
+        "matched": 3,
+        "total": 3,
+        "covered_sections": [
+          "security/index#reporting-vulnerabilities"
+        ],
+        "gold_sections": [
+          "security/index#reporting-vulnerabilities"
+        ],
+        "missed": []
+      },
+      "dev-004": {
+        "matched": 2,
+        "total": 3,
+        "covered_sections": [
+          "tools/hot-reload#native-code"
+        ],
+        "gold_sections": [
+          "testing/build-modes#debug",
+          "tools/hot-reload#native-code"
+        ],
+        "missed": [
+          {
+            "section_id": "testing/build-modes#debug",
+            "text": "* Hot reload works _only_ in debug mode.",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          }
+        ]
+      },
+      "dev-005": {
+        "matched": 0,
+        "total": 3,
+        "covered_sections": [],
+        "gold_sections": [
+          "cookbook/navigation/set-up-app-links#assetlinks-json",
+          "cookbook/navigation/set-up-universal-links#create-and-host-apple-app-site-association-json-file"
+        ],
+        "missed": [
+          {
+            "section_id": "cookbook/navigation/set-up-universal-links#create-and-host-apple-app-site-association-json-file",
+            "text": "`<webdomain>/.well-known/apple-app-site-association`",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          },
+          {
+            "section_id": "cookbook/navigation/set-up-app-links#assetlinks-json",
+            "text": "<webdomain>/.well-known/assetlinks.json",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          },
+          {
+            "section_id": "cookbook/navigation/set-up-universal-links#create-and-host-apple-app-site-association-json-file",
+            "text": "<webdomain>/.well-known/apple-app-site-association",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          }
+        ]
+      },
+      "dev-006": {
+        "matched": 1,
+        "total": 4,
+        "covered_sections": [
+          "data-and-backend/state-mgmt/ephemeral-vs-app#app-state"
+        ],
+        "gold_sections": [
+          "data-and-backend/state-mgmt/ephemeral-vs-app#app-state",
+          "data-and-backend/state-mgmt/simple#changenotifier",
+          "data-and-backend/state-mgmt/simple#changenotifierprovider",
+          "data-and-backend/state-mgmt/simple#consumer"
+        ],
+        "missed": [
+          {
+            "section_id": "data-and-backend/state-mgmt/simple#changenotifier",
+            "text": "In our shopping app example, we want to manage the state of the cart in a",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          },
+          {
+            "section_id": "data-and-backend/state-mgmt/simple#changenotifierprovider",
+            "text": "`ChangeNotifierProvider` is the widget that provides an instance of",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          },
+          {
+            "section_id": "data-and-backend/state-mgmt/simple#consumer",
+            "text": "Consumer<CartModel>",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          }
+        ]
+      },
+      "dev-007": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "deployment/android#create-an-upload-keystore"
+        ],
+        "gold_sections": [
+          "deployment/android#create-an-upload-keystore"
+        ],
+        "missed": []
+      },
+      "dev-008": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "platform-integration/web/wasm#serve-the-built-output-with-an-http-server"
+        ],
+        "gold_sections": [
+          "platform-integration/web/wasm#serve-the-built-output-with-an-http-server"
+        ],
+        "missed": []
+      },
+      "dev-009": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "deployment/flavors#access-the-current-flavor",
+          "deployment/flavors#use-flavors-in-flutter-code"
+        ],
+        "gold_sections": [
+          "deployment/flavors#use-flavors-in-flutter-code",
+          "deployment/flavors#access-the-current-flavor"
+        ],
+        "missed": []
+      },
+      "dev-010": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "testing/common-errors#vertical-viewport-was-given-unbounded-height"
+        ],
+        "gold_sections": [
+          "testing/common-errors#vertical-viewport-was-given-unbounded-height"
+        ],
+        "missed": []
+      },
+      "dev-011": {
+        "matched": 0,
+        "total": 2,
+        "covered_sections": [],
+        "gold_sections": [
+          "app-architecture/guide#repositories"
+        ],
+        "missed": [
+          {
+            "section_id": "app-architecture/guide#repositories",
+            "text": "Repositories should never be aware of each other.",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          },
+          {
+            "section_id": "app-architecture/guide#repositories",
+            "text": "you should combine the data in the view model or in the domain layer,",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          }
+        ]
+      },
+      "dev-012": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "tools/hot-reload#recent-code-change-is-included-but-app-state-is-excluded"
+        ],
+        "gold_sections": [
+          "tools/hot-reload#recent-code-change-is-included-but-app-state-is-excluded"
+        ],
+        "missed": []
+      }
+    }
+  },
+  "s06-reference-k5-dev": {
+    "totals": {
+      "matched": 23,
+      "total": 28,
+      "all_excerpts_items": 9,
+      "at_least_one_excerpt_items": 12,
+      "total_items": 12,
+      "section_present_but_excerpt_missed": 0,
+      "excerpt_text_found_other_sections": 0
+    },
+    "items": {
+      "dev-001": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "deployment/obfuscate#limitations"
+        ],
+        "gold_sections": [
+          "deployment/obfuscate#limitations"
+        ],
+        "missed": []
+      },
+      "dev-002": {
+        "matched": 1,
+        "total": 1,
+        "covered_sections": [
+          "deployment/android#version-code-and-name"
+        ],
+        "gold_sections": [
+          "deployment/android#version-code-and-name"
+        ],
+        "missed": []
+      },
+      "dev-003": {
+        "matched": 3,
+        "total": 3,
+        "covered_sections": [
+          "security/index#reporting-vulnerabilities"
+        ],
+        "gold_sections": [
+          "security/index#reporting-vulnerabilities"
+        ],
+        "missed": []
+      },
+      "dev-004": {
+        "matched": 2,
+        "total": 3,
+        "covered_sections": [
+          "tools/hot-reload#native-code"
+        ],
+        "gold_sections": [
+          "testing/build-modes#debug",
+          "tools/hot-reload#native-code"
+        ],
+        "missed": [
+          {
+            "section_id": "testing/build-modes#debug",
+            "text": "* Hot reload works _only_ in debug mode.",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          }
+        ]
+      },
+      "dev-005": {
+        "matched": 2,
+        "total": 3,
+        "covered_sections": [
+          "cookbook/navigation/set-up-universal-links#create-and-host-apple-app-site-association-json-file"
+        ],
+        "gold_sections": [
+          "cookbook/navigation/set-up-app-links#assetlinks-json",
+          "cookbook/navigation/set-up-universal-links#create-and-host-apple-app-site-association-json-file"
+        ],
+        "missed": [
+          {
+            "section_id": "cookbook/navigation/set-up-app-links#assetlinks-json",
+            "text": "<webdomain>/.well-known/assetlinks.json",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          }
+        ]
+      },
+      "dev-006": {
+        "matched": 1,
+        "total": 4,
+        "covered_sections": [
+          "data-and-backend/state-mgmt/ephemeral-vs-app#app-state"
+        ],
+        "gold_sections": [
+          "data-and-backend/state-mgmt/ephemeral-vs-app#app-state",
+          "data-and-backend/state-mgmt/simple#changenotifier",
+          "data-and-backend/state-mgmt/simple#changenotifierprovider",
+          "data-and-backend/state-mgmt/simple#consumer"
+        ],
+        "missed": [
+          {
+            "section_id": "data-and-backend/state-mgmt/simple#changenotifier",
+            "text": "In our shopping app example, we want to manage the state of the cart in a",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          },
+          {
+            "section_id": "data-and-backend/state-mgmt/simple#changenotifierprovider",
+            "text": "`ChangeNotifierProvider` is the widget that provides an instance of",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          },
+          {
+            "section_id": "data-and-backend/state-mgmt/simple#consumer",
+            "text": "Consumer<CartModel>",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          }
+        ]
+      },
+      "dev-007": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "deployment/android#create-an-upload-keystore"
+        ],
+        "gold_sections": [
+          "deployment/android#create-an-upload-keystore"
+        ],
+        "missed": []
+      },
+      "dev-008": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "platform-integration/web/wasm#serve-the-built-output-with-an-http-server"
+        ],
+        "gold_sections": [
+          "platform-integration/web/wasm#serve-the-built-output-with-an-http-server"
+        ],
+        "missed": []
+      },
+      "dev-009": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "deployment/flavors#access-the-current-flavor",
+          "deployment/flavors#use-flavors-in-flutter-code"
+        ],
+        "gold_sections": [
+          "deployment/flavors#use-flavors-in-flutter-code",
+          "deployment/flavors#access-the-current-flavor"
+        ],
+        "missed": []
+      },
+      "dev-010": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "testing/common-errors#vertical-viewport-was-given-unbounded-height"
+        ],
+        "gold_sections": [
+          "testing/common-errors#vertical-viewport-was-given-unbounded-height"
+        ],
+        "missed": []
+      },
+      "dev-011": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "app-architecture/guide#repositories"
+        ],
+        "gold_sections": [
+          "app-architecture/guide#repositories"
+        ],
+        "missed": []
+      },
+      "dev-012": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "tools/hot-reload#recent-code-change-is-included-but-app-state-is-excluded"
+        ],
+        "gold_sections": [
+          "tools/hot-reload#recent-code-change-is-included-but-app-state-is-excluded"
+        ],
+        "missed": []
+      }
+    }
+  },
+  "s06-reference-rerank-dev": {
+    "totals": {
+      "matched": 25,
+      "total": 28,
+      "all_excerpts_items": 10,
+      "at_least_one_excerpt_items": 12,
+      "total_items": 12,
+      "section_present_but_excerpt_missed": 0,
+      "excerpt_text_found_other_sections": 0
+    },
+    "items": {
+      "dev-001": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "deployment/obfuscate#limitations"
+        ],
+        "gold_sections": [
+          "deployment/obfuscate#limitations"
+        ],
+        "missed": []
+      },
+      "dev-002": {
+        "matched": 1,
+        "total": 1,
+        "covered_sections": [
+          "deployment/android#version-code-and-name"
+        ],
+        "gold_sections": [
+          "deployment/android#version-code-and-name"
+        ],
+        "missed": []
+      },
+      "dev-003": {
+        "matched": 3,
+        "total": 3,
+        "covered_sections": [
+          "security/index#reporting-vulnerabilities"
+        ],
+        "gold_sections": [
+          "security/index#reporting-vulnerabilities"
+        ],
+        "missed": []
+      },
+      "dev-004": {
+        "matched": 2,
+        "total": 3,
+        "covered_sections": [
+          "tools/hot-reload#native-code"
+        ],
+        "gold_sections": [
+          "testing/build-modes#debug",
+          "tools/hot-reload#native-code"
+        ],
+        "missed": [
+          {
+            "section_id": "testing/build-modes#debug",
+            "text": "* Hot reload works _only_ in debug mode.",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          }
+        ]
+      },
+      "dev-005": {
+        "matched": 3,
+        "total": 3,
+        "covered_sections": [
+          "cookbook/navigation/set-up-app-links#assetlinks-json",
+          "cookbook/navigation/set-up-universal-links#create-and-host-apple-app-site-association-json-file"
+        ],
+        "gold_sections": [
+          "cookbook/navigation/set-up-app-links#assetlinks-json",
+          "cookbook/navigation/set-up-universal-links#create-and-host-apple-app-site-association-json-file"
+        ],
+        "missed": []
+      },
+      "dev-006": {
+        "matched": 2,
+        "total": 4,
+        "covered_sections": [
+          "data-and-backend/state-mgmt/ephemeral-vs-app#app-state",
+          "data-and-backend/state-mgmt/simple#changenotifierprovider"
+        ],
+        "gold_sections": [
+          "data-and-backend/state-mgmt/ephemeral-vs-app#app-state",
+          "data-and-backend/state-mgmt/simple#changenotifier",
+          "data-and-backend/state-mgmt/simple#changenotifierprovider",
+          "data-and-backend/state-mgmt/simple#consumer"
+        ],
+        "missed": [
+          {
+            "section_id": "data-and-backend/state-mgmt/simple#changenotifier",
+            "text": "In our shopping app example, we want to manage the state of the cart in a",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          },
+          {
+            "section_id": "data-and-backend/state-mgmt/simple#consumer",
+            "text": "Consumer<CartModel>",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          }
+        ]
+      },
+      "dev-007": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "deployment/android#create-an-upload-keystore"
+        ],
+        "gold_sections": [
+          "deployment/android#create-an-upload-keystore"
+        ],
+        "missed": []
+      },
+      "dev-008": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "platform-integration/web/wasm#serve-the-built-output-with-an-http-server"
+        ],
+        "gold_sections": [
+          "platform-integration/web/wasm#serve-the-built-output-with-an-http-server"
+        ],
+        "missed": []
+      },
+      "dev-009": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "deployment/flavors#access-the-current-flavor",
+          "deployment/flavors#use-flavors-in-flutter-code"
+        ],
+        "gold_sections": [
+          "deployment/flavors#use-flavors-in-flutter-code",
+          "deployment/flavors#access-the-current-flavor"
+        ],
+        "missed": []
+      },
+      "dev-010": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "testing/common-errors#vertical-viewport-was-given-unbounded-height"
+        ],
+        "gold_sections": [
+          "testing/common-errors#vertical-viewport-was-given-unbounded-height"
+        ],
+        "missed": []
+      },
+      "dev-011": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "app-architecture/guide#repositories"
+        ],
+        "gold_sections": [
+          "app-architecture/guide#repositories"
+        ],
+        "missed": []
+      },
+      "dev-012": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "tools/hot-reload#recent-code-change-is-included-but-app-state-is-excluded"
+        ],
+        "gold_sections": [
+          "tools/hot-reload#recent-code-change-is-included-but-app-state-is-excluded"
+        ],
+        "missed": []
+      }
+    }
+  },
+  "s06-section1024-dev": {
+    "totals": {
+      "matched": 23,
+      "total": 28,
+      "all_excerpts_items": 9,
+      "at_least_one_excerpt_items": 12,
+      "total_items": 12,
+      "section_present_but_excerpt_missed": 0,
+      "excerpt_text_found_other_sections": 0
+    },
+    "items": {
+      "dev-001": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "deployment/obfuscate#limitations"
+        ],
+        "gold_sections": [
+          "deployment/obfuscate#limitations"
+        ],
+        "missed": []
+      },
+      "dev-002": {
+        "matched": 1,
+        "total": 1,
+        "covered_sections": [
+          "deployment/android#version-code-and-name"
+        ],
+        "gold_sections": [
+          "deployment/android#version-code-and-name"
+        ],
+        "missed": []
+      },
+      "dev-003": {
+        "matched": 3,
+        "total": 3,
+        "covered_sections": [
+          "security/index#reporting-vulnerabilities"
+        ],
+        "gold_sections": [
+          "security/index#reporting-vulnerabilities"
+        ],
+        "missed": []
+      },
+      "dev-004": {
+        "matched": 2,
+        "total": 3,
+        "covered_sections": [
+          "tools/hot-reload#native-code"
+        ],
+        "gold_sections": [
+          "testing/build-modes#debug",
+          "tools/hot-reload#native-code"
+        ],
+        "missed": [
+          {
+            "section_id": "testing/build-modes#debug",
+            "text": "* Hot reload works _only_ in debug mode.",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          }
+        ]
+      },
+      "dev-005": {
+        "matched": 2,
+        "total": 3,
+        "covered_sections": [
+          "cookbook/navigation/set-up-universal-links#create-and-host-apple-app-site-association-json-file"
+        ],
+        "gold_sections": [
+          "cookbook/navigation/set-up-app-links#assetlinks-json",
+          "cookbook/navigation/set-up-universal-links#create-and-host-apple-app-site-association-json-file"
+        ],
+        "missed": [
+          {
+            "section_id": "cookbook/navigation/set-up-app-links#assetlinks-json",
+            "text": "<webdomain>/.well-known/assetlinks.json",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          }
+        ]
+      },
+      "dev-006": {
+        "matched": 1,
+        "total": 4,
+        "covered_sections": [
+          "data-and-backend/state-mgmt/ephemeral-vs-app#app-state"
+        ],
+        "gold_sections": [
+          "data-and-backend/state-mgmt/ephemeral-vs-app#app-state",
+          "data-and-backend/state-mgmt/simple#changenotifier",
+          "data-and-backend/state-mgmt/simple#changenotifierprovider",
+          "data-and-backend/state-mgmt/simple#consumer"
+        ],
+        "missed": [
+          {
+            "section_id": "data-and-backend/state-mgmt/simple#changenotifier",
+            "text": "In our shopping app example, we want to manage the state of the cart in a",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          },
+          {
+            "section_id": "data-and-backend/state-mgmt/simple#changenotifierprovider",
+            "text": "`ChangeNotifierProvider` is the widget that provides an instance of",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          },
+          {
+            "section_id": "data-and-backend/state-mgmt/simple#consumer",
+            "text": "Consumer<CartModel>",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          }
+        ]
+      },
+      "dev-007": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "deployment/android#create-an-upload-keystore"
+        ],
+        "gold_sections": [
+          "deployment/android#create-an-upload-keystore"
+        ],
+        "missed": []
+      },
+      "dev-008": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "platform-integration/web/wasm#serve-the-built-output-with-an-http-server"
+        ],
+        "gold_sections": [
+          "platform-integration/web/wasm#serve-the-built-output-with-an-http-server"
+        ],
+        "missed": []
+      },
+      "dev-009": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "deployment/flavors#access-the-current-flavor",
+          "deployment/flavors#use-flavors-in-flutter-code"
+        ],
+        "gold_sections": [
+          "deployment/flavors#use-flavors-in-flutter-code",
+          "deployment/flavors#access-the-current-flavor"
+        ],
+        "missed": []
+      },
+      "dev-010": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "testing/common-errors#vertical-viewport-was-given-unbounded-height"
+        ],
+        "gold_sections": [
+          "testing/common-errors#vertical-viewport-was-given-unbounded-height"
+        ],
+        "missed": []
+      },
+      "dev-011": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "app-architecture/guide#repositories"
+        ],
+        "gold_sections": [
+          "app-architecture/guide#repositories"
+        ],
+        "missed": []
+      },
+      "dev-012": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "tools/hot-reload#recent-code-change-is-included-but-app-state-is-excluded"
+        ],
+        "gold_sections": [
+          "tools/hot-reload#recent-code-change-is-included-but-app-state-is-excluded"
+        ],
+        "missed": []
+      }
+    }
+  },
+  "s06-section256-dev": {
+    "totals": {
+      "matched": 23,
+      "total": 28,
+      "all_excerpts_items": 9,
+      "at_least_one_excerpt_items": 12,
+      "total_items": 12,
+      "section_present_but_excerpt_missed": 0,
+      "excerpt_text_found_other_sections": 0
+    },
+    "items": {
+      "dev-001": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "deployment/obfuscate#limitations"
+        ],
+        "gold_sections": [
+          "deployment/obfuscate#limitations"
+        ],
+        "missed": []
+      },
+      "dev-002": {
+        "matched": 1,
+        "total": 1,
+        "covered_sections": [
+          "deployment/android#version-code-and-name"
+        ],
+        "gold_sections": [
+          "deployment/android#version-code-and-name"
+        ],
+        "missed": []
+      },
+      "dev-003": {
+        "matched": 3,
+        "total": 3,
+        "covered_sections": [
+          "security/index#reporting-vulnerabilities"
+        ],
+        "gold_sections": [
+          "security/index#reporting-vulnerabilities"
+        ],
+        "missed": []
+      },
+      "dev-004": {
+        "matched": 2,
+        "total": 3,
+        "covered_sections": [
+          "tools/hot-reload#native-code"
+        ],
+        "gold_sections": [
+          "testing/build-modes#debug",
+          "tools/hot-reload#native-code"
+        ],
+        "missed": [
+          {
+            "section_id": "testing/build-modes#debug",
+            "text": "* Hot reload works _only_ in debug mode.",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          }
+        ]
+      },
+      "dev-005": {
+        "matched": 2,
+        "total": 3,
+        "covered_sections": [
+          "cookbook/navigation/set-up-universal-links#create-and-host-apple-app-site-association-json-file"
+        ],
+        "gold_sections": [
+          "cookbook/navigation/set-up-app-links#assetlinks-json",
+          "cookbook/navigation/set-up-universal-links#create-and-host-apple-app-site-association-json-file"
+        ],
+        "missed": [
+          {
+            "section_id": "cookbook/navigation/set-up-app-links#assetlinks-json",
+            "text": "<webdomain>/.well-known/assetlinks.json",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          }
+        ]
+      },
+      "dev-006": {
+        "matched": 1,
+        "total": 4,
+        "covered_sections": [
+          "data-and-backend/state-mgmt/ephemeral-vs-app#app-state"
+        ],
+        "gold_sections": [
+          "data-and-backend/state-mgmt/ephemeral-vs-app#app-state",
+          "data-and-backend/state-mgmt/simple#changenotifier",
+          "data-and-backend/state-mgmt/simple#changenotifierprovider",
+          "data-and-backend/state-mgmt/simple#consumer"
+        ],
+        "missed": [
+          {
+            "section_id": "data-and-backend/state-mgmt/simple#changenotifier",
+            "text": "In our shopping app example, we want to manage the state of the cart in a",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          },
+          {
+            "section_id": "data-and-backend/state-mgmt/simple#changenotifierprovider",
+            "text": "`ChangeNotifierProvider` is the widget that provides an instance of",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          },
+          {
+            "section_id": "data-and-backend/state-mgmt/simple#consumer",
+            "text": "Consumer<CartModel>",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          }
+        ]
+      },
+      "dev-007": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "deployment/android#create-an-upload-keystore"
+        ],
+        "gold_sections": [
+          "deployment/android#create-an-upload-keystore"
+        ],
+        "missed": []
+      },
+      "dev-008": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "platform-integration/web/wasm#serve-the-built-output-with-an-http-server"
+        ],
+        "gold_sections": [
+          "platform-integration/web/wasm#serve-the-built-output-with-an-http-server"
+        ],
+        "missed": []
+      },
+      "dev-009": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "deployment/flavors#access-the-current-flavor",
+          "deployment/flavors#use-flavors-in-flutter-code"
+        ],
+        "gold_sections": [
+          "deployment/flavors#use-flavors-in-flutter-code",
+          "deployment/flavors#access-the-current-flavor"
+        ],
+        "missed": []
+      },
+      "dev-010": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "testing/common-errors#vertical-viewport-was-given-unbounded-height"
+        ],
+        "gold_sections": [
+          "testing/common-errors#vertical-viewport-was-given-unbounded-height"
+        ],
+        "missed": []
+      },
+      "dev-011": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "app-architecture/guide#repositories"
+        ],
+        "gold_sections": [
+          "app-architecture/guide#repositories"
+        ],
+        "missed": []
+      },
+      "dev-012": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "tools/hot-reload#recent-code-change-is-included-but-app-state-is-excluded"
+        ],
+        "gold_sections": [
+          "tools/hot-reload#recent-code-change-is-included-but-app-state-is-excluded"
+        ],
+        "missed": []
+      }
+    }
+  },
+  "s06-voyage-baseline-dev": {
+    "totals": {
+      "matched": 24,
+      "total": 28,
+      "all_excerpts_items": 10,
+      "at_least_one_excerpt_items": 12,
+      "total_items": 12,
+      "section_present_but_excerpt_missed": 0,
+      "excerpt_text_found_other_sections": 0
+    },
+    "items": {
+      "dev-001": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "deployment/obfuscate#limitations"
+        ],
+        "gold_sections": [
+          "deployment/obfuscate#limitations"
+        ],
+        "missed": []
+      },
+      "dev-002": {
+        "matched": 1,
+        "total": 1,
+        "covered_sections": [
+          "deployment/android#version-code-and-name"
+        ],
+        "gold_sections": [
+          "deployment/android#version-code-and-name"
+        ],
+        "missed": []
+      },
+      "dev-003": {
+        "matched": 3,
+        "total": 3,
+        "covered_sections": [
+          "security/index#reporting-vulnerabilities"
+        ],
+        "gold_sections": [
+          "security/index#reporting-vulnerabilities"
+        ],
+        "missed": []
+      },
+      "dev-004": {
+        "matched": 2,
+        "total": 3,
+        "covered_sections": [
+          "tools/hot-reload#native-code"
+        ],
+        "gold_sections": [
+          "testing/build-modes#debug",
+          "tools/hot-reload#native-code"
+        ],
+        "missed": [
+          {
+            "section_id": "testing/build-modes#debug",
+            "text": "* Hot reload works _only_ in debug mode.",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          }
+        ]
+      },
+      "dev-005": {
+        "matched": 3,
+        "total": 3,
+        "covered_sections": [
+          "cookbook/navigation/set-up-app-links#assetlinks-json",
+          "cookbook/navigation/set-up-universal-links#create-and-host-apple-app-site-association-json-file"
+        ],
+        "gold_sections": [
+          "cookbook/navigation/set-up-app-links#assetlinks-json",
+          "cookbook/navigation/set-up-universal-links#create-and-host-apple-app-site-association-json-file"
+        ],
+        "missed": []
+      },
+      "dev-006": {
+        "matched": 1,
+        "total": 4,
+        "covered_sections": [
+          "data-and-backend/state-mgmt/ephemeral-vs-app#app-state"
+        ],
+        "gold_sections": [
+          "data-and-backend/state-mgmt/ephemeral-vs-app#app-state",
+          "data-and-backend/state-mgmt/simple#changenotifier",
+          "data-and-backend/state-mgmt/simple#changenotifierprovider",
+          "data-and-backend/state-mgmt/simple#consumer"
+        ],
+        "missed": [
+          {
+            "section_id": "data-and-backend/state-mgmt/simple#changenotifier",
+            "text": "In our shopping app example, we want to manage the state of the cart in a",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          },
+          {
+            "section_id": "data-and-backend/state-mgmt/simple#changenotifierprovider",
+            "text": "`ChangeNotifierProvider` is the widget that provides an instance of",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          },
+          {
+            "section_id": "data-and-backend/state-mgmt/simple#consumer",
+            "text": "Consumer<CartModel>",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          }
+        ]
+      },
+      "dev-007": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "deployment/android#create-an-upload-keystore"
+        ],
+        "gold_sections": [
+          "deployment/android#create-an-upload-keystore"
+        ],
+        "missed": []
+      },
+      "dev-008": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "platform-integration/web/wasm#serve-the-built-output-with-an-http-server"
+        ],
+        "gold_sections": [
+          "platform-integration/web/wasm#serve-the-built-output-with-an-http-server"
+        ],
+        "missed": []
+      },
+      "dev-009": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "deployment/flavors#access-the-current-flavor",
+          "deployment/flavors#use-flavors-in-flutter-code"
+        ],
+        "gold_sections": [
+          "deployment/flavors#use-flavors-in-flutter-code",
+          "deployment/flavors#access-the-current-flavor"
+        ],
+        "missed": []
+      },
+      "dev-010": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "testing/common-errors#vertical-viewport-was-given-unbounded-height"
+        ],
+        "gold_sections": [
+          "testing/common-errors#vertical-viewport-was-given-unbounded-height"
+        ],
+        "missed": []
+      },
+      "dev-011": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "app-architecture/guide#repositories"
+        ],
+        "gold_sections": [
+          "app-architecture/guide#repositories"
+        ],
+        "missed": []
+      },
+      "dev-012": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "tools/hot-reload#recent-code-change-is-included-but-app-state-is-excluded"
+        ],
+        "gold_sections": [
+          "tools/hot-reload#recent-code-change-is-included-but-app-state-is-excluded"
+        ],
+        "missed": []
+      }
+    }
+  },
+  "s06-voyage-k10-dev": {
+    "totals": {
+      "matched": 24,
+      "total": 28,
+      "all_excerpts_items": 10,
+      "at_least_one_excerpt_items": 12,
+      "total_items": 12,
+      "section_present_but_excerpt_missed": 0,
+      "excerpt_text_found_other_sections": 0
+    },
+    "items": {
+      "dev-001": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "deployment/obfuscate#limitations"
+        ],
+        "gold_sections": [
+          "deployment/obfuscate#limitations"
+        ],
+        "missed": []
+      },
+      "dev-002": {
+        "matched": 1,
+        "total": 1,
+        "covered_sections": [
+          "deployment/android#version-code-and-name"
+        ],
+        "gold_sections": [
+          "deployment/android#version-code-and-name"
+        ],
+        "missed": []
+      },
+      "dev-003": {
+        "matched": 3,
+        "total": 3,
+        "covered_sections": [
+          "security/index#reporting-vulnerabilities"
+        ],
+        "gold_sections": [
+          "security/index#reporting-vulnerabilities"
+        ],
+        "missed": []
+      },
+      "dev-004": {
+        "matched": 2,
+        "total": 3,
+        "covered_sections": [
+          "tools/hot-reload#native-code"
+        ],
+        "gold_sections": [
+          "testing/build-modes#debug",
+          "tools/hot-reload#native-code"
+        ],
+        "missed": [
+          {
+            "section_id": "testing/build-modes#debug",
+            "text": "* Hot reload works _only_ in debug mode.",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          }
+        ]
+      },
+      "dev-005": {
+        "matched": 3,
+        "total": 3,
+        "covered_sections": [
+          "cookbook/navigation/set-up-app-links#assetlinks-json",
+          "cookbook/navigation/set-up-universal-links#create-and-host-apple-app-site-association-json-file"
+        ],
+        "gold_sections": [
+          "cookbook/navigation/set-up-app-links#assetlinks-json",
+          "cookbook/navigation/set-up-universal-links#create-and-host-apple-app-site-association-json-file"
+        ],
+        "missed": []
+      },
+      "dev-006": {
+        "matched": 1,
+        "total": 4,
+        "covered_sections": [
+          "data-and-backend/state-mgmt/ephemeral-vs-app#app-state"
+        ],
+        "gold_sections": [
+          "data-and-backend/state-mgmt/ephemeral-vs-app#app-state",
+          "data-and-backend/state-mgmt/simple#changenotifier",
+          "data-and-backend/state-mgmt/simple#changenotifierprovider",
+          "data-and-backend/state-mgmt/simple#consumer"
+        ],
+        "missed": [
+          {
+            "section_id": "data-and-backend/state-mgmt/simple#changenotifier",
+            "text": "In our shopping app example, we want to manage the state of the cart in a",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          },
+          {
+            "section_id": "data-and-backend/state-mgmt/simple#changenotifierprovider",
+            "text": "`ChangeNotifierProvider` is the widget that provides an instance of",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          },
+          {
+            "section_id": "data-and-backend/state-mgmt/simple#consumer",
+            "text": "Consumer<CartModel>",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          }
+        ]
+      },
+      "dev-007": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "deployment/android#create-an-upload-keystore"
+        ],
+        "gold_sections": [
+          "deployment/android#create-an-upload-keystore"
+        ],
+        "missed": []
+      },
+      "dev-008": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "platform-integration/web/wasm#serve-the-built-output-with-an-http-server"
+        ],
+        "gold_sections": [
+          "platform-integration/web/wasm#serve-the-built-output-with-an-http-server"
+        ],
+        "missed": []
+      },
+      "dev-009": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "deployment/flavors#access-the-current-flavor",
+          "deployment/flavors#use-flavors-in-flutter-code"
+        ],
+        "gold_sections": [
+          "deployment/flavors#use-flavors-in-flutter-code",
+          "deployment/flavors#access-the-current-flavor"
+        ],
+        "missed": []
+      },
+      "dev-010": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "testing/common-errors#vertical-viewport-was-given-unbounded-height"
+        ],
+        "gold_sections": [
+          "testing/common-errors#vertical-viewport-was-given-unbounded-height"
+        ],
+        "missed": []
+      },
+      "dev-011": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "app-architecture/guide#repositories"
+        ],
+        "gold_sections": [
+          "app-architecture/guide#repositories"
+        ],
+        "missed": []
+      },
+      "dev-012": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "tools/hot-reload#recent-code-change-is-included-but-app-state-is-excluded"
+        ],
+        "gold_sections": [
+          "tools/hot-reload#recent-code-change-is-included-but-app-state-is-excluded"
+        ],
+        "missed": []
+      }
+    }
+  },
+  "s06-voyage-k10-score045-dev": {
+    "totals": {
+      "matched": 24,
+      "total": 28,
+      "all_excerpts_items": 10,
+      "at_least_one_excerpt_items": 12,
+      "total_items": 12,
+      "section_present_but_excerpt_missed": 0,
+      "excerpt_text_found_other_sections": 0
+    },
+    "items": {
+      "dev-001": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "deployment/obfuscate#limitations"
+        ],
+        "gold_sections": [
+          "deployment/obfuscate#limitations"
+        ],
+        "missed": []
+      },
+      "dev-002": {
+        "matched": 1,
+        "total": 1,
+        "covered_sections": [
+          "deployment/android#version-code-and-name"
+        ],
+        "gold_sections": [
+          "deployment/android#version-code-and-name"
+        ],
+        "missed": []
+      },
+      "dev-003": {
+        "matched": 3,
+        "total": 3,
+        "covered_sections": [
+          "security/index#reporting-vulnerabilities"
+        ],
+        "gold_sections": [
+          "security/index#reporting-vulnerabilities"
+        ],
+        "missed": []
+      },
+      "dev-004": {
+        "matched": 2,
+        "total": 3,
+        "covered_sections": [
+          "tools/hot-reload#native-code"
+        ],
+        "gold_sections": [
+          "testing/build-modes#debug",
+          "tools/hot-reload#native-code"
+        ],
+        "missed": [
+          {
+            "section_id": "testing/build-modes#debug",
+            "text": "* Hot reload works _only_ in debug mode.",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          }
+        ]
+      },
+      "dev-005": {
+        "matched": 3,
+        "total": 3,
+        "covered_sections": [
+          "cookbook/navigation/set-up-app-links#assetlinks-json",
+          "cookbook/navigation/set-up-universal-links#create-and-host-apple-app-site-association-json-file"
+        ],
+        "gold_sections": [
+          "cookbook/navigation/set-up-app-links#assetlinks-json",
+          "cookbook/navigation/set-up-universal-links#create-and-host-apple-app-site-association-json-file"
+        ],
+        "missed": []
+      },
+      "dev-006": {
+        "matched": 1,
+        "total": 4,
+        "covered_sections": [
+          "data-and-backend/state-mgmt/ephemeral-vs-app#app-state"
+        ],
+        "gold_sections": [
+          "data-and-backend/state-mgmt/ephemeral-vs-app#app-state",
+          "data-and-backend/state-mgmt/simple#changenotifier",
+          "data-and-backend/state-mgmt/simple#changenotifierprovider",
+          "data-and-backend/state-mgmt/simple#consumer"
+        ],
+        "missed": [
+          {
+            "section_id": "data-and-backend/state-mgmt/simple#changenotifier",
+            "text": "In our shopping app example, we want to manage the state of the cart in a",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          },
+          {
+            "section_id": "data-and-backend/state-mgmt/simple#changenotifierprovider",
+            "text": "`ChangeNotifierProvider` is the widget that provides an instance of",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          },
+          {
+            "section_id": "data-and-backend/state-mgmt/simple#consumer",
+            "text": "Consumer<CartModel>",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          }
+        ]
+      },
+      "dev-007": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "deployment/android#create-an-upload-keystore"
+        ],
+        "gold_sections": [
+          "deployment/android#create-an-upload-keystore"
+        ],
+        "missed": []
+      },
+      "dev-008": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "platform-integration/web/wasm#serve-the-built-output-with-an-http-server"
+        ],
+        "gold_sections": [
+          "platform-integration/web/wasm#serve-the-built-output-with-an-http-server"
+        ],
+        "missed": []
+      },
+      "dev-009": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "deployment/flavors#access-the-current-flavor",
+          "deployment/flavors#use-flavors-in-flutter-code"
+        ],
+        "gold_sections": [
+          "deployment/flavors#use-flavors-in-flutter-code",
+          "deployment/flavors#access-the-current-flavor"
+        ],
+        "missed": []
+      },
+      "dev-010": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "testing/common-errors#vertical-viewport-was-given-unbounded-height"
+        ],
+        "gold_sections": [
+          "testing/common-errors#vertical-viewport-was-given-unbounded-height"
+        ],
+        "missed": []
+      },
+      "dev-011": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "app-architecture/guide#repositories"
+        ],
+        "gold_sections": [
+          "app-architecture/guide#repositories"
+        ],
+        "missed": []
+      },
+      "dev-012": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "tools/hot-reload#recent-code-change-is-included-but-app-state-is-excluded"
+        ],
+        "gold_sections": [
+          "tools/hot-reload#recent-code-change-is-included-but-app-state-is-excluded"
+        ],
+        "missed": []
+      }
+    }
+  },
+  "s06-voyage-k3-dev": {
+    "totals": {
+      "matched": 22,
+      "total": 28,
+      "all_excerpts_items": 8,
+      "at_least_one_excerpt_items": 12,
+      "total_items": 12,
+      "section_present_but_excerpt_missed": 0,
+      "excerpt_text_found_other_sections": 0
+    },
+    "items": {
+      "dev-001": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "deployment/obfuscate#limitations"
+        ],
+        "gold_sections": [
+          "deployment/obfuscate#limitations"
+        ],
+        "missed": []
+      },
+      "dev-002": {
+        "matched": 1,
+        "total": 1,
+        "covered_sections": [
+          "deployment/android#version-code-and-name"
+        ],
+        "gold_sections": [
+          "deployment/android#version-code-and-name"
+        ],
+        "missed": []
+      },
+      "dev-003": {
+        "matched": 3,
+        "total": 3,
+        "covered_sections": [
+          "security/index#reporting-vulnerabilities"
+        ],
+        "gold_sections": [
+          "security/index#reporting-vulnerabilities"
+        ],
+        "missed": []
+      },
+      "dev-004": {
+        "matched": 2,
+        "total": 3,
+        "covered_sections": [
+          "tools/hot-reload#native-code"
+        ],
+        "gold_sections": [
+          "testing/build-modes#debug",
+          "tools/hot-reload#native-code"
+        ],
+        "missed": [
+          {
+            "section_id": "testing/build-modes#debug",
+            "text": "* Hot reload works _only_ in debug mode.",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          }
+        ]
+      },
+      "dev-005": {
+        "matched": 2,
+        "total": 3,
+        "covered_sections": [
+          "cookbook/navigation/set-up-universal-links#create-and-host-apple-app-site-association-json-file"
+        ],
+        "gold_sections": [
+          "cookbook/navigation/set-up-app-links#assetlinks-json",
+          "cookbook/navigation/set-up-universal-links#create-and-host-apple-app-site-association-json-file"
+        ],
+        "missed": [
+          {
+            "section_id": "cookbook/navigation/set-up-app-links#assetlinks-json",
+            "text": "<webdomain>/.well-known/assetlinks.json",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          }
+        ]
+      },
+      "dev-006": {
+        "matched": 1,
+        "total": 4,
+        "covered_sections": [
+          "data-and-backend/state-mgmt/ephemeral-vs-app#app-state"
+        ],
+        "gold_sections": [
+          "data-and-backend/state-mgmt/ephemeral-vs-app#app-state",
+          "data-and-backend/state-mgmt/simple#changenotifier",
+          "data-and-backend/state-mgmt/simple#changenotifierprovider",
+          "data-and-backend/state-mgmt/simple#consumer"
+        ],
+        "missed": [
+          {
+            "section_id": "data-and-backend/state-mgmt/simple#changenotifier",
+            "text": "In our shopping app example, we want to manage the state of the cart in a",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          },
+          {
+            "section_id": "data-and-backend/state-mgmt/simple#changenotifierprovider",
+            "text": "`ChangeNotifierProvider` is the widget that provides an instance of",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          },
+          {
+            "section_id": "data-and-backend/state-mgmt/simple#consumer",
+            "text": "Consumer<CartModel>",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          }
+        ]
+      },
+      "dev-007": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "deployment/android#create-an-upload-keystore"
+        ],
+        "gold_sections": [
+          "deployment/android#create-an-upload-keystore"
+        ],
+        "missed": []
+      },
+      "dev-008": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "platform-integration/web/wasm#serve-the-built-output-with-an-http-server"
+        ],
+        "gold_sections": [
+          "platform-integration/web/wasm#serve-the-built-output-with-an-http-server"
+        ],
+        "missed": []
+      },
+      "dev-009": {
+        "matched": 1,
+        "total": 2,
+        "covered_sections": [
+          "deployment/flavors#access-the-current-flavor"
+        ],
+        "gold_sections": [
+          "deployment/flavors#use-flavors-in-flutter-code",
+          "deployment/flavors#access-the-current-flavor"
+        ],
+        "missed": [
+          {
+            "section_id": "deployment/flavors#use-flavors-in-flutter-code",
+            "text": "The Flutter framework provides the `appFlavor` constant, which retrieves the name of the current flavor as a `String`.",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          }
+        ]
+      },
+      "dev-010": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "testing/common-errors#vertical-viewport-was-given-unbounded-height"
+        ],
+        "gold_sections": [
+          "testing/common-errors#vertical-viewport-was-given-unbounded-height"
+        ],
+        "missed": []
+      },
+      "dev-011": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "app-architecture/guide#repositories"
+        ],
+        "gold_sections": [
+          "app-architecture/guide#repositories"
+        ],
+        "missed": []
+      },
+      "dev-012": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "tools/hot-reload#recent-code-change-is-included-but-app-state-is-excluded"
+        ],
+        "gold_sections": [
+          "tools/hot-reload#recent-code-change-is-included-but-app-state-is-excluded"
+        ],
+        "missed": []
+      }
+    }
+  },
+  "s06-voyage-k5-dev": {
+    "totals": {
+      "matched": 23,
+      "total": 28,
+      "all_excerpts_items": 9,
+      "at_least_one_excerpt_items": 12,
+      "total_items": 12,
+      "section_present_but_excerpt_missed": 0,
+      "excerpt_text_found_other_sections": 0
+    },
+    "items": {
+      "dev-001": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "deployment/obfuscate#limitations"
+        ],
+        "gold_sections": [
+          "deployment/obfuscate#limitations"
+        ],
+        "missed": []
+      },
+      "dev-002": {
+        "matched": 1,
+        "total": 1,
+        "covered_sections": [
+          "deployment/android#version-code-and-name"
+        ],
+        "gold_sections": [
+          "deployment/android#version-code-and-name"
+        ],
+        "missed": []
+      },
+      "dev-003": {
+        "matched": 3,
+        "total": 3,
+        "covered_sections": [
+          "security/index#reporting-vulnerabilities"
+        ],
+        "gold_sections": [
+          "security/index#reporting-vulnerabilities"
+        ],
+        "missed": []
+      },
+      "dev-004": {
+        "matched": 2,
+        "total": 3,
+        "covered_sections": [
+          "tools/hot-reload#native-code"
+        ],
+        "gold_sections": [
+          "testing/build-modes#debug",
+          "tools/hot-reload#native-code"
+        ],
+        "missed": [
+          {
+            "section_id": "testing/build-modes#debug",
+            "text": "* Hot reload works _only_ in debug mode.",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          }
+        ]
+      },
+      "dev-005": {
+        "matched": 2,
+        "total": 3,
+        "covered_sections": [
+          "cookbook/navigation/set-up-universal-links#create-and-host-apple-app-site-association-json-file"
+        ],
+        "gold_sections": [
+          "cookbook/navigation/set-up-app-links#assetlinks-json",
+          "cookbook/navigation/set-up-universal-links#create-and-host-apple-app-site-association-json-file"
+        ],
+        "missed": [
+          {
+            "section_id": "cookbook/navigation/set-up-app-links#assetlinks-json",
+            "text": "<webdomain>/.well-known/assetlinks.json",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          }
+        ]
+      },
+      "dev-006": {
+        "matched": 1,
+        "total": 4,
+        "covered_sections": [
+          "data-and-backend/state-mgmt/ephemeral-vs-app#app-state"
+        ],
+        "gold_sections": [
+          "data-and-backend/state-mgmt/ephemeral-vs-app#app-state",
+          "data-and-backend/state-mgmt/simple#changenotifier",
+          "data-and-backend/state-mgmt/simple#changenotifierprovider",
+          "data-and-backend/state-mgmt/simple#consumer"
+        ],
+        "missed": [
+          {
+            "section_id": "data-and-backend/state-mgmt/simple#changenotifier",
+            "text": "In our shopping app example, we want to manage the state of the cart in a",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          },
+          {
+            "section_id": "data-and-backend/state-mgmt/simple#changenotifierprovider",
+            "text": "`ChangeNotifierProvider` is the widget that provides an instance of",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          },
+          {
+            "section_id": "data-and-backend/state-mgmt/simple#consumer",
+            "text": "Consumer<CartModel>",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          }
+        ]
+      },
+      "dev-007": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "deployment/android#create-an-upload-keystore"
+        ],
+        "gold_sections": [
+          "deployment/android#create-an-upload-keystore"
+        ],
+        "missed": []
+      },
+      "dev-008": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "platform-integration/web/wasm#serve-the-built-output-with-an-http-server"
+        ],
+        "gold_sections": [
+          "platform-integration/web/wasm#serve-the-built-output-with-an-http-server"
+        ],
+        "missed": []
+      },
+      "dev-009": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "deployment/flavors#access-the-current-flavor",
+          "deployment/flavors#use-flavors-in-flutter-code"
+        ],
+        "gold_sections": [
+          "deployment/flavors#use-flavors-in-flutter-code",
+          "deployment/flavors#access-the-current-flavor"
+        ],
+        "missed": []
+      },
+      "dev-010": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "testing/common-errors#vertical-viewport-was-given-unbounded-height"
+        ],
+        "gold_sections": [
+          "testing/common-errors#vertical-viewport-was-given-unbounded-height"
+        ],
+        "missed": []
+      },
+      "dev-011": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "app-architecture/guide#repositories"
+        ],
+        "gold_sections": [
+          "app-architecture/guide#repositories"
+        ],
+        "missed": []
+      },
+      "dev-012": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "tools/hot-reload#recent-code-change-is-included-but-app-state-is-excluded"
+        ],
+        "gold_sections": [
+          "tools/hot-reload#recent-code-change-is-included-but-app-state-is-excluded"
+        ],
+        "missed": []
+      }
+    }
+  },
+  "s06-voyage-score045-dev": {
+    "totals": {
+      "matched": 24,
+      "total": 28,
+      "all_excerpts_items": 10,
+      "at_least_one_excerpt_items": 12,
+      "total_items": 12,
+      "section_present_but_excerpt_missed": 0,
+      "excerpt_text_found_other_sections": 0
+    },
+    "items": {
+      "dev-001": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "deployment/obfuscate#limitations"
+        ],
+        "gold_sections": [
+          "deployment/obfuscate#limitations"
+        ],
+        "missed": []
+      },
+      "dev-002": {
+        "matched": 1,
+        "total": 1,
+        "covered_sections": [
+          "deployment/android#version-code-and-name"
+        ],
+        "gold_sections": [
+          "deployment/android#version-code-and-name"
+        ],
+        "missed": []
+      },
+      "dev-003": {
+        "matched": 3,
+        "total": 3,
+        "covered_sections": [
+          "security/index#reporting-vulnerabilities"
+        ],
+        "gold_sections": [
+          "security/index#reporting-vulnerabilities"
+        ],
+        "missed": []
+      },
+      "dev-004": {
+        "matched": 2,
+        "total": 3,
+        "covered_sections": [
+          "tools/hot-reload#native-code"
+        ],
+        "gold_sections": [
+          "testing/build-modes#debug",
+          "tools/hot-reload#native-code"
+        ],
+        "missed": [
+          {
+            "section_id": "testing/build-modes#debug",
+            "text": "* Hot reload works _only_ in debug mode.",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          }
+        ]
+      },
+      "dev-005": {
+        "matched": 3,
+        "total": 3,
+        "covered_sections": [
+          "cookbook/navigation/set-up-app-links#assetlinks-json",
+          "cookbook/navigation/set-up-universal-links#create-and-host-apple-app-site-association-json-file"
+        ],
+        "gold_sections": [
+          "cookbook/navigation/set-up-app-links#assetlinks-json",
+          "cookbook/navigation/set-up-universal-links#create-and-host-apple-app-site-association-json-file"
+        ],
+        "missed": []
+      },
+      "dev-006": {
+        "matched": 1,
+        "total": 4,
+        "covered_sections": [
+          "data-and-backend/state-mgmt/ephemeral-vs-app#app-state"
+        ],
+        "gold_sections": [
+          "data-and-backend/state-mgmt/ephemeral-vs-app#app-state",
+          "data-and-backend/state-mgmt/simple#changenotifier",
+          "data-and-backend/state-mgmt/simple#changenotifierprovider",
+          "data-and-backend/state-mgmt/simple#consumer"
+        ],
+        "missed": [
+          {
+            "section_id": "data-and-backend/state-mgmt/simple#changenotifier",
+            "text": "In our shopping app example, we want to manage the state of the cart in a",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          },
+          {
+            "section_id": "data-and-backend/state-mgmt/simple#changenotifierprovider",
+            "text": "`ChangeNotifierProvider` is the widget that provides an instance of",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          },
+          {
+            "section_id": "data-and-backend/state-mgmt/simple#consumer",
+            "text": "Consumer<CartModel>",
+            "section_in_context": false,
+            "context_ordinals_in_section": [],
+            "any_context_match": false
+          }
+        ]
+      },
+      "dev-007": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "deployment/android#create-an-upload-keystore"
+        ],
+        "gold_sections": [
+          "deployment/android#create-an-upload-keystore"
+        ],
+        "missed": []
+      },
+      "dev-008": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "platform-integration/web/wasm#serve-the-built-output-with-an-http-server"
+        ],
+        "gold_sections": [
+          "platform-integration/web/wasm#serve-the-built-output-with-an-http-server"
+        ],
+        "missed": []
+      },
+      "dev-009": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "deployment/flavors#access-the-current-flavor",
+          "deployment/flavors#use-flavors-in-flutter-code"
+        ],
+        "gold_sections": [
+          "deployment/flavors#use-flavors-in-flutter-code",
+          "deployment/flavors#access-the-current-flavor"
+        ],
+        "missed": []
+      },
+      "dev-010": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "testing/common-errors#vertical-viewport-was-given-unbounded-height"
+        ],
+        "gold_sections": [
+          "testing/common-errors#vertical-viewport-was-given-unbounded-height"
+        ],
+        "missed": []
+      },
+      "dev-011": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "app-architecture/guide#repositories"
+        ],
+        "gold_sections": [
+          "app-architecture/guide#repositories"
+        ],
+        "missed": []
+      },
+      "dev-012": {
+        "matched": 2,
+        "total": 2,
+        "covered_sections": [
+          "tools/hot-reload#recent-code-change-is-included-but-app-state-is-excluded"
+        ],
+        "gold_sections": [
+          "tools/hot-reload#recent-code-change-is-included-but-app-state-is-excluded"
+        ],
+        "missed": []
+      }
+    }
+  }
+}

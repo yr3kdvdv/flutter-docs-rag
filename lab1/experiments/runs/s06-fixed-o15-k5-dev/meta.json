@@ -1,0 +1,103 @@
+{
+  "run_id": "s06-fixed-o15-k5-dev",
+  "identity": {
+    "mode": "retrieval",
+    "split": "dev",
+    "final": false,
+    "dataset_version": "flutter-qa-v1",
+    "dataset_sha256": "df6fb5d791a9b7889591d71d65b33a1e9f1ea49ea89dedc97e3e21f240d1100a",
+    "config_fingerprint": "042dff77d374",
+    "git_sha": "04ca4d9b2f9979634b774ac896228c2a0540c833",
+    "git_dirty": false,
+    "corpus_commit": "4fee0255ef9f0c85f6dd37513bf659613f57e5eb",
+    "prompt_sha256": "f78187d8a28ab3c8",
+    "judge_model": null,
+    "judge_prompt_sha256": null
+  },
+  "created_at": "2026-11-26T21:26:31+00:00",
+  "config_path": "experiments/configs/s06-fixed-o15-k5.yaml",
+  "dataset": {
+    "version": "flutter-qa-v1",
+    "split": "dev",
+    "path": "evaluation/datasets/flutter-qa-v1/dev.jsonl",
+    "sha256": "df6fb5d791a9b7889591d71d65b33a1e9f1ea49ea89dedc97e3e21f240d1100a",
+    "items": 15,
+    "statuses": {
+      "verified": 15
+    }
+  },
+  "final": false,
+  "pipeline": {
+    "config_id": "s06-fixed-o15-k5",
+    "config_fingerprint": "042dff77d374",
+    "collection": "flutter__full__gemini-embedding-001-768__fixed-512-o15",
+    "corpus_commit": "4fee0255ef9f0c85f6dd37513bf659613f57e5eb",
+    "embedding_model": "gemini-embedding-001@768",
+    "llm_model": "gemini-3.5-flash-lite",
+    "thinking_budget": null,
+    "chunking": "fixed-512-o15",
+    "top_k": 5,
+    "min_score": null,
+    "reranker": null,
+    "prompt_version": "answer/v1.2",
+    "prompt_sha256": "f78187d8a28ab3c8",
+    "git_sha": "04ca4d9b2f9979634b774ac896228c2a0540c833",
+    "git_dirty": false
+  },
+  "judge": null,
+  "langfuse": {
+    "enabled": true,
+    "session_id": "s06-fixed-o15-k5-dev"
+  },
+  "complete": true,
+  "invocations": [
+    {
+      "started_at": "2026-11-26T21:26:31+00:00",
+      "git_sha": "04ca4d9b2f9979634b774ac896228c2a0540c833",
+      "git_dirty": false,
+      "processed": 15,
+      "skipped": 0,
+      "finished_at": "2026-11-26T21:26:32+00:00",
+      "errors": 0,
+      "stopped_early": false
+    }
+  ],
+  "updated_at": "2026-11-26T21:26:32+00:00",
+  "not_run": [],
+  "remaining_errors": [],
+  "errors": [],
+  "trace_ids": {
+    "dev-001": "2f2a29b25e819da779ccac14d9fa0bed",
+    "dev-002": "ef485ddd5f9d2b3470a5b2a06f04a16c",
+    "dev-003": "41e0d0199f4390be1150e9d884084ceb",
+    "dev-004": "dadc1145490ded99b16ba86eb3d17321",
+    "dev-005": "df077218b4b3fd2bf6d4b19bccf7c2cb",
+    "dev-006": "b293849f9bde995121572e5c89afc32a",
+    "dev-007": "193c9d7d078e589d6acc8a9e4ad0295b",
+    "dev-008": "ae5805da10b82661cfe6eb5d3df04f09",
+    "dev-009": "d73423120f6cb2178f102c0ac9c010b2",
+    "dev-010": "cb6f289a87ae4e2a5f560049fe9b9a01",
+    "dev-011": "60f4586ae4be4e22f0ed1dfc87ab23e8",
+    "dev-012": "dfae423baa7b40cf4ee33371b3784845",
+    "dev-013": "f14aa36ce4b0d6791232b132317d4246",
+    "dev-014": "0b58ae04b6924dfdf61894ae13314b5a",
+    "dev-015": "43a7a1a05e8453afec73b71013e3f18a"
+  },
+  "all_trace_ids": [
+    "2f2a29b25e819da779ccac14d9fa0bed",
+    "ef485ddd5f9d2b3470a5b2a06f04a16c",
+    "41e0d0199f4390be1150e9d884084ceb",
+    "dadc1145490ded99b16ba86eb3d17321",
+    "df077218b4b3fd2bf6d4b19bccf7c2cb",
+    "b293849f9bde995121572e5c89afc32a",
+    "193c9d7d078e589d6acc8a9e4ad0295b",
+    "ae5805da10b82661cfe6eb5d3df04f09",
+    "d73423120f6cb2178f102c0ac9c010b2",
+    "cb6f289a87ae4e2a5f560049fe9b9a01",
+    "60f4586ae4be4e22f0ed1dfc87ab23e8",
+    "dfae423baa7b40cf4ee33371b3784845",
+    "f14aa36ce4b0d6791232b132317d4246",
+    "0b58ae04b6924dfdf61894ae13314b5a",
+    "43a7a1a05e8453afec73b71013e3f18a"
+  ]
+}

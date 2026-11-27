@@ -134,6 +134,7 @@ def test_retrieval_run_layout_and_metrics(tmp_path, make_rt):
     assert s.processed == 3 and s.errors == 0
     rows = read_raw(out)
     assert [r["id"] for r in rows] == ["dev-001", "dev-002", "dev-003"]
+    assert rows[0]["provider_usage"]["embedding"]["api_calls"] == 1
     assert rows[0]["ranked"] and "retrieval_metrics" in rows[0]
     assert "retrieval_metrics" not in rows[2]  # unanswerable: no retrieval metrics
     metrics = json.loads((out / "metrics.json").read_text())
@@ -226,6 +227,16 @@ def test_resume_with_other_settings_is_refused(tmp_path, make_rt):
         run_evaluation(
             rt, dataset(tmp_path), mode="full", run_id="m1", runs_dir=runs, judge=FakeJudge()
         )
+
+
+def test_resume_rejects_generator_prompt_drift(tmp_path, make_rt, monkeypatch):
+    rt = make_rt()
+    run_evaluation(rt, dataset(tmp_path), mode="retrieval", run_id="r1", runs_dir=tmp_path, limit=1)
+    metadata = rt.run_metadata()
+    metadata["prompt_sha256"] = "changed"
+    monkeypatch.setattr(rt, "run_metadata", lambda: metadata)
+    with pytest.raises(RunMismatchError, match="prompt_sha256"):
+        run_evaluation(rt, dataset(tmp_path), mode="retrieval", run_id="r1", runs_dir=tmp_path)
 
 
 def test_split_guard_and_snapshot_guard(tmp_path, make_rt):

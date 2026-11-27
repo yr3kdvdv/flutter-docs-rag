@@ -1,0 +1,103 @@
+{
+  "run_id": "s06-voyage-k10-dev",
+  "identity": {
+    "mode": "retrieval",
+    "split": "dev",
+    "final": false,
+    "dataset_version": "flutter-qa-v1",
+    "dataset_sha256": "df6fb5d791a9b7889591d71d65b33a1e9f1ea49ea89dedc97e3e21f240d1100a",
+    "config_fingerprint": "91921a21b7f3",
+    "git_sha": "04ca4d9b2f9979634b774ac896228c2a0540c833",
+    "git_dirty": false,
+    "corpus_commit": "4fee0255ef9f0c85f6dd37513bf659613f57e5eb",
+    "prompt_sha256": "f78187d8a28ab3c8",
+    "judge_model": null,
+    "judge_prompt_sha256": null
+  },
+  "created_at": "2026-11-26T21:14:23+00:00",
+  "config_path": "experiments/configs/s06-voyage-k10.yaml",
+  "dataset": {
+    "version": "flutter-qa-v1",
+    "split": "dev",
+    "path": "evaluation/datasets/flutter-qa-v1/dev.jsonl",
+    "sha256": "df6fb5d791a9b7889591d71d65b33a1e9f1ea49ea89dedc97e3e21f240d1100a",
+    "items": 15,
+    "statuses": {
+      "verified": 15
+    }
+  },
+  "final": false,
+  "pipeline": {
+    "config_id": "s06-voyage-k10",
+    "config_fingerprint": "91921a21b7f3",
+    "collection": "flutter__full__voyage-4-lite-1024__section-512-o0",
+    "corpus_commit": "4fee0255ef9f0c85f6dd37513bf659613f57e5eb",
+    "embedding_model": "voyage-4-lite@1024",
+    "llm_model": "gemini-3.5-flash-lite",
+    "thinking_budget": null,
+    "chunking": "section-512-o0",
+    "top_k": 10,
+    "min_score": null,
+    "reranker": null,
+    "prompt_version": "answer/v1.2",
+    "prompt_sha256": "f78187d8a28ab3c8",
+    "git_sha": "04ca4d9b2f9979634b774ac896228c2a0540c833",
+    "git_dirty": false
+  },
+  "judge": null,
+  "langfuse": {
+    "enabled": true,
+    "session_id": "s06-voyage-k10-dev"
+  },
+  "complete": true,
+  "invocations": [
+    {
+      "started_at": "2026-11-26T21:14:23+00:00",
+      "git_sha": "04ca4d9b2f9979634b774ac896228c2a0540c833",
+      "git_dirty": false,
+      "processed": 15,
+      "skipped": 0,
+      "finished_at": "2026-11-26T21:14:24+00:00",
+      "errors": 0,
+      "stopped_early": false
+    }
+  ],
+  "updated_at": "2026-11-26T21:14:24+00:00",
+  "not_run": [],
+  "remaining_errors": [],
+  "errors": [],
+  "trace_ids": {
+    "dev-001": "235fc863a22a50156c09f550bc640f07",
+    "dev-002": "c974ee227f0f0250143a71d112aef397",
+    "dev-003": "7b4ea3e27b9e34f6951e2b4c1bb9587c",
+    "dev-004": "869e4e8ed8f4a80f5d37e0fafc2b838d",
+    "dev-005": "43201d38ea85382016429cd4a6bbb18e",
+    "dev-006": "04c1f6edb463494a4d2ce97546fcd493",
+    "dev-007": "e16426b41b841a02adc4405e35714cb5",
+    "dev-008": "1876e3cb7d2c4f7f2bd6e7d72a9a743e",
+    "dev-009": "de606213f1530a6d5f2bd60e231cd0d0",
+    "dev-010": "32cec258debef473858806f03c0e2417",
+    "dev-011": "e78d1d19980e1a05d2e2058b77419f2b",
+    "dev-012": "e6a78a58acee1906915a91286d6ae02c",
+    "dev-013": "58e23e383ca03e24f031e7e1d8c1a213",
+    "dev-014": "b5467d79983969a4b6065224317f7879",
+    "dev-015": "bac4ca8e63ce5b0fed4cd7d38eef5e45"
+  },
+  "all_trace_ids": [
+    "235fc863a22a50156c09f550bc640f07",
+    "c974ee227f0f0250143a71d112aef397",
+    "7b4ea3e27b9e34f6951e2b4c1bb9587c",
+    "869e4e8ed8f4a80f5d37e0fafc2b838d",
+    "43201d38ea85382016429cd4a6bbb18e",
+    "04c1f6edb463494a4d2ce97546fcd493",
+    "e16426b41b841a02adc4405e35714cb5",
+    "1876e3cb7d2c4f7f2bd6e7d72a9a743e",
+    "de606213f1530a6d5f2bd60e231cd0d0",
+    "32cec258debef473858806f03c0e2417",
+    "e78d1d19980e1a05d2e2058b77419f2b",
+    "e6a78a58acee1906915a91286d6ae02c",
+    "58e23e383ca03e24f031e7e1d8c1a213",
+    "b5467d79983969a4b6065224317f7879",
+    "bac4ca8e63ce5b0fed4cd7d38eef5e45"
+  ]
+}
