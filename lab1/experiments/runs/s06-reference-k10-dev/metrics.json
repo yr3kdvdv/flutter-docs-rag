@@ -1,0 +1,808 @@
+{
+  "run_id": "s06-reference-k10-dev",
+  "mode": "retrieval",
+  "split": "dev",
+  "dataset_version": "flutter-qa-v1",
+  "items": 15,
+  "completed": 15,
+  "errors": [],
+  "not_run": [],
+  "attempts": 15,
+  "retrieval": {
+    "n": 12,
+    "section": {
+      "hit@1": {
+        "k": 10,
+        "n": 12,
+        "rate": 0.8333
+      },
+      "recall@1": {
+        "macro": 0.6875,
+        "micro": {
+          "k": 10,
+          "n": 18,
+          "rate": 0.5556
+        }
+      },
+      "precision@1": 0.8333,
+      "mrr@1": 0.8333,
+      "hit@3": {
+        "k": 10,
+        "n": 12,
+        "rate": 0.8333
+      },
+      "recall@3": {
+        "macro": 0.7292,
+        "micro": {
+          "k": 11,
+          "n": 18,
+          "rate": 0.6111
+        }
+      },
+      "precision@3": 0.3611,
+      "mrr@3": 0.8333,
+      "hit@5": {
+        "k": 12,
+        "n": 12,
+        "rate": 1.0
+      },
+      "recall@5": {
+        "macro": 0.8542,
+        "micro": {
+          "k": 13,
+          "n": 18,
+          "rate": 0.7222
+        }
+      },
+      "precision@5": 0.25,
+      "mrr@5": 0.875,
+      "hit@10": {
+        "k": 12,
+        "n": 12,
+        "rate": 1.0
+      },
+      "recall@10": {
+        "macro": 0.8542,
+        "micro": {
+          "k": 13,
+          "n": 18,
+          "rate": 0.7222
+        }
+      },
+      "precision@10": 0.125,
+      "mrr@10": 0.875,
+      "hit@20": {
+        "k": 12,
+        "n": 12,
+        "rate": 1.0
+      },
+      "recall@20": {
+        "macro": 0.8542,
+        "micro": {
+          "k": 13,
+          "n": 18,
+          "rate": 0.7222
+        }
+      },
+      "precision@20": 0.0625,
+      "mrr@20": 0.875,
+      "mrr": 0.875
+    },
+    "document": {
+      "hit@1": {
+        "k": 11,
+        "n": 12,
+        "rate": 0.9167
+      },
+      "recall@1": {
+        "macro": 0.7917,
+        "micro": {
+          "k": 11,
+          "n": 15,
+          "rate": 0.7333
+        }
+      },
+      "precision@1": 0.9167,
+      "mrr@1": 0.9167,
+      "hit@3": {
+        "k": 11,
+        "n": 12,
+        "rate": 0.9167
+      },
+      "recall@3": {
+        "macro": 0.875,
+        "micro": {
+          "k": 13,
+          "n": 15,
+          "rate": 0.8667
+        }
+      },
+      "precision@3": 0.7222,
+      "mrr@3": 0.9167,
+      "hit@5": {
+        "k": 12,
+        "n": 12,
+        "rate": 1.0
+      },
+      "recall@5": {
+        "macro": 0.9583,
+        "micro": {
+          "k": 14,
+          "n": 15,
+          "rate": 0.9333
+        }
+      },
+      "precision@5": 0.6333,
+      "mrr@5": 0.9375,
+      "hit@10": {
+        "k": 12,
+        "n": 12,
+        "rate": 1.0
+      },
+      "recall@10": {
+        "macro": 1.0,
+        "micro": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0
+        }
+      },
+      "precision@10": 0.5167,
+      "mrr@10": 0.9375,
+      "hit@20": {
+        "k": 12,
+        "n": 12,
+        "rate": 1.0
+      },
+      "recall@20": {
+        "macro": 1.0,
+        "micro": {
+          "k": 15,
+          "n": 15,
+          "rate": 1.0
+        }
+      },
+      "precision@20": 0.2583,
+      "mrr@20": 0.9375,
+      "mrr": 0.9375
+    }
+  },
+  "by_type": {
+    "contextual": {
+      "n": 3,
+      "section": {
+        "hit@1": {
+          "k": 2,
+          "n": 3,
+          "rate": 0.6667
+        },
+        "recall@1": {
+          "macro": 0.6667,
+          "micro": {
+            "k": 2,
+            "n": 3,
+            "rate": 0.6667
+          }
+        },
+        "precision@1": 0.6667,
+        "mrr@1": 0.6667,
+        "hit@3": {
+          "k": 2,
+          "n": 3,
+          "rate": 0.6667
+        },
+        "recall@3": {
+          "macro": 0.6667,
+          "micro": {
+            "k": 2,
+            "n": 3,
+            "rate": 0.6667
+          }
+        },
+        "precision@3": 0.4444,
+        "mrr@3": 0.6667,
+        "hit@5": {
+          "k": 3,
+          "n": 3,
+          "rate": 1.0
+        },
+        "recall@5": {
+          "macro": 1.0,
+          "micro": {
+            "k": 3,
+            "n": 3,
+            "rate": 1.0
+          }
+        },
+        "precision@5": 0.3333,
+        "mrr@5": 0.75,
+        "hit@10": {
+          "k": 3,
+          "n": 3,
+          "rate": 1.0
+        },
+        "recall@10": {
+          "macro": 1.0,
+          "micro": {
+            "k": 3,
+            "n": 3,
+            "rate": 1.0
+          }
+        },
+        "precision@10": 0.1667,
+        "mrr@10": 0.75,
+        "hit@20": {
+          "k": 3,
+          "n": 3,
+          "rate": 1.0
+        },
+        "recall@20": {
+          "macro": 1.0,
+          "micro": {
+            "k": 3,
+            "n": 3,
+            "rate": 1.0
+          }
+        },
+        "precision@20": 0.0833,
+        "mrr@20": 0.75,
+        "mrr": 0.75
+      },
+      "document": {
+        "hit@1": {
+          "k": 2,
+          "n": 3,
+          "rate": 0.6667
+        },
+        "recall@1": {
+          "macro": 0.6667,
+          "micro": {
+            "k": 2,
+            "n": 3,
+            "rate": 0.6667
+          }
+        },
+        "precision@1": 0.6667,
+        "mrr@1": 0.6667,
+        "hit@3": {
+          "k": 2,
+          "n": 3,
+          "rate": 0.6667
+        },
+        "recall@3": {
+          "macro": 0.6667,
+          "micro": {
+            "k": 2,
+            "n": 3,
+            "rate": 0.6667
+          }
+        },
+        "precision@3": 0.4444,
+        "mrr@3": 0.6667,
+        "hit@5": {
+          "k": 3,
+          "n": 3,
+          "rate": 1.0
+        },
+        "recall@5": {
+          "macro": 1.0,
+          "micro": {
+            "k": 3,
+            "n": 3,
+            "rate": 1.0
+          }
+        },
+        "precision@5": 0.4667,
+        "mrr@5": 0.75,
+        "hit@10": {
+          "k": 3,
+          "n": 3,
+          "rate": 1.0
+        },
+        "recall@10": {
+          "macro": 1.0,
+          "micro": {
+            "k": 3,
+            "n": 3,
+            "rate": 1.0
+          }
+        },
+        "precision@10": 0.4333,
+        "mrr@10": 0.75,
+        "hit@20": {
+          "k": 3,
+          "n": 3,
+          "rate": 1.0
+        },
+        "recall@20": {
+          "macro": 1.0,
+          "micro": {
+            "k": 3,
+            "n": 3,
+            "rate": 1.0
+          }
+        },
+        "precision@20": 0.2167,
+        "mrr@20": 0.75,
+        "mrr": 0.75
+      }
+    },
+    "factoid": {
+      "n": 3,
+      "section": {
+        "hit@1": {
+          "k": 3,
+          "n": 3,
+          "rate": 1.0
+        },
+        "recall@1": {
+          "macro": 1.0,
+          "micro": {
+            "k": 3,
+            "n": 3,
+            "rate": 1.0
+          }
+        },
+        "precision@1": 1.0,
+        "mrr@1": 1.0,
+        "hit@3": {
+          "k": 3,
+          "n": 3,
+          "rate": 1.0
+        },
+        "recall@3": {
+          "macro": 1.0,
+          "micro": {
+            "k": 3,
+            "n": 3,
+            "rate": 1.0
+          }
+        },
+        "precision@3": 0.3333,
+        "mrr@3": 1.0,
+        "hit@5": {
+          "k": 3,
+          "n": 3,
+          "rate": 1.0
+        },
+        "recall@5": {
+          "macro": 1.0,
+          "micro": {
+            "k": 3,
+            "n": 3,
+            "rate": 1.0
+          }
+        },
+        "precision@5": 0.2,
+        "mrr@5": 1.0,
+        "hit@10": {
+          "k": 3,
+          "n": 3,
+          "rate": 1.0
+        },
+        "recall@10": {
+          "macro": 1.0,
+          "micro": {
+            "k": 3,
+            "n": 3,
+            "rate": 1.0
+          }
+        },
+        "precision@10": 0.1,
+        "mrr@10": 1.0,
+        "hit@20": {
+          "k": 3,
+          "n": 3,
+          "rate": 1.0
+        },
+        "recall@20": {
+          "macro": 1.0,
+          "micro": {
+            "k": 3,
+            "n": 3,
+            "rate": 1.0
+          }
+        },
+        "precision@20": 0.05,
+        "mrr@20": 1.0,
+        "mrr": 1.0
+      },
+      "document": {
+        "hit@1": {
+          "k": 3,
+          "n": 3,
+          "rate": 1.0
+        },
+        "recall@1": {
+          "macro": 1.0,
+          "micro": {
+            "k": 3,
+            "n": 3,
+            "rate": 1.0
+          }
+        },
+        "precision@1": 1.0,
+        "mrr@1": 1.0,
+        "hit@3": {
+          "k": 3,
+          "n": 3,
+          "rate": 1.0
+        },
+        "recall@3": {
+          "macro": 1.0,
+          "micro": {
+            "k": 3,
+            "n": 3,
+            "rate": 1.0
+          }
+        },
+        "precision@3": 0.8889,
+        "mrr@3": 1.0,
+        "hit@5": {
+          "k": 3,
+          "n": 3,
+          "rate": 1.0
+        },
+        "recall@5": {
+          "macro": 1.0,
+          "micro": {
+            "k": 3,
+            "n": 3,
+            "rate": 1.0
+          }
+        },
+        "precision@5": 0.7333,
+        "mrr@5": 1.0,
+        "hit@10": {
+          "k": 3,
+          "n": 3,
+          "rate": 1.0
+        },
+        "recall@10": {
+          "macro": 1.0,
+          "micro": {
+            "k": 3,
+            "n": 3,
+            "rate": 1.0
+          }
+        },
+        "precision@10": 0.5,
+        "mrr@10": 1.0,
+        "hit@20": {
+          "k": 3,
+          "n": 3,
+          "rate": 1.0
+        },
+        "recall@20": {
+          "macro": 1.0,
+          "micro": {
+            "k": 3,
+            "n": 3,
+            "rate": 1.0
+          }
+        },
+        "precision@20": 0.25,
+        "mrr@20": 1.0,
+        "mrr": 1.0
+      }
+    },
+    "lookup": {
+      "n": 3,
+      "section": {
+        "hit@1": {
+          "k": 3,
+          "n": 3,
+          "rate": 1.0
+        },
+        "recall@1": {
+          "macro": 0.8333,
+          "micro": {
+            "k": 3,
+            "n": 4,
+            "rate": 0.75
+          }
+        },
+        "precision@1": 1.0,
+        "mrr@1": 1.0,
+        "hit@3": {
+          "k": 3,
+          "n": 3,
+          "rate": 1.0
+        },
+        "recall@3": {
+          "macro": 1.0,
+          "micro": {
+            "k": 4,
+            "n": 4,
+            "rate": 1.0
+          }
+        },
+        "precision@3": 0.4444,
+        "mrr@3": 1.0,
+        "hit@5": {
+          "k": 3,
+          "n": 3,
+          "rate": 1.0
+        },
+        "recall@5": {
+          "macro": 1.0,
+          "micro": {
+            "k": 4,
+            "n": 4,
+            "rate": 1.0
+          }
+        },
+        "precision@5": 0.2667,
+        "mrr@5": 1.0,
+        "hit@10": {
+          "k": 3,
+          "n": 3,
+          "rate": 1.0
+        },
+        "recall@10": {
+          "macro": 1.0,
+          "micro": {
+            "k": 4,
+            "n": 4,
+            "rate": 1.0
+          }
+        },
+        "precision@10": 0.1333,
+        "mrr@10": 1.0,
+        "hit@20": {
+          "k": 3,
+          "n": 3,
+          "rate": 1.0
+        },
+        "recall@20": {
+          "macro": 1.0,
+          "micro": {
+            "k": 4,
+            "n": 4,
+            "rate": 1.0
+          }
+        },
+        "precision@20": 0.0667,
+        "mrr@20": 1.0,
+        "mrr": 1.0
+      },
+      "document": {
+        "hit@1": {
+          "k": 3,
+          "n": 3,
+          "rate": 1.0
+        },
+        "recall@1": {
+          "macro": 1.0,
+          "micro": {
+            "k": 3,
+            "n": 3,
+            "rate": 1.0
+          }
+        },
+        "precision@1": 1.0,
+        "mrr@1": 1.0,
+        "hit@3": {
+          "k": 3,
+          "n": 3,
+          "rate": 1.0
+        },
+        "recall@3": {
+          "macro": 1.0,
+          "micro": {
+            "k": 3,
+            "n": 3,
+            "rate": 1.0
+          }
+        },
+        "precision@3": 0.6667,
+        "mrr@3": 1.0,
+        "hit@5": {
+          "k": 3,
+          "n": 3,
+          "rate": 1.0
+        },
+        "recall@5": {
+          "macro": 1.0,
+          "micro": {
+            "k": 3,
+            "n": 3,
+            "rate": 1.0
+          }
+        },
+        "precision@5": 0.5333,
+        "mrr@5": 1.0,
+        "hit@10": {
+          "k": 3,
+          "n": 3,
+          "rate": 1.0
+        },
+        "recall@10": {
+          "macro": 1.0,
+          "micro": {
+            "k": 3,
+            "n": 3,
+            "rate": 1.0
+          }
+        },
+        "precision@10": 0.4667,
+        "mrr@10": 1.0,
+        "hit@20": {
+          "k": 3,
+          "n": 3,
+          "rate": 1.0
+        },
+        "recall@20": {
+          "macro": 1.0,
+          "micro": {
+            "k": 3,
+            "n": 3,
+            "rate": 1.0
+          }
+        },
+        "precision@20": 0.2333,
+        "mrr@20": 1.0,
+        "mrr": 1.0
+      }
+    },
+    "multi_doc": {
+      "n": 3,
+      "section": {
+        "hit@1": {
+          "k": 2,
+          "n": 3,
+          "rate": 0.6667
+        },
+        "recall@1": {
+          "macro": 0.25,
+          "micro": {
+            "k": 2,
+            "n": 8,
+            "rate": 0.25
+          }
+        },
+        "precision@1": 0.6667,
+        "mrr@1": 0.6667,
+        "hit@3": {
+          "k": 2,
+          "n": 3,
+          "rate": 0.6667
+        },
+        "recall@3": {
+          "macro": 0.25,
+          "micro": {
+            "k": 2,
+            "n": 8,
+            "rate": 0.25
+          }
+        },
+        "precision@3": 0.2222,
+        "mrr@3": 0.6667,
+        "hit@5": {
+          "k": 3,
+          "n": 3,
+          "rate": 1.0
+        },
+        "recall@5": {
+          "macro": 0.4167,
+          "micro": {
+            "k": 3,
+            "n": 8,
+            "rate": 0.375
+          }
+        },
+        "precision@5": 0.2,
+        "mrr@5": 0.75,
+        "hit@10": {
+          "k": 3,
+          "n": 3,
+          "rate": 1.0
+        },
+        "recall@10": {
+          "macro": 0.4167,
+          "micro": {
+            "k": 3,
+            "n": 8,
+            "rate": 0.375
+          }
+        },
+        "precision@10": 0.1,
+        "mrr@10": 0.75,
+        "hit@20": {
+          "k": 3,
+          "n": 3,
+          "rate": 1.0
+        },
+        "recall@20": {
+          "macro": 0.4167,
+          "micro": {
+            "k": 3,
+            "n": 8,
+            "rate": 0.375
+          }
+        },
+        "precision@20": 0.05,
+        "mrr@20": 0.75,
+        "mrr": 0.75
+      },
+      "document": {
+        "hit@1": {
+          "k": 3,
+          "n": 3,
+          "rate": 1.0
+        },
+        "recall@1": {
+          "macro": 0.5,
+          "micro": {
+            "k": 3,
+            "n": 6,
+            "rate": 0.5
+          }
+        },
+        "precision@1": 1.0,
+        "mrr@1": 1.0,
+        "hit@3": {
+          "k": 3,
+          "n": 3,
+          "rate": 1.0
+        },
+        "recall@3": {
+          "macro": 0.8333,
+          "micro": {
+            "k": 5,
+            "n": 6,
+            "rate": 0.8333
+          }
+        },
+        "precision@3": 0.8889,
+        "mrr@3": 1.0,
+        "hit@5": {
+          "k": 3,
+          "n": 3,
+          "rate": 1.0
+        },
+        "recall@5": {
+          "macro": 0.8333,
+          "micro": {
+            "k": 5,
+            "n": 6,
+            "rate": 0.8333
+          }
+        },
+        "precision@5": 0.8,
+        "mrr@5": 1.0,
+        "hit@10": {
+          "k": 3,
+          "n": 3,
+          "rate": 1.0
+        },
+        "recall@10": {
+          "macro": 1.0,
+          "micro": {
+            "k": 6,
+            "n": 6,
+            "rate": 1.0
+          }
+        },
+        "precision@10": 0.6667,
+        "mrr@10": 1.0,
+        "hit@20": {
+          "k": 3,
+          "n": 3,
+          "rate": 1.0
+        },
+        "recall@20": {
+          "macro": 1.0,
+          "micro": {
+            "k": 6,
+            "n": 6,
+            "rate": 1.0
+          }
+        },
+        "precision@20": 0.3333,
+        "mrr@20": 1.0,
+        "mrr": 1.0
+      }
+    }
+  }
+}

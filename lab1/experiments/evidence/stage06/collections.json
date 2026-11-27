@@ -1,0 +1,44 @@
+[
+  {
+    "config": "configs/full.yaml",
+    "collection": "flutter__full__gemini-embedding-001-768__section-512-o0",
+    "points": 5815,
+    "source_commit": "4fee0255ef9f0c85f6dd37513bf659613f57e5eb"
+  },
+  {
+    "config": "configs/full-voyage.yaml",
+    "collection": "flutter__full__voyage-4-lite-1024__section-512-o0",
+    "points": 5815,
+    "source_commit": "4fee0255ef9f0c85f6dd37513bf659613f57e5eb"
+  },
+  {
+    "config": "experiments/configs/s06-gemini-fixed512-o0.yaml",
+    "collection": "flutter__full__gemini-embedding-001-768__fixed-512-o0",
+    "points": 2453,
+    "source_commit": "4fee0255ef9f0c85f6dd37513bf659613f57e5eb"
+  },
+  {
+    "config": "experiments/configs/s06-gemini-fixed512-o15.yaml",
+    "collection": "flutter__full__gemini-embedding-001-768__fixed-512-o15",
+    "points": 2694,
+    "source_commit": "4fee0255ef9f0c85f6dd37513bf659613f57e5eb"
+  },
+  {
+    "config": "experiments/configs/s06-gemini-paragraph512-o0.yaml",
+    "collection": "flutter__full__gemini-embedding-001-768__paragraph-512-o0",
+    "points": 2622,
+    "source_commit": "4fee0255ef9f0c85f6dd37513bf659613f57e5eb"
+  },
+  {
+    "config": "experiments/configs/s06-gemini-section1024-o0.yaml",
+    "collection": "flutter__full__gemini-embedding-001-768__section-1024-o0",
+    "points": 5332,
+    "source_commit": "4fee0255ef9f0c85f6dd37513bf659613f57e5eb"
+  },
+  {
+    "config": "experiments/configs/s06-gemini-section256-o0.yaml",
+    "collection": "flutter__full__gemini-embedding-001-768__section-256-o0",
+    "points": 7513,
+    "source_commit": "4fee0255ef9f0c85f6dd37513bf659613f57e5eb"
+  }
+]

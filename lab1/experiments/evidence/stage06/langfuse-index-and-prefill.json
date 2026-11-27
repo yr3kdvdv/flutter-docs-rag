@@ -1,0 +1,184 @@
+[
+  {
+    "config_id": "s06-final",
+    "trace_id": "07155c69bbba9bedcbc640ef61056e13",
+    "root_name": "experiment.final_query_prefill",
+    "observations": [
+      {
+        "name": "experiment.final_query_prefill",
+        "type": "SPAN",
+        "parent": null
+      }
+    ]
+  },
+  {
+    "config_id": "s06-gemini-fixed512-o0",
+    "trace_id": "b10047e054b817d83f3b43432060880c",
+    "root_name": "experiment.prefill",
+    "observations": [
+      {
+        "name": "experiment.prefill",
+        "type": "SPAN",
+        "parent": null
+      }
+    ]
+  },
+  {
+    "config_id": "s06-gemini-fixed512-o0",
+    "trace_id": "0bec3774f5b20dbf8bbb4418567cdf20",
+    "root_name": "rag.ingest",
+    "observations": [
+      {
+        "name": "preprocess_embed_upsert",
+        "type": "SPAN",
+        "parent": "cccee99352ba88d6"
+      },
+      {
+        "name": "rag.ingest",
+        "type": "SPAN",
+        "parent": null
+      },
+      {
+        "name": "grab",
+        "type": "SPAN",
+        "parent": "cccee99352ba88d6"
+      }
+    ]
+  },
+  {
+    "config_id": "s06-gemini-fixed512-o15",
+    "trace_id": "c9271140f247297c58642c966379c43a",
+    "root_name": "experiment.prefill",
+    "observations": [
+      {
+        "name": "experiment.prefill",
+        "type": "SPAN",
+        "parent": null
+      }
+    ]
+  },
+  {
+    "config_id": "s06-gemini-fixed512-o15",
+    "trace_id": "fad09d727a0ca9e180853bed6ccb4b65",
+    "root_name": "rag.ingest",
+    "observations": [
+      {
+        "name": "preprocess_embed_upsert",
+        "type": "SPAN",
+        "parent": "556439ecb2b18b42"
+      },
+      {
+        "name": "grab",
+        "type": "SPAN",
+        "parent": "556439ecb2b18b42"
+      },
+      {
+        "name": "rag.ingest",
+        "type": "SPAN",
+        "parent": null
+      }
+    ]
+  },
+  {
+    "config_id": "s06-gemini-paragraph512-o0",
+    "trace_id": "91233daa5aa27298fcc36f79a4373184",
+    "root_name": "experiment.prefill",
+    "observations": [
+      {
+        "name": "experiment.prefill",
+        "type": "SPAN",
+        "parent": null
+      }
+    ]
+  },
+  {
+    "config_id": "s06-gemini-paragraph512-o0",
+    "trace_id": "39a84f228a89368ba9c7607c47052a2c",
+    "root_name": "rag.ingest",
+    "observations": [
+      {
+        "name": "preprocess_embed_upsert",
+        "type": "SPAN",
+        "parent": "c5acb002a9a14e73"
+      },
+      {
+        "name": "grab",
+        "type": "SPAN",
+        "parent": "c5acb002a9a14e73"
+      },
+      {
+        "name": "rag.ingest",
+        "type": "SPAN",
+        "parent": null
+      }
+    ]
+  },
+  {
+    "config_id": "s06-gemini-section1024-o0",
+    "trace_id": "cf6dd9e8096928dff58cf5b24bd9e71b",
+    "root_name": "experiment.prefill",
+    "observations": [
+      {
+        "name": "experiment.prefill",
+        "type": "SPAN",
+        "parent": null
+      }
+    ]
+  },
+  {
+    "config_id": "s06-gemini-section1024-o0",
+    "trace_id": "1ffed6ee664ec4183fd94b29f0d0cfa7",
+    "root_name": "rag.ingest",
+    "observations": [
+      {
+        "name": "preprocess_embed_upsert",
+        "type": "SPAN",
+        "parent": "65e1f2f755becf7e"
+      },
+      {
+        "name": "grab",
+        "type": "SPAN",
+        "parent": "65e1f2f755becf7e"
+      },
+      {
+        "name": "rag.ingest",
+        "type": "SPAN",
+        "parent": null
+      }
+    ]
+  },
+  {
+    "config_id": "s06-gemini-section256-o0",
+    "trace_id": "3f7e4d676229309395ab62101a45dc35",
+    "root_name": "experiment.prefill",
+    "observations": [
+      {
+        "name": "experiment.prefill",
+        "type": "SPAN",
+        "parent": null
+      }
+    ]
+  },
+  {
+    "config_id": "s06-gemini-section256-o0",
+    "trace_id": "b885fe391b1a81ef9f9790b46cecc833",
+    "root_name": "rag.ingest",
+    "observations": [
+      {
+        "name": "preprocess_embed_upsert",
+        "type": "SPAN",
+        "parent": "0a79299466064fd0"
+      },
+      {
+        "name": "grab",
+        "type": "SPAN",
+        "parent": "0a79299466064fd0"
+      },
+      {
+        "name": "rag.ingest",
+        "type": "SPAN",
+        "parent": null
+      }
+    ]
+  }
+]

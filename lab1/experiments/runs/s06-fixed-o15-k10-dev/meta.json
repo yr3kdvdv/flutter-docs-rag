@@ -1,0 +1,103 @@
+{
+  "run_id": "s06-fixed-o15-k10-dev",
+  "identity": {
+    "mode": "retrieval",
+    "split": "dev",
+    "final": false,
+    "dataset_version": "flutter-qa-v1",
+    "dataset_sha256": "df6fb5d791a9b7889591d71d65b33a1e9f1ea49ea89dedc97e3e21f240d1100a",
+    "config_fingerprint": "67f4657355bd",
+    "git_sha": "04ca4d9b2f9979634b774ac896228c2a0540c833",
+    "git_dirty": false,
+    "corpus_commit": "4fee0255ef9f0c85f6dd37513bf659613f57e5eb",
+    "prompt_sha256": "f78187d8a28ab3c8",
+    "judge_model": null,
+    "judge_prompt_sha256": null
+  },
+  "created_at": "2026-11-26T21:26:35+00:00",
+  "config_path": "experiments/configs/s06-fixed-o15-k10.yaml",
+  "dataset": {
+    "version": "flutter-qa-v1",
+    "split": "dev",
+    "path": "evaluation/datasets/flutter-qa-v1/dev.jsonl",
+    "sha256": "df6fb5d791a9b7889591d71d65b33a1e9f1ea49ea89dedc97e3e21f240d1100a",
+    "items": 15,
+    "statuses": {
+      "verified": 15
+    }
+  },
+  "final": false,
+  "pipeline": {
+    "config_id": "s06-fixed-o15-k10",
+    "config_fingerprint": "67f4657355bd",
+    "collection": "flutter__full__gemini-embedding-001-768__fixed-512-o15",
+    "corpus_commit": "4fee0255ef9f0c85f6dd37513bf659613f57e5eb",
+    "embedding_model": "gemini-embedding-001@768",
+    "llm_model": "gemini-3.5-flash-lite",
+    "thinking_budget": null,
+    "chunking": "fixed-512-o15",
+    "top_k": 10,
+    "min_score": null,
+    "reranker": null,
+    "prompt_version": "answer/v1.2",
+    "prompt_sha256": "f78187d8a28ab3c8",
+    "git_sha": "04ca4d9b2f9979634b774ac896228c2a0540c833",
+    "git_dirty": false
+  },
+  "judge": null,
+  "langfuse": {
+    "enabled": true,
+    "session_id": "s06-fixed-o15-k10-dev"
+  },
+  "complete": true,
+  "invocations": [
+    {
+      "started_at": "2026-11-26T21:26:35+00:00",
+      "git_sha": "04ca4d9b2f9979634b774ac896228c2a0540c833",
+      "git_dirty": false,
+      "processed": 15,
+      "skipped": 0,
+      "finished_at": "2026-11-26T21:26:36+00:00",
+      "errors": 0,
+      "stopped_early": false
+    }
+  ],
+  "updated_at": "2026-11-26T21:26:36+00:00",
+  "not_run": [],
+  "remaining_errors": [],
+  "errors": [],
+  "trace_ids": {
+    "dev-001": "491fde634524278cb32aa809f298145a",
+    "dev-002": "b327991c67c02604323d0e25fc7a09d5",
+    "dev-003": "fe3a919df2de80f731c8bbd73b8c8781",
+    "dev-004": "01a61d1024806235be232f5b6a8e5840",
+    "dev-005": "296902b34102d05bee136ccd6f0fe259",
+    "dev-006": "c455ff3712da0f06a1489621cc077372",
+    "dev-007": "ad8d46f32a00699f907146ed02a8bf23",
+    "dev-008": "bec739565f6c5b3f775c2714f77fdd4c",
+    "dev-009": "217673e2a26c7e8070a7eb8f197bea8f",
+    "dev-010": "b459bd690066a095438bb44f17690dd2",
+    "dev-011": "3c5c58534895780dec5d89befeecaa15",
+    "dev-012": "062ac4fc78873dcb039a60ac1001ef54",
+    "dev-013": "7c6085b60808ee676d93f80c37c4e69a",
+    "dev-014": "14c8be5d06aa0906a22f64c78cbb55c7",
+    "dev-015": "92c63480ed327d1872b603aefd841c91"
+  },
+  "all_trace_ids": [
+    "491fde634524278cb32aa809f298145a",
+    "b327991c67c02604323d0e25fc7a09d5",
+    "fe3a919df2de80f731c8bbd73b8c8781",
+    "01a61d1024806235be232f5b6a8e5840",
+    "296902b34102d05bee136ccd6f0fe259",
+    "c455ff3712da0f06a1489621cc077372",
+    "ad8d46f32a00699f907146ed02a8bf23",
+    "bec739565f6c5b3f775c2714f77fdd4c",
+    "217673e2a26c7e8070a7eb8f197bea8f",
+    "b459bd690066a095438bb44f17690dd2",
+    "3c5c58534895780dec5d89befeecaa15",
+    "062ac4fc78873dcb039a60ac1001ef54",
+    "7c6085b60808ee676d93f80c37c4e69a",
+    "14c8be5d06aa0906a22f64c78cbb55c7",
+    "92c63480ed327d1872b603aefd841c91"
+  ]
+}

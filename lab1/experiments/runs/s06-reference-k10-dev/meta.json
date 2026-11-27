@@ -1,0 +1,103 @@
+{
+  "run_id": "s06-reference-k10-dev",
+  "identity": {
+    "mode": "retrieval",
+    "split": "dev",
+    "final": false,
+    "dataset_version": "flutter-qa-v1",
+    "dataset_sha256": "df6fb5d791a9b7889591d71d65b33a1e9f1ea49ea89dedc97e3e21f240d1100a",
+    "config_fingerprint": "5c253934a0bb",
+    "git_sha": "04ca4d9b2f9979634b774ac896228c2a0540c833",
+    "git_dirty": false,
+    "corpus_commit": "4fee0255ef9f0c85f6dd37513bf659613f57e5eb",
+    "prompt_sha256": "f78187d8a28ab3c8",
+    "judge_model": null,
+    "judge_prompt_sha256": null
+  },
+  "created_at": "2026-11-26T21:11:53+00:00",
+  "config_path": "experiments/configs/s06-reference-k10.yaml",
+  "dataset": {
+    "version": "flutter-qa-v1",
+    "split": "dev",
+    "path": "evaluation/datasets/flutter-qa-v1/dev.jsonl",
+    "sha256": "df6fb5d791a9b7889591d71d65b33a1e9f1ea49ea89dedc97e3e21f240d1100a",
+    "items": 15,
+    "statuses": {
+      "verified": 15
+    }
+  },
+  "final": false,
+  "pipeline": {
+    "config_id": "s06-reference-k10",
+    "config_fingerprint": "5c253934a0bb",
+    "collection": "flutter__full__gemini-embedding-001-768__section-512-o0",
+    "corpus_commit": "4fee0255ef9f0c85f6dd37513bf659613f57e5eb",
+    "embedding_model": "gemini-embedding-001@768",
+    "llm_model": "gemini-3.5-flash-lite",
+    "thinking_budget": null,
+    "chunking": "section-512-o0",
+    "top_k": 10,
+    "min_score": null,
+    "reranker": null,
+    "prompt_version": "answer/v1.2",
+    "prompt_sha256": "f78187d8a28ab3c8",
+    "git_sha": "04ca4d9b2f9979634b774ac896228c2a0540c833",
+    "git_dirty": false
+  },
+  "judge": null,
+  "langfuse": {
+    "enabled": true,
+    "session_id": "s06-reference-k10-dev"
+  },
+  "complete": true,
+  "invocations": [
+    {
+      "started_at": "2026-11-26T21:11:53+00:00",
+      "git_sha": "04ca4d9b2f9979634b774ac896228c2a0540c833",
+      "git_dirty": false,
+      "processed": 15,
+      "skipped": 0,
+      "finished_at": "2026-11-26T21:11:54+00:00",
+      "errors": 0,
+      "stopped_early": false
+    }
+  ],
+  "updated_at": "2026-11-26T21:11:54+00:00",
+  "not_run": [],
+  "remaining_errors": [],
+  "errors": [],
+  "trace_ids": {
+    "dev-001": "91df47625572c0c89a6d3ba613780aa1",
+    "dev-002": "b82957de0648b43dce777d7946d1ae67",
+    "dev-003": "10527c5448afe680d4a681a9b5e11087",
+    "dev-004": "54bb3a19b95960a86738f4aa12d6451a",
+    "dev-005": "15d6a5b8b9a086522feb1982d916c7ac",
+    "dev-006": "a17e2fdc789447ce63d5f1bbbafae6d8",
+    "dev-007": "ba3a0dfd0c043a75950fc9cb68bc7e6c",
+    "dev-008": "dfd530c1e0579c9ca1afb12cfc9d752d",
+    "dev-009": "1f4f475b1647bf2d87e82eff712a45ad",
+    "dev-010": "69e3991eb112d0a067c111a5a2754ce3",
+    "dev-011": "bdf96f0766562d89f62b5667bf1b3441",
+    "dev-012": "94e7d14146f3b8ee1b607e09ed32b73f",
+    "dev-013": "a6db21ebabb554c583fab1644145d484",
+    "dev-014": "5f6d947ffe2bf66ef57cada399241fa7",
+    "dev-015": "ccbbdf92927aaa9a6451ed1a413a20b3"
+  },
+  "all_trace_ids": [
+    "91df47625572c0c89a6d3ba613780aa1",
+    "b82957de0648b43dce777d7946d1ae67",
+    "10527c5448afe680d4a681a9b5e11087",
+    "54bb3a19b95960a86738f4aa12d6451a",
+    "15d6a5b8b9a086522feb1982d916c7ac",
+    "a17e2fdc789447ce63d5f1bbbafae6d8",
+    "ba3a0dfd0c043a75950fc9cb68bc7e6c",
+    "dfd530c1e0579c9ca1afb12cfc9d752d",
+    "1f4f475b1647bf2d87e82eff712a45ad",
+    "69e3991eb112d0a067c111a5a2754ce3",
+    "bdf96f0766562d89f62b5667bf1b3441",
+    "94e7d14146f3b8ee1b607e09ed32b73f",
+    "a6db21ebabb554c583fab1644145d484",
+    "5f6d947ffe2bf66ef57cada399241fa7",
+    "ccbbdf92927aaa9a6451ed1a413a20b3"
+  ]
+}

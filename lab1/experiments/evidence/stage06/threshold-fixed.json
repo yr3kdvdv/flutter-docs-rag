@@ -1,0 +1,74 @@
+[
+  {
+    "run_id": "s06-fixed512-o15-dev",
+    "config_fingerprint": "6fb8e7a8a918",
+    "gold_sections": 18,
+    "screened_candidate": 0.65,
+    "requires_exact_run": true,
+    "thresholds": [
+      {
+        "min_score": null,
+        "hit5": 12,
+        "covered5": 14,
+        "context_covered": 15,
+        "answerable_empty": 0,
+        "unanswerable_empty": 0,
+        "rounded_boundary_items": []
+      },
+      {
+        "min_score": 0.35,
+        "hit5": 12,
+        "covered5": 14,
+        "context_covered": 15,
+        "answerable_empty": 0,
+        "unanswerable_empty": 0,
+        "rounded_boundary_items": []
+      },
+      {
+        "min_score": 0.45,
+        "hit5": 12,
+        "covered5": 14,
+        "context_covered": 15,
+        "answerable_empty": 0,
+        "unanswerable_empty": 0,
+        "rounded_boundary_items": []
+      },
+      {
+        "min_score": 0.55,
+        "hit5": 12,
+        "covered5": 14,
+        "context_covered": 15,
+        "answerable_empty": 0,
+        "unanswerable_empty": 0,
+        "rounded_boundary_items": []
+      },
+      {
+        "min_score": 0.65,
+        "hit5": 12,
+        "covered5": 14,
+        "context_covered": 15,
+        "answerable_empty": 0,
+        "unanswerable_empty": 1,
+        "rounded_boundary_items": []
+      },
+      {
+        "min_score": 0.75,
+        "hit5": 7,
+        "covered5": 8,
+        "context_covered": 8,
+        "answerable_empty": 5,
+        "unanswerable_empty": 3,
+        "rounded_boundary_items": []
+      },
+      {
+        "min_score": 0.85,
+        "hit5": 0,
+        "covered5": 0,
+        "context_covered": 0,
+        "answerable_empty": 12,
+        "unanswerable_empty": 3,
+        "rounded_boundary_items": []
+      }
+    ]
+  }
+]

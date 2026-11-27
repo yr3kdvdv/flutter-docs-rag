@@ -1,0 +1,31 @@
+{
+  "config_id": "s06-final",
+  "config_fingerprint": "5088264aff44",
+  "collection": "flutter__full__gemini-embedding-001-768__fixed-512-o15",
+  "corpus_commit": "4fee0255ef9f0c85f6dd37513bf659613f57e5eb",
+  "embedding_model": "gemini-embedding-001@768",
+  "llm_model": "gemini-3.5-flash-lite",
+  "thinking_budget": null,
+  "chunking": "fixed-512-o15",
+  "top_k": 10,
+  "min_score": 0.65,
+  "reranker": null,
+  "prompt_version": "answer/v1.2",
+  "prompt_sha256": "f78187d8a28ab3c8",
+  "git_sha": "1e030daeb47c0b30726756e744700404027b0584",
+  "git_dirty": false,
+  "dataset_sha256": "680ba531b37b71ba725796a75ea541ac8092845a59de704110cf15794426f2eb",
+  "dataset_version": "flutter-qa-v1",
+  "split": "test",
+  "items": 30,
+  "trace_id": "07155c69bbba9bedcbc640ef61056e13",
+  "embedding": {
+    "api_calls": 1,
+    "texts_sent": 30,
+    "est_tokens_sent": 1013,
+    "cache_hits": 0,
+    "retries": 0,
+    "api_tokens": 0,
+    "limiter_wait_s": 0.0
+  }
+}

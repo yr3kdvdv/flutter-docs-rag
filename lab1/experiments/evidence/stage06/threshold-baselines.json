@@ -1,0 +1,148 @@
+[
+  {
+    "run_id": "s06-gemini-baseline-dev",
+    "config_fingerprint": "01b55d3a2e20",
+    "gold_sections": 18,
+    "screened_candidate": null,
+    "requires_exact_run": false,
+    "thresholds": [
+      {
+        "min_score": null,
+        "hit5": 12,
+        "covered5": 13,
+        "context_covered": 13,
+        "answerable_empty": 0,
+        "unanswerable_empty": 0,
+        "rounded_boundary_items": []
+      },
+      {
+        "min_score": 0.35,
+        "hit5": 12,
+        "covered5": 13,
+        "context_covered": 13,
+        "answerable_empty": 0,
+        "unanswerable_empty": 0,
+        "rounded_boundary_items": []
+      },
+      {
+        "min_score": 0.45,
+        "hit5": 12,
+        "covered5": 13,
+        "context_covered": 13,
+        "answerable_empty": 0,
+        "unanswerable_empty": 0,
+        "rounded_boundary_items": []
+      },
+      {
+        "min_score": 0.55,
+        "hit5": 12,
+        "covered5": 13,
+        "context_covered": 13,
+        "answerable_empty": 0,
+        "unanswerable_empty": 0,
+        "rounded_boundary_items": []
+      },
+      {
+        "min_score": 0.65,
+        "hit5": 12,
+        "covered5": 13,
+        "context_covered": 13,
+        "answerable_empty": 0,
+        "unanswerable_empty": 0,
+        "rounded_boundary_items": []
+      },
+      {
+        "min_score": 0.75,
+        "hit5": 9,
+        "covered5": 10,
+        "context_covered": 10,
+        "answerable_empty": 2,
+        "unanswerable_empty": 3,
+        "rounded_boundary_items": []
+      },
+      {
+        "min_score": 0.85,
+        "hit5": 0,
+        "covered5": 0,
+        "context_covered": 0,
+        "answerable_empty": 12,
+        "unanswerable_empty": 3,
+        "rounded_boundary_items": []
+      }
+    ]
+  },
+  {
+    "run_id": "s06-voyage-baseline-dev",
+    "config_fingerprint": "e01374c2747f",
+    "gold_sections": 18,
+    "screened_candidate": 0.45,
+    "requires_exact_run": true,
+    "thresholds": [
+      {
+        "min_score": null,
+        "hit5": 12,
+        "covered5": 13,
+        "context_covered": 14,
+        "answerable_empty": 0,
+        "unanswerable_empty": 0,
+        "rounded_boundary_items": []
+      },
+      {
+        "min_score": 0.35,
+        "hit5": 12,
+        "covered5": 13,
+        "context_covered": 14,
+        "answerable_empty": 0,
+        "unanswerable_empty": 0,
+        "rounded_boundary_items": []
+      },
+      {
+        "min_score": 0.45,
+        "hit5": 12,
+        "covered5": 13,
+        "context_covered": 14,
+        "answerable_empty": 0,
+        "unanswerable_empty": 1,
+        "rounded_boundary_items": [
+          "dev-012"
+        ]
+      },
+      {
+        "min_score": 0.55,
+        "hit5": 11,
+        "covered5": 12,
+        "context_covered": 13,
+        "answerable_empty": 1,
+        "unanswerable_empty": 2,
+        "rounded_boundary_items": []
+      },
+      {
+        "min_score": 0.65,
+        "hit5": 9,
+        "covered5": 9,
+        "context_covered": 9,
+        "answerable_empty": 3,
+        "unanswerable_empty": 3,
+        "rounded_boundary_items": []
+      },
+      {
+        "min_score": 0.75,
+        "hit5": 0,
+        "covered5": 0,
+        "context_covered": 0,
+        "answerable_empty": 12,
+        "unanswerable_empty": 3,
+        "rounded_boundary_items": []
+      },
+      {
+        "min_score": 0.85,
+        "hit5": 0,
+        "covered5": 0,
+        "context_covered": 0,
+        "answerable_empty": 12,
+        "unanswerable_empty": 3,
+        "rounded_boundary_items": []
+      }
+    ]
+  }
+]

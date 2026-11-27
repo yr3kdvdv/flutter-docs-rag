@@ -1,0 +1,47 @@
+config_id: s06-voyage-k10-score045
+corpus:
+  name: full
+  repo: flutter/website
+  ref: 4fee0255ef9f0c85f6dd37513bf659613f57e5eb
+  include:
+  - sites/docs/src/content/**/*.md
+  exclude:
+  - sites/docs/src/content/**/_*.md
+  - sites/docs/src/content/release/release-notes/**
+  skip_front_matter:
+    noindex: true
+    sitemap: false
+chunking:
+  strategy: section
+  max_tokens: 512
+  overlap: 0.0
+  code_soft_cap_tokens: 1024
+embedding:
+  provider: voyage
+  model: voyage-4-lite
+  dimensions: 1024
+  batch_size: 50
+  max_rpm: 3
+  max_tpm: 6000
+retrieval:
+  top_k: 10
+filtering:
+  max_chunks: 8
+  min_score: 0.45
+  dedupe: content_hash
+  min_chars: 80
+reranking:
+  enabled: false
+  provider: voyage
+  model: rerank-2.5
+  max_rpm: 3
+  max_tpm: 6000
+  top_n: 8
+generation:
+  provider: gemini
+  model: gemini-3.5-flash-lite
+  prompt_name: answer
+  prompt_version: v1.2
+  max_context_tokens: 6000
+  max_output_tokens: 1024
+  temperature: 0.0

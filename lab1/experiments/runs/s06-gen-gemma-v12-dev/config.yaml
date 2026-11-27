@@ -1,0 +1,53 @@
+config_id: s06-gen-gemma-v12
+corpus:
+  name: full
+  repo: flutter/website
+  ref: 4fee0255ef9f0c85f6dd37513bf659613f57e5eb
+  include:
+  - sites/docs/src/content/**/*.md
+  exclude:
+  - sites/docs/src/content/**/_*.md
+  - sites/docs/src/content/release/release-notes/**
+  pages: []
+  skip_front_matter:
+    noindex: true
+    sitemap: false
+  download_concurrency: 8
+chunking:
+  strategy: fixed
+  max_tokens: 512
+  overlap: 0.15
+  code_soft_cap_tokens: 1024
+embedding:
+  provider: gemini
+  model: gemini-embedding-001
+  dimensions: 768
+  batch_size: 50
+  max_rpm: 100
+  max_tpm: 200000
+  timeout_s: 20.0
+retrieval:
+  top_k: 10
+filtering:
+  min_score: 0.65
+  dedupe: content_hash
+  min_chars: 80
+  max_chunks: 8
+reranking:
+  enabled: false
+  provider: voyage
+  model: rerank-2.5
+  top_n: 8
+  max_rpm: 3
+  max_tpm: 9000
+  timeout_s: 20.0
+generation:
+  provider: gemini
+  model: gemma-4-31b-it
+  thinking_budget: null
+  prompt_name: answer
+  prompt_version: v1.2
+  max_context_tokens: 6000
+  max_output_tokens: 1024
+  temperature: 0.0
+  timeout_s: 60.0
