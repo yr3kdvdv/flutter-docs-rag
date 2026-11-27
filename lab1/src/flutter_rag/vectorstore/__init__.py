@@ -7,16 +7,35 @@ opening it twice raises RuntimeError, which we turn into StorageLockedError.
 from __future__ import annotations
 
 import json
+from collections.abc import Callable, Iterator
+from contextlib import contextmanager
 from dataclasses import asdict
+from fcntl import LOCK_EX, flock
 from pathlib import Path
 
+from httpx import TimeoutException, TransportError
 from qdrant_client import QdrantClient, models
+from qdrant_client.http.exceptions import ResponseHandlingException, UnexpectedResponse
 
 from flutter_rag.errors import IndexNotReadyError, StorageLockedError, UpstreamError
 from flutter_rag.grabber.manifest import write_atomic
 from flutter_rag.preprocessing.chunking import Chunk
 
 PAYLOAD_SOURCE = "flutter-docs"
+SNAPSHOT_KEY = "flutter_rag_snapshot"
+
+
+def _qdrant_call[**P, T](operation: Callable[P, T], *args: P.args, **kwargs: P.kwargs) -> T:
+    try:
+        return operation(*args, **kwargs)
+    except UnexpectedResponse as exc:
+        raise UpstreamError(
+            "qdrant", "unavailable", "collection request failed", exc.status_code
+        ) from exc
+    except (ResponseHandlingException, TransportError) as exc:
+        cause = exc.source if isinstance(exc, ResponseHandlingException) else exc
+        kind = "timeout" if isinstance(cause, TimeoutException) else "unavailable"
+        raise UpstreamError("qdrant", kind, type(cause).__name__) from exc
 
 
 def open_qdrant(url: str | None, path: Path) -> QdrantClient:
@@ -43,6 +62,14 @@ class VectorStore:
         self.dims = dims
         self._state_path = state_dir / f"{collection}.json"
 
+    @contextmanager
+    def ingest_lock(self) -> Iterator[None]:
+        """Serialize writers that share this collection and its local progress files."""
+        self._state_path.parent.mkdir(parents=True, exist_ok=True)
+        with self._state_path.with_suffix(".lock").open("a") as lock:
+            flock(lock, LOCK_EX)
+            yield
+
     # ---- index state: which version of each document is indexed -------------
     def load_state(self) -> dict[str, str]:
         if not self._state_path.exists() or not self.exists():
@@ -54,15 +81,16 @@ class VectorStore:
 
     # ---- collection ---------------------------------------------------------
     def exists(self) -> bool:
-        return self.client.collection_exists(self.collection)
+        return _qdrant_call(self.client.collection_exists, self.collection)
 
     def ensure(self) -> None:
         if not self.exists():
-            self.client.create_collection(
+            _qdrant_call(
+                self.client.create_collection,
                 self.collection,
                 vectors_config=models.VectorParams(size=self.dims, distance=models.Distance.COSINE),
             )
-        info = self.client.get_collection(self.collection)
+        info = _qdrant_call(self.client.get_collection, self.collection)
         size = info.config.params.vectors.size
         if size != self.dims:
             raise IndexNotReadyError(
@@ -70,10 +98,45 @@ class VectorStore:
             )
 
     def count(self) -> int:
-        return self.client.count(self.collection, exact=True).count if self.exists() else 0
+        return (
+            _qdrant_call(self.client.count, self.collection, exact=True).count
+            if self.exists()
+            else 0
+        )
+
+    def read_snapshot(self) -> dict | None:
+        info = _qdrant_call(self.client.get_collection, self.collection)
+        return (info.config.metadata or {}).get(SNAPSHOT_KEY)
+
+    def write_snapshot(self, snapshot: dict) -> None:
+        if (
+            not _qdrant_call(
+                self.client.update_collection, self.collection, metadata={SNAPSHOT_KEY: snapshot}
+            )
+            or self.read_snapshot() != snapshot
+        ):
+            raise UpstreamError("qdrant", "unavailable", "snapshot metadata was not saved")
+
+    def source_points(self) -> Iterator[tuple[str, dict]]:
+        """Read enough payload to verify a collection written before snapshot metadata."""
+        offset = None
+        while True:
+            points, offset = _qdrant_call(
+                self.client.scroll,
+                self.collection,
+                offset=offset,
+                limit=256,
+                with_payload=["source", "document_id", "blob_sha", "source_commit", "content_hash"],
+                with_vectors=False,
+            )
+            for point in points:
+                yield str(point.id), point.payload or {}
+            if offset is None:
+                return
 
     def delete_document(self, document_id: str) -> None:
-        self.client.delete(
+        _qdrant_call(
+            self.client.delete,
             self.collection,
             points_selector=models.FilterSelector(
                 filter=models.Filter(
@@ -102,14 +165,14 @@ class VectorStore:
             for c, v in zip(chunks, vectors, strict=True)
         ]
         if points:
-            self.client.upsert(self.collection, points=points)
+            _qdrant_call(self.client.upsert, self.collection, points=points)
 
     def search(self, vector: list[float], limit: int) -> list[tuple[dict, float]]:
         if not self.exists():
             raise IndexNotReadyError(
                 f"коллекция {self.collection} не создана — сначала `flutter-rag ingest`"
             )
-        res = self.client.query_points(
-            self.collection, query=vector, limit=limit, with_payload=True
+        res = _qdrant_call(
+            self.client.query_points, self.collection, query=vector, limit=limit, with_payload=True
         )
         return [(p.payload, p.score) for p in res.points]

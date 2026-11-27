@@ -9,7 +9,7 @@ from fastapi.responses import JSONResponse
 from pydantic import BaseModel, Field
 
 from flutter_rag.config import load_settings
-from flutter_rag.errors import IndexNotReadyError, RagError
+from flutter_rag.errors import IndexNotReadyError, RagError, UpstreamError
 
 
 class AskRequest(BaseModel):
@@ -47,10 +47,11 @@ def create_app(config_path: str, runtime=None) -> FastAPI:
         rt = state["rt"]
         if rt is None:
             return JSONResponse({"status": "not_ready", "reason": state["error"]}, 503)
-        points = rt.store.count()
-        if points == 0:
-            return JSONResponse({"status": "not_ready", "reason": "index is empty"}, 503)
-        return {"status": "ready", "collection": rt.store.collection, "points": points}
+        try:
+            snapshot = rt.check_index(rt.index_snapshot())
+        except (IndexNotReadyError, UpstreamError) as exc:
+            return JSONResponse({"status": "not_ready", "reason": str(exc)}, 503)
+        return {"status": "ready", "collection": rt.store.collection, "points": snapshot.points}
 
     @app.post("/ask")
     def ask_endpoint(req: AskRequest):

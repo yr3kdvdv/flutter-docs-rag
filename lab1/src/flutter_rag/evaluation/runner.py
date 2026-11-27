@@ -121,7 +121,7 @@ def run_evaluation(
     run_meta = rt.run_metadata()
     if run_meta.get("corpus_commit") is None:
         raise RagError(
-            f"no manifest for corpus {rt.cfg.corpus.name!r} in {rt.data_dir}: run ingest first"
+            f"no verified snapshot for collection {rt.cfg.collection_name!r}: run ingest first"
         )
     stale = [i.id for i in dataset.items if i.corpus_commit != run_meta["corpus_commit"]]
     if stale:
@@ -300,7 +300,7 @@ def _run_item(rt, item: QAItem, *, mode: str, run_id: str, judge, base_meta: dic
         row["trace_id"] = rt.tracer.current_trace_id()
         try:
             if mode == "retrieval":
-                found = search(rt, item.question, lat)
+                found = search(rt, item.question, lat, expected_commit=metadata["corpus_commit"])
                 row["retrieved"] = [_candidate_row(c) for c in found.retrieved]
                 row["ranked"] = [_candidate_row(c) for c in found.ranked]
                 row["context_chunk_ids"] = [i.candidate.chunk.chunk_id for i in found.context]
@@ -310,7 +310,11 @@ def _run_item(rt, item: QAItem, *, mode: str, run_id: str, judge, base_meta: dic
                 row["dropped"] = found.dropped
             else:
                 answer = Answer(
-                    status="upstream_error", question=item.question, text=None, sources=[]
+                    status="upstream_error",
+                    question=item.question,
+                    text=None,
+                    sources=[],
+                    meta={"corpus_commit": metadata["corpus_commit"]},
                 )
                 context = ""
                 try:
