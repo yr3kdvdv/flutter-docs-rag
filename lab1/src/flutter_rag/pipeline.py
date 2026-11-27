@@ -112,15 +112,19 @@ class Runtime:
         points = self.store.count()
         if not points:
             return None
-        record = self.store.read_snapshot()
-        if record is not None:
-            # The pending record deliberately has no point count. Never fall back to
-            # legacy provenance if a write is in progress or was interrupted.
-            return IndexSnapshot(**record) if record.get("points") == points else None
-
-        # Pre-stage-08 indexes have no completion marker. Read their actual point
-        # payloads and validate the collection against the manifest for that SHA.
-        return self._legacy_snapshot(points)
+        match self.store.read_snapshot():
+            case None:
+                # Pre-stage-08 indexes have no completion marker.
+                return self._legacy_snapshot(points)
+            case {
+                "commit": str(commit),
+                "repo": str(repo),
+                "points": int(saved_points),
+                "generation": str(generation),
+            } if type(saved_points) is int and saved_points == points:
+                return IndexSnapshot(commit, repo, points, generation)
+        # Pending and malformed records cannot fall back to legacy provenance.
+        return None
 
     def _legacy_snapshot(self, points: int) -> IndexSnapshot | None:
         stored = dict(self.store.source_points())
@@ -146,25 +150,23 @@ class Runtime:
             if point.get("source") != PAYLOAD_SOURCE:
                 return None
         raw = RawStore(self.data_dir / "raw")
-        if all(
-            raw.has(sha)
+        if any(
+            not raw.has(sha)
             for doc in expected.values()
             for sha in (doc.blob_sha, *doc.includes.values())
         ):
-            expected_points = {
-                chunk.chunk_id: (doc_id, chunk.content_hash)
-                for doc_id in expected
-                for chunk in _document_chunks(self, manifest, raw, doc_id)[0]
-            }
-            actual_points = {
-                key: (point["document_id"], point.get("content_hash"))
-                for key, point in stored.items()
-            }
-            if expected_points != actual_points:
-                return None
-        elif self.store.load_state() != {key: _index_version(manifest, key) for key in expected}:
+            # A sidecar only records document versions, so it cannot prove that
+            # every chunk is present. Ingest can download and verify missing raw data.
             return None
-        elif {point["document_id"] for point in stored.values()} != set(expected):
+        expected_points = {
+            chunk.chunk_id: (doc_id, chunk.content_hash)
+            for doc_id in expected
+            for chunk in _document_chunks(self, manifest, raw, doc_id)[0]
+        }
+        actual_points = {
+            key: (point["document_id"], point.get("content_hash")) for key, point in stored.items()
+        }
+        if expected_points != actual_points:
             return None
         if self.store.read_snapshot() is not None:
             # Another writer began while the legacy collection was being read.
@@ -701,7 +703,8 @@ _LETTER = re.compile(r"[^\W\d_]")
 _CITATION = re.compile(r"(?<!\\)\[([0-9]+)\](?!\()")
 _INLINE_ANSWER_CODE = re.compile(r"(?<!`)(`+)(?!`).*?(?<!`)\1(?!`)", re.DOTALL)
 _CYRILLIC_WORD = re.compile(r"[а-яё]+", re.IGNORECASE)
-_LATIN_WORD = re.compile(r"[a-z]+", re.IGNORECASE)
+_LATIN_WORD = re.compile(r"[A-Za-z][A-Za-z0-9_]*")
+_LANGUAGE_NEUTRAL_NAMES = {"dart", "flutter"}
 
 
 def question_language(question: str) -> str:
@@ -731,10 +734,11 @@ def _apply_llm_result(
         for is_code, segment in split_fences(parsed.answer)
         if not is_code
     )
+    outside_quotes = _QUOTED.sub(" ", prose)
     by_number = {i.number: i for i in items}
     by_marker = {str(n): n for n in by_number}
     declared = list(dict.fromkeys(parsed.citations))
-    inline = list(dict.fromkeys(_CITATION.findall(prose)))
+    inline = list(dict.fromkeys(_CITATION.findall(outside_quotes)))
     valid = [n for n in declared if n in by_number]
     warnings = []
     if invalid := [n for n in declared if n not in by_number]:
@@ -745,10 +749,13 @@ def _apply_llm_result(
         warnings.append("citation_text_mismatch")
     if not valid:
         warnings.append("answered_without_citations")
-    outside_quotes = _QUOTED.sub(" ", prose)
-    language_text = outside_quotes if _LETTER.search(outside_quotes) else prose
-    russian_words = len(_CYRILLIC_WORD.findall(language_text))
-    english_words = len(_LATIN_WORD.findall(language_text))
+    russian_words = len(_CYRILLIC_WORD.findall(outside_quotes))
+    english_words = sum(
+        word.isalpha()
+        and (word.islower() or word.istitle())
+        and word.lower() not in _LANGUAGE_NEUTRAL_NAMES
+        for word in _LATIN_WORD.findall(outside_quotes)
+    )
     if (language == "en" and russian_words > english_words) or (
         language == "ru" and english_words > russian_words
     ):

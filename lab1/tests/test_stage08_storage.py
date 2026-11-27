@@ -18,6 +18,7 @@ from flutter_rag.api import create_app
 from flutter_rag.config import Settings
 from flutter_rag.errors import EXIT_UPSTREAM, IndexNotReadyError, RagError, UpstreamError
 from flutter_rag.evaluation.runner import run_evaluation
+from flutter_rag.grabber import RawStore
 from flutter_rag.observability import Tracer
 from flutter_rag.pipeline import Runtime, ask, ingest
 from flutter_rag.vectorstore import SNAPSHOT_KEY
@@ -136,6 +137,34 @@ def test_complete_legacy_index_is_reused_without_new_embeddings(tmp_path):
         assert report.indexed_documents == []
         assert rt.embedder.stats.api_calls == before
         assert rt.store.read_snapshot()["commit"] == SHA_A
+
+
+def test_legacy_index_with_missing_source_and_point_requires_recovery(tmp_path):
+    with opened(tmp_path, config(), FakeGitHub(FILES, SHA_A)) as rt:
+        original = ingest(rt).points_total
+        rt.client.update_collection(rt.store.collection, metadata={SNAPSHOT_KEY: None})
+        points, _ = rt.client.scroll(rt.store.collection)
+        layout_points = [p for p in points if p.payload["document_id"] == "ui/layout"]
+        assert len(layout_points) > 1
+        point = layout_points[0]
+        rt.client.delete(
+            rt.store.collection, points_selector=models.PointIdsList(points=[point.id])
+        )
+        RawStore(tmp_path / "raw").path(point.payload["blob_sha"]).unlink()
+        assert rt.index_snapshot() is None
+        before = rt.embedder.stats.api_calls
+        report = ingest(rt)
+        assert report.downloaded_files == 1 and report.points_total == original
+        assert rt.embedder.stats.api_calls == before
+        assert rt.index_snapshot().commit == SHA_A
+
+
+def test_malformed_snapshot_is_not_accepted_as_ready(tmp_path):
+    with opened(tmp_path, config(), FakeGitHub(FILES, SHA_A)) as rt:
+        count = ingest(rt).points_total
+        rt.store.write_snapshot({"points": count})
+        with pytest.raises(IndexNotReadyError, match="не подтверждён"):
+            ask(rt, QUESTION)
 
 
 @pytest.mark.parametrize("delete_all", [False, True])

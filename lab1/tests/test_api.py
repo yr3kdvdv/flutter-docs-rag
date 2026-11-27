@@ -105,6 +105,27 @@ def test_api_reports_invalid_model_answer_without_claiming_corpus_absence(tmp_pa
 
 
 @pytest.mark.parametrize(
+    ("question", "text"),
+    [
+        ("Какой текст ошибки показан?", "«No such file or directory» [1]."),
+        ("Какой API выбрать?", "Подойдёт Flutter StatefulWidget, setState, BuildContext [1]."),
+        ("What does the example read?", "The excerpt says «Read a[99]» [1]."),
+    ],
+)
+def test_ask_treats_quoted_text_and_identifiers_as_literals(tmp_path, question, text):
+    llm = FakeLLM(LLMAnswer(status="answered", answer=text, citations=[1]))
+    rt = runtime(tmp_path, llm)
+    with TestClient(create_app("unused", runtime=rt)) as client:
+        ingest(rt)
+        response = client.post("/ask", json={"question": question})
+    assert response.status_code == 200
+    answer = response.json()
+    assert answer["status"] == "answered" and answer["text"] == text
+    assert [source["number"] for source in answer["sources"]] == [1]
+    assert not answer["warnings"] and llm.calls == 1
+
+
+@pytest.mark.parametrize(
     ("text", "citations", "warning"),
     [
         ("It keeps app state [99].", [99], "answered_without_citations"),
