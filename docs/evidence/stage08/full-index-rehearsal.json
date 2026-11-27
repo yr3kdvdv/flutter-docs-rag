@@ -1,0 +1,22 @@
+{
+  "git_sha": "35ba4cc23b64f2e066054c50c8d1fa93f21166fc",
+  "git_dirty": false,
+  "config_id": "s06-final",
+  "config_fingerprint": "5088264aff44",
+  "corpus_commit": "4fee0255ef9f0c85f6dd37513bf659613f57e5eb",
+  "ingest_source": "saved GitHub manifest, pinned Markdown and stage 06 Gemini embedding cache",
+  "network_calls": 0,
+  "documents": {
+    "ok": 647,
+    "skipped": 19,
+    "failed": 0
+  },
+  "points": 2694,
+  "repeat_upserts": 0,
+  "dataset_statuses": {
+    "verified": 45
+  },
+  "gold_sections": 51,
+  "dev_processed": 15,
+  "dev_retrieval_equals_stage06": true
+}

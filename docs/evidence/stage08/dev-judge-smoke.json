@@ -1,0 +1,17 @@
+{
+  "git_sha": "35ba4cc23b64f2e066054c50c8d1fa93f21166fc",
+  "git_dirty": false,
+  "config_id": "s06-final",
+  "corpus_commit": "4fee0255ef9f0c85f6dd37513bf659613f57e5eb",
+  "split": "dev",
+  "id": "dev-001",
+  "status": "answered",
+  "generation_model": "gemini-3.5-flash-lite",
+  "judge_model": "gemini-3.1-flash-lite",
+  "correctness": 5,
+  "faithfulness": 5,
+  "trace_id": "fa9ff5c31648ce02de65f9dababd3e50",
+  "processed": 1,
+  "cli_exit_code": 4,
+  "exit_reason": "intentional --limit 1; remaining dev questions were not run"
+}

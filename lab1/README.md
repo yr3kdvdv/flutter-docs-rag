@@ -41,7 +41,7 @@ Grabber сохраняет сырой Markdown и манифест снимка,
 и зависимости из `uv.lock`.
 
 ```sh
-git clone https://github.com/yr3kdvdv/flutter-docs-rag.git
+git clone --branch lab1-v1.0.0 --single-branch https://github.com/yr3kdvdv/flutter-docs-rag.git
 cd flutter-docs-rag
 test -f .env || cp .env.example .env
 cd lab1

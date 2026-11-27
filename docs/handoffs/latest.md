@@ -1,74 +1,65 @@
-# Handoff этапа 07 → этап 08
+# Handoff этапа 08 — выпуск и пробная защита
 
 ```yaml
-task_id: LAB1-007
-sender_role: "Codex (GPT-6), проверка кода, воспроизводимости и консолидация аудита"
-receiver_role: "Исполнитель этапа 08 и координатор защиты"
-status: ready_for_next_step
-goal: "Исправить подтверждённые замечания и подготовить воспроизводимую сдачу лабораторной №1"
+task_id: LAB1-008
+sender_role: "Codex (GPT-6), интеграция и проверка выпуска"
+receiver_role: "Координатор пробной защиты"
+status: waiting_for_student
+goal: "Показать рабочую систему и проверить понимание основных архитектурных решений"
 repository: "https://github.com/yr3kdvdv/flutter-docs-rag"
-branch: "stage-06-research"
-commit_sha: "1ac7e090faf566ba508ff0ae77a99245994056f3"
-worktree: "Основной checkout outputs/flutter-docs-rag. SHA фиксирует проверенный код и доказательства. Отчёт этапа 07 записан поверх него в рабочей папке."
+branch: "stage-08-release"
+release: "https://github.com/yr3kdvdv/flutter-docs-rag/releases/tag/lab1-v1.0.0"
+commit_sha: "35ba4cc23b64f2e066054c50c8d1fa93f21166fc"
+worktree: "SHA закрепляет код и сценарий, проверенный живым запуском. Документальные результаты в последующем коммите ветки."
 working_tree_clean: false
 untracked:
-  - "docs/reviews/final-audit.md"
   - "lab1/2026-11-04-213321-projectstate-latest-handoff.txt"
   - "lab1/claude_pad_last_dialog.txt"
 requirements:
-  - "docs/requirements.md, прежде всего R25/R26/R34/R36/R37, P01, N02/N03"
+  - "docs/requirements.md, прежде всего R34/R36/R37, P01, N02/N03"
   - "prompts/08-release-defense.md"
 read_first:
-  - AGENTS.md
   - docs/PROJECT_BRIEF.md
   - docs/PROJECT_STATE.md
-  - docs/reviews/final-audit.md
+  - docs/defense/demo-script.md
+  - docs/defense/questions.md
+  - docs/evidence/stage08/README.md
   - lab1/experiments/report.md
-  - lab1/experiments/selection.md
-  - docs/DEFENSE_PLAN.md
-allowed_paths:
-  - "Код и целевые регрессии по финальному аудиту, README и материалы сдачи из prompts/08-release-defense.md"
 do_not_edit:
   - "Принятые dev.jsonl, test.jsonl, замороженный конфиг и сохранённые артефакты этапа 06"
-  - "Два существующих экспорта диалогов в lab1"
+  - "Два экспорта диалогов в lab1"
 decisions:
-  - "В отчёте проверенная ревизия отделена от заморозки финального конфига 1e030da."
-  - "Аудит подтвердил дефект метаданных при смене снимка между коллекциями. В сохранённой финальной коллекции подтверждён один верный снимок."
-  - "Замечания по языку и цитатам проверять на dev или демонстрационных вопросах. На этапе 07 финальный test использован для чтения уже сохранённых ответов."
+  - "Для живого демо закреплены две страницы на том же SHA корпуса. Полный индекс восстановлен отдельно из ранее полученных данных."
+  - "После фиксации исследования технические проверки выполнялись на демо и dev. Числа качества относятся к неизменённым результатам этапа 06."
 completed:
-  - "Независимый статический аудит Gemini/Antigravity завершён со статусом SUCCESS. Выводы сверены Codex."
-  - "Проверены требования лабораторной, код, эксперименты, сохранённые данные и CI на 1ac7e09."
-  - "Зафиксированы приоритизированные замечания, минимальные исправления и checklist сдачи."
+  - "Исправлены привязка Qdrant к снимку, возврат HTTP 503 при сетевой ошибке, язык и цитаты. Уточнены вход и знаменатель judge."
+  - "Обновлены README и матрица требований. Подготовлены демонстрация, вопросы и доказательства."
 verification:
-  - command: "pytest -o addopts= -q, Ruff, экспорт и diff requirements.txt"
-    result: "152 теста прошли локально и в чистом архиве; линт, формат и lockfile сверены. CI Ubuntu также прошёл."
-  - command: "flutter-rag dataset-check и Qdrant scroll/retrieve на копии коллекции этапа 06"
-    result: "45 verified, 82 excerpts, 51 gold-секция, 2694 точки pinned snapshot; все 39 структурированных ссылок совпали с payload."
-  - command: "python experiments/analyze.py --final experiments/runs/s06-*-dev experiments/runs/s06-final-test"
-    result: "Побайтовое совпадение analysis.json по 25 прогонам. 391 trace ID сопоставлен с сохранёнными экспортами Langfuse, содержащими 2131 оценку."
-    artifact: "lab1/experiments/evidence/stage06/analysis.json"
-  - command: "Офлайн-сценарии с FakeGitHub/FakeLLM и embedded Qdrant"
-    result: "Воспроизведены неверный SHA оценки и текст с неразрешённой цитатой при answered."
-  - command: "FastAPI TestClient с инъекцией исключения клиента Qdrant после подключения"
-    result: "Воспроизведён HTTP 500 для /ready и /ask. Живой сервер в этом сценарии не использован."
+  - command: "uv sync --locked --offline, pytest, Ruff, экспорт зависимостей и пересчёт"
+    result: "Установка из кэша в чистом checkout, 172 теста, Ruff, побайтовое совпадение всех 25 исторических агрегатов."
+  - command: "ingest ×2, ask EN, отказ RU, curl к FastAPI и trace-show"
+    result: "Живой старт на пустом data dir, 73 точки, ноль вызовов embeddings при повторе, успешно прочитаны 6 наблюдений одной трассы."
+    artifact: "docs/evidence/stage08/live-demo.json"
+  - command: "Офлайн-реконструкция полного индекса и retrieval на dev"
+    result: "647 страниц, 2694 точки, результаты всех 15 dev-вопросов совпали с этапом 06."
+    artifact: "docs/evidence/stage08/full-index-rehearsal.json"
+  - command: "evaluate --config experiments/configs/s06-final.yaml --split dev --mode full --limit 1"
+    result: "Реальный ответ и judge на dev-001. CLI сообщил о преднамеренно ограниченном запуске."
+    artifact: "docs/evidence/stage08/dev-judge-smoke.json"
 not_verified:
-  - "Новый запуск на холодном индексе через внешние API, актуальность всех публичных якорей и живые частичные сбои GitHub."
-  - "Недоступность Langfuse/Qdrant server; эффект rerank на fixed и широкая калибровка judge."
+  - "Полная загрузка и векторизация всех 647 страниц с нуля в этапе 08 и отключение живого сетевого Qdrant. Соответственно проверены кэшированный сценарий и инъекция ошибки."
+  - "Устная защита требует ответов студента."
 experiment:
   dataset_version: "flutter-qa-v1"
-  dev_sha256: "df6fb5d791a9b7889591d71d65b33a1e9f1ea49ea89dedc97e3e21f240d1100a"
-  test_sha256: "680ba531b37b71ba725796a75ea541ac8092845a59de704110cf15794426f2eb"
   corpus_snapshot: "flutter/website@4fee0255ef9f0c85f6dd37513bf659613f57e5eb"
-  config_id: "s06-final"
-  freeze_commit: "1e030daeb47c0b30726756e744700404027b0584"
-  langfuse_run_id: "s06-final-test"
-integration: "https://github.com/yr3kdvdv/flutter-docs-rag/pull/16 — открыт; CI на 1ac7e09 завершился успешно."
-blockers: []
-next_action: "Исправить A1: сверять provenance оценки с фактическим снимком коллекции Qdrant и добавить регрессию для двух снимков и прерывания ingest."
+  historical_config_id: "s06-final"
+  historical_freeze_commit: "1e030daeb47c0b30726756e744700404027b0584"
+  demo_config_id: "defense-demo"
+next_action: "Задать первый вопрос про embeddings, дождаться ответа и разобрать его. Затем переходить по одному вопросу за раз."
 acceptance_criteria:
-  - "Закрыты подтверждённые замечания отчёта. Затронутые проверки и сценарий чистого запуска воспроизведены."
-  - "README соответствует методичке, подготовлены демонстрация, источники и трасса Langfuse."
-student_explanation: "Сохранённая итоговая оценка использовала правильный индекс. При будущем обновлении корпуса код может перепутать метаданные двух коллекций. Исправление нужно до сдачи, чтобы демонстрацию можно было воспроизвести на нужном снимке."
+  - "Студент может объяснить embeddings, chunking, Top-K, rerank, промпты, отказы и Langfuse своими словами."
+  - "Студент может связать выбор конфигурации с dev-сравнениями и объяснить границы исторической оценки."
+student_explanation: "Embeddings помогают найти подходящие фрагменты Flutter, а LLM формулирует ответ со ссылками только после поиска. Качество найденных источников и качество текста оцениваются отдельно."
 ```
 
-[Handoff этапа 06](https://github.com/yr3kdvdv/flutter-docs-rag/blob/1ac7e090faf566ba508ff0ae77a99245994056f3/docs/handoffs/latest.md)
+[Финальный аудит предыдущего этапа](../reviews/final-audit.md)

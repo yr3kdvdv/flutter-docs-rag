@@ -1,0 +1,121 @@
+{
+  "git_sha": "35ba4cc23b64f2e066054c50c8d1fa93f21166fc",
+  "git_dirty": false,
+  "corpus_commit": "4fee0255ef9f0c85f6dd37513bf659613f57e5eb",
+  "configuration": "configs/demo.yaml",
+  "config_id": "defense-demo",
+  "config_fingerprint": "4f0ef4993c7d",
+  "embedding_model": "gemini-embedding-001@768",
+  "generation_model": "gemini-3.5-flash-lite",
+  "prompt_version": "answer/v1.2",
+  "prompt_sha256": "f78187d8a28ab3c8",
+  "ingest": {
+    "documents": {
+      "ok": 2,
+      "skipped": 0,
+      "failed": 0
+    },
+    "downloaded_files": 2,
+    "chunks_upserted": 73,
+    "points_total": 73,
+    "embedding": {
+      "api_calls": 3,
+      "texts_sent": 73,
+      "est_tokens_sent": 18697,
+      "cache_hits": 0,
+      "retries": 0,
+      "api_tokens": 0,
+      "limiter_wait_s": 0.0
+    },
+    "trace_id": "0df46c39ff7df413bf2f3519d11a7c5a"
+  },
+  "repeat_ingest": {
+    "documents": {
+      "ok": 2,
+      "skipped": 0,
+      "failed": 0
+    },
+    "downloaded_files": 0,
+    "chunks_upserted": 0,
+    "points_total": 73,
+    "embedding": {
+      "api_calls": 0,
+      "texts_sent": 0,
+      "est_tokens_sent": 0,
+      "cache_hits": 0,
+      "retries": 0,
+      "api_tokens": 0,
+      "limiter_wait_s": 0.0
+    },
+    "trace_id": "7c13ddc352b76824dc60ed89369e65dc"
+  },
+  "cli_answer": {
+    "question": "How do constraints, sizes and position flow in Flutter layout?",
+    "status": "answered",
+    "text": "Constraints go down. Sizes go up. Parent sets position [1]. In detail:\n- A widget gets its own constraints from its parent [1].\n- The widget tells its children what their constraints are and asks each child what size it wants to be [1].\n- The widget positions its children horizontally in the x axis and vertically in the y axis, one by one [1].\n- Finally, the widget tells its parent about its own size within the original constraints [1].",
+    "sources": [
+      {
+        "number": 1,
+        "title": "Understanding constraints",
+        "section": "",
+        "url": "https://docs.flutter.dev/ui/layout/constraints",
+        "score": 0.7853,
+        "chunk_id": "f16a6629-ec3b-546b-893b-ce3de31b9973"
+      }
+    ],
+    "warnings": [],
+    "trace_id": "3732865a2cc9e137fdbe0daab8d2adaa"
+  },
+  "cli_refusal": {
+    "question": "Как PostgreSQL выполняет VACUUM?",
+    "status": "insufficient_context",
+    "text": "В проиндексированной документации нет информации для ответа на этот вопрос.",
+    "sources": [],
+    "warnings": [],
+    "trace_id": "e0eeaca8779a6e6e56a099ad63e2530f"
+  },
+  "http_health": {
+    "status": "ok"
+  },
+  "http_ready": {
+    "status": "ready",
+    "collection": "flutter__defense-demo__gemini-embedding-001-768__section-512-o0",
+    "points": 73
+  },
+  "http_answer": {
+    "question": "Как Flutter выбирает размер дочернего виджета?",
+    "status": "answered",
+    "text": "Согласно документации, виджет получает свои ограничения (constraints) от родителя, которые представляют собой набор из четырех чисел: минимальной и максимальной ширины, а затем минимальной и максимальной высоты [1]. После этого виджет последовательно обходит своих детей: передает каждому из них их собственные ограничения (которые могут отличаться для каждого ребенка) и запрашивает у каждого ребенка желаемый размер [1]. Виджет может решить свой размер только в пределах ограничений, заданных родителем [3].",
+    "sources": [
+      {
+        "number": 1,
+        "title": "Understanding constraints",
+        "section": "",
+        "url": "https://docs.flutter.dev/ui/layout/constraints",
+        "score": 0.7592,
+        "chunk_id": "f16a6629-ec3b-546b-893b-ce3de31b9973"
+      },
+      {
+        "number": 3,
+        "title": "Understanding constraints",
+        "section": "Limitations",
+        "url": "https://docs.flutter.dev/ui/layout/constraints#limitations",
+        "score": 0.761,
+        "chunk_id": "dc6ae26d-c00a-55c1-b7fd-b671d47788c1"
+      }
+    ],
+    "warnings": [],
+    "trace_id": "faad63be788a236d09fad1f89b1c6145"
+  },
+  "langfuse_readback": {
+    "trace_id": "3732865a2cc9e137fdbe0daab8d2adaa",
+    "observations": [
+      "validate",
+      "llm",
+      "build_context",
+      "filter",
+      "retrieve",
+      "rag.ask"
+    ]
+  }
+}
