@@ -5,7 +5,7 @@
 в отдельном [PR #16](https://github.com/yr3kdvdv/flutter-docs-rag/pull/16),
 для ревизии `1ac7e09` [CI прошёл](https://github.com/yr3kdvdv/flutter-docs-rag/actions/runs/45956621140).
 [Проверки выпуска](evidence/stage08/README.md) ·
-[GitHub Release `lab1-v1.0.0`](https://github.com/yr3kdvdv/flutter-docs-rag/releases/tag/lab1-v1.0.0) ·
+[GitHub Release `lab1-v1.0.1`](https://github.com/yr3kdvdv/flutter-docs-rag/releases/tag/lab1-v1.0.1) ·
 [Финальный аудит](reviews/final-audit.md) · [Текущий handoff](handoffs/latest.md)
 
 ## Сделано

@@ -703,7 +703,8 @@ _LETTER = re.compile(r"[^\W\d_]")
 _CITATION = re.compile(r"(?<!\\)\[([0-9]+)\](?!\()")
 _INLINE_ANSWER_CODE = re.compile(r"(?<!`)(`+)(?!`).*?(?<!`)\1(?!`)", re.DOTALL)
 _CYRILLIC_WORD = re.compile(r"[а-яё]+", re.IGNORECASE)
-_LATIN_WORD = re.compile(r"[A-Za-z][A-Za-z0-9_]*")
+_LATIN_WORD = re.compile(r"[A-Za-z][A-Za-z0-9_]*(?:[./:-][A-Za-z0-9_]+)*")
+_ANSWER_URL = re.compile(r"https?://[^\s<>()]+", re.IGNORECASE)
 _LANGUAGE_NEUTRAL_NAMES = {"dart", "flutter"}
 
 
@@ -749,12 +750,13 @@ def _apply_llm_result(
         warnings.append("citation_text_mismatch")
     if not valid:
         warnings.append("answered_without_citations")
-    russian_words = len(_CYRILLIC_WORD.findall(outside_quotes))
+    language_text = _ANSWER_URL.sub(" ", outside_quotes)
+    russian_words = len(_CYRILLIC_WORD.findall(language_text))
     english_words = sum(
         word.isalpha()
         and (word.islower() or word.istitle())
         and word.lower() not in _LANGUAGE_NEUTRAL_NAMES
-        for word in _LATIN_WORD.findall(outside_quotes)
+        for word in _LATIN_WORD.findall(language_text)
     )
     if (language == "en" and russian_words > english_words) or (
         language == "ru" and english_words > russian_words

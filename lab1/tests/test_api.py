@@ -125,6 +125,21 @@ def test_ask_treats_quoted_text_and_identifiers_as_literals(tmp_path, question, 
     assert not answer["warnings"] and llm.calls == 1
 
 
+def test_russian_answer_language_ignores_urls_and_package_paths(tmp_path):
+    text = (
+        "Настройте pubspec.yaml [1]. "
+        "См. [документацию](https://docs.flutter.dev/packages-and-plugins/using-packages)."
+    )
+    llm = FakeLLM(LLMAnswer(status="answered", answer=text, citations=[1]))
+    rt = runtime(tmp_path, llm)
+    with TestClient(create_app("unused", runtime=rt)) as client:
+        ingest(rt)
+        response = client.post("/ask", json={"question": "Где настроить пакеты Flutter?"})
+    result = response.json()
+    assert response.status_code == 200 and result["status"] == "answered"
+    assert result["text"] == text and not result["warnings"] and llm.calls == 1
+
+
 @pytest.mark.parametrize(
     ("text", "citations", "warning"),
     [

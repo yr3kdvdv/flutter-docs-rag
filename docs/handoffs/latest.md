@@ -8,7 +8,7 @@ status: waiting_for_student
 goal: "Показать рабочую систему и проверить понимание основных архитектурных решений"
 repository: "https://github.com/yr3kdvdv/flutter-docs-rag"
 branch: "stage-08-release"
-release: "https://github.com/yr3kdvdv/flutter-docs-rag/releases/tag/lab1-v1.0.0"
+release: "https://github.com/yr3kdvdv/flutter-docs-rag/releases/tag/lab1-v1.0.1"
 commit_sha: "35ba4cc23b64f2e066054c50c8d1fa93f21166fc"
 worktree: "SHA закрепляет код и сценарий, проверенный живым запуском. Документальные результаты в последующем коммите ветки."
 working_tree_clean: false
@@ -46,6 +46,8 @@ verification:
   - command: "evaluate --config experiments/configs/s06-final.yaml --split dev --mode full --limit 1"
     result: "Реальный ответ и judge на dev-001. CLI сообщил о преднамеренно ограниченном запуске."
     artifact: "docs/evidence/stage08/dev-judge-smoke.json"
+  - command: "Регрессия API для русского ответа с Markdown-ссылкой и полный pytest"
+    result: "В исправлении v1.0.1 ответ проходит валидацию с первой попытки. 173 теста и Ruff прошли."
 not_verified:
   - "Полная загрузка и векторизация всех 647 страниц с нуля в этапе 08 и отключение живого сетевого Qdrant. Соответственно проверены кэшированный сценарий и инъекция ошибки."
   - "Устная защита требует ответов студента."
