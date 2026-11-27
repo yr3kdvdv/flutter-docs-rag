@@ -262,4 +262,6 @@ def test_english_answer_to_russian_question_is_flagged(make_rt):
     rt = make_rt(FakeGitHub({PAGE: LAYOUT}), llm=llm)
     ingest(rt)
     a = ask(rt, "Что говорит правило про размеры?")
-    assert a.status == "answered" and "answer_language_mismatch: expected ru" in a.warnings
+    assert a.status == "upstream_error"
+    assert "answer_language_mismatch: expected ru" in a.warnings
+    assert a.text is None and a.sources == [] and llm.calls == 2

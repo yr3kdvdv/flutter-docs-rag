@@ -107,17 +107,18 @@ def test_aggregate_generation_counts():
         ),
         g("insufficient_context", True, False, must=[False]),
         g("insufficient_context", False, True),
+        g("answered", False, False, judge={"correctness": 1, "faithfulness": 1}),
         {"status": "upstream_error", "answerable": True},
     ]
     out = M.aggregate_generation(rows)
-    assert out["upstream_error"] == {"k": 1, "n": 4}
+    assert out["upstream_error"] == {"k": 1, "n": 5}
     assert (
         out["refusal_accuracy_answerable"]["k"] == 1
         and out["refusal_accuracy_answerable"]["n"] == 2
     )
     assert (
         out["refusal_accuracy_unanswerable"]["k"] == 1
-        and out["refusal_accuracy_unanswerable"]["n"] == 1
+        and out["refusal_accuracy_unanswerable"]["n"] == 2
     )
     assert (
         out["citation_precision_section"]["k"] == 1 and out["citation_precision_section"]["n"] == 2
@@ -128,3 +129,4 @@ def test_aggregate_generation_counts():
     assert (
         out["judge_correctness"]["mean"] == 4 and out["judge_correctness"]["distribution"]["4"] == 1
     )
+    assert out["judge_correctness"]["n"] == 1

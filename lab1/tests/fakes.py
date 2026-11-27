@@ -83,3 +83,15 @@ class FakeLLM:
         if self.error:
             raise self.error
         return LLMResult(self.answer, "fake-llm-v", {"input": 1, "output": 1, "total": 2}, "{}")
+
+
+class ScriptedLLM(FakeLLM):
+    def __init__(self, *answers: LLMAnswer):
+        super().__init__()
+        self.answers = iter(answers)
+        self.system_prompts = []
+
+    def generate(self, prompt, user_text):
+        self.answer = next(self.answers)
+        self.system_prompts.append(prompt.system)
+        return super().generate(prompt, user_text)

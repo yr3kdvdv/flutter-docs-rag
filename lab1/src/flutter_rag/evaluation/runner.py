@@ -11,9 +11,8 @@
   errors and are not mixed with refusals;
 - the test split is opened only with --final (N03), recorded in meta.
 
-Full mode runs the same code path as `pipeline.ask` (`_ask_inner`) inside the eval trace, so the
-answer is produced exactly like in the service; the LLM is wrapped only to record the excerpts it
-received, which the judge needs for faithfulness.
+Full mode runs the same code path as `pipeline.ask` (`_ask_inner`) inside the eval trace. The
+judge receives the numbered excerpts separately from the generator's prompt.
 """
 
 from __future__ import annotations
@@ -59,19 +58,6 @@ class RunSummary:
 
 def default_run_id(config_id: str, mode: str, split: str) -> str:
     return f"{datetime.now(UTC):%Y%m%dT%H%M%SZ}-{config_id}-{mode}-{split}"
-
-
-class _RecordingLLM:
-    """Delegates to the real LLM and keeps the user text (numbered excerpts + question)."""
-
-    def __init__(self, inner: Any):
-        self.inner = inner
-        self.model_id = getattr(inner, "model_id", None)
-        self.last_user_text: str | None = None
-
-    def generate(self, prompt, user_text):
-        self.last_user_text = user_text
-        return self.inner.generate(prompt, user_text)
 
 
 @contextmanager
@@ -211,8 +197,6 @@ def run_evaluation(
     attempts = _count(r["id"] for r in rows)
     invocation = {"started_at": _now(), **git_revision(), "processed": 0, "skipped": 0}
 
-    if mode == "full":
-        rt.llm = _RecordingLLM(rt.llm)
     todo = [i for i in dataset.items if i.id not in done]
     invocation["skipped"] = len(dataset.items) - len(todo)
     if limit is not None:
@@ -328,9 +312,9 @@ def _run_item(rt, item: QAItem, *, mode: str, run_id: str, judge, base_meta: dic
                 answer = Answer(
                     status="upstream_error", question=item.question, text=None, sources=[]
                 )
-                rt.llm.last_user_text = None
+                context = ""
                 try:
-                    _ask_inner(rt, item.question, answer, lat)
+                    context = _ask_inner(rt, item.question, answer, lat)
                 except UpstreamError as err:
                     answer.status, answer.error = "upstream_error", err.to_dict()
                 row["ranked"] = answer.ranked
@@ -346,8 +330,8 @@ def _run_item(rt, item: QAItem, *, mode: str, run_id: str, judge, base_meta: dic
                     row["error"] = {"stage": "answer", **(answer.error or {})}
                 else:
                     row["generation"] = _generation(item, answer)
-                    if answer.status == "answered":
-                        row["judge"] = _judge(rt, judge, item, answer)
+                    if item.answerable and answer.status == "answered":
+                        row["judge"] = _judge(rt, judge, item, answer, context)
                         row["generation"]["judge"] = {
                             k: row["judge"][k] for k in ("correctness", "faithfulness")
                         }
@@ -396,8 +380,7 @@ def _generation(item: QAItem, answer) -> dict:
     }
 
 
-def _judge(rt, judge: Judge, item: QAItem, answer) -> dict:
-    context = rt.llm.last_user_text or ""
+def _judge(rt, judge: Judge, item: QAItem, answer, context: str) -> dict:
     with rt.tracer.observe(
         "judge",
         as_type="generation",

@@ -177,7 +177,10 @@ def test_full_mode_error_rows_are_kept_and_resume_skips_done(tmp_path, make_rt):
     rows = read_raw(runs / "f1")
     assert len(rows) == 6  # error rows stay in raw
     assert [r["attempt"] for r in rows[3:]] == [2, 2, 2]
-    assert "Documentation excerpts" in judge.calls[0]["context"]  # judge saw the real context
+    assert judge.calls[0]["context"].startswith("[1] ")
+    assert "Constraints go down" in judge.calls[0]["context"]
+    assert judge.calls[0]["question"] not in judge.calls[0]["context"]
+    assert "Documentation excerpts:" not in judge.calls[0]["context"]
 
     # third call: everything is done -> nothing processed, no LLM call
     llm3 = FakeLLM()
@@ -194,7 +197,8 @@ def test_full_mode_error_rows_are_kept_and_resume_skips_done(tmp_path, make_rt):
     assert g["refusal_accuracy_answerable"] == {"k": 2, "n": 2, "rate": 1.0}
     assert g["refusal_accuracy_unanswerable"]["k"] == 0  # answered an unanswerable question
     assert g["must_include_terms"]["k"] == 2
-    assert g["judge_correctness"]["n"] == 3
+    assert g["judge_correctness"]["n"] == 2
+    assert len(judge.calls) == 2
     meta = json.loads((runs / "f1" / "meta.json").read_text())
     assert len(meta["errors"]) == 3 and len(meta["invocations"]) == 3 and meta["complete"]
 

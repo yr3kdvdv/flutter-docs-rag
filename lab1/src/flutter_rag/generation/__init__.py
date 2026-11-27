@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import re
 from dataclasses import dataclass
 from typing import Literal
 
@@ -23,6 +24,7 @@ from flutter_rag.retry import call_with_retries
 from flutter_rag.runconfig import GenerationConfig
 
 USER_SEPARATOR = "---USER---"
+_PLACEHOLDER = re.compile(r"\{(context|question)\}")
 
 
 @dataclass(frozen=True)
@@ -34,7 +36,8 @@ class Prompt:
     sha256: str
 
     def render_user(self, *, context: str, question: str) -> str:
-        return self.user_template.replace("{context}", context).replace("{question}", question)
+        values = {"context": context, "question": question}
+        return _PLACEHOLDER.sub(lambda match: values[match.group(1)], self.user_template)
 
 
 def load_prompt(name: str, version: str) -> Prompt:

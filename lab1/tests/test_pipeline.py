@@ -5,7 +5,7 @@ They do NOT call Gemini or Langfuse (tracing is disabled here).
 """
 
 import pytest
-from fakes import CONTENT, FakeEmbedder, FakeGitHub, FakeLLM
+from fakes import CONTENT, FakeEmbedder, FakeGitHub, FakeLLM, ScriptedLLM
 
 from flutter_rag.config import Settings
 from flutter_rag.errors import StorageLockedError, UpstreamError
@@ -107,13 +107,18 @@ def test_modified_and_deleted_documents(env):
 
 def test_ask_returns_only_sources_that_were_in_context(env):
     _, _, runtime = env
-    llm = FakeLLM(LLMAnswer(status="answered", answer="Sizes go up [1] [9].", citations=[1, 9]))
+    llm = ScriptedLLM(
+        LLMAnswer(status="answered", answer="Sizes go up [1] [9].", citations=[1, 9]),
+        LLMAnswer(status="answered", answer="Sizes go up [1].", citations=[1]),
+    )
     rt = runtime(llm=llm)
     ingest(rt)
     a = ask(rt, "What does the constraints rule say about sizes and parents?")
     assert a.status == "answered"
     assert [s.number for s in a.sources] == [1]
     assert "unsupported_citation: [9]" in a.warnings
+    assert "unsupported_inline_citation: [9]" in a.warnings
+    assert a.text == "Sizes go up [1]."
     # source [1] is exactly the excerpt that was numbered [1] in the prompt sent to the LLM
     first_excerpt = llm.last_user_text.split("[1] ", 1)[1].split("\n---\n", 1)[0]
     assert f"Source: {a.sources[0].url}" in first_excerpt

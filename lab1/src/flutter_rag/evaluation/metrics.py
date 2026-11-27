@@ -185,7 +185,7 @@ def aggregate_generation(rows: Sequence[Mapping[str, Any]]) -> dict[str, Any]:
         "rate": _rate(present, len(with_code)),
     }
 
-    judged = [r["judge"] for r in ok if r.get("judge")]
+    judged = [r["judge"] for r in answered if r.get("judge")]
     for key in ("correctness", "faithfulness"):
         values = [j[key] for j in judged]
         out[f"judge_{key}"] = {

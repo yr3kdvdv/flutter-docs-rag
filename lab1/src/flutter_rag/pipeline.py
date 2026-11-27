@@ -5,7 +5,7 @@ from __future__ import annotations
 import re
 import time
 from contextlib import ExitStack
-from dataclasses import asdict, dataclass, field
+from dataclasses import asdict, dataclass, field, replace
 from typing import Any, Literal
 
 from flutter_rag.config import Settings
@@ -18,7 +18,7 @@ from flutter_rag.grabber.github import GitHubClient
 from flutter_rag.observability import Tracer, git_revision
 from flutter_rag.preprocessing import PREPROCESS_VERSION
 from flutter_rag.preprocessing.chunking import chunk_document
-from flutter_rag.preprocessing.clean import clean_markdown
+from flutter_rag.preprocessing.clean import clean_markdown, split_fences
 from flutter_rag.ratelimit import RateLimiter
 from flutter_rag.reranking import make_reranker
 from flutter_rag.retrieval import Candidate, retrieve
@@ -426,20 +426,70 @@ def search(rt: Runtime, question: str, lat: dict[str, float] | None = None) -> S
     return SearchResult(candidates, report.kept, ranked, items, dict(report.dropped))
 
 
-def _ask_inner(rt: Runtime, question: str, answer: Answer, lat: dict[str, float]) -> None:
-    cfg, tr = rt.cfg, rt.tracer
+def _ask_inner(rt: Runtime, question: str, answer: Answer, lat: dict[str, float]) -> str:
+    tr = rt.tracer
     found = search(rt, question, lat)
     answer.retrieved = [_candidate_row(c) for c in found.retrieved]
     answer.ranked = [_candidate_row(c) for c in found.ranked]
     items = found.context
+    language = question_language(question)
 
     if not items:
         # Below threshold / nothing indexed: refuse WITHOUT calling the LLM.
         answer.status = "insufficient_context"
-        answer.text = REFUSAL_TEXT[question_language(question)]
-        return
+        answer.text = REFUSAL_TEXT[language]
+        return ""
 
-    user_text = rt.prompt.render_user(context=render_context(items), question=question)
+    context = render_context(items)
+    user_text = rt.prompt.render_user(context=context, question=question)
+    retry_instruction = _GENERATION_RETRY.format(
+        language="Russian" if language == "ru" else "English"
+    )
+    for attempt, instruction in enumerate(("", retry_instruction), start=1):
+        result = _generate_answer(rt, user_text, lat, attempt, instruction)
+        usage = answer.usage or {}
+        for metric, value in result.usage.items():
+            usage[metric] = usage.get(metric, 0) + value
+        answer.usage = usage
+        with tr.observe(
+            "validate", input=result.parsed.model_dump(), metadata={"attempt": attempt}
+        ) as obs:
+            accepted = _apply_llm_result(answer, result, items, language)
+            obs.update(
+                output={
+                    "accepted": accepted,
+                    "status": answer.status,
+                    "warnings": list(answer.warnings),
+                    "sources": [s.number for s in answer.sources],
+                }
+            )
+        if accepted:
+            return context
+
+    raise UpstreamError("gemini", "bad_request", "model answer failed validation after one retry")
+
+
+_GENERATION_RETRY = (
+    "Correct the output format. Write the answer prose in {language}. Preserve identifiers and "
+    "code. If answering, include at least one citation from the numbered excerpts and use "
+    "exactly the same citation numbers in the prose and the citations array. If the excerpts do "
+    "not support an answer, return insufficient_context with an empty citations array."
+)
+
+
+def _generate_answer(
+    rt: Runtime, user_text: str, lat: dict[str, float], attempt: int, instruction: str
+) -> LLMResult:
+    cfg, tr = rt.cfg, rt.tracer
+    prompt = rt.prompt
+    metadata = {
+        "prompt": f"{prompt.name}/{prompt.version}",
+        "prompt_sha256": prompt.sha256,
+        "attempt": attempt,
+    }
+    if instruction:
+        metadata["repair_instruction"] = instruction
+        prompt = replace(prompt, system=f"{prompt.system}\n\n{instruction}")
     with (
         tr.observe(
             "llm",
@@ -450,30 +500,17 @@ def _ask_inner(rt: Runtime, question: str, answer: Answer, lat: dict[str, float]
                 "temperature": cfg.generation.temperature,
                 "max_output_tokens": cfg.generation.max_output_tokens,
             },
-            metadata={
-                "prompt": f"{rt.prompt.name}/{rt.prompt.version}",
-                "prompt_sha256": rt.prompt.sha256,
-            },
+            metadata=metadata,
         ) as gen,
-        _Timer(lat, "llm"),
+        _Timer(lat, "llm" if attempt == 1 else "llm_retry"),
     ):
-        result: LLMResult = rt.llm.generate(rt.prompt, user_text)
+        result: LLMResult = rt.llm.generate(prompt, user_text)
         gen.update(
             output=result.raw_text,
             usage_details=result.usage,
             metadata={"model_version": result.model_version},
         )
-    answer.usage = result.usage
-
-    with tr.observe("validate", input=result.parsed.model_dump()) as obs:
-        _apply_llm_result(answer, result, items, question_language(question))
-        obs.update(
-            output={
-                "status": answer.status,
-                "warnings": answer.warnings,
-                "sources": [s.number for s in answer.sources],
-            }
-        )
+    return result
 
 
 _CYRILLIC = re.compile(r"[а-яё]", re.IGNORECASE)
@@ -495,6 +532,10 @@ _QUOTED = re.compile(
     re.DOTALL,
 )
 _LETTER = re.compile(r"[^\W\d_]")
+_CITATION = re.compile(r"(?<!\\)\[([0-9]+)\](?!\()")
+_INLINE_ANSWER_CODE = re.compile(r"(?<!`)(`+)(?!`).*?(?<!`)\1(?!`)", re.DOTALL)
+_CYRILLIC_WORD = re.compile(r"[а-яё]+", re.IGNORECASE)
+_LATIN_WORD = re.compile(r"[a-z]+", re.IGNORECASE)
 
 
 def question_language(question: str) -> str:
@@ -510,23 +551,48 @@ def question_language(question: str) -> str:
     return "ru" if _CYRILLIC.search(text) else "en"
 
 
-def _apply_llm_result(answer: Answer, result: LLMResult, items, language: str = "en") -> None:
+def _apply_llm_result(
+    answer: Answer, result: LLMResult, items: list[ContextItem], language: str
+) -> bool:
     parsed = result.parsed
-    by_number = {i.number: i for i in items}
-    valid = [n for n in dict.fromkeys(parsed.citations) if n in by_number]
-    invalid = [n for n in parsed.citations if n not in by_number]
-    if invalid:
-        answer.warnings.append(f"unsupported_citation: {invalid}")
-    answer.text = parsed.answer
     if parsed.status == "insufficient_context":
         answer.status = "insufficient_context"
         answer.text = REFUSAL_TEXT[language]
-        return
-    if language == "ru" and not _CYRILLIC.search(parsed.answer):
-        answer.warnings.append("answer_language_mismatch: expected ru")
+        return True
+
+    prose = "\n".join(
+        _INLINE_ANSWER_CODE.sub(" ", segment)
+        for is_code, segment in split_fences(parsed.answer)
+        if not is_code
+    )
+    by_number = {i.number: i for i in items}
+    by_marker = {str(n): n for n in by_number}
+    declared = list(dict.fromkeys(parsed.citations))
+    inline = list(dict.fromkeys(_CITATION.findall(prose)))
+    valid = [n for n in declared if n in by_number]
+    warnings = []
+    if invalid := [n for n in declared if n not in by_number]:
+        warnings.append(f"unsupported_citation: {invalid}")
+    if invalid_inline := [marker for marker in inline if marker not in by_marker]:
+        warnings.append(f"unsupported_inline_citation: [{', '.join(invalid_inline)}]")
+    if set(valid) != {by_marker[marker] for marker in inline if marker in by_marker}:
+        warnings.append("citation_text_mismatch")
     if not valid:
-        answer.warnings.append("answered_without_citations")
+        warnings.append("answered_without_citations")
+    outside_quotes = _QUOTED.sub(" ", prose)
+    language_text = outside_quotes if _LETTER.search(outside_quotes) else prose
+    russian_words = len(_CYRILLIC_WORD.findall(language_text))
+    english_words = len(_LATIN_WORD.findall(language_text))
+    if (language == "en" and russian_words > english_words) or (
+        language == "ru" and english_words > russian_words
+    ):
+        warnings.append(f"answer_language_mismatch: expected {language}")
+    if warnings:
+        answer.warnings.extend(warning for warning in warnings if warning not in answer.warnings)
+        return False
+
     answer.status = "answered"
+    answer.text = parsed.answer
     for n in valid:
         c = by_number[n].candidate
         answer.sources.append(
@@ -539,6 +605,7 @@ def _apply_llm_result(answer: Answer, result: LLMResult, items, language: str = 
                 c.chunk.chunk_id,
             )
         )
+    return True
 
 
 def _index_version(manifest, document_id: str) -> str:
